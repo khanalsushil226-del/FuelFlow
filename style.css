@@ -1,0 +1,75 @@
+/* ===========================
+   LOGIN PAGE
+=========================== */
+
+.login{
+    min-height:100vh;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+}
+
+/* ===========================
+   LEFT SIDE
+=========================== */
+
+.login-left{
+    background:linear-gradient(135deg,#0052CC,#0EA5E9);
+    color:#fff;
+    padding:80px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+}
+
+.brand{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.logo{
+    width:90px;
+    height:90px;
+    background:rgba(255,255,255,.15);
+    border-radius:22px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    backdrop-filter:blur(10px);
+
+    font-size:36px;
+
+    margin-bottom:35px;
+}
+
+.logo i{
+    color:white;
+}
+
+.brand h1{
+    font-size:54px;
+    font-weight:700;
+    letter-spacing:1px;
+    margin-bottom:12px;
+}
+
+.brand p{
+    font-size:18px;
+    opacity:.9;
+}
+
+.welcome-text h2{
+    font-size:58px;
+    line-height:1.2;
+    margin-bottom:25px;
+    font-weight:700;
+}
+
+.welcome-text p{
+    font-size:20px;
+    line-height:1.9;
+    max-width:550px;
+    opacity:.95;
+}
