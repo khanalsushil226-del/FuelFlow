@@ -1,0 +1,945 @@
+/* ==========================================================
+   FUELFLOW DASHBOARD
+   Part 1 - Global Styles, Layout, Sidebar & Topbar
+========================================================== */
+
+/* ==========================
+   Google Font
+========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#f8fafc;
+    color:#1f2937;
+    overflow-x:hidden;
+}
+
+/* ==========================
+   Global
+========================== */
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+button{
+    font-family:inherit;
+}
+
+ul{
+    list-style:none;
+}
+
+/* ==========================
+   Dashboard Layout
+========================== */
+
+.dashboard{
+
+    display:flex;
+    min-height:100vh;
+
+}
+
+/* ==========================
+   Sidebar
+========================== */
+
+.sidebar{
+
+    position:fixed;
+    left:0;
+    top:0;
+
+    width:270px;
+    height:100vh;
+
+    background:#0f172a;
+
+    display:flex;
+    flex-direction:column;
+
+    color:#fff;
+
+    z-index:1000;
+
+}
+
+/* ==========================
+   Logo
+========================== */
+
+.logo{
+
+    height:80px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    gap:12px;
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+}
+
+.logo i{
+
+    font-size:28px;
+    color:#3b82f6;
+
+}
+
+.logo h2{
+
+    font-size:24px;
+    font-weight:600;
+    letter-spacing:.5px;
+
+}
+
+/* ==========================
+   Navigation
+========================== */
+
+.sidebar nav{
+
+    flex:1;
+    padding:25px 18px;
+
+}
+
+.sidebar nav ul{
+
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+
+}
+
+.sidebar nav ul li a{
+
+    display:flex;
+    align-items:center;
+
+    gap:15px;
+
+    padding:15px 18px;
+
+    border-radius:14px;
+
+    color:#cbd5e1;
+
+    transition:.30s;
+
+    font-size:15px;
+    font-weight:500;
+
+}
+
+.sidebar nav ul li a:hover{
+
+    background:#1e293b;
+    color:#fff;
+
+}
+
+.sidebar nav ul li.active a{
+
+    background:#2563eb;
+    color:#fff;
+
+}
+
+.sidebar nav ul li a i{
+
+    width:22px;
+
+    text-align:center;
+
+    font-size:18px;
+
+}
+
+/* ==========================
+   Logout Button
+========================== */
+
+.logout{
+
+    padding:20px;
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+}
+
+.logout a{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:15px 18px;
+
+    border-radius:14px;
+
+    color:#f8fafc;
+
+    transition:.3s;
+
+}
+
+.logout a:hover{
+
+    background:#dc2626;
+
+}
+
+/* ==========================
+   Main Content
+========================== */
+
+.main-content{
+
+    flex:1;
+
+    margin-left:270px;
+
+    padding:30px;
+
+}
+
+/* ==========================
+   Topbar
+========================== */
+
+.topbar{
+
+    height:80px;
+
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:0 30px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    box-shadow:0 8px 20px rgba(15,23,42,.06);
+
+}
+
+/* ==========================
+   Left Side
+========================== */
+
+.topbar-left h1{
+
+    font-size:28px;
+    font-weight:600;
+
+    color:#111827;
+
+}
+
+.topbar-left p{
+
+    margin-top:5px;
+
+    color:#64748b;
+
+    font-size:14px;
+
+}
+
+/* ==========================
+   Right Side
+========================== */
+
+.topbar-right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+}
+
+/* Notification */
+
+.notification{
+
+    width:46px;
+    height:46px;
+
+    border-radius:50%;
+
+    border:none;
+
+    background:#f1f5f9;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    font-size:17px;
+
+}
+
+.notification:hover{
+
+    background:#2563eb;
+
+    color:#fff;
+
+}
+
+/* Profile */
+
+.profile{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    cursor:pointer;
+
+}
+
+.profile i{
+
+    font-size:38px;
+
+    color:#64748b;
+
+}
+
+.profile span{
+
+    font-weight:500;
+
+    color:#334155;
+
+}
+
+/* ==========================
+   Content
+========================== */
+
+.content{
+
+    margin-top:30px;
+
+}
+/* ==========================================================
+   FUELFLOW DASHBOARD
+   Part 2 - Welcome, Cards, Dashboard Grid & Panels
+========================================================== */
+
+
+/* ==========================
+   Welcome Section
+========================== */
+
+.welcome{
+
+    margin-bottom:30px;
+
+}
+
+.welcome h2{
+
+    font-size:30px;
+
+    font-weight:600;
+
+    color:#0f172a;
+
+    margin-bottom:8px;
+
+}
+
+.welcome p{
+
+    font-size:15px;
+
+    color:#64748b;
+
+}
+
+
+/* ==========================
+   Statistics Cards
+========================== */
+
+.cards{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:25px;
+
+    margin-bottom:30px;
+
+}
+
+
+/* ==========================
+   Card
+========================== */
+
+.card{
+
+    background:#ffffff;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    box-shadow:0 8px 24px rgba(15,23,42,.06);
+
+    transition:.35s;
+
+    cursor:pointer;
+
+    border:1px solid #edf2f7;
+
+}
+
+.card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 16px 35px rgba(37,99,235,.12);
+
+}
+
+
+/* ==========================
+   Card Icon
+========================== */
+
+.card-icon{
+
+    width:70px;
+
+    height:70px;
+
+    border-radius:18px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:#2563eb;
+
+    color:#fff;
+
+    font-size:26px;
+
+}
+
+
+/* ==========================
+   Card Information
+========================== */
+
+.card-info{
+
+    flex:1;
+
+}
+
+.card-info h4{
+
+    color:#64748b;
+
+    font-size:15px;
+
+    font-weight:500;
+
+    margin-bottom:8px;
+
+}
+
+.card-info h2{
+
+    font-size:30px;
+
+    font-weight:700;
+
+    color:#111827;
+
+}
+
+
+/* ==========================
+   Dashboard Grid
+========================== */
+
+.dashboard-grid{
+
+    display:grid;
+
+    grid-template-columns:2fr 1fr;
+
+    gap:25px;
+
+}
+
+
+/* ==========================
+   Panel
+========================== */
+
+.panel{
+
+    background:#ffffff;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    border:1px solid #edf2f7;
+
+    box-shadow:0 8px 24px rgba(15,23,42,.05);
+
+}
+
+
+/* ==========================
+   Panel Header
+========================== */
+
+.panel-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+
+}
+
+.panel-header h3{
+
+    font-size:20px;
+
+    font-weight:600;
+
+    color:#0f172a;
+
+}
+
+.panel-header button{
+
+    padding:10px 18px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#2563eb;
+
+    color:#fff;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    font-size:14px;
+
+}
+
+.panel-header button:hover{
+
+    background:#1d4ed8;
+
+}
+
+
+/* ==========================
+   Sales Chart Placeholder
+========================== */
+
+.chart-placeholder{
+
+    height:340px;
+
+    border:2px dashed #cbd5e1;
+
+    border-radius:14px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:#f8fafc;
+
+    color:#94a3b8;
+
+    font-size:18px;
+
+    font-weight:500;
+
+}
+/* ==========================================================
+   FUELFLOW DASHBOARD
+   Part 3 - Fuel Inventory, Table & Responsive
+========================================================== */
+
+
+/* ==========================
+   Fuel Inventory
+========================== */
+
+.fuel-list{
+
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+
+}
+
+.fuel-item{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:18px;
+
+    border-radius:14px;
+
+    background:#f8fafc;
+
+    transition:.3s;
+
+}
+
+.fuel-item:hover{
+
+    background:#eff6ff;
+
+    transform:translateX(5px);
+
+}
+
+.fuel-item span{
+
+    font-size:15px;
+    color:#475569;
+    font-weight:500;
+
+}
+
+.fuel-item strong{
+
+    color:#0f172a;
+    font-size:17px;
+    font-weight:600;
+
+}
+
+
+/* ==========================
+   Recent Transactions
+========================== */
+
+.table-panel{
+
+    margin-top:30px;
+
+}
+
+.table-panel table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+.table-panel thead{
+
+    background:#f8fafc;
+
+}
+
+.table-panel th{
+
+    text-align:left;
+
+    padding:18px;
+
+    color:#475569;
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+.table-panel td{
+
+    padding:18px;
+
+    border-bottom:1px solid #e5e7eb;
+
+    color:#334155;
+
+    font-size:14px;
+
+}
+
+.table-panel tbody tr{
+
+    transition:.25s;
+
+}
+
+.table-panel tbody tr:hover{
+
+    background:#f8fafc;
+
+}
+
+
+/* ==========================
+   Status Badges
+========================== */
+
+.status{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:7px 16px;
+
+    border-radius:50px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+}
+
+.success{
+
+    background:#dcfce7;
+
+    color:#15803d;
+
+}
+
+.pending{
+
+    background:#fef3c7;
+
+    color:#b45309;
+
+}
+
+.cancelled{
+
+    background:#fee2e2;
+
+    color:#dc2626;
+
+}
+
+
+/* ==========================
+   Smooth Animation
+========================== */
+
+.card,
+.panel{
+
+    animation:fadeUp .5s ease;
+
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+
+/* ==========================
+   Scrollbar
+========================== */
+
+::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#e2e8f0;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#94a3b8;
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#64748b;
+
+}
+
+
+/* ==========================
+   Responsive
+========================== */
+
+@media(max-width:1300px){
+
+    .cards{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+}
+
+@media(max-width:1050px){
+
+    .dashboard-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .sidebar{
+
+        width:90px;
+
+    }
+
+    .logo h2{
+
+        display:none;
+
+    }
+
+    .sidebar nav ul li a span{
+
+        display:none;
+
+    }
+
+    .main-content{
+
+        margin-left:90px;
+
+        padding:20px;
+
+    }
+
+    .cards{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+@media(max-width:600px){
+
+    .topbar{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:15px;
+
+        height:auto;
+
+        padding:20px;
+
+    }
+
+    .topbar-right{
+
+        width:100%;
+
+        justify-content:space-between;
+
+    }
+
+    table{
+
+        display:block;
+
+        overflow-x:auto;
+
+        white-space:nowrap;
+
+    }
+
+}

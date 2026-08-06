@@ -17,12 +17,10 @@
         rel="stylesheet">
 
     <!-- Font Awesome -->
-
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
     <!-- CSS -->
-
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="dashboard.css">
 
@@ -55,65 +53,65 @@
                 <ul>
 
                     <li class="active">
-                        <a href="#">
+                        <a href="dashboard.html">
                             <i class="fa-solid fa-chart-line"></i>
-                            Dashboard
+                            <span>Dashboard</span>
                         </a>
                     </li>
 
                     <li>
                         <a href="#">
                             <i class="fa-solid fa-cash-register"></i>
-                            Sales
+                            <span>Sales</span>
                         </a>
                     </li>
 
                     <li>
                         <a href="#">
                             <i class="fa-solid fa-oil-can"></i>
-                            Fuel Purchase
+                            <span>Fuel Purchase</span>
                         </a>
                     </li>
 
                     <li>
                         <a href="#">
                             <i class="fa-solid fa-warehouse"></i>
-                            Inventory
+                            <span>Inventory</span>
                         </a>
                     </li>
 
                     <li>
                         <a href="#">
                             <i class="fa-solid fa-users"></i>
-                            Employees
+                            <span>Employees</span>
                         </a>
                     </li>
 
                     <li>
                         <a href="#">
                             <i class="fa-solid fa-user-group"></i>
-                            Customers
+                            <span>Customers</span>
                         </a>
                     </li>
 
                     <li>
                         <a href="#">
                             <i class="fa-solid fa-wallet"></i>
-                            Expenses
+                            <span>Expenses</span>
                         </a>
                     </li>
 
                     <li>
                         <a href="#">
                             <i class="fa-solid fa-chart-pie"></i>
-                            Reports
+                            <span>Reports</span>
                         </a>
                     </li>
 
                     <li>
                         <a href="#">
                             <i class="fa-solid fa-gear"></i>
-                            Settings
+                            <span>Settings</span>
                         </a>
                     </li>
 
@@ -137,9 +135,7 @@
 
                     <h1>Dashboard</h1>
 
-                    <p>
-                        Welcome back, Admin.
-                    </p>
+                    <p>Welcome back, Admin.</p>
 
                 </div>
 
@@ -167,9 +163,227 @@
 
             <section class="content">
 
-                <h2>
-                    Dashboard Content Coming Soon...
-                </h2>
+                <!-- Welcome Section -->
+
+                <div class="welcome">
+
+                    <h2>Welcome Back, Admin</h2>
+
+                    <p>
+                        Here's an overview of your petrol pump operations today.
+                    </p>
+
+                </div>
+
+                <!-- Statistics Cards -->
+
+                <div class="cards">
+
+                    <div class="card">
+
+                        <div class="card-icon">
+
+                            <i class="fa-solid fa-sack-dollar"></i>
+
+                        </div>
+
+                        <div class="card-info">
+
+                            <h4>Today's Sales</h4>
+
+                            <h2>Rs. 0</h2>
+
+                        </div>
+
+                    </div>
+
+                    <div class="card">
+
+                        <div class="card-icon">
+
+                            <i class="fa-solid fa-receipt"></i>
+
+                        </div>
+
+                        <div class="card-info">
+
+                            <h4>Transactions</h4>
+
+                            <h2>0</h2>
+
+                        </div>
+
+                    </div>
+
+                    <div class="card">
+
+                        <div class="card-icon">
+
+                            <i class="fa-solid fa-gas-pump"></i>
+
+                        </div>
+
+                        <div class="card-info">
+
+                            <h4>Fuel Stock</h4>
+
+                            <h2>0 L</h2>
+
+                        </div>
+
+                    </div>
+
+                    <div class="card">
+
+                        <div class="card-icon">
+
+                            <i class="fa-solid fa-users"></i>
+
+                        </div>
+
+                        <div class="card-info">
+
+                            <h4>Customers</h4>
+
+                            <h2>0</h2>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Dashboard Grid -->
+
+                <div class="dashboard-grid">
+
+                    <!-- Sales Overview -->
+
+                    <div class="panel">
+
+                        <div class="panel-header">
+
+                            <h3>Sales Overview</h3>
+
+                            <button>View Report</button>
+
+                        </div>
+
+                        <div class="chart-placeholder">
+
+                            Sales Chart Coming Soon
+
+                        </div>
+
+                    </div>
+
+                    <!-- Fuel Inventory -->
+
+                    <div class="panel">
+
+                        <div class="panel-header">
+
+                            <h3>Fuel Inventory</h3>
+
+                        </div>
+
+                        <div class="fuel-list">
+
+                            <div class="fuel-item">
+
+                                <span>Petrol</span>
+
+                                <strong>5,200 L</strong>
+
+                            </div>
+
+                            <div class="fuel-item">
+
+                                <span>Diesel</span>
+
+                                <strong>8,400 L</strong>
+
+                            </div>
+
+                            <div class="fuel-item">
+
+                                <span>Premium</span>
+
+                                <strong>1,250 L</strong>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Recent Transactions -->
+
+                <div class="panel table-panel">
+
+                    <div class="panel-header">
+
+                        <h3>Recent Transactions</h3>
+
+                        <button>View All</button>
+
+                    </div>
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Invoice</th>
+                                <th>Customer</th>
+                                <th>Fuel</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+
+                                <td>#INV001</td>
+                                <td>Walk-in Customer</td>
+                                <td>Petrol</td>
+                                <td>Rs. 2,500</td>
+                                <td><span class="status success">Completed</span></td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>#INV002</td>
+                                <td>ABC Transport</td>
+                                <td>Diesel</td>
+                                <td>Rs. 8,700</td>
+                                <td><span class="status success">Completed</span></td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>#INV003</td>
+                                <td>John Motors</td>
+                                <td>Premium</td>
+                                <td>Rs. 4,100</td>
+                                <td><span class="status pending">Pending</span></td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
 
             </section>
 
@@ -179,7 +393,7 @@
 
     <!-- JavaScript -->
 
-    <script src="js/dashboard.js"></script>
+    <script src="dashboard.js"></script>
 
 </body>
 
