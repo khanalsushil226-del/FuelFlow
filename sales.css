@@ -1,0 +1,728 @@
+/* ==========================================
+   FuelFlow
+   Global Layout
+========================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#f5f7fb;
+    color:#1f2937;
+}
+
+/* ==========================================
+   Dashboard Layout
+========================================== */
+
+.dashboard{
+    display:flex;
+    min-height:100vh;
+}
+
+/* ==========================================
+   Sidebar
+========================================== */
+
+.sidebar{
+    width:260px;
+    background:#0f172a;
+    color:#fff;
+    position:fixed;
+    left:0;
+    top:0;
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+}
+
+.logo{
+    height:80px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:12px;
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.logo i{
+    font-size:26px;
+    color:#3b82f6;
+}
+
+.logo h2{
+    font-size:24px;
+    font-weight:600;
+}
+
+.sidebar nav{
+    flex:1;
+    padding:25px 0;
+}
+
+.sidebar nav ul{
+    list-style:none;
+}
+
+.sidebar nav ul li{
+    margin:6px 18px;
+}
+
+.sidebar nav ul li a{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    text-decoration:none;
+    color:#cbd5e1;
+    padding:14px 18px;
+    border-radius:12px;
+    transition:.3s;
+    font-size:15px;
+    font-weight:500;
+}
+
+.sidebar nav ul li a:hover{
+    background:#1e293b;
+    color:#fff;
+}
+
+.sidebar nav ul li.active a{
+    background:#2563eb;
+    color:#fff;
+}
+
+.sidebar nav ul li i{
+    width:22px;
+    text-align:center;
+    font-size:17px;
+}
+/* ==========================================
+   Main Content
+========================================== */
+
+.main-content{
+    flex:1;
+    margin-left:260px;
+    padding:30px;
+}
+
+/* ==========================================
+   Topbar
+========================================== */
+
+.topbar{
+    height:80px;
+    background:#ffffff;
+    border-radius:16px;
+    padding:0 30px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.05);
+}
+
+.topbar h1{
+    font-size:28px;
+    font-weight:600;
+    color:#0f172a;
+}
+
+.topbar p{
+    margin-top:5px;
+    color:#64748b;
+    font-size:14px;
+}
+
+.topbar-right{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.topbar-right button{
+    width:45px;
+    height:45px;
+
+    border:none;
+    border-radius:50%;
+
+    background:#f1f5f9;
+
+    cursor:pointer;
+    transition:.3s;
+}
+
+.topbar-right button:hover{
+    background:#2563eb;
+    color:#fff;
+}
+
+.profile{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.profile i{
+    font-size:38px;
+    color:#64748b;
+}
+
+.profile span{
+    font-weight:600;
+}
+
+/* ==========================================
+   Sales Layout
+========================================== */
+
+.sales-content{
+
+    display:grid;
+    grid-template-columns:2fr 1fr;
+
+    gap:25px;
+
+    margin-top:30px;
+
+}
+
+/* ==========================================
+   Cards
+========================================== */
+
+.sales-form-card,
+.summary-card,
+.recent-sales{
+
+    background:#ffffff;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    box-shadow:0 8px 25px rgba(15,23,42,.06);
+
+    border:1px solid #edf2f7;
+
+}
+
+.sales-form-card h2,
+.summary-card h2{
+
+    font-size:24px;
+
+    margin-bottom:25px;
+
+    color:#0f172a;
+
+}
+/* ==========================================
+   Form Grid
+========================================== */
+
+.form-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:20px;
+
+}
+
+/* ==========================================
+   Form Group
+========================================== */
+
+.form-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.full-width{
+
+    grid-column:1 / -1;
+
+}
+
+/* ==========================================
+   Labels
+========================================== */
+
+.form-group label{
+
+    margin-bottom:8px;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    color:#475569;
+
+}
+
+/* ==========================================
+   Inputs & Select
+========================================== */
+
+.form-group input,
+.form-group select{
+
+    width:100%;
+
+    padding:14px 16px;
+
+    border:1px solid #dbe3ec;
+
+    border-radius:12px;
+
+    background:#ffffff;
+
+    font-size:15px;
+
+    font-family:'Poppins',sans-serif;
+
+    outline:none;
+
+    transition:all .3s ease;
+
+}
+
+.form-group input:focus,
+.form-group select:focus{
+
+    border-color:#2563eb;
+
+    box-shadow:0 0 0 4px rgba(37,99,235,.12);
+
+}
+
+/* ==========================================
+   Readonly Inputs
+========================================== */
+
+input[readonly]{
+
+    background:#f8fafc;
+
+    color:#475569;
+
+    font-weight:600;
+
+}
+
+/* ==========================================
+   Payment Section
+========================================== */
+
+.sales-form-card h3{
+
+    margin-top:35px;
+
+    margin-bottom:18px;
+
+    color:#0f172a;
+
+    font-size:18px;
+
+}
+
+.payment-options{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:20px;
+
+}
+
+.payment-options label{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    font-size:15px;
+
+    cursor:pointer;
+
+    color:#334155;
+
+}
+
+.payment-options input{
+
+    cursor:pointer;
+
+}
+
+/* ==========================================
+   Buttons
+========================================== */
+
+.buttons{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:15px;
+
+    margin-top:35px;
+
+}
+
+.cancel-btn,
+.save-btn{
+
+    padding:14px 28px;
+
+    border:none;
+
+    border-radius:12px;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:all .3s ease;
+
+}
+
+.cancel-btn{
+
+    background:#e2e8f0;
+
+    color:#334155;
+
+}
+
+.cancel-btn:hover{
+
+    background:#cbd5e1;
+
+}
+
+.save-btn{
+
+    background:#2563eb;
+
+    color:#ffffff;
+
+}
+
+.save-btn:hover{
+
+    background:#1d4ed8;
+
+    transform:translateY(-2px);
+
+    box-shadow:0 8px 20px rgba(37,99,235,.25);
+
+}
+
+/* ==========================================
+   Summary Cards
+========================================== */
+
+.summary-box{
+
+    background:#f8fafc;
+
+    border:1px solid #e2e8f0;
+
+    border-radius:14px;
+
+    padding:20px;
+
+    margin-bottom:18px;
+
+    transition:all .3s ease;
+
+}
+
+.summary-box:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.summary-box h4{
+
+    color:#64748b;
+
+    margin-bottom:10px;
+
+    font-size:15px;
+
+    font-weight:500;
+
+}
+
+.summary-box h1{
+
+    color:#0f172a;
+
+    font-size:30px;
+
+    font-weight:700;
+
+}
+/* ==========================================
+   Recent Sales Table
+========================================== */
+
+.recent-sales{
+
+    margin-top:30px;
+
+}
+
+.recent-sales h2{
+
+    margin-bottom:20px;
+
+    color:#0f172a;
+
+}
+
+.recent-sales table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+.recent-sales thead{
+
+    background:#f8fafc;
+
+}
+
+.recent-sales th{
+
+    padding:16px;
+
+    text-align:left;
+
+    color:#475569;
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+.recent-sales td{
+
+    padding:16px;
+
+    border-bottom:1px solid #e5e7eb;
+
+    color:#334155;
+
+}
+
+.recent-sales tbody tr{
+
+    transition:.3s;
+
+}
+
+.recent-sales tbody tr:hover{
+
+    background:#f8fafc;
+
+}
+
+
+/* ==========================================
+   Receipt Preview
+========================================== */
+
+.receipt-card{
+
+    margin-top:30px;
+
+    background:#ffffff;
+
+    border-radius:18px;
+
+    padding:30px;
+
+    border:1px solid #edf2f7;
+
+    box-shadow:0 8px 25px rgba(15,23,42,.06);
+
+}
+
+.receipt-header{
+
+    text-align:center;
+
+    border-bottom:1px dashed #d1d5db;
+
+    padding-bottom:15px;
+
+    margin-bottom:20px;
+
+}
+
+.receipt-header h2{
+
+    color:#2563eb;
+
+    margin-bottom:5px;
+
+}
+
+.receipt-header p{
+
+    color:#64748b;
+
+}
+
+.receipt-body{
+
+    line-height:2;
+
+    color:#334155;
+
+}
+
+
+/* ==========================================
+   Responsive
+========================================== */
+
+@media(max-width:1100px){
+
+    .sales-content{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .sidebar{
+
+        width:90px;
+
+    }
+
+    .logo h2{
+
+        display:none;
+
+    }
+
+    .sidebar nav span{
+
+        display:none;
+
+    }
+
+    .main-content{
+
+        margin-left:90px;
+
+        padding:20px;
+
+    }
+
+    .topbar{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        justify-content:center;
+
+        gap:15px;
+
+        height:auto;
+
+        padding:20px;
+
+    }
+
+    .form-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .buttons{
+
+        flex-direction:column;
+
+    }
+
+    .buttons button{
+
+        width:100%;
+
+    }
+
+    .recent-sales{
+
+        overflow-x:auto;
+
+    }
+
+    .recent-sales table{
+
+        min-width:900px;
+
+    }
+
+}
+
+@media(max-width:480px){
+
+    .main-content{
+
+        margin-left:0;
+
+        padding:15px;
+
+    }
+
+    .sidebar{
+
+        position:relative;
+
+        width:100%;
+
+        height:auto;
+
+    }
+
+    .dashboard{
+
+        flex-direction:column;
+
+    }
+
+}

@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- Meta -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FuelFlow | Sales</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- CSS -->
+ <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="sales.css">
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- =========================
+            Sidebar
+    ========================== -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <i class="fa-solid fa-gas-pump"></i>
+
+            <h2>FuelFlow</h2>
+
+        </div>
+
+      <nav>
+
+    <ul>
+
+        <li>
+            <a href="dashboard.html">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+
+        <li class="active">
+            <a href="sales.html">
+                <i class="fa-solid fa-cash-register"></i>
+                <span>Sales</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="inventory.html">
+                <i class="fa-solid fa-boxes-stacked"></i>
+                <span>Inventory</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="employees.html">
+                <i class="fa-solid fa-user-tie"></i>
+                <span>Employees</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="customers.html">
+                <i class="fa-solid fa-users"></i>
+                <span>Customers</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="expenses.html">
+                <i class="fa-solid fa-wallet"></i>
+                <span>Expenses</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="reports.html">
+                <i class="fa-solid fa-file-lines"></i>
+                <span>Reports</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="settings.html">
+                <i class="fa-solid fa-gear"></i>
+                <span>Settings</span>
+            </a>
+        </li>
+
+    </ul>
+
+</nav>
+
+    </aside>
+
+    <!-- =========================
+            Main Content
+    ========================== -->
+
+    <main class="main-content">
+
+        <!-- Topbar -->
+
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <h1>Sales</h1>
+
+                <p>Dashboard / Sales</p>
+
+            </div>
+
+            <div class="topbar-right">
+
+                <button class="notification">
+
+                    <i class="fa-solid fa-bell"></i>
+
+                </button>
+
+                <div class="profile">
+
+                    <i class="fa-solid fa-circle-user"></i>
+
+                    <span>Admin</span>
+
+                </div>
+
+            </div>
+
+        </header>
+
+        <!-- =========================
+                Sales Content
+        ========================== -->
+
+        <section class="sales-content">
+
+            <!-- Left -->
+
+            <div class="sales-form-card">
+
+                <h2>New Fuel Sale</h2>
+
+                <form>
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+
+                            <label>Invoice No.</label>
+
+                            <input
+                                type="text"
+                                value="INV-1001"
+                                readonly>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label>Date</label>
+
+                            <input
+                                type="date">
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label>Vehicle Number</label>
+
+                            <input
+                                type="text"
+                                placeholder="BA 01 PA 1234">
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label>Customer Name</label>
+
+                            <input
+                                type="text"
+                                placeholder="Customer Name">
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label>Fuel Type</label>
+
+                            <select>
+
+                                <option>Petrol</option>
+                                <option>Diesel</option>
+                                <option>Premium Petrol</option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label>Nozzle</label>
+
+                            <select>
+
+                                <option>Nozzle 1</option>
+                                <option>Nozzle 2</option>
+                                <option>Nozzle 3</option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label>Rate / Litre</label>
+
+                            <input
+                                type="number"
+                                value="180">
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label>Litres</label>
+
+                            <input
+                                type="number"
+                                placeholder="0">
+
+                        </div>
+
+                        <div class="form-group full-width">
+
+                            <label>Total Amount</label>
+
+                            <input
+                                type="text"
+                                value="Rs. 0"
+                                readonly>
+
+                        </div>
+
+                    </div>
+
+                    <h3>Payment Method</h3>
+
+                    <div class="payment-options">
+
+                        <label><input type="radio" name="payment" checked> Cash</label>
+
+                        <label><input type="radio" name="payment"> QR</label>
+
+                        <label><input type="radio" name="payment"> Card</label>
+
+                        <label><input type="radio" name="payment"> Credit</label>
+
+                    </div>
+
+                    <div class="buttons">
+
+                        <button type="reset" class="cancel-btn">
+
+                            Clear
+
+                        </button>
+
+                        <button type="submit" class="save-btn">
+
+                            Generate Bill
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+            <!-- Right -->
+
+            <div class="summary-card">
+
+                <h2>Today's Summary</h2>
+
+                <div class="summary-box">
+
+                    <h4>Today's Sales</h4>
+
+                    <h1>Rs. 0</h1>
+
+                </div>
+
+                <div class="summary-box">
+
+                    <h4>Transactions</h4>
+
+                    <h1>0</h1>
+
+                </div>
+
+                <div class="summary-box">
+
+                    <h4>Fuel Sold</h4>
+
+                    <h1>0 L</h1>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =========================
+            Recent Sales
+        ========================== -->
+
+        <section class="recent-sales">
+
+            <div class="panel-header">
+
+                <h2>Recent Sales</h2>
+
+            </div>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Invoice</th>
+                        <th>Vehicle</th>
+                        <th>Customer</th>
+                        <th>Fuel</th>
+                        <th>Litres</th>
+                        <th>Amount</th>
+                        <th>Payment</th>
+                        <th>Status</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>INV-1001</td>
+                        <td>BA 01 PA 1234</td>
+                        <td>Walk-in</td>
+                        <td>Petrol</td>
+                        <td>10</td>
+                        <td>Rs.1800</td>
+                        <td>Cash</td>
+                        <td>Completed</td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+    </main>
+
+</div>
+<!-- ==========================
+        Receipt Preview
+========================== -->
+
+<section class="receipt-card" id="receiptCard">
+
+    <div class="receipt-header">
+
+        <h2>FuelFlow</h2>
+
+        <p>Receipt Preview</p>
+
+    </div>
+
+    <div class="receipt-body" id="receiptBody">
+
+        <p>No receipt generated.</p>
+
+    </div>
+
+</section>
+
+<script src="sales.js"></script>
+
+</body>
+
+</html>
