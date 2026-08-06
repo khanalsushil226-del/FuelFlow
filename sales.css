@@ -820,3 +820,151 @@ input[readonly]{
     border-radius:18px;
 
 }
+/* ==========================================
+   80mm Thermal Receipt
+========================================== */
+
+
+.receipt-section{
+
+    margin-top:30px;
+
+}
+
+
+.receipt-actions{
+
+    margin-bottom:15px;
+
+}
+
+
+.print-btn{
+
+    background:#2563eb;
+
+    color:white;
+
+    border:none;
+
+    padding:12px 25px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+}
+
+
+
+.thermal-receipt{
+
+
+    width:302px; /* 80mm approx */
+
+
+    background:white;
+
+
+    padding:20px;
+
+
+    border-radius:8px;
+
+
+    font-family:'Courier New',monospace;
+
+
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+
+
+}
+
+
+
+.receipt-header{
+
+    text-align:center;
+
+}
+
+
+.receipt-header h2{
+
+    font-size:22px;
+
+    margin-bottom:5px;
+
+}
+
+
+
+.thermal-receipt hr{
+
+    border:none;
+
+    border-top:1px dashed #333;
+
+    margin:15px 0;
+
+}
+
+
+
+#receiptContent p{
+
+    margin:8px 0;
+
+    font-size:14px;
+
+}
+
+
+
+.receipt-footer{
+
+    text-align:center;
+
+    font-size:14px;
+
+}
+
+
+
+/* Printing */
+
+
+@media print{
+
+
+    body *{
+
+        visibility:hidden;
+
+    }
+
+
+    .thermal-receipt,
+    .thermal-receipt *{
+
+        visibility:visible;
+
+    }
+
+
+    .thermal-receipt{
+
+        position:absolute;
+
+        left:0;
+
+        top:0;
+
+        box-shadow:none;
+
+    }
+
+
+}

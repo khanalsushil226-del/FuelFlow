@@ -157,53 +157,56 @@ generateBtn.addEventListener("click", function(e){
     // Generate Receipt
 
 
-    receiptBody.innerHTML = `
-
-        <p>
-        Invoice: ${invoice}
-        </p>
+    const receiptContent = document.getElementById("receiptContent");
 
 
-        <p>
-        Customer: ${customerName.value}
-        </p>
+receiptContent.innerHTML = `
 
 
-        <p>
-        Vehicle: ${vehicleNumber.value}
-        </p>
+<p>
+Invoice : ${invoice}
+</p>
 
 
-        <p>
-        Fuel: ${fuelType.value}
-        </p>
+<p>
+Customer : ${customerName.value}
+</p>
 
 
-        <p>
-        Quantity: ${litres} L
-        </p>
+<p>
+Vehicle : ${vehicleNumber.value}
+</p>
 
 
-        <p>
-        Rate: Rs. ${price}
-        </p>
+<p>
+Fuel : ${fuelType.value}
+</p>
 
 
-        <p>
-        Payment: ${payment.value}
-        </p>
+<p>
+Quantity : ${litres} L
+</p>
 
 
-        <hr>
+<p>
+Rate : Rs.${price}
+</p>
 
 
-        <h3>
-        Total: Rs. ${amount}
-        </h3>
+<p>
+Payment : ${payment.value}
+</p>
 
 
-    `;
+<br>
 
+
+<h3>
+TOTAL : Rs.${amount}
+</h3>
+
+
+`;
 
 
     // Clear Form
@@ -212,5 +215,13 @@ generateBtn.addEventListener("click", function(e){
     vehicleNumber.value="";
     quantity.value="";
 
+
+});
+const printBtn = document.getElementById("printReceipt");
+
+
+printBtn.addEventListener("click",()=>{
+
+    window.print();
 
 });
