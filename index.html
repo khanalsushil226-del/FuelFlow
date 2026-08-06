@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <!-- Basic Meta Tags -->
     <meta charset="UTF-8">
@@ -12,7 +13,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 
     <!-- Font Awesome -->
     <link rel="stylesheet"
@@ -20,7 +22,8 @@
 
     <!-- CSS Files -->
     <link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="login.css">
+</head>
 
 <body>
 
@@ -41,9 +44,7 @@
 
                 <h1>FuelFlow</h1>
 
-                <p>
-                    Smart Petrol Pump Management System
-                </p>
+                <p>Smart Petrol Pump Management System</p>
 
             </div>
 
@@ -71,10 +72,10 @@
 
                 <p>Please sign in to continue.</p>
 
-                <form>
+                <!-- Login Form -->
+                <form id="loginForm">
 
                     <!-- Username -->
-
                     <div class="input-group">
 
                         <label for="username">
@@ -88,14 +89,16 @@
                             <input
                                 type="text"
                                 id="username"
-                                placeholder="Enter your username">
+                                name="username"
+                                placeholder="Enter your username"
+                                autocomplete="username"
+                                required>
 
                         </div>
 
                     </div>
 
                     <!-- Password -->
-
                     <div class="input-group">
 
                         <label for="password">
@@ -109,21 +112,28 @@
                             <input
                                 type="password"
                                 id="password"
-                                placeholder="Enter your password">
+                                name="password"
+                                placeholder="Enter your password"
+                                autocomplete="current-password"
+                                required>
 
-                            <i class="fa-solid fa-eye toggle-password"></i>
+                            <i
+                                class="fa-solid fa-eye toggle-password"
+                                id="togglePassword">
+                            </i>
 
                         </div>
 
                     </div>
 
-                    <!-- Options -->
-
+                    <!-- Login Options -->
                     <div class="login-options">
 
-                        <label>
+                        <label for="rememberMe">
 
-                            <input type="checkbox">
+                            <input
+                                type="checkbox"
+                                id="rememberMe">
 
                             Remember Me
 
@@ -136,8 +146,10 @@
                     </div>
 
                     <!-- Login Button -->
-
-                    <button type="submit" class="login-btn">
+                    <button
+                        type="submit"
+                        class="login-btn"
+                        id="loginBtn">
 
                         Sign In
 
@@ -152,8 +164,8 @@
     </section>
 
     <!-- JavaScript -->
-    <script src="js/app.js"></script>
-    <script src="js/login.js"></script>
+    <script src="login.js"></script>
 
 </body>
+
 </html>
