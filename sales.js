@@ -1,9 +1,12 @@
 // ==========================================
 // FuelFlow Sales Module
+// Complete Version
 // ==========================================
 
 
-// Selecting Elements
+// ==============================
+// Select Elements
+// ==============================
 
 const customerName = document.getElementById("customerName");
 const vehicleNumber = document.getElementById("vehicleNumber");
@@ -18,10 +21,11 @@ const clearBtn = document.querySelector(".cancel-btn");
 
 
 const salesTableBody = document.getElementById("salesTableBody");
-const receiptBody = document.getElementById("receiptBody");
+
+const receiptContent = document.getElementById("receiptContent");
 
 
-// Summary Elements
+// Summary
 
 const totalSalesElement = document.getElementById("totalSales");
 
@@ -29,45 +33,69 @@ const transactionElement = document.getElementById("totalTransactions");
 
 const fuelSoldElement = document.getElementById("totalFuel");
 
-// Data
 
-let totalSales = 0;
-let transactions = 0;
-let fuelSold = 0;
+// Print Button
+
+const printBtn = document.getElementById("printReceipt");
 
 
-// ==========================================
-// Generate Invoice Number
-// ==========================================
+
+// ==============================
+// Database
+// ==============================
+
+let salesData = JSON.parse(localStorage.getItem("sales")) || [];
+
+
+
+// ==============================
+// Invoice Generator
+// ==============================
 
 function generateInvoice(){
 
-    let number = Math.floor(Math.random()*9000)+1000;
+    let lastInvoice = localStorage.getItem("lastInvoice");
 
-    return "INV-" + number;
+
+    if(lastInvoice === null){
+
+        lastInvoice = 1000;
+
+    }
+
+
+    let newInvoice = Number(lastInvoice) + 1;
+
+
+    localStorage.setItem(
+        "lastInvoice",
+        newInvoice
+    );
+
+
+    return "INV-" + newInvoice;
 
 }
 
 
 
-// ==========================================
+
+// ==============================
 // Generate Bill
-// ==========================================
+// ==============================
 
-
-generateBtn.addEventListener("click", function(e){
+generateBtn.addEventListener("click",(e)=>{
 
 
     e.preventDefault();
 
 
 
-    // Validation
-
-    if(customerName.value === "" ||
-       vehicleNumber.value === "" ||
-       quantity.value === ""){
-
+    if(
+        customerName.value.trim()==="" ||
+        vehicleNumber.value.trim()==="" ||
+        quantity.value.trim()===""
+    ){
 
         alert("Please fill all required fields.");
 
@@ -84,129 +112,70 @@ generateBtn.addEventListener("click", function(e){
 
     let price = Number(rate.value);
 
-
     let amount = litres * price;
 
 
 
-    // Update Summary
 
-    totalSales += amount;
+    // Create Sale Object
 
-    transactions++;
-
-    fuelSold += litres;
+    let sale = {
 
 
+        invoice: invoice,
 
-    totalSalesElement.innerHTML = 
-        "Rs. " + totalSales.toFixed(2);
+        customer: customerName.value,
 
+        vehicle: vehicleNumber.value,
 
-    transactionElement.innerHTML =
-        transactions;
+        fuel: fuelType.value,
 
+        quantity: litres,
 
-    fuelSoldElement.innerHTML =
-        fuelSold + " L";
+        rate: price,
 
+        amount: amount,
 
+        payment: payment.value,
 
-    // Add Sale To Table
-
-
-    let row = `
-
-        <tr>
-
-            <td>${invoice}</td>
-
-            <td>${customerName.value}</td>
-
-            <td>${vehicleNumber.value}</td>
-
-            <td>${fuelType.value}</td>
-
-            <td>${litres} L</td>
-
-            <td>Rs. ${amount}</td>
-
-            <td>${payment.value}</td>
+        date: new Date().toLocaleString()
 
 
-        </tr>
-
-    `;
+    };
 
 
 
-    // Remove empty message
-
-    if(salesTableBody.innerText.includes("No sales")){
-
-        salesTableBody.innerHTML="";
-
-    }
 
 
+    // Save Data
 
-    salesTableBody.innerHTML += row;
+    salesData.push(sale);
+
+
+    localStorage.setItem(
+        "sales",
+        JSON.stringify(salesData)
+    );
+
+
+
+
+    // Add Table Row
+
+    addSaleRow(sale);
 
 
 
     // Generate Receipt
 
-
-    const receiptContent = document.getElementById("receiptContent");
-
-
-receiptContent.innerHTML = `
+    generateReceipt(sale);
 
 
-<p>
-Invoice : ${invoice}
-</p>
 
+    // Update Summary
 
-<p>
-Customer : ${customerName.value}
-</p>
+    updateSummary();
 
-
-<p>
-Vehicle : ${vehicleNumber.value}
-</p>
-
-
-<p>
-Fuel : ${fuelType.value}
-</p>
-
-
-<p>
-Quantity : ${litres} L
-</p>
-
-
-<p>
-Rate : Rs.${price}
-</p>
-
-
-<p>
-Payment : ${payment.value}
-</p>
-
-
-<br>
-
-
-<h3>
-TOTAL : Rs.${amount}
-</h3>
-
-
-`;
 
 
     // Clear Form
@@ -214,14 +183,309 @@ TOTAL : Rs.${amount}
     customerName.value="";
     vehicleNumber.value="";
     quantity.value="";
+    rate.value="";
 
 
 });
-const printBtn = document.getElementById("printReceipt");
 
 
-printBtn.addEventListener("click",()=>{
 
-    window.print();
+
+
+
+// ==============================
+// Add Sale Row
+// ==============================
+
+
+function addSaleRow(sale){
+
+
+    if(
+        salesTableBody.innerText.includes("No sales")
+    ){
+
+        salesTableBody.innerHTML="";
+
+    }
+
+
+
+    let row = `
+
+    <tr>
+
+        <td>${sale.invoice}</td>
+
+        <td>${sale.customer}</td>
+
+        <td>${sale.vehicle}</td>
+
+        <td>${sale.fuel}</td>
+
+        <td>${sale.quantity} L</td>
+
+        <td>Rs. ${sale.amount}</td>
+
+        <td>${sale.payment}</td>
+
+    </tr>
+
+    `;
+
+
+    salesTableBody.innerHTML += row;
+
+
+}
+
+
+
+
+
+
+
+// ==============================
+// Generate Receipt
+// ==============================
+
+
+function generateReceipt(sale){
+
+
+    receiptContent.innerHTML = `
+
+
+    <p>
+    Invoice : ${sale.invoice}
+    </p>
+
+
+    <p>
+    Date : ${sale.date}
+    </p>
+
+
+    <hr>
+
+
+    <p>
+    Customer : ${sale.customer}
+    </p>
+
+
+    <p>
+    Vehicle : ${sale.vehicle}
+    </p>
+
+
+    <p>
+    Fuel : ${sale.fuel}
+    </p>
+
+
+    <p>
+    Quantity : ${sale.quantity} L
+    </p>
+
+
+    <p>
+    Rate : Rs.${sale.rate}
+    </p>
+
+
+    <p>
+    Payment : ${sale.payment}
+    </p>
+
+
+    <hr>
+
+
+    <h3>
+    TOTAL : Rs.${sale.amount}
+    </h3>
+
+
+    `;
+
+
+}
+
+
+
+
+
+
+
+// ==============================
+// Load Previous Sales
+// ==============================
+
+
+function loadSales(){
+
+
+    salesTableBody.innerHTML="";
+
+
+
+    if(salesData.length===0){
+
+
+        salesTableBody.innerHTML=`
+
+        <tr>
+
+        <td colspan="7">
+
+        No sales recorded yet.
+
+        </td>
+
+        </tr>
+
+        `;
+
+
+        return;
+
+    }
+
+
+
+
+    salesData.forEach((sale)=>{
+
+
+        addSaleRow(sale);
+
+
+    });
+
+
+
+}
+
+
+
+
+
+
+
+// ==============================
+// Update Summary
+// ==============================
+
+
+function updateSummary(){
+
+
+    let total = 0;
+
+    let fuel = 0;
+
+
+
+    salesData.forEach((sale)=>{
+
+
+        total += Number(sale.amount);
+
+        fuel += Number(sale.quantity);
+
+
+    });
+
+
+
+    if(totalSalesElement){
+
+        totalSalesElement.innerHTML =
+        "Rs. " + total;
+
+    }
+
+
+
+    if(transactionElement){
+
+        transactionElement.innerHTML =
+        salesData.length;
+
+    }
+
+
+
+    if(fuelSoldElement){
+
+        fuelSoldElement.innerHTML =
+        fuel + " L";
+
+    }
+
+
+}
+
+
+
+
+
+
+// ==============================
+// Clear Button
+// ==============================
+
+
+clearBtn.addEventListener("click",(e)=>{
+
+
+    e.preventDefault();
+
+
+    customerName.value="";
+    vehicleNumber.value="";
+    quantity.value="";
+    rate.value="";
+
 
 });
+
+
+
+
+
+
+// ==============================
+// Print Receipt
+// ==============================
+
+
+if(printBtn){
+
+
+    printBtn.addEventListener("click",()=>{
+
+
+        window.print();
+
+
+    });
+
+
+}
+
+
+
+
+
+
+
+// ==============================
+// Page Load
+// ==============================
+
+
+loadSales();
+
+updateSummary();
