@@ -726,3 +726,97 @@ input[readonly]{
     }
 
 }
+/* ==========================================
+   Receipt & Table
+========================================== */
+
+
+.receipt-card{
+
+    margin-top:30px;
+
+    background:#fff;
+
+    padding:30px;
+
+    border-radius:18px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.06);
+
+}
+
+
+.receipt-header{
+
+    text-align:center;
+
+    border-bottom:1px dashed #cbd5e1;
+
+    padding-bottom:15px;
+
+    margin-bottom:20px;
+
+}
+
+
+.receipt-header h2{
+
+    color:#2563eb;
+
+}
+
+
+.receipt-body{
+
+    color:#475569;
+
+    line-height:2;
+
+}
+
+
+
+.recent-sales table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    margin-top:20px;
+
+}
+
+
+.recent-sales th{
+
+    background:#f8fafc;
+
+    padding:15px;
+
+    text-align:left;
+
+    color:#475569;
+
+}
+
+
+.recent-sales td{
+
+    padding:15px;
+
+    border-bottom:1px solid #e5e7eb;
+
+}
+
+
+.recent-sales{
+
+    margin-top:30px;
+
+    background:#fff;
+
+    padding:25px;
+
+    border-radius:18px;
+
+}

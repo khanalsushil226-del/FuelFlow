@@ -1,111 +1,216 @@
 // ==========================================
-// FuelFlow Sales JavaScript
+// FuelFlow Sales Module
 // ==========================================
 
-// Select Elements
 
-const form = document.querySelector("form");
+// Selecting Elements
 
-const invoiceInput = document.querySelector("input[value='INV-1001']");
-const dateInput = document.querySelector("input[type='date']");
+const customerName = document.getElementById("customerName");
+const vehicleNumber = document.getElementById("vehicleNumber");
+const fuelType = document.getElementById("fuelType");
+const quantity = document.getElementById("quantity");
+const rate = document.getElementById("rate");
+const payment = document.getElementById("payment");
 
-const vehicleInput = document.querySelector("input[placeholder='BA 01 PA 1234']");
-const customerInput = document.querySelector("input[placeholder='Customer Name']");
 
-const fuelRateInput = document.querySelector("input[value='180']");
-const litreInput = document.querySelector("input[placeholder='0']");
+const generateBtn = document.querySelector(".save-btn");
+const clearBtn = document.querySelector(".cancel-btn");
 
-const amountInput = document.querySelector("input[value='Rs. 0']");
+
+const salesTableBody = document.getElementById("salesTableBody");
+const receiptBody = document.getElementById("receiptBody");
+
+
+// Summary Elements
+
+const totalSalesElement = document.getElementById("totalSales");
+
+const transactionElement = document.getElementById("totalTransactions");
+
+const fuelSoldElement = document.getElementById("totalFuel");
+
+// Data
+
+let totalSales = 0;
+let transactions = 0;
+let fuelSold = 0;
+
 
 // ==========================================
 // Generate Invoice Number
 // ==========================================
 
-const invoiceNumber = Math.floor(Math.random() * 9000) + 1000;
+function generateInvoice(){
 
-invoiceInput.value = `INV-${invoiceNumber}`;
+    let number = Math.floor(Math.random()*9000)+1000;
 
-// ==========================================
-// Today's Date
-// ==========================================
-
-const today = new Date().toISOString().split("T")[0];
-
-dateInput.value = today;
-
-// ==========================================
-// Calculate Total
-// ==========================================
-
-function calculateTotal() {
-
-    const rate = Number(fuelRateInput.value);
-    const litres = Number(litreInput.value);
-
-    const total = rate * litres;
-
-    amountInput.value = "Rs. " + total.toFixed(2);
+    return "INV-" + number;
 
 }
 
-fuelRateInput.addEventListener("input", calculateTotal);
 
-litreInput.addEventListener("input", calculateTotal);
 
 // ==========================================
-// Form Submit
+// Generate Bill
 // ==========================================
 
-form.addEventListener("submit", function(e){
+
+generateBtn.addEventListener("click", function(e){
+
 
     e.preventDefault();
 
-    if(vehicleInput.value.trim()===""){
 
-        alert("Please enter vehicle number.");
 
-        vehicleInput.focus();
+    // Validation
 
-        return;
+    if(customerName.value === "" ||
+       vehicleNumber.value === "" ||
+       quantity.value === ""){
 
-    }
 
-    if(customerInput.value.trim()===""){
-
-        alert("Please enter customer name.");
-
-        customerInput.focus();
+        alert("Please fill all required fields.");
 
         return;
 
     }
 
-    if(litreInput.value===""){
 
-        alert("Please enter fuel quantity.");
 
-        litreInput.focus();
+    let invoice = generateInvoice();
 
-        return;
+
+    let litres = Number(quantity.value);
+
+    let price = Number(rate.value);
+
+
+    let amount = litres * price;
+
+
+
+    // Update Summary
+
+    totalSales += amount;
+
+    transactions++;
+
+    fuelSold += litres;
+
+
+
+    totalSalesElement.innerHTML = 
+        "Rs. " + totalSales.toFixed(2);
+
+
+    transactionElement.innerHTML =
+        transactions;
+
+
+    fuelSoldElement.innerHTML =
+        fuelSold + " L";
+
+
+
+    // Add Sale To Table
+
+
+    let row = `
+
+        <tr>
+
+            <td>${invoice}</td>
+
+            <td>${customerName.value}</td>
+
+            <td>${vehicleNumber.value}</td>
+
+            <td>${fuelType.value}</td>
+
+            <td>${litres} L</td>
+
+            <td>Rs. ${amount}</td>
+
+            <td>${payment.value}</td>
+
+
+        </tr>
+
+    `;
+
+
+
+    // Remove empty message
+
+    if(salesTableBody.innerText.includes("No sales")){
+
+        salesTableBody.innerHTML="";
 
     }
 
-    alert("Bill Generated Successfully!");
 
-});
 
-// ==========================================
-// Clear Button
-// ==========================================
+    salesTableBody.innerHTML += row;
 
-form.addEventListener("reset", function(){
 
-    setTimeout(function(){
 
-        amountInput.value="Rs. 0";
+    // Generate Receipt
 
-        litreInput.value="";
 
-    },50);
+    receiptBody.innerHTML = `
+
+        <p>
+        Invoice: ${invoice}
+        </p>
+
+
+        <p>
+        Customer: ${customerName.value}
+        </p>
+
+
+        <p>
+        Vehicle: ${vehicleNumber.value}
+        </p>
+
+
+        <p>
+        Fuel: ${fuelType.value}
+        </p>
+
+
+        <p>
+        Quantity: ${litres} L
+        </p>
+
+
+        <p>
+        Rate: Rs. ${price}
+        </p>
+
+
+        <p>
+        Payment: ${payment.value}
+        </p>
+
+
+        <hr>
+
+
+        <h3>
+        Total: Rs. ${amount}
+        </h3>
+
+
+    `;
+
+
+
+    // Clear Form
+
+    customerName.value="";
+    vehicleNumber.value="";
+    quantity.value="";
+
 
 });

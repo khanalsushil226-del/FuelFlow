@@ -154,236 +154,308 @@
 
         <section class="sales-content">
 
-            <!-- Left -->
 
-            <div class="sales-form-card">
+<!-- ==========================
+     New Sale Form
+========================== -->
 
-                <h2>New Fuel Sale</h2>
+<div class="sales-form-card">
 
-                <form>
+<h2>
+    Create New Sale
+</h2>
 
-                    <div class="form-grid">
 
-                        <div class="form-group">
+<div class="form-grid">
 
-                            <label>Invoice No.</label>
 
-                            <input
-                                type="text"
-                                value="INV-1001"
-                                readonly>
+<div class="form-group">
 
-                        </div>
+<label>
+Customer Name
+</label>
 
-                        <div class="form-group">
+<input 
+type="text"
+id="customerName"
+placeholder="Enter customer name">
 
-                            <label>Date</label>
+</div>
 
-                            <input
-                                type="date">
 
-                        </div>
 
-                        <div class="form-group">
+<div class="form-group">
 
-                            <label>Vehicle Number</label>
+<label>
+Vehicle Number
+</label>
 
-                            <input
-                                type="text"
-                                placeholder="BA 01 PA 1234">
+<input
+type="text"
+id="vehicleNumber"
+placeholder="BA 01 PA 1234">
 
-                        </div>
+</div>
 
-                        <div class="form-group">
 
-                            <label>Customer Name</label>
 
-                            <input
-                                type="text"
-                                placeholder="Customer Name">
+<div class="form-group">
 
-                        </div>
+<label>
+Fuel Type
+</label>
 
-                        <div class="form-group">
+<select id="fuelType">
 
-                            <label>Fuel Type</label>
+<option>
+Petrol
+</option>
 
-                            <select>
+<option>
+Diesel
+</option>
 
-                                <option>Petrol</option>
-                                <option>Diesel</option>
-                                <option>Premium Petrol</option>
+</select>
 
-                            </select>
+</div>
 
-                        </div>
 
-                        <div class="form-group">
 
-                            <label>Nozzle</label>
+<div class="form-group">
 
-                            <select>
+<label>
+Quantity (Litres)
+</label>
 
-                                <option>Nozzle 1</option>
-                                <option>Nozzle 2</option>
-                                <option>Nozzle 3</option>
+<input
+type="number"
+id="quantity"
+placeholder="0">
 
-                            </select>
+</div>
 
-                        </div>
 
-                        <div class="form-group">
 
-                            <label>Rate / Litre</label>
+<div class="form-group">
 
-                            <input
-                                type="number"
-                                value="180">
+<label>
+Rate Per Litre
+</label>
 
-                        </div>
+<input
+type="number"
+id="rate"
+value="180">
 
-                        <div class="form-group">
+</div>
 
-                            <label>Litres</label>
 
-                            <input
-                                type="number"
-                                placeholder="0">
 
-                        </div>
+<div class="form-group">
 
-                        <div class="form-group full-width">
+<label>
+Payment Method
+</label>
 
-                            <label>Total Amount</label>
+<select id="payment">
 
-                            <input
-                                type="text"
-                                value="Rs. 0"
-                                readonly>
+<option>
+Cash
+</option>
 
-                        </div>
+<option>
+Card
+</option>
 
-                    </div>
+<option>
+Online
+</option>
 
-                    <h3>Payment Method</h3>
+</select>
 
-                    <div class="payment-options">
+</div>
 
-                        <label><input type="radio" name="payment" checked> Cash</label>
 
-                        <label><input type="radio" name="payment"> QR</label>
+</div>
 
-                        <label><input type="radio" name="payment"> Card</label>
 
-                        <label><input type="radio" name="payment"> Credit</label>
+<div class="buttons">
 
-                    </div>
+<button class="cancel-btn">
+Clear
+</button>
 
-                    <div class="buttons">
 
-                        <button type="reset" class="cancel-btn">
+<button class="save-btn">
+Generate Bill
+</button>
 
-                            Clear
+</div>
 
-                        </button>
 
-                        <button type="submit" class="save-btn">
+</div>
 
-                            Generate Bill
 
-                        </button>
 
-                    </div>
+<!-- ==========================
+     Summary
+========================== -->
 
-                </form>
 
-            </div>
+<div class="summary-card">
 
-            <!-- Right -->
+<h2>
+Today's Summary
+</h2>
 
-            <div class="summary-card">
 
-                <h2>Today's Summary</h2>
+<div class="summary-box">
 
-                <div class="summary-box">
+<h4>
+Total Sales
+</h4>
 
-                    <h4>Today's Sales</h4>
+<h1 id="totalSales">
+Rs. 0
+</h1>
 
-                    <h1>Rs. 0</h1>
+</div>
 
-                </div>
 
-                <div class="summary-box">
+<div class="summary-box">
 
-                    <h4>Transactions</h4>
+<h4>
+Transactions
+</h4>
 
-                    <h1>0</h1>
+<h1 id="totalTransactions">
+0
+</h1>
 
-                </div>
+</div>
 
-                <div class="summary-box">
 
-                    <h4>Fuel Sold</h4>
+<div class="summary-box">
 
-                    <h1>0 L</h1>
+<h4>
+Fuel Sold
+</h4>
 
-                </div>
+<h1 id="totalFuel">
+0 L
+</h1>
 
-            </div>
+</div>
 
-        </section>
 
-        <!-- =========================
-            Recent Sales
-        ========================== -->
+</div>
+<!-- ==========================
+     Recent Sales
+========================== -->
 
-        <section class="recent-sales">
+<section class="recent-sales">
 
-            <div class="panel-header">
+    <h2>
+        Recent Sales
+    </h2>
 
-                <h2>Recent Sales</h2>
 
-            </div>
+    <table>
 
-            <table>
+        <thead>
 
-                <thead>
+            <tr>
 
-                    <tr>
+                <th>
+                    Invoice
+                </th>
 
-                        <th>Invoice</th>
-                        <th>Vehicle</th>
-                        <th>Customer</th>
-                        <th>Fuel</th>
-                        <th>Litres</th>
-                        <th>Amount</th>
-                        <th>Payment</th>
-                        <th>Status</th>
+                <th>
+                    Customer
+                </th>
 
-                    </tr>
+                <th>
+                    Vehicle
+                </th>
 
-                </thead>
+                <th>
+                    Fuel
+                </th>
 
-                <tbody>
+                <th>
+                    Quantity
+                </th>
 
-                    <tr>
+                <th>
+                    Amount
+                </th>
 
-                        <td>INV-1001</td>
-                        <td>BA 01 PA 1234</td>
-                        <td>Walk-in</td>
-                        <td>Petrol</td>
-                        <td>10</td>
-                        <td>Rs.1800</td>
-                        <td>Cash</td>
-                        <td>Completed</td>
+                <th>
+                    Payment
+                </th>
 
-                    </tr>
+            </tr>
 
-                </tbody>
+        </thead>
 
-            </table>
 
-        </section>
+        <tbody id="salesTableBody">
+
+
+            <tr>
+
+                <td colspan="7">
+
+                    No sales recorded yet.
+
+                </td>
+
+            </tr>
+
+
+        </tbody>
+
+
+    </table>
+
+
+</section>
+
+
+
+<!-- ==========================
+     Receipt Preview
+========================== -->
+
+
+<section class="receipt-card">
+
+
+    <div class="receipt-header">
+
+        <h2>
+            FuelFlow
+        </h2>
+
+        <p>
+            Fuel Station Receipt
+        </p>
+
+    </div>
+
+
+    <div class="receipt-body" id="receiptBody">
+
+
+        <p>
+            Generate a bill to see receipt preview.
+        </p>
+
+
+    </div>
+
+
+</section>
 
     </main>
 
