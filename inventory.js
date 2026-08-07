@@ -1,6 +1,6 @@
 // ==========================================
 // FuelFlow Inventory Module
-// Part 1/4
+// Part 1/3
 // ==========================================
 
 
@@ -39,15 +39,15 @@ const dieselStockElement =
 document.getElementById("dieselStock");
 
 
-
 const inventoryTable =
 document.getElementById("inventoryTable");
 
 
 
 
+
 // ==============================
-// Local Storage Database
+// Database
 // ==============================
 
 
@@ -58,6 +58,7 @@ let fuelStock = {
     diesel:0
 
 };
+
 
 
 const savedStock = localStorage.getItem("fuelStock");
@@ -76,6 +77,7 @@ if(savedStock && savedStock !== "undefined"){
 let inventoryHistory = [];
 
 
+
 const savedHistory = localStorage.getItem("inventoryHistory");
 
 
@@ -89,9 +91,8 @@ if(savedHistory && savedHistory !== "undefined"){
 
 
 
-
 // ==============================
-// Save Fuel Stock
+// Save Functions
 // ==============================
 
 
@@ -113,12 +114,6 @@ function saveFuelStock(){
 
 
 
-
-// ==============================
-// Save Inventory History
-// ==============================
-
-
 function saveInventoryHistory(){
 
 
@@ -133,7 +128,7 @@ function saveInventoryHistory(){
 
 }
 // ==========================================
-// Part 2/4
+// Part 2/3
 // Add Stock Function
 // ==========================================
 
@@ -163,14 +158,37 @@ addStockBtn.addEventListener("click",(e)=>{
 
     ){
 
-
-        alert(
-            "Please fill all fields."
-        );
-
+        alert("Please fill all fields.");
 
         return;
 
+    }
+
+
+
+
+
+    const fuel = inventoryFuel.value;
+
+
+    const quantity = Number(
+        inventoryQuantity.value
+    );
+
+
+    const price = Number(
+        cost.value
+    );
+
+
+
+
+
+    if(quantity <= 0){
+
+        alert("Enter valid quantity.");
+
+        return;
 
     }
 
@@ -179,42 +197,21 @@ addStockBtn.addEventListener("click",(e)=>{
 
 
 
-    const fuel =
-    inventoryFuel.value;
-
-
-
-    const quantity =
-    Number(inventoryQuantity.value);
-
-
-
-    const price =
-    Number(cost.value);
-
-
-
-
-
-
     // ==============================
-    // Update Stock
+    // Update Fuel Stock
     // ==============================
 
 
     if(fuel === "Petrol"){
 
-
         fuelStock.petrol += quantity;
 
-
     }
+
 
     else if(fuel === "Diesel"){
 
-
         fuelStock.diesel += quantity;
-
 
     }
 
@@ -223,8 +220,7 @@ addStockBtn.addEventListener("click",(e)=>{
 
 
 
-    // Save Updated Stock
-
+    // Save Stock
 
     saveFuelStock();
 
@@ -233,47 +229,34 @@ addStockBtn.addEventListener("click",(e)=>{
 
 
 
+
     // ==============================
-    // Create Inventory Record
+    // Inventory Record
     // ==============================
 
 
     const record = {
 
 
-        date:
-        new Date().toLocaleDateString(),
+        date:new Date().toLocaleDateString(),
 
 
-
-        fuel:
-        fuel,
+        fuel:fuel,
 
 
-
-        supplier:
-        supplier.value.trim(),
+        supplier:supplier.value.trim(),
 
 
-
-        invoice:
-        "STK-" + Date.now(),
+        invoice:"STK-" + Date.now(),
 
 
-
-        quantity:
-        quantity,
+        quantity:quantity,
 
 
-
-        cost:
-        price,
+        cost:price,
 
 
-
-        total:
-        quantity * price
-
+        total:quantity * price
 
 
     };
@@ -283,9 +266,7 @@ addStockBtn.addEventListener("click",(e)=>{
 
 
 
-    inventoryHistory.push(
-        record
-    );
+    inventoryHistory.push(record);
 
 
 
@@ -296,7 +277,8 @@ addStockBtn.addEventListener("click",(e)=>{
 
 
 
-    // Update Screen
+
+    // Update UI
 
 
     updateStockCards();
@@ -310,7 +292,7 @@ addStockBtn.addEventListener("click",(e)=>{
 
 
 
-    // Clear Form
+    // Clear Inputs
 
 
     inventoryQuantity.value="";
@@ -323,16 +305,15 @@ addStockBtn.addEventListener("click",(e)=>{
 
 
 
-    alert(
-        "Stock Added Successfully!"
-    );
+
+    alert("Stock Added Successfully!");
 
 
 
 });
 // ==========================================
-// Part 3/4
-// Update UI + Inventory History
+// Part 3/3
+// Update UI + Inventory History + Initialize
 // ==========================================
 
 
@@ -345,14 +326,10 @@ addStockBtn.addEventListener("click",(e)=>{
 function updateStockCards(){
 
 
-
     if(petrolStockElement){
 
-
         petrolStockElement.textContent =
-
         fuelStock.petrol + " L";
-
 
     }
 
@@ -360,19 +337,16 @@ function updateStockCards(){
 
     if(dieselStockElement){
 
-
         dieselStockElement.textContent =
-
         fuelStock.diesel + " L";
-
 
     }
 
 
 
 
-
     // Progress Bars
+
 
     const petrolBar =
     document.querySelector(".petrol-progress");
@@ -380,7 +354,6 @@ function updateStockCards(){
 
     const dieselBar =
     document.querySelector(".diesel-progress");
-
 
 
 
@@ -394,9 +367,7 @@ function updateStockCards(){
 
 
         let percentage =
-
         (fuelStock.petrol / capacity) * 100;
-
 
 
         if(percentage > 100){
@@ -406,10 +377,8 @@ function updateStockCards(){
         }
 
 
-
         petrolBar.style.width =
         percentage + "%";
-
 
 
         if(fuelStock.petrol < 1000){
@@ -427,14 +396,11 @@ function updateStockCards(){
 
 
 
-
     if(dieselBar){
 
 
         let percentage =
-
         (fuelStock.diesel / capacity) * 100;
-
 
 
         if(percentage > 100){
@@ -442,7 +408,6 @@ function updateStockCards(){
             percentage = 100;
 
         }
-
 
 
         dieselBar.style.width =
@@ -462,11 +427,7 @@ function updateStockCards(){
     }
 
 
-
-
 }
-
-
 
 
 
@@ -479,7 +440,6 @@ function updateStockCards(){
 
 
 function displayInventoryHistory(){
-
 
 
     if(!inventoryTable){
@@ -495,12 +455,10 @@ function displayInventoryHistory(){
 
 
 
-
     if(inventoryHistory.length === 0){
 
 
         inventoryTable.innerHTML = `
-
 
         <tr>
 
@@ -512,15 +470,12 @@ function displayInventoryHistory(){
 
         </tr>
 
-
         `;
 
 
         return;
 
-
     }
-
 
 
 
@@ -533,99 +488,49 @@ function displayInventoryHistory(){
     .forEach((item)=>{
 
 
-
         inventoryTable.innerHTML += `
-
 
         <tr>
 
+            <td>${item.date}</td>
 
-            <td>
-            ${item.date}
-            </td>
+            <td>${item.fuel}</td>
 
+            <td>${item.supplier}</td>
 
+            <td>${item.invoice}</td>
 
-            <td>
-            ${item.fuel}
-            </td>
+            <td>${item.quantity} L</td>
 
+            <td>Rs. ${item.cost}</td>
 
-
-            <td>
-            ${item.supplier}
-            </td>
-
-
-
-            <td>
-            ${item.invoice}
-            </td>
-
-
-
-            <td>
-            ${item.quantity} L
-            </td>
-
-
-
-            <td>
-            Rs. ${item.cost}
-            </td>
-
-
-
-            <td>
-            Rs. ${item.total}
-            </td>
+            <td>Rs. ${item.total}</td>
 
 
         </tr>
 
-
-
         `;
-
 
 
     });
 
 
-
 }
-// ==========================================
-// Part 4/4
-// Initialization + Sales Connection
-// ==========================================
+
+
 
 
 
 
 // ==============================
-// Make Stock Functions Global
-// ==============================
-// Sales.js uses these functions
+// Sales.js Connection
 // ==============================
 
 
 window.getFuelStock = function(){
 
 
-    return JSON.parse(
-
-        localStorage.getItem("fuelStock")
-
-    ) || {
-
-
-        petrol:0,
-
-
-        diesel:0
-
-
-    };
+    return fuelStock;
 
 
 };
@@ -634,15 +539,14 @@ window.getFuelStock = function(){
 
 
 
-
-window.saveFuelStock = function(stock){
+window.saveFuelStock = function(){
 
 
     localStorage.setItem(
 
         "fuelStock",
 
-        JSON.stringify(stock)
+        JSON.stringify(fuelStock)
 
     );
 
@@ -657,37 +561,38 @@ window.saveFuelStock = function(stock){
 
 
 // ==============================
-// Initial Page Load
+// Initialize Inventory
 // ==============================
 
 
 function initializeInventory(){
 
 
-
-    fuelStock = JSON.parse(
-
-        localStorage.getItem("fuelStock")
-
-    ) || {
+    const savedStock =
+    localStorage.getItem("fuelStock");
 
 
-        petrol:0,
 
+    if(savedStock && savedStock !== "undefined"){
 
-        diesel:0
+        fuelStock = JSON.parse(savedStock);
 
-
-    };
+    }
 
 
 
 
-    inventoryHistory = JSON.parse(
 
-        localStorage.getItem("inventoryHistory")
+    const savedHistory =
+    localStorage.getItem("inventoryHistory");
 
-    ) || [];
+
+
+    if(savedHistory && savedHistory !== "undefined"){
+
+        inventoryHistory = JSON.parse(savedHistory);
+
+    }
 
 
 
@@ -699,7 +604,6 @@ function initializeInventory(){
     displayInventoryHistory();
 
 
-
 }
 
 
@@ -708,36 +612,29 @@ function initializeInventory(){
 
 
 
+
 // ==============================
-// Auto Refresh
-// ==============================
-// Keeps inventory synced after sales
+// Auto Sync With Sales
 // ==============================
 
 
 setInterval(()=>{
 
 
-
-    fuelStock = JSON.parse(
-
-        localStorage.getItem("fuelStock")
-
-    ) || {
+    const updatedStock =
+    localStorage.getItem("fuelStock");
 
 
-        petrol:0,
+    if(updatedStock && updatedStock !== "undefined"){
 
 
-        diesel:0
+        fuelStock = JSON.parse(updatedStock);
 
 
-    };
+        updateStockCards();
 
 
-
-    updateStockCards();
-
+    }
 
 
 },3000);
@@ -748,9 +645,8 @@ setInterval(()=>{
 
 
 
-
 // ==============================
-// Start Inventory
+// Start
 // ==============================
 
 
