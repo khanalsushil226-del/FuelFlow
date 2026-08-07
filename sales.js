@@ -1,6 +1,6 @@
 // ==========================================
 // FuelFlow Sales Module
-// Complete Version
+// Part 1
 // ==========================================
 
 
@@ -15,26 +15,18 @@ const quantity = document.getElementById("quantity");
 const rate = document.getElementById("rate");
 const payment = document.getElementById("payment");
 
-
 const generateBtn = document.querySelector(".save-btn");
 const clearBtn = document.querySelector(".cancel-btn");
-
 
 const salesTableBody = document.getElementById("salesTableBody");
 
 const receiptContent = document.getElementById("receiptContent");
 
-
-// Summary
+const searchInput = document.getElementById("searchSales");
 
 const totalSalesElement = document.getElementById("totalSales");
-
 const transactionElement = document.getElementById("totalTransactions");
-
 const fuelSoldElement = document.getElementById("totalFuel");
-
-
-// Print Button
 
 const printBtn = document.getElementById("printReceipt");
 
@@ -44,18 +36,21 @@ const printBtn = document.getElementById("printReceipt");
 // Database
 // ==============================
 
-let salesData = JSON.parse(localStorage.getItem("sales")) || [];
+let salesData = JSON.parse(
+    localStorage.getItem("sales")
+) || [];
+
 
 
 
 // ==============================
-// Invoice Generator
+// Generate Invoice Number
 // ==============================
 
 function generateInvoice(){
 
-    let lastInvoice = localStorage.getItem("lastInvoice");
-
+    let lastInvoice =
+    localStorage.getItem("lastInvoice");
 
     if(lastInvoice === null){
 
@@ -63,15 +58,13 @@ function generateInvoice(){
 
     }
 
-
-    let newInvoice = Number(lastInvoice) + 1;
-
+    let newInvoice =
+    Number(lastInvoice) + 1;
 
     localStorage.setItem(
         "lastInvoice",
         newInvoice
     );
-
 
     return "INV-" + newInvoice;
 
@@ -81,20 +74,166 @@ function generateInvoice(){
 
 
 // ==============================
+// Display Sales Table
+// ==============================
+
+function displaySales(data){
+
+    salesTableBody.innerHTML = "";
+
+    if(data.length === 0){
+
+        salesTableBody.innerHTML = `
+
+        <tr>
+
+            <td colspan="8">
+
+                No sales found.
+
+            </td>
+
+        </tr>
+
+        `;
+
+        return;
+
+    }
+
+
+
+    data.forEach((sale)=>{
+
+        salesTableBody.innerHTML += `
+
+        <tr>
+
+            <td>${sale.invoice}</td>
+
+            <td>${sale.customer}</td>
+
+            <td>${sale.vehicle}</td>
+
+            <td>${sale.fuel}</td>
+
+            <td>${sale.quantity} L</td>
+
+            <td>Rs. ${sale.amount}</td>
+
+            <td>${sale.payment}</td>
+
+            <td>
+
+                <button
+                    class="view-btn"
+                    onclick="viewBill('${sale.invoice}')">
+
+                    View Bill
+
+                </button>
+
+            </td>
+
+        </tr>
+
+        `;
+
+    });
+
+}
+// ==============================
+// Generate Receipt
+// ==============================
+
+function generateReceipt(sale){
+
+    receiptContent.innerHTML = `
+
+        <h3 style="text-align:center;">FuelFlow</h3>
+
+        <p>Invoice : ${sale.invoice}</p>
+
+        <p>Date : ${sale.date}</p>
+
+        <hr>
+
+        <p>Customer : ${sale.customer}</p>
+
+        <p>Vehicle : ${sale.vehicle}</p>
+
+        <p>Fuel : ${sale.fuel}</p>
+
+        <p>Quantity : ${sale.quantity} L</p>
+
+        <p>Rate : Rs. ${sale.rate}</p>
+
+        <p>Payment : ${sale.payment}</p>
+
+        <hr>
+
+        <h3>Total : Rs. ${sale.amount}</h3>
+
+    `;
+
+}
+
+
+
+// ==============================
+// Update Summary
+// ==============================
+
+function updateSummary(){
+
+    let total = 0;
+    let fuel = 0;
+
+    salesData.forEach((sale)=>{
+
+        total += Number(sale.amount);
+        fuel += Number(sale.quantity);
+
+    });
+
+    totalSalesElement.textContent = "Rs. " + total;
+    transactionElement.textContent = salesData.length;
+    fuelSoldElement.textContent = fuel + " L";
+
+}
+
+
+
+// ==============================
+// Load Sales
+// ==============================
+
+function loadSales(){
+
+    displaySales(salesData);
+
+    updateSummary();
+
+}
+
+
+
+// ==============================
 // Generate Bill
 // ==============================
 
 generateBtn.addEventListener("click",(e)=>{
 
-
     e.preventDefault();
 
-
-
     if(
+
         customerName.value.trim()==="" ||
+
         vehicleNumber.value.trim()==="" ||
+
         quantity.value.trim()===""
+
     ){
 
         alert("Please fill all required fields.");
@@ -105,354 +244,135 @@ generateBtn.addEventListener("click",(e)=>{
 
 
 
-    let invoice = generateInvoice();
+    const litres = Number(quantity.value);
 
-
-    let litres = Number(quantity.value);
-
-    let price = Number(rate.value);
-
-    let amount = litres * price;
+    const price = Number(rate.value);
 
 
 
+    const sale = {
 
-    // Create Sale Object
+        invoice : generateInvoice(),
 
-    let sale = {
+        customer : customerName.value.trim(),
 
+        vehicle : vehicleNumber.value.trim(),
 
-        invoice: invoice,
+        fuel : fuelType.value,
 
-        customer: customerName.value,
+        quantity : litres,
 
-        vehicle: vehicleNumber.value,
+        rate : price,
 
-        fuel: fuelType.value,
+        amount : litres * price,
 
-        quantity: litres,
+        payment : payment.value,
 
-        rate: price,
-
-        amount: amount,
-
-        payment: payment.value,
-
-        date: new Date().toLocaleString()
-
+        date : new Date().toLocaleString()
 
     };
 
 
 
-
-
-    // Save Data
-
     salesData.push(sale);
 
-
     localStorage.setItem(
+
         "sales",
+
         JSON.stringify(salesData)
+
     );
 
 
 
+    displaySales(salesData);
 
-    // Add Table Row
-
-    addSaleRow(sale);
-
-
-
-    // Generate Receipt
+    updateSummary();
 
     generateReceipt(sale);
 
 
 
-    // Update Summary
+    customerName.value = "";
 
-    updateSummary();
+    vehicleNumber.value = "";
 
+    quantity.value = "";
 
-
-    // Clear Form
-
-    customerName.value="";
-    vehicleNumber.value="";
-    quantity.value="";
-    rate.value="";
-
+    rate.value = "";
 
 });
-
-
-
-
-
-
 // ==============================
-// Add Sale Row
+// Search Sales
 // ==============================
 
+if(searchInput){
 
-function addSaleRow(sale){
+    searchInput.addEventListener("input",()=>{
 
+        const keyword = searchInput.value.toLowerCase().trim();
 
-    if(
-        salesTableBody.innerText.includes("No sales")
-    ){
+        const filteredSales = salesData.filter((sale)=>{
 
-        salesTableBody.innerHTML="";
+            return(
 
-    }
+                sale.invoice.toLowerCase().includes(keyword) ||
 
+                sale.customer.toLowerCase().includes(keyword) ||
 
+                sale.vehicle.toLowerCase().includes(keyword)
 
-    let row = `
+            );
 
-    <tr>
+        });
 
-        <td>${sale.invoice}</td>
+        displaySales(filteredSales);
 
-        <td>${sale.customer}</td>
-
-        <td>${sale.vehicle}</td>
-
-        <td>${sale.fuel}</td>
-
-        <td>${sale.quantity} L</td>
-
-        <td>Rs. ${sale.amount}</td>
-
-        <td>${sale.payment}</td>
-
-    </tr>
-
-    `;
-
-
-    salesTableBody.innerHTML += row;
-
+    });
 
 }
 
 
 
-
-
-
-
 // ==============================
-// Generate Receipt
+// View Previous Bill
 // ==============================
 
+function viewBill(invoice){
 
-function generateReceipt(sale){
+    const sale = salesData.find((item)=>item.invoice===invoice);
 
+    if(!sale){
 
-    receiptContent.innerHTML = `
-
-
-    <p>
-    Invoice : ${sale.invoice}
-    </p>
-
-
-    <p>
-    Date : ${sale.date}
-    </p>
-
-
-    <hr>
-
-
-    <p>
-    Customer : ${sale.customer}
-    </p>
-
-
-    <p>
-    Vehicle : ${sale.vehicle}
-    </p>
-
-
-    <p>
-    Fuel : ${sale.fuel}
-    </p>
-
-
-    <p>
-    Quantity : ${sale.quantity} L
-    </p>
-
-
-    <p>
-    Rate : Rs.${sale.rate}
-    </p>
-
-
-    <p>
-    Payment : ${sale.payment}
-    </p>
-
-
-    <hr>
-
-
-    <h3>
-    TOTAL : Rs.${sale.amount}
-    </h3>
-
-
-    `;
-
-
-}
-
-
-
-
-
-
-
-// ==============================
-// Load Previous Sales
-// ==============================
-
-
-function loadSales(){
-
-
-    salesTableBody.innerHTML="";
-
-
-
-    if(salesData.length===0){
-
-
-        salesTableBody.innerHTML=`
-
-        <tr>
-
-        <td colspan="7">
-
-        No sales recorded yet.
-
-        </td>
-
-        </tr>
-
-        `;
-
+        alert("Bill not found.");
 
         return;
 
     }
 
-
-
-
-    salesData.forEach((sale)=>{
-
-
-        addSaleRow(sale);
-
-
-    });
-
-
+    generateReceipt(sale);
 
 }
 
 
 
-
-
-
-
 // ==============================
-// Update Summary
+// Clear Form
 // ==============================
-
-
-function updateSummary(){
-
-
-    let total = 0;
-
-    let fuel = 0;
-
-
-
-    salesData.forEach((sale)=>{
-
-
-        total += Number(sale.amount);
-
-        fuel += Number(sale.quantity);
-
-
-    });
-
-
-
-    if(totalSalesElement){
-
-        totalSalesElement.innerHTML =
-        "Rs. " + total;
-
-    }
-
-
-
-    if(transactionElement){
-
-        transactionElement.innerHTML =
-        salesData.length;
-
-    }
-
-
-
-    if(fuelSoldElement){
-
-        fuelSoldElement.innerHTML =
-        fuel + " L";
-
-    }
-
-
-}
-
-
-
-
-
-
-// ==============================
-// Clear Button
-// ==============================
-
 
 clearBtn.addEventListener("click",(e)=>{
 
-
     e.preventDefault();
 
-
-    customerName.value="";
-    vehicleNumber.value="";
-    quantity.value="";
-    rate.value="";
-
+    customerName.value = "";
+    vehicleNumber.value = "";
+    fuelType.selectedIndex = 0;
+    quantity.value = "";
+    rate.value = "";
+    payment.selectedIndex = 0;
 
 });
-
-
-
 
 
 
@@ -460,24 +380,15 @@ clearBtn.addEventListener("click",(e)=>{
 // Print Receipt
 // ==============================
 
-
 if(printBtn){
-
 
     printBtn.addEventListener("click",()=>{
 
-
         window.print();
-
 
     });
 
-
 }
-
-
-
-
 
 
 
@@ -485,7 +396,4 @@ if(printBtn){
 // Page Load
 // ==============================
 
-
 loadSales();
-
-updateSummary();
