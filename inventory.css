@@ -1,0 +1,798 @@
+/* ==========================================
+   Inventory Page
+========================================== */
+
+.inventory-content{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:25px;
+
+}
+
+
+
+/* ==========================================
+   Inventory Summary
+========================================== */
+
+.inventory-summary{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+
+    gap:20px;
+
+}
+
+
+
+/* ==========================================
+   Inventory Card
+========================================== */
+
+.inventory-card{
+
+    background:#fff;
+
+    border-radius:15px;
+
+    padding:25px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+}
+
+
+
+.inventory-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+
+
+.inventory-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+
+}
+
+
+
+.inventory-header h3{
+
+    font-size:22px;
+
+    color:#1f2937;
+
+}
+
+
+
+.inventory-header p{
+
+    color:#6b7280;
+
+    font-size:14px;
+
+    margin-top:5px;
+
+}
+
+
+
+.inventory-icon{
+
+    font-size:40px;
+
+    color:#2563eb;
+
+}
+
+
+
+/* ==========================================
+   Stock Information
+========================================== */
+
+.stock-info{
+
+    margin-bottom:20px;
+
+}
+
+
+
+.stock-info h1{
+
+    font-size:40px;
+
+    color:#111827;
+
+}
+
+
+
+.stock-info span{
+
+    color:#6b7280;
+
+    font-size:15px;
+
+}
+/* ==========================================
+   Progress Bar
+========================================== */
+
+.progress-bar{
+
+    width:100%;
+
+    height:14px;
+
+    background:#e5e7eb;
+
+    border-radius:30px;
+
+    overflow:hidden;
+
+    margin-top:18px;
+
+}
+
+
+
+.progress-fill{
+
+    height:100%;
+
+    width:0%;
+
+    border-radius:30px;
+
+    transition:width .6s ease;
+
+}
+
+
+
+/* Petrol */
+
+.petrol-progress{
+
+    background:linear-gradient(
+        90deg,
+        #16a34a,
+        #22c55e
+    );
+
+}
+
+
+
+/* Diesel */
+
+.diesel-progress{
+
+    background:linear-gradient(
+        90deg,
+        #2563eb,
+        #60a5fa
+    );
+
+}
+
+
+
+/* ==========================================
+   Add Stock Card
+========================================== */
+
+.inventory-form-card{
+
+    background:#fff;
+
+    border-radius:15px;
+
+    padding:25px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+}
+
+
+
+.inventory-form-card h2{
+
+    margin-bottom:25px;
+
+    color:#111827;
+
+}
+
+
+
+/* ==========================================
+   Form Grid
+========================================== */
+
+.form-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+    gap:20px;
+
+}
+
+
+
+/* ==========================================
+   Form Group
+========================================== */
+
+.form-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+
+
+.form-group label{
+
+    margin-bottom:8px;
+
+    font-weight:500;
+
+    color:#374151;
+
+}
+
+
+
+.form-group input,
+
+.form-group select{
+
+    padding:12px 15px;
+
+    border:1px solid #d1d5db;
+
+    border-radius:10px;
+
+    font-size:15px;
+
+    outline:none;
+
+    transition:.3s;
+
+}
+
+
+
+.form-group input:focus,
+
+.form-group select:focus{
+
+    border-color:#2563eb;
+
+    box-shadow:0 0 0 3px rgba(37,99,235,.15);
+
+}
+
+
+
+/* ==========================================
+   Buttons
+========================================== */
+
+.buttons{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:15px;
+
+    margin-top:25px;
+
+}
+
+
+
+.cancel-btn{
+
+    background:#ef4444;
+
+    color:#fff;
+
+    border:none;
+
+    padding:12px 25px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+
+
+.cancel-btn:hover{
+
+    background:#dc2626;
+
+}
+
+
+
+.save-btn{
+
+    background:#16a34a;
+
+    color:#fff;
+
+    border:none;
+
+    padding:12px 25px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+
+
+.save-btn:hover{
+
+    background:#15803d;
+
+}
+/* ==========================================
+   Inventory History
+========================================== */
+
+.inventory-history{
+
+    background:#ffffff;
+
+    border-radius:15px;
+
+    padding:25px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+}
+
+
+
+/* ==========================================
+   Section Header
+========================================== */
+
+.section-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+
+}
+
+
+
+.section-header h2{
+
+    font-size:24px;
+
+    color:#111827;
+
+}
+
+
+
+/* ==========================================
+   Table Container
+========================================== */
+
+.table-container{
+
+    width:100%;
+
+    overflow-x:auto;
+
+}
+
+
+
+/* ==========================================
+   Inventory Table
+========================================== */
+
+.table-container table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    min-width:900px;
+
+}
+
+
+
+.table-container thead{
+
+    background:#2563eb;
+
+}
+
+
+
+.table-container thead th{
+
+    color:#ffffff;
+
+    padding:16px;
+
+    text-align:left;
+
+    font-size:15px;
+
+    font-weight:600;
+
+}
+
+
+
+.table-container tbody td{
+
+    padding:15px;
+
+    border-bottom:1px solid #e5e7eb;
+
+    color:#374151;
+
+    font-size:14px;
+
+}
+
+
+
+.table-container tbody tr{
+
+    transition:.25s;
+
+}
+
+
+
+.table-container tbody tr:hover{
+
+    background:#f8fafc;
+
+}
+
+
+
+/* ==========================================
+   Empty Row
+========================================== */
+
+.table-container tbody tr td[colspan]{
+
+    text-align:center;
+
+    color:#9ca3af;
+
+    font-style:italic;
+
+    padding:35px;
+
+}
+
+
+
+/* ==========================================
+   Scrollbar
+========================================== */
+
+.table-container::-webkit-scrollbar{
+
+    height:8px;
+
+}
+
+
+
+.table-container::-webkit-scrollbar-thumb{
+
+    background:#2563eb;
+
+    border-radius:20px;
+
+}
+
+
+
+.table-container::-webkit-scrollbar-track{
+
+    background:#e5e7eb;
+
+}
+/* ==========================================
+   Responsive Design
+========================================== */
+
+@media(max-width:992px){
+
+    .inventory-summary{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .form-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .buttons{
+
+        justify-content:stretch;
+
+        flex-direction:column;
+
+    }
+
+    .buttons button{
+
+        width:100%;
+
+    }
+
+}
+
+
+
+/* ==========================================
+   Mobile
+========================================== */
+
+@media(max-width:768px){
+
+    .inventory-card{
+
+        padding:20px;
+
+    }
+
+    .inventory-header{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:15px;
+
+    }
+
+    .inventory-icon{
+
+        font-size:32px;
+
+    }
+
+    .stock-info h1{
+
+        font-size:32px;
+
+    }
+
+    .inventory-form-card,
+
+    .inventory-history{
+
+        padding:20px;
+
+    }
+
+}
+
+
+
+/* ==========================================
+   Low Stock Warning
+========================================== */
+
+.low-stock{
+
+    color:#dc2626 !important;
+
+    font-weight:700;
+
+}
+
+
+
+.low-stock-bar{
+
+    background:linear-gradient(
+
+        90deg,
+
+        #ef4444,
+
+        #dc2626
+
+    ) !important;
+
+}
+
+
+
+/* ==========================================
+   Card Animation
+========================================== */
+
+.inventory-card,
+
+.inventory-form-card,
+
+.inventory-history{
+
+    animation:fadeIn .4s ease;
+
+}
+
+
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(15px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+
+
+/* ==========================================
+   Progress Animation
+========================================== */
+
+.progress-fill{
+
+    transition:width .8s ease-in-out;
+
+}
+
+
+
+/* ==========================================
+   Table Row Animation
+========================================== */
+
+.table-container tbody tr{
+
+    animation:slideUp .3s ease;
+
+}
+
+
+
+@keyframes slideUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(10px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+
+
+/* ==========================================
+   Beautiful Focus Effect
+========================================== */
+
+.form-group input:focus,
+
+.form-group select:focus{
+
+    transform:translateY(-2px);
+
+}
+
+
+
+/* ==========================================
+   Inventory Button Effects
+========================================== */
+
+.save-btn,
+
+.cancel-btn{
+
+    transition:all .3s ease;
+
+}
+
+
+
+.save-btn:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 8px 18px rgba(22,163,74,.25);
+
+}
+
+
+
+.cancel-btn:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 8px 18px rgba(239,68,68,.25);
+
+}
+
+
+
+/* ==========================================
+   Inventory Page Finished
+========================================== */
