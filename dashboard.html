@@ -191,7 +191,7 @@
 
                             <h4>Today's Sales</h4>
 
-                            <h2>Rs. 0</h2>
+                            <h2 id="dashboardSales">Rs. 0</h2>
 
                         </div>
 
@@ -209,7 +209,7 @@
 
                             <h4>Transactions</h4>
 
-                            <h2>0</h2>
+                           <h2 id="dashboardTransactions">0</h2>
 
                         </div>
 
@@ -269,11 +269,11 @@
 
                         </div>
 
-                        <div class="chart-placeholder">
+                        <div class="chart-container">
 
-                            Sales Chart Coming Soon
+    <canvas id="salesChart"></canvas>
 
-                        </div>
+</div>
 
                     </div>
 
@@ -347,39 +347,9 @@
 
                         </thead>
 
-                        <tbody>
+                       <tbody id="recentTransactions">
 
-                            <tr>
-
-                                <td>#INV001</td>
-                                <td>Walk-in Customer</td>
-                                <td>Petrol</td>
-                                <td>Rs. 2,500</td>
-                                <td><span class="status success">Completed</span></td>
-
-                            </tr>
-
-                            <tr>
-
-                                <td>#INV002</td>
-                                <td>ABC Transport</td>
-                                <td>Diesel</td>
-                                <td>Rs. 8,700</td>
-                                <td><span class="status success">Completed</span></td>
-
-                            </tr>
-
-                            <tr>
-
-                                <td>#INV003</td>
-                                <td>John Motors</td>
-                                <td>Premium</td>
-                                <td>Rs. 4,100</td>
-                                <td><span class="status pending">Pending</span></td>
-
-                            </tr>
-
-                        </tbody>
+</tbody>
 
                     </table>
 
@@ -392,6 +362,7 @@
     </div>
 
     <!-- JavaScript -->
+     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script src="dashboard.js"></script>
 
