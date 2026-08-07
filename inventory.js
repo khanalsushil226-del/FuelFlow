@@ -1,6 +1,6 @@
 // ==========================================
 // FuelFlow Inventory Module
-// Part 1
+// Part 1/4
 // ==========================================
 
 
@@ -9,64 +9,49 @@
 // Select Elements
 // ==============================
 
-const fuelType = document.getElementById("fuelType");
 
-const supplier = document.getElementById("supplier");
-
-const quantity = document.getElementById("quantity");
-
-const cost = document.getElementById("cost");
-
-const invoice = document.getElementById("invoice");
-
-const date = document.getElementById("date");
-
-const saveInventory =
-document.getElementById("saveInventory");
-
-const clearInventory =
-document.getElementById("clearInventory");
+const inventoryFuel =
+document.getElementById("inventoryFuel");
 
 
+const inventoryQuantity =
+document.getElementById("inventoryQuantity");
 
-const petrolStock =
+
+const supplier =
+document.getElementById("supplier");
+
+
+const cost =
+document.getElementById("cost");
+
+
+const addStockBtn =
+document.getElementById("addStock");
+
+
+
+const petrolStockElement =
 document.getElementById("petrolStock");
 
-const dieselStock =
+
+const dieselStockElement =
 document.getElementById("dieselStock");
 
 
 
-const petrolProgress =
-document.getElementById("petrolProgress");
+const inventoryTable =
+document.getElementById("inventoryTable");
 
-const dieselProgress =
-document.getElementById("dieselProgress");
-
-
-
-const inventoryTableBody =
-document.getElementById("inventoryTableBody");
 
 
 
 // ==============================
-// Local Storage
+// Local Storage Database
 // ==============================
 
-let inventoryHistory = JSON.parse(
 
-    localStorage.getItem("inventoryHistory")
-
-) || [];
-
-
-
-let fuelStock = JSON.parse(
-
-    localStorage.getItem("fuelStock")
-
-) || {
+let fuelStock = {
 
     petrol:0,
 
@@ -75,79 +60,66 @@ let fuelStock = JSON.parse(
 };
 
 
+const savedStock = localStorage.getItem("fuelStock");
 
-// Tank Capacity
 
-const MAX_CAPACITY = 10000;
-// ==========================================
-// Part 2
-// Add Fuel Stock
-// ==========================================
+if(savedStock && savedStock !== "undefined"){
+
+    fuelStock = JSON.parse(savedStock);
+
+}
+
+
+
+
+
+let inventoryHistory = [];
+
+
+const savedHistory = localStorage.getItem("inventoryHistory");
+
+
+if(savedHistory && savedHistory !== "undefined"){
+
+    inventoryHistory = JSON.parse(savedHistory);
+
+}
+
+
+
 
 
 
 // ==============================
-// Save Inventory
+// Save Fuel Stock
 // ==============================
 
-saveInventory.addEventListener("click",(e)=>{
 
-    e.preventDefault();
-
+function saveFuelStock(){
 
 
-    if(
+    localStorage.setItem(
 
-        supplier.value.trim()==="" ||
+        "fuelStock",
 
-        quantity.value.trim()==="" ||
+        JSON.stringify(fuelStock)
 
-        cost.value.trim()==="" ||
+    );
 
-        invoice.value.trim()==="" ||
 
-        date.value===""
-
-    ){
-
-        alert("Please fill all fields.");
-
-        return;
-
-    }
+}
 
 
 
-    const litres = Number(quantity.value);
-
-    const price = Number(cost.value);
 
 
 
-    const stock = {
-
-        fuel : fuelType.value,
-
-        supplier : supplier.value.trim(),
-
-        quantity : litres,
-
-        cost : price,
-
-        total : litres * price,
-
-        invoice : invoice.value.trim(),
-
-        date : date.value
-
-    };
+// ==============================
+// Save Inventory History
+// ==============================
 
 
-
-    // Save History
-
-    inventoryHistory.push(stock);
-
+function saveInventoryHistory(){
 
 
     localStorage.setItem(
@@ -159,129 +131,209 @@ saveInventory.addEventListener("click",(e)=>{
     );
 
 
+}
+// ==========================================
+// Part 2/4
+// Add Stock Function
+// ==========================================
 
+
+
+// ==============================
+// Add Fuel Stock
+// ==============================
+
+
+addStockBtn.addEventListener("click",(e)=>{
+
+
+    e.preventDefault();
+
+
+
+    // Validation
+
+    if(
+
+        inventoryQuantity.value.trim()==="" ||
+
+        supplier.value.trim()==="" ||
+
+        cost.value.trim()===""
+
+    ){
+
+
+        alert(
+            "Please fill all fields."
+        );
+
+
+        return;
+
+
+    }
+
+
+
+
+
+
+    const fuel =
+    inventoryFuel.value;
+
+
+
+    const quantity =
+    Number(inventoryQuantity.value);
+
+
+
+    const price =
+    Number(cost.value);
+
+
+
+
+
+
+    // ==============================
     // Update Stock
+    // ==============================
 
-    if(stock.fuel==="Petrol"){
 
-        fuelStock.petrol += litres;
+    if(fuel === "Petrol"){
+
+
+        fuelStock.petrol += quantity;
+
 
     }
 
-    else{
+    else if(fuel === "Diesel"){
 
-        fuelStock.diesel += litres;
+
+        fuelStock.diesel += quantity;
+
 
     }
 
 
 
-    localStorage.setItem(
 
-        "fuelStock",
 
-        JSON.stringify(fuelStock)
 
+    // Save Updated Stock
+
+
+    saveFuelStock();
+
+
+
+
+
+
+    // ==============================
+    // Create Inventory Record
+    // ==============================
+
+
+    const record = {
+
+
+        date:
+        new Date().toLocaleDateString(),
+
+
+
+        fuel:
+        fuel,
+
+
+
+        supplier:
+        supplier.value.trim(),
+
+
+
+        invoice:
+        "STK-" + Date.now(),
+
+
+
+        quantity:
+        quantity,
+
+
+
+        cost:
+        price,
+
+
+
+        total:
+        quantity * price
+
+
+
+    };
+
+
+
+
+
+
+    inventoryHistory.push(
+        record
     );
 
 
 
-    // Refresh UI
+    saveInventoryHistory();
 
-    loadInventory();
+
+
+
+
+
+    // Update Screen
+
 
     updateStockCards();
+
+
+    displayInventoryHistory();
+
+
+
+
 
 
 
     // Clear Form
 
-    supplier.value="";
 
-    quantity.value="";
+    inventoryQuantity.value="";
+
+    supplier.value="";
 
     cost.value="";
 
-    invoice.value="";
-
-    date.value="";
 
 
 
-    fuelType.selectedIndex=0;
+
+    alert(
+        "Stock Added Successfully!"
+    );
 
 
-
-    alert("Fuel stock added successfully.");
 
 });
 // ==========================================
-// Part 3
-// Load Inventory & Update Stock Cards
+// Part 3/4
+// Update UI + Inventory History
 // ==========================================
-
-
-
-// ==============================
-// Load Inventory History
-// ==============================
-
-function loadInventory(){
-
-    inventoryTableBody.innerHTML = "";
-
-    if(inventoryHistory.length === 0){
-
-        inventoryTableBody.innerHTML = `
-
-            <tr>
-
-                <td colspan="7">
-
-                    No inventory records found.
-
-                </td>
-
-            </tr>
-
-        `;
-
-        return;
-
-    }
-
-
-
-    inventoryHistory
-        .slice()
-        .reverse()
-        .forEach((item)=>{
-
-        inventoryTableBody.innerHTML += `
-
-            <tr>
-
-                <td>${item.date}</td>
-
-                <td>${item.fuel}</td>
-
-                <td>${item.supplier}</td>
-
-                <td>${item.invoice}</td>
-
-                <td>${item.quantity} L</td>
-
-                <td>Rs. ${item.cost}</td>
-
-                <td>Rs. ${item.total.toLocaleString()}</td>
-
-            </tr>
-
-        `;
-
-    });
-
-}
 
 
 
@@ -289,141 +341,327 @@ function loadInventory(){
 // Update Stock Cards
 // ==============================
 
+
 function updateStockCards(){
 
-    // Update Text
-
-    petrolStock.textContent =
-        fuelStock.petrol.toLocaleString() + " L";
-
-    dieselStock.textContent =
-        fuelStock.diesel.toLocaleString() + " L";
 
 
-
-    // Calculate Percentage
-
-    const petrolPercentage = Math.min(
-
-        (fuelStock.petrol / MAX_CAPACITY) * 100,
-
-        100
-
-    );
+    if(petrolStockElement){
 
 
+        petrolStockElement.textContent =
 
-    const dieselPercentage = Math.min(
+        fuelStock.petrol + " L";
 
-        (fuelStock.diesel / MAX_CAPACITY) * 100,
-
-        100
-
-    );
-
-
-
-    // Animate Progress Bars
-
-    petrolProgress.style.width =
-        petrolPercentage + "%";
-
-    dieselProgress.style.width =
-        dieselPercentage + "%";
-
-
-
-    // Low Stock Warning
-
-    if(fuelStock.petrol < 2000){
-
-        petrolStock.classList.add("low-stock");
-
-        petrolProgress.classList.add("low-stock-bar");
-
-    }else{
-
-        petrolStock.classList.remove("low-stock");
-
-        petrolProgress.classList.remove("low-stock-bar");
 
     }
 
 
 
-    if(fuelStock.diesel < 2000){
+    if(dieselStockElement){
 
-        dieselStock.classList.add("low-stock");
 
-        dieselProgress.classList.add("low-stock-bar");
+        dieselStockElement.textContent =
 
-    }else{
+        fuelStock.diesel + " L";
 
-        dieselStock.classList.remove("low-stock");
-
-        dieselProgress.classList.remove("low-stock-bar");
 
     }
+
+
+
+
+
+    // Progress Bars
+
+    const petrolBar =
+    document.querySelector(".petrol-progress");
+
+
+    const dieselBar =
+    document.querySelector(".diesel-progress");
+
+
+
+
+    const capacity = 10000;
+
+
+
+
+
+    if(petrolBar){
+
+
+        let percentage =
+
+        (fuelStock.petrol / capacity) * 100;
+
+
+
+        if(percentage > 100){
+
+            percentage = 100;
+
+        }
+
+
+
+        petrolBar.style.width =
+        percentage + "%";
+
+
+
+        if(fuelStock.petrol < 1000){
+
+            petrolBar.classList.add(
+                "low-stock-bar"
+            );
+
+        }
+
+
+    }
+
+
+
+
+
+
+    if(dieselBar){
+
+
+        let percentage =
+
+        (fuelStock.diesel / capacity) * 100;
+
+
+
+        if(percentage > 100){
+
+            percentage = 100;
+
+        }
+
+
+
+        dieselBar.style.width =
+        percentage + "%";
+
+
+
+        if(fuelStock.diesel < 1000){
+
+            dieselBar.classList.add(
+                "low-stock-bar"
+            );
+
+        }
+
+
+    }
+
+
+
+
+}
+
+
+
+
+
+
+
+
+// ==============================
+// Display Inventory History
+// ==============================
+
+
+function displayInventoryHistory(){
+
+
+
+    if(!inventoryTable){
+
+        return;
+
+    }
+
+
+
+    inventoryTable.innerHTML = "";
+
+
+
+
+
+    if(inventoryHistory.length === 0){
+
+
+        inventoryTable.innerHTML = `
+
+
+        <tr>
+
+            <td colspan="7">
+
+            No inventory records found.
+
+            </td>
+
+        </tr>
+
+
+        `;
+
+
+        return;
+
+
+    }
+
+
+
+
+
+
+
+    inventoryHistory
+    .slice()
+    .reverse()
+    .forEach((item)=>{
+
+
+
+        inventoryTable.innerHTML += `
+
+
+        <tr>
+
+
+            <td>
+            ${item.date}
+            </td>
+
+
+
+            <td>
+            ${item.fuel}
+            </td>
+
+
+
+            <td>
+            ${item.supplier}
+            </td>
+
+
+
+            <td>
+            ${item.invoice}
+            </td>
+
+
+
+            <td>
+            ${item.quantity} L
+            </td>
+
+
+
+            <td>
+            Rs. ${item.cost}
+            </td>
+
+
+
+            <td>
+            Rs. ${item.total}
+            </td>
+
+
+        </tr>
+
+
+
+        `;
+
+
+
+    });
+
+
 
 }
 // ==========================================
-// Part 4
-// Clear Form & Initialize Inventory
+// Part 4/4
+// Initialization + Sales Connection
 // ==========================================
 
 
 
-// ==============================
-// Clear Form
-// ==============================
-
-clearInventory.addEventListener("click",(e)=>{
-
-    e.preventDefault();
-
-    fuelType.selectedIndex = 0;
-
-    supplier.value = "";
-
-    quantity.value = "";
-
-    cost.value = "";
-
-    invoice.value = "";
-
-    date.value = "";
-
-});
-
-
 
 // ==============================
-// Helper Functions
+// Make Stock Functions Global
+// ==============================
+// Sales.js uses these functions
 // ==============================
 
-// Save fuel stock back to localStorage
-function saveFuelStock(){
+
+window.getFuelStock = function(){
+
+
+    return JSON.parse(
+
+        localStorage.getItem("fuelStock")
+
+    ) || {
+
+
+        petrol:0,
+
+
+        diesel:0
+
+
+    };
+
+
+};
+
+
+
+
+
+
+window.saveFuelStock = function(stock){
+
 
     localStorage.setItem(
 
         "fuelStock",
 
-        JSON.stringify(fuelStock)
+        JSON.stringify(stock)
 
     );
 
-}
+
+};
 
 
 
-// Reload latest data from localStorage
-function refreshInventory(){
 
-    inventoryHistory = JSON.parse(
 
-        localStorage.getItem("inventoryHistory")
 
-    ) || [];
+
+
+// ==============================
+// Initial Page Load
+// ==============================
+
+
+function initializeInventory(){
 
 
 
@@ -433,39 +671,87 @@ function refreshInventory(){
 
     ) || {
 
+
         petrol:0,
 
+
         diesel:0
+
 
     };
 
 
 
-    loadInventory();
+
+    inventoryHistory = JSON.parse(
+
+        localStorage.getItem("inventoryHistory")
+
+    ) || [];
+
+
+
+
 
     updateStockCards();
+
+
+    displayInventoryHistory();
+
+
 
 }
 
 
 
-// ==============================
-// Page Load
-// ==============================
 
-refreshInventory();
 
 
 
 // ==============================
 // Auto Refresh
 // ==============================
+// Keeps inventory synced after sales
+// ==============================
 
-// If another page (like Sales) updates inventory,
-// refresh this page every 2 seconds.
 
 setInterval(()=>{
 
-    refreshInventory();
 
-},2000);
+
+    fuelStock = JSON.parse(
+
+        localStorage.getItem("fuelStock")
+
+    ) || {
+
+
+        petrol:0,
+
+
+        diesel:0
+
+
+    };
+
+
+
+    updateStockCards();
+
+
+
+},3000);
+
+
+
+
+
+
+
+
+// ==============================
+// Start Inventory
+// ==============================
+
+
+initializeInventory();
