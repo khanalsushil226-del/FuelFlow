@@ -1,7 +1,8 @@
 // ==========================================
 // FuelFlow Sales Module
-// Part 1
+// Part 1/4
 // ==========================================
+
 
 
 // ==============================
@@ -34,14 +35,13 @@ const downloadPdfBtn = document.getElementById("downloadPdf");
 
 
 // ==============================
-// Database
+// Local Database
 // ==============================
 
-let salesData = JSON.parse(
-    localStorage.getItem("sales")
-) || [];
-let currentReceipt = null;
+let salesData =
+JSON.parse(localStorage.getItem("sales")) || [];
 
+let currentReceipt = null;
 
 
 
@@ -60,7 +60,7 @@ function generateInvoice(){
 
     }
 
-    let newInvoice =
+    const newInvoice =
     Number(lastInvoice) + 1;
 
     localStorage.setItem(
@@ -72,6 +72,23 @@ function generateInvoice(){
 
 }
 
+
+
+// ==============================
+// Save Data
+// ==============================
+
+function saveSales(){
+
+    localStorage.setItem(
+
+        "sales",
+
+        JSON.stringify(salesData)
+
+    );
+
+}
 
 
 
@@ -91,7 +108,7 @@ function displaySales(data){
 
             <td colspan="8">
 
-                No sales found.
+                No sales recorded yet.
 
             </td>
 
@@ -102,8 +119,6 @@ function displaySales(data){
         return;
 
     }
-
-
 
     data.forEach((sale)=>{
 
@@ -125,29 +140,29 @@ function displaySales(data){
 
             <td>${sale.payment}</td>
 
-         <td>
+            <td>
 
-    <div class="action-buttons">
+                <div class="action-buttons">
 
-        <button
-            class="view-btn"
-            onclick="viewBill('${sale.invoice}')">
+                    <button
+                        class="view-btn"
+                        onclick="viewBill('${sale.invoice}')">
 
-            <i class="fa-solid fa-eye"></i>
+                        <i class="fa-solid fa-eye"></i>
 
-        </button>
+                    </button>
 
-        <button
-            class="print-btn"
-            onclick="printBill('${sale.invoice}')">
+                    <button
+                        class="print-btn"
+                        onclick="printBill('${sale.invoice}')">
 
-            <i class="fa-solid fa-print"></i>
+                        <i class="fa-solid fa-print"></i>
 
-        </button>
+                    </button>
 
-    </div>
+                </div>
 
-</td>
+            </td>
 
         </tr>
 
@@ -156,37 +171,68 @@ function displaySales(data){
     });
 
 }
+// ==========================================
+// Part 2/4
+// Receipt + Summary + Load Sales
+// ==========================================
+
+
+
 // ==============================
 // Generate Receipt
 // ==============================
 
 function generateReceipt(sale){
 
+    currentReceipt = sale;
+
     receiptContent.innerHTML = `
 
-        <h3 style="text-align:center;">FuelFlow</h3>
+        <div style="text-align:center;">
 
-        <p>Invoice : ${sale.invoice}</p>
+            <h2>FuelFlow</h2>
 
-        <p>Date : ${sale.date}</p>
+            <p>Smart Petrol Pump</p>
 
-        <hr>
+            <p>Management System</p>
 
-        <p>Customer : ${sale.customer}</p>
-
-        <p>Vehicle : ${sale.vehicle}</p>
-
-        <p>Fuel : ${sale.fuel}</p>
-
-        <p>Quantity : ${sale.quantity} L</p>
-
-        <p>Rate : Rs. ${sale.rate}</p>
-
-        <p>Payment : ${sale.payment}</p>
+        </div>
 
         <hr>
 
-        <h3>Total : Rs. ${sale.amount}</h3>
+        <p><strong>Invoice :</strong> ${sale.invoice}</p>
+
+        <p><strong>Date :</strong> ${sale.date}</p>
+
+        <hr>
+
+        <p><strong>Customer :</strong> ${sale.customer}</p>
+
+        <p><strong>Vehicle :</strong> ${sale.vehicle}</p>
+
+        <p><strong>Fuel :</strong> ${sale.fuel}</p>
+
+        <p><strong>Quantity :</strong> ${sale.quantity} L</p>
+
+        <p><strong>Rate :</strong> Rs. ${sale.rate}</p>
+
+        <p><strong>Payment :</strong> ${sale.payment}</p>
+
+        <hr>
+
+        <h3 style="text-align:center;">
+
+            TOTAL : Rs. ${sale.amount}
+
+        </h3>
+
+        <hr>
+
+        <p style="text-align:center;">
+
+            Thank You! Visit Again
+
+        </p>
 
     `;
 
@@ -200,19 +246,28 @@ function generateReceipt(sale){
 
 function updateSummary(){
 
-    let total = 0;
-    let fuel = 0;
+    let totalSales = 0;
+
+    let totalFuel = 0;
+
+    let totalTransactions = salesData.length;
 
     salesData.forEach((sale)=>{
 
-        total += Number(sale.amount);
-        fuel += Number(sale.quantity);
+        totalSales += Number(sale.amount);
+
+        totalFuel += Number(sale.quantity);
 
     });
 
-    totalSalesElement.textContent = "Rs. " + total;
-    transactionElement.textContent = salesData.length;
-    fuelSoldElement.textContent = fuel + " L";
+    totalSalesElement.textContent =
+    "Rs. " + totalSales;
+
+    transactionElement.textContent =
+    totalTransactions;
+
+    fuelSoldElement.textContent =
+    totalFuel + " L";
 
 }
 
@@ -229,6 +284,10 @@ function loadSales(){
     updateSummary();
 
 }
+// ==========================================
+// Part 3/4
+// Generate Bill
+// ==========================================
 
 
 
@@ -240,13 +299,17 @@ generateBtn.addEventListener("click",(e)=>{
 
     e.preventDefault();
 
+    // Validation
+
     if(
 
         customerName.value.trim()==="" ||
 
         vehicleNumber.value.trim()==="" ||
 
-        quantity.value.trim()===""
+        quantity.value.trim()==="" ||
+
+        rate.value.trim()===""
 
     ){
 
@@ -257,11 +320,9 @@ generateBtn.addEventListener("click",(e)=>{
     }
 
 
-
     const litres = Number(quantity.value);
 
     const price = Number(rate.value);
-
 
 
     const sale = {
@@ -287,36 +348,74 @@ generateBtn.addEventListener("click",(e)=>{
     };
 
 
+    // Save Sale
 
     salesData.push(sale);
 
-    localStorage.setItem(
-
-        "sales",
-
-        JSON.stringify(salesData)
-
-    );
+    saveSales();
 
 
+    // Refresh Table
 
     displaySales(salesData);
 
+
+    // Update Summary
+
     updateSummary();
+
+
+    // Show Receipt
 
     generateReceipt(sale);
 
 
+    // Clear Form
 
     customerName.value = "";
 
     vehicleNumber.value = "";
 
+    fuelType.selectedIndex = 0;
+
     quantity.value = "";
 
     rate.value = "";
 
+    payment.selectedIndex = 0;
+
 });
+
+
+
+// ==============================
+// Clear Form
+// ==============================
+
+clearBtn.addEventListener("click",(e)=>{
+
+    e.preventDefault();
+
+    customerName.value = "";
+
+    vehicleNumber.value = "";
+
+    fuelType.selectedIndex = 0;
+
+    quantity.value = "";
+
+    rate.value = "";
+
+    payment.selectedIndex = 0;
+
+});
+// ==========================================
+// Part 4/4
+// Search, View, Print, PDF & Page Load
+// ==========================================
+
+
+
 // ==============================
 // Search Sales
 // ==============================
@@ -325,7 +424,9 @@ if(searchInput){
 
     searchInput.addEventListener("input",()=>{
 
-        const keyword = searchInput.value.toLowerCase().trim();
+        const keyword = searchInput.value
+        .toLowerCase()
+        .trim();
 
         const filteredSales = salesData.filter((sale)=>{
 
@@ -355,7 +456,11 @@ if(searchInput){
 
 function viewBill(invoice){
 
-    const sale = salesData.find((item)=>item.invoice===invoice);
+    const sale = salesData.find(
+
+        item => item.invoice === invoice
+
+    );
 
     if(!sale){
 
@@ -368,13 +473,20 @@ function viewBill(invoice){
     generateReceipt(sale);
 
 }
+
+
+
 // ==============================
 // Print Previous Bill
 // ==============================
 
 function printBill(invoice){
 
-    const sale = salesData.find((item)=>item.invoice===invoice);
+    const sale = salesData.find(
+
+        item => item.invoice === invoice
+
+    );
 
     if(!sale){
 
@@ -384,10 +496,8 @@ function printBill(invoice){
 
     }
 
-    // Show the selected receipt
     generateReceipt(sale);
 
-    // Print it
     window.print();
 
 }
@@ -395,33 +505,22 @@ function printBill(invoice){
 
 
 // ==============================
-// Clear Form
-// ==============================
-
-clearBtn.addEventListener("click",(e)=>{
-
-    e.preventDefault();
-
-    customerName.value = "";
-    vehicleNumber.value = "";
-    fuelType.selectedIndex = 0;
-    quantity.value = "";
-    rate.value = "";
-    payment.selectedIndex = 0;
-
-});
-
-
-
-// ==============================
-// Print Receipt
+// Print Current Receipt
 // ==============================
 
 if(printBtn){
 
     printBtn.addEventListener("click",()=>{
 
-        window.print();
+        if(currentReceipt){
+
+            window.print();
+
+        }else{
+
+            alert("Please generate or view a receipt first.");
+
+        }
 
     });
 
@@ -430,7 +529,115 @@ if(printBtn){
 
 
 // ==============================
-// Page Load
+// Download Receipt PDF
+// ==============================
+
+if(downloadPdfBtn){
+
+    downloadPdfBtn.addEventListener("click",()=>{
+
+        if(!currentReceipt){
+
+            alert("Please generate or view a receipt first.");
+
+            return;
+
+        }
+
+        const { jsPDF } = window.jspdf;
+
+        const doc = new jsPDF({
+
+            orientation:"portrait",
+
+            unit:"mm",
+
+            format:[80,160]
+
+        });
+
+        let y = 10;
+
+        doc.setFont("courier","bold");
+        doc.setFontSize(16);
+        doc.text("FuelFlow",40,y);
+
+        y += 7;
+
+        doc.setFont("courier","normal");
+        doc.setFontSize(9);
+
+        doc.text("Smart Petrol Pump",20,y);
+
+        y += 5;
+
+        doc.text("Management System",18,y);
+
+        y += 8;
+
+        doc.line(5,y,75,y);
+
+        y += 8;
+
+        doc.text(`Invoice : ${currentReceipt.invoice}`,5,y);
+
+        y += 6;
+
+        doc.text(`Date : ${currentReceipt.date}`,5,y);
+
+        y += 8;
+
+        doc.text(`Customer : ${currentReceipt.customer}`,5,y);
+
+        y += 6;
+
+        doc.text(`Vehicle : ${currentReceipt.vehicle}`,5,y);
+
+        y += 6;
+
+        doc.text(`Fuel : ${currentReceipt.fuel}`,5,y);
+
+        y += 6;
+
+        doc.text(`Quantity : ${currentReceipt.quantity} L`,5,y);
+
+        y += 6;
+
+        doc.text(`Rate : Rs. ${currentReceipt.rate}`,5,y);
+
+        y += 6;
+
+        doc.text(`Payment : ${currentReceipt.payment}`,5,y);
+
+        y += 8;
+
+        doc.line(5,y,75,y);
+
+        y += 8;
+
+        doc.setFont("courier","bold");
+        doc.setFontSize(12);
+
+        doc.text(`TOTAL : Rs. ${currentReceipt.amount}`,5,y);
+
+        y += 10;
+
+        doc.setFontSize(9);
+
+        doc.text("Thank You! Visit Again",18,y);
+
+        doc.save(`Receipt_${currentReceipt.invoice}.pdf`);
+
+    });
+
+}
+
+
+
+// ==============================
+// Initial Page Load
 // ==============================
 
 loadSales();
+
+updateSummary();
