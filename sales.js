@@ -29,6 +29,7 @@ const transactionElement = document.getElementById("totalTransactions");
 const fuelSoldElement = document.getElementById("totalFuel");
 
 const printBtn = document.getElementById("printReceipt");
+const downloadPdfBtn = document.getElementById("downloadPdf");
 
 
 
@@ -39,6 +40,7 @@ const printBtn = document.getElementById("printReceipt");
 let salesData = JSON.parse(
     localStorage.getItem("sales")
 ) || [];
+let currentReceipt = null;
 
 
 
@@ -123,17 +125,29 @@ function displaySales(data){
 
             <td>${sale.payment}</td>
 
-            <td>
+         <td>
 
-                <button
-                    class="view-btn"
-                    onclick="viewBill('${sale.invoice}')">
+    <div class="action-buttons">
 
-                    View Bill
+        <button
+            class="view-btn"
+            onclick="viewBill('${sale.invoice}')">
 
-                </button>
+            <i class="fa-solid fa-eye"></i>
 
-            </td>
+        </button>
+
+        <button
+            class="print-btn"
+            onclick="printBill('${sale.invoice}')">
+
+            <i class="fa-solid fa-print"></i>
+
+        </button>
+
+    </div>
+
+</td>
 
         </tr>
 
@@ -352,6 +366,29 @@ function viewBill(invoice){
     }
 
     generateReceipt(sale);
+
+}
+// ==============================
+// Print Previous Bill
+// ==============================
+
+function printBill(invoice){
+
+    const sale = salesData.find((item)=>item.invoice===invoice);
+
+    if(!sale){
+
+        alert("Bill not found.");
+
+        return;
+
+    }
+
+    // Show the selected receipt
+    generateReceipt(sale);
+
+    // Print it
+    window.print();
 
 }
 

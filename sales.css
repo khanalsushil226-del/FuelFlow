@@ -839,21 +839,34 @@ input[readonly]{
 }
 
 
-.print-btn{
+#printReceipt{
 
-    background:#2563eb;
+    width:170px;
+    height:48px;
 
-    color:white;
+    background:#16a34a;
+    color:#fff;
 
     border:none;
-
-    padding:12px 25px;
-
     border-radius:10px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
 
     cursor:pointer;
 
+    font-size:15px;
     font-weight:600;
+
+    transition:.3s;
+
+}
+
+#printReceipt:hover{
+
+    background:#15803d;
 
 }
 
@@ -1055,5 +1068,139 @@ input[readonly]{
 .view-btn:hover{
 
     background:#1d4ed8;
+
+}
+/* ==========================================
+   Action Buttons
+========================================== */
+
+/* ==========================================
+   Action Buttons
+========================================== */
+
+.view-btn,
+.print-btn{
+
+    width:34px;
+    height:34px;
+
+    border:none;
+    border-radius:8px;
+
+    display:inline-flex;
+    justify-content:center;
+    align-items:center;
+
+    cursor:pointer;
+
+    color:#fff;
+
+    transition:.25s;
+
+    margin-right:6px;
+
+}
+
+.view-btn{
+
+    background:#2563eb;
+
+}
+
+.view-btn:hover{
+
+    background:#1d4ed8;
+    transform:scale(1.05);
+
+}
+
+.print-btn{
+
+    background:#16a34a;
+
+}
+
+.print-btn:hover{
+
+    background:#15803d;
+    transform:scale(1.05);
+
+}
+.action-buttons{
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+
+}
+/* ==========================================
+   Receipt Action Buttons
+========================================== */
+
+.receipt-actions{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:15px;
+
+    margin-bottom:20px;
+
+}
+
+#printReceipt,
+#downloadPdf{
+
+    width:180px;
+
+    height:48px;
+
+    border:none;
+
+    border-radius:10px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:10px;
+
+    cursor:pointer;
+
+    color:#fff;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+#printReceipt{
+
+    background:#16a34a;
+
+}
+
+#printReceipt:hover{
+
+    background:#15803d;
+
+}
+
+#downloadPdf{
+
+    background:#dc2626;
+
+}
+
+#downloadPdf:hover{
+
+    background:#b91c1c;
 
 }
