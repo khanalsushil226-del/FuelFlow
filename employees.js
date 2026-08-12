@@ -20,78 +20,62 @@ if(sessionStorage.getItem("loggedIn") !== "true"){
 // Select Elements
 // ==============================
 
-
 const employeeForm =
 document.getElementById("employeeForm");
-
 
 const employeeName =
 document.getElementById("employeeName");
 
-
 const employeePhone =
 document.getElementById("employeePhone");
-
 
 const employeePosition =
 document.getElementById("employeePosition");
 
-
 const employeeSalary =
 document.getElementById("employeeSalary");
-
 
 const joiningDate =
 document.getElementById("joiningDate");
 
-
 const employeeStatus =
 document.getElementById("employeeStatus");
-
 
 const employeeTableBody =
 document.getElementById("employeeTableBody");
 
-
 const employeeSearch =
 document.getElementById("employeeSearch");
 
-
 const cancelEmployee =
 document.getElementById("cancelEmployee");
-
 
 const openEmployeeForm =
 document.getElementById("openEmployeeForm");
 
 
-// Summary elements
+// ==============================
+// Summary Elements
+// ==============================
 
 const totalEmployees =
 document.getElementById("totalEmployees");
 
-
 const activeEmployees =
 document.getElementById("activeEmployees");
-
 
 const leaveEmployees =
 document.getElementById("leaveEmployees");
 
 
-
 // ==============================
-// Local Storage Database
+// Local Storage
 // ==============================
-
 
 let employees = [];
 
-
-
 const savedEmployees =
 localStorage.getItem("employees");
-
 
 
 if(
@@ -109,7 +93,7 @@ if(
     catch(error){
 
         console.error(
-            "Unable to load employees:",
+            "Error loading employees:",
             error
         );
 
@@ -120,30 +104,23 @@ if(
 }
 
 
-
 // ==============================
 // Save Employees
 // ==============================
 
-
 function saveEmployees(){
 
     localStorage.setItem(
-
         "employees",
-
         JSON.stringify(employees)
-
     );
 
 }
 
 
-
 // ==============================
 // Generate Employee ID
 // ==============================
-
 
 function generateEmployeeId(){
 
@@ -163,11 +140,8 @@ function generateEmployeeId(){
 
 
     localStorage.setItem(
-
         "lastEmployeeId",
-
         newId
-
     );
 
 
@@ -176,12 +150,12 @@ function generateEmployeeId(){
 }
 // ==========================================
 // Part 2/4
-// Add Employee
+// Add Employee + Form Handling
 // ==========================================
 
 
 // ==============================
-// Add Employee
+// Employee Form Submit
 // ==============================
 
 if(employeeForm){
@@ -200,22 +174,17 @@ if(employeeForm){
             const name =
             employeeName.value.trim();
 
-
             const phone =
             employeePhone.value.trim();
-
 
             const position =
             employeePosition.value;
 
-
             const salary =
             Number(employeeSalary.value);
 
-
             const joining =
             joiningDate.value;
-
 
             const status =
             employeeStatus.value;
@@ -227,17 +196,11 @@ if(employeeForm){
             // ==============================
 
             if(
-
                 name === "" ||
-
                 phone === "" ||
-
                 position === "" ||
-
                 joining === "" ||
-
                 salary <= 0
-
             ){
 
                 alert(
@@ -251,7 +214,7 @@ if(employeeForm){
 
 
             // ==============================
-            // Create Employee Object
+            // Create Employee
             // ==============================
 
             const employee = {
@@ -285,23 +248,17 @@ if(employeeForm){
 
 
             // ==============================
-            // Add To Employees Array
+            // Save Employee
             // ==============================
 
             employees.push(employee);
-
-
-
-            // ==============================
-            // Save To Local Storage
-            // ==============================
 
             saveEmployees();
 
 
 
             // ==============================
-            // Refresh Employee Page
+            // Update Screen
             // ==============================
 
             displayEmployees(employees);
@@ -319,7 +276,7 @@ if(employeeForm){
 
 
             // ==============================
-            // Success Message
+            // Success
             // ==============================
 
             alert(
@@ -327,7 +284,6 @@ if(employeeForm){
             );
 
         }
-
     );
 
 }
@@ -335,7 +291,7 @@ if(employeeForm){
 
 
 // ==============================
-// Cancel Employee Form
+// Cancel Form
 // ==============================
 
 if(cancelEmployee){
@@ -344,11 +300,7 @@ if(cancelEmployee){
         "click",
         function(){
 
-            if(employeeForm){
-
-                employeeForm.reset();
-
-            }
+            employeeForm.reset();
 
         }
     );
@@ -358,7 +310,7 @@ if(cancelEmployee){
 
 
 // ==============================
-// Open Employee Form
+// Add Employee Button
 // ==============================
 
 if(openEmployeeForm){
@@ -367,11 +319,20 @@ if(openEmployeeForm){
         "click",
         function(){
 
-            if(employeeName){
+            employeeForm.scrollIntoView({
+
+                behavior:"smooth",
+
+                block:"start"
+
+            });
+
+
+            setTimeout(()=>{
 
                 employeeName.focus();
 
-            }
+            },400);
 
         }
     );
@@ -379,7 +340,7 @@ if(openEmployeeForm){
 }
 // ==========================================
 // Part 3/4
-// Display Employees + Summary
+// Employee Display + Summary + Search
 // ==========================================
 
 
@@ -480,24 +441,29 @@ function displayEmployees(data){
 
 
     // ==============================
-    // Display Employee Rows
+    // Employee Rows
     // ==============================
 
     data.forEach((employee)=>{
 
 
-        let statusClass = "inactive";
+        let statusClass =
+        "inactive";
 
 
         if(employee.status === "Active"){
 
-            statusClass = "active";
+            statusClass =
+            "active";
 
         }
 
-        else if(employee.status === "On Leave"){
+        else if(
+            employee.status === "On Leave"
+        ){
 
-            statusClass = "leave";
+            statusClass =
+            "leave";
 
         }
 
@@ -508,17 +474,12 @@ function displayEmployees(data){
             <tr>
 
 
-                <!-- Employee ID -->
-
                 <td class="employee-id">
 
                     ${employee.id}
 
                 </td>
 
-
-
-                <!-- Name -->
 
                 <td>
 
@@ -527,9 +488,6 @@ function displayEmployees(data){
                 </td>
 
 
-
-                <!-- Phone -->
-
                 <td>
 
                     ${employee.phone}
@@ -537,18 +495,12 @@ function displayEmployees(data){
                 </td>
 
 
-
-                <!-- Position -->
-
                 <td>
 
                     ${employee.position}
 
                 </td>
 
-
-
-                <!-- Salary -->
 
                 <td>
 
@@ -560,18 +512,12 @@ function displayEmployees(data){
                 </td>
 
 
-
-                <!-- Joining Date -->
-
                 <td>
 
                     ${employee.joiningDate}
 
                 </td>
 
-
-
-                <!-- Status -->
 
                 <td>
 
@@ -585,9 +531,6 @@ function displayEmployees(data){
 
                 </td>
 
-
-
-                <!-- Actions -->
 
                 <td>
 
@@ -603,7 +546,6 @@ function displayEmployees(data){
                             <i class="fa-solid fa-pen"></i>
 
                         </button>
-
 
 
                         <button
@@ -698,16 +640,14 @@ if(employeeSearch){
 // ==========================================
 
 
-
 // ==============================
 // Delete Employee
 // ==============================
 
 function deleteEmployee(id){
 
-    const employee =
-    employees.find(
-        employee => employee.id === id
+    const employee = employees.find(
+        item => item.id === id
     );
 
 
@@ -720,10 +660,10 @@ function deleteEmployee(id){
     }
 
 
+    const confirmDelete = confirm(
 
-    const confirmDelete =
-    confirm(
         `Are you sure you want to delete ${employee.name}?`
+
     );
 
 
@@ -734,12 +674,9 @@ function deleteEmployee(id){
     }
 
 
-
-    employees =
-    employees.filter(
-        employee => employee.id !== id
+    employees = employees.filter(
+        item => item.id !== id
     );
-
 
 
     saveEmployees();
@@ -762,9 +699,8 @@ function deleteEmployee(id){
 
 function editEmployee(id){
 
-    const employee =
-    employees.find(
-        employee => employee.id === id
+    const employee = employees.find(
+        item => item.id === id
     );
 
 
@@ -777,8 +713,7 @@ function editEmployee(id){
     }
 
 
-
-    // Fill form with existing data
+    // Fill the form
 
     employeeName.value =
     employee.name;
@@ -805,20 +740,10 @@ function editEmployee(id){
 
 
 
-    // Remove old employee
+    // Store editing employee ID
 
-    employees =
-    employees.filter(
-        item => item.id !== id
-    );
-
-
-    saveEmployees();
-
-
-    displayEmployees(employees);
-
-    updateEmployeeSummary();
+    employeeForm.dataset.editingId =
+    id;
 
 
 
@@ -844,13 +769,6 @@ function editEmployee(id){
 
 
 
-    // Store editing ID
-
-    employeeForm.dataset.editingId =
-    id;
-
-
-
     // Scroll to form
 
     employeeForm.scrollIntoView({
@@ -866,144 +784,191 @@ function editEmployee(id){
 
 
 // ==============================
-// Handle Edit Form Submission
+// Replace Form Submit For Editing
 // ==============================
 
 employeeForm.addEventListener(
     "submit",
     function(e){
 
-        e.preventDefault();
-
-
-
         const editingId =
         employeeForm.dataset.editingId;
 
 
+        // If this is normal Add Employee,
+        // Part 2 handles it.
 
-        // If editing an employee
+        if(!editingId){
 
-        if(editingId){
-
-            const updatedEmployee = {
-
-                id:editingId,
-
-                name:
-                employeeName.value.trim(),
-
-                phone:
-                employeePhone.value.trim(),
-
-                position:
-                employeePosition.value,
-
-                salary:
-                Number(
-                    employeeSalary.value
-                ),
-
-                joiningDate:
-                joiningDate.value,
-
-                status:
-                employeeStatus.value,
-
-                updatedAt:
-                new Date().toISOString()
-
-            };
-
-
-
-            // Validation
-
-            if(
-
-                updatedEmployee.name === "" ||
-
-                updatedEmployee.phone === "" ||
-
-                updatedEmployee.position === "" ||
-
-                updatedEmployee.joiningDate === "" ||
-
-                updatedEmployee.salary <= 0
-
-            ){
-
-                alert(
-                    "Please fill all employee details correctly."
-                );
-
-                return;
-
-            }
-
-
-
-            employees.push(
-                updatedEmployee
-            );
-
-
-            saveEmployees();
-
-
-            displayEmployees(
-                employees
-            );
-
-
-            updateEmployeeSummary();
-
-
-
-            // Clear editing mode
-
-            delete employeeForm.dataset.editingId;
-
-
-
-            // Restore button
-
-            const saveButton =
-            employeeForm.querySelector(
-                ".employee-save-btn"
-            );
-
-
-            if(saveButton){
-
-                saveButton.innerHTML = `
-
-                    <i class="fa-solid fa-user-plus"></i>
-
-                    Save Employee
-
-                `;
-
-            }
-
-
-
-            employeeForm.reset();
-
-
-            alert(
-                "Employee updated successfully!"
-            );
+            return;
 
         }
 
-    }
+
+        // Stop Part 2 submit handler
+
+        e.preventDefault();
+
+        e.stopImmediatePropagation();
+
+
+
+        // ==============================
+        // Get Updated Values
+        // ==============================
+
+        const name =
+        employeeName.value.trim();
+
+        const phone =
+        employeePhone.value.trim();
+
+        const position =
+        employeePosition.value;
+
+        const salary =
+        Number(employeeSalary.value);
+
+        const joining =
+        joiningDate.value;
+
+        const status =
+        employeeStatus.value;
+
+
+
+        // ==============================
+        // Validation
+        // ==============================
+
+        if(
+
+            name === "" ||
+
+            phone === "" ||
+
+            position === "" ||
+
+            joining === "" ||
+
+            salary <= 0
+
+        ){
+
+            alert(
+                "Please fill all employee details correctly."
+            );
+
+            return;
+
+        }
+
+
+
+        // ==============================
+        // Find Employee
+        // ==============================
+
+        const index =
+        employees.findIndex(
+            item => item.id === editingId
+        );
+
+
+        if(index === -1){
+
+            alert("Employee not found.");
+
+            return;
+
+        }
+
+
+
+        // ==============================
+        // Update Employee
+        // ==============================
+
+        employees[index] = {
+
+            ...employees[index],
+
+            name:name,
+
+            phone:phone,
+
+            position:position,
+
+            salary:salary,
+
+            joiningDate:joining,
+
+            status:status,
+
+            updatedAt:
+            new Date().toISOString()
+
+        };
+
+
+
+        // ==============================
+        // Save
+        // ==============================
+
+        saveEmployees();
+
+
+        displayEmployees(employees);
+
+        updateEmployeeSummary();
+
+
+
+        // ==============================
+        // Reset Form
+        // ==============================
+
+        employeeForm.reset();
+
+
+        delete employeeForm.dataset.editingId;
+
+
+
+        // Restore Button
+
+        const saveButton =
+        employeeForm.querySelector(
+            ".employee-save-btn"
+        );
+
+
+        if(saveButton){
+
+            saveButton.innerHTML = `
+
+                <i class="fa-solid fa-user-plus"></i>
+
+                Save Employee
+
+            `;
+
+        }
+
+
+        alert(
+            "Employee updated successfully!"
+        );
+
+    },
+    true
 );
 
 
 
 // ==============================
-// Cancel Edit
+// Cancel Editing
 // ==============================
 
 if(cancelEmployee){
@@ -1045,24 +1010,21 @@ if(cancelEmployee){
 
 
 // ==============================
-// Initial Page Load
+// Initialize Employees
 // ==============================
 
 function initializeEmployees(){
 
-    const savedEmployees =
+    const saved =
     localStorage.getItem("employees");
 
 
-    if(
-        savedEmployees &&
-        savedEmployees !== "undefined"
-    ){
+    if(saved && saved !== "undefined"){
 
         try{
 
             employees =
-            JSON.parse(savedEmployees);
+            JSON.parse(saved);
 
         }
 
@@ -1099,7 +1061,7 @@ function initializeEmployees(){
 
 
 // ==============================
-// Start Employees Module
+// Start Module
 // ==============================
 
 initializeEmployees();
