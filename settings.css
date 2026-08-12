@@ -1,0 +1,1388 @@
+/* ==========================================
+   FuelFlow Settings Page
+========================================== */
+
+
+/* ==========================================
+   Settings Content
+========================================== */
+
+.settings-content{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:25px;
+
+}
+
+
+
+/* ==========================================
+   Settings Card
+========================================== */
+
+.settings-card{
+
+    background:#ffffff;
+
+    border-radius:15px;
+
+    padding:28px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.07);
+
+    animation:fadeIn .4s ease;
+
+}
+
+
+
+/* ==========================================
+   Settings Card Header
+========================================== */
+
+.settings-card-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:28px;
+
+    padding-bottom:20px;
+
+    border-bottom:1px solid #e5e7eb;
+
+}
+
+
+
+.settings-title{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+
+
+.settings-title h2{
+
+    margin:0;
+
+    color:#111827;
+
+    font-size:21px;
+
+}
+
+
+
+.settings-title p{
+
+    margin-top:5px;
+
+    color:#6b7280;
+
+    font-size:14px;
+
+}
+
+
+
+/* ==========================================
+   Settings Icons
+========================================== */
+
+.settings-icon{
+
+    width:50px;
+
+    height:50px;
+
+    border-radius:12px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:21px;
+
+}
+
+
+
+.settings-icon.blue{
+
+    background:#eff6ff;
+
+    color:#2563eb;
+
+}
+
+
+
+.settings-icon.green{
+
+    background:#ecfdf5;
+
+    color:#16a34a;
+
+}
+
+
+
+.settings-icon.orange{
+
+    background:#fff7ed;
+
+    color:#ea580c;
+
+}
+
+
+
+.settings-icon.purple{
+
+    background:#f5f3ff;
+
+    color:#7c3aed;
+
+}
+
+
+
+.settings-icon.red{
+
+    background:#fef2f2;
+
+    color:#dc2626;
+
+}
+
+
+
+.settings-icon.dark{
+
+    background:#f3f4f6;
+
+    color:#374151;
+
+}
+
+
+
+/* ==========================================
+   Form Grid
+========================================== */
+
+.settings-form-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:22px;
+
+}
+
+
+
+.settings-form-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+
+
+.settings-form-group.full-width{
+
+    grid-column:1 / -1;
+
+}
+
+
+
+.settings-form-group label{
+
+    margin-bottom:8px;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    color:#374151;
+
+}
+
+
+
+.settings-form-group input,
+
+.settings-form-group textarea,
+
+.settings-form-group select{
+
+    width:100%;
+
+    box-sizing:border-box;
+
+    padding:13px 15px;
+
+    border:1px solid #d1d5db;
+
+    border-radius:10px;
+
+    outline:none;
+
+    background:#ffffff;
+
+    color:#111827;
+
+    font-size:15px;
+
+    font-family:inherit;
+
+    transition:.25s;
+
+}
+
+
+
+.settings-form-group textarea{
+
+    resize:vertical;
+
+}
+
+
+
+.settings-form-group input:focus,
+
+.settings-form-group textarea:focus,
+
+.settings-form-group select:focus{
+
+    border-color:#2563eb;
+
+    box-shadow:0 0 0 3px rgba(37,99,235,.12);
+
+    transform:translateY(-1px);
+
+}
+
+
+
+.settings-form-group input:read-only{
+
+    background:#f3f4f6;
+
+    cursor:not-allowed;
+
+    color:#6b7280;
+
+}
+
+
+
+/* ==========================================
+   Settings Actions
+========================================== */
+
+.settings-actions{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    margin-top:25px;
+
+    padding-top:20px;
+
+    border-top:1px solid #f0f0f0;
+
+}
+
+
+
+.settings-save-btn{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:8px;
+
+    border:none;
+
+    border-radius:10px;
+
+    padding:12px 22px;
+
+    background:#2563eb;
+
+    color:#ffffff;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+
+
+.settings-save-btn:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 8px 18px rgba(37,99,235,.25);
+
+}
+
+
+
+.green-btn{
+
+    background:#16a34a;
+
+}
+
+
+
+.green-btn:hover{
+
+    box-shadow:0 8px 18px rgba(22,163,74,.25);
+
+}
+
+
+
+.orange-btn{
+
+    background:#ea580c;
+
+}
+
+
+
+.orange-btn:hover{
+
+    box-shadow:0 8px 18px rgba(234,88,12,.25);
+
+}
+
+
+
+.purple-btn{
+
+    background:#7c3aed;
+
+}
+
+
+
+.purple-btn:hover{
+
+    box-shadow:0 8px 18px rgba(124,58,237,.25);
+
+}
+
+
+
+.red-btn{
+
+    background:#dc2626;
+
+}
+
+
+
+.red-btn:hover{
+
+    box-shadow:0 8px 18px rgba(220,38,38,.25);
+
+}
+
+
+
+/* ==========================================
+   Fuel Price Boxes
+========================================== */
+
+.fuel-price-box{
+
+    padding:22px;
+
+    border-radius:14px;
+
+    border:1px solid #e5e7eb;
+
+}
+
+
+
+.petrol-price{
+
+    background:#f0fdf4;
+
+    border-color:#bbf7d0;
+
+}
+
+
+
+.diesel-price{
+
+    background:#eff6ff;
+
+    border-color:#bfdbfe;
+
+}
+
+
+
+.fuel-price-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:18px;
+
+}
+
+
+
+.fuel-price-header div{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+
+
+.fuel-price-header i{
+
+    font-size:20px;
+
+}
+
+
+
+.petrol-price .fuel-price-header i{
+
+    color:#16a34a;
+
+}
+
+
+
+.diesel-price .fuel-price-header i{
+
+    color:#2563eb;
+
+}
+
+
+
+.fuel-price-header strong{
+
+    font-size:18px;
+
+    color:#111827;
+
+}
+
+
+
+.fuel-price-header span{
+
+    font-size:13px;
+
+    color:#6b7280;
+
+}
+
+
+
+.price-input{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    background:#ffffff;
+
+    border:1px solid #d1d5db;
+
+    border-radius:10px;
+
+    padding:0 14px;
+
+}
+
+
+
+.price-input span{
+
+    color:#6b7280;
+
+    font-weight:600;
+
+}
+
+
+
+.price-input input{
+
+    flex:1;
+
+    min-width:0;
+
+    border:none;
+
+    outline:none;
+
+    padding:13px 0;
+
+    font-size:20px;
+
+    font-weight:600;
+
+    color:#111827;
+
+}
+
+
+
+/* ==========================================
+   Preference List
+========================================== */
+
+.preference-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+
+
+.preference-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+
+    padding:20px 5px;
+
+    border-bottom:1px solid #f1f5f9;
+
+}
+
+
+
+.preference-item:last-child{
+
+    border-bottom:none;
+
+}
+
+
+
+.preference-info{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+
+
+.preference-info strong{
+
+    display:block;
+
+    color:#111827;
+
+    font-size:15px;
+
+}
+
+
+
+.preference-info p{
+
+    margin-top:5px;
+
+    color:#6b7280;
+
+    font-size:13px;
+
+}
+
+
+
+.preference-icon{
+
+    width:42px;
+
+    height:42px;
+
+    border-radius:10px;
+
+    background:#f3f4f6;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:#4b5563;
+
+}
+
+
+
+.preference-item select{
+
+    min-width:220px;
+
+    padding:10px 12px;
+
+    border:1px solid #d1d5db;
+
+    border-radius:9px;
+
+    outline:none;
+
+    color:#374151;
+
+    background:#ffffff;
+
+}
+
+
+
+/* ==========================================
+   Toggle Switch
+========================================== */
+
+.toggle{
+
+    position:relative;
+
+    display:inline-block;
+
+    width:48px;
+
+    height:26px;
+
+    flex-shrink:0;
+
+}
+
+
+
+.toggle input{
+
+    opacity:0;
+
+    width:0;
+
+    height:0;
+
+}
+
+
+
+.toggle-slider{
+
+    position:absolute;
+
+    cursor:pointer;
+
+    inset:0;
+
+    background:#d1d5db;
+
+    border-radius:30px;
+
+    transition:.3s;
+
+}
+
+
+
+.toggle-slider::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:20px;
+
+    height:20px;
+
+    left:3px;
+
+    top:3px;
+
+    background:#ffffff;
+
+    border-radius:50%;
+
+    box-shadow:0 2px 5px rgba(0,0,0,.2);
+
+    transition:.3s;
+
+}
+
+
+
+.toggle input:checked + .toggle-slider{
+
+    background:#2563eb;
+
+}
+
+
+
+.toggle input:checked + .toggle-slider::before{
+
+    transform:translateX(22px);
+
+}
+
+
+
+/* ==========================================
+   Password Input
+========================================== */
+
+.password-input{
+
+    position:relative;
+
+    display:flex;
+
+    align-items:center;
+
+}
+
+
+
+.password-input input{
+
+    padding-right:45px;
+
+}
+
+
+
+.password-toggle{
+
+    position:absolute;
+
+    right:12px;
+
+    border:none;
+
+    background:transparent;
+
+    color:#6b7280;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+}
+
+
+
+.password-toggle:hover{
+
+    color:#2563eb;
+
+}
+
+
+
+/* ==========================================
+   Danger Card
+========================================== */
+
+.danger-card{
+
+    border:1px solid #fee2e2;
+
+}
+
+
+
+.data-management{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:25px;
+
+}
+
+
+
+.data-info{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:12px;
+
+    max-width:750px;
+
+    padding:15px;
+
+    background:#fff7ed;
+
+    border-radius:10px;
+
+    color:#9a3412;
+
+}
+
+
+
+.data-info i{
+
+    margin-top:2px;
+
+}
+
+
+
+.data-info p{
+
+    margin:0;
+
+    line-height:1.6;
+
+    font-size:14px;
+
+}
+
+
+
+.danger-btn{
+
+    flex-shrink:0;
+
+    border:none;
+
+    background:#dc2626;
+
+    color:#ffffff;
+
+    padding:12px 18px;
+
+    border-radius:9px;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+
+
+.danger-btn:hover{
+
+    background:#b91c1c;
+
+    transform:translateY(-2px);
+
+    box-shadow:0 8px 18px rgba(220,38,38,.25);
+
+}
+
+
+
+/* ==========================================
+   System Information
+========================================== */
+
+.system-info-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:20px;
+
+}
+
+
+
+.system-info-grid > div{
+
+    padding:18px;
+
+    background:#f8fafc;
+
+    border-radius:10px;
+
+    border:1px solid #e5e7eb;
+
+}
+
+
+
+.system-info-grid span{
+
+    display:block;
+
+    color:#6b7280;
+
+    font-size:13px;
+
+    margin-bottom:7px;
+
+}
+
+
+
+.system-info-grid strong{
+
+    display:block;
+
+    color:#111827;
+
+    font-size:14px;
+
+}
+
+
+
+.status-online{
+
+    color:#16a34a !important;
+
+}
+
+
+
+.status-online i{
+
+    font-size:8px;
+
+    vertical-align:middle;
+
+}
+
+
+
+/* ==========================================
+   Expense Breakdown Compatibility
+========================================== */
+
+.empty-report-message{
+
+    text-align:center;
+
+    color:#9ca3af;
+
+    padding:25px;
+
+}
+
+
+
+.expense-breakdown-row{
+
+    display:grid;
+
+    grid-template-columns:180px 1fr 120px;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:12px 0;
+
+    border-bottom:1px solid #f1f5f9;
+
+}
+
+
+
+.expense-breakdown-info{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    color:#374151;
+
+    font-size:14px;
+
+}
+
+
+
+.expense-breakdown-dot{
+
+    width:9px;
+
+    height:9px;
+
+    border-radius:50%;
+
+    background:#2563eb;
+
+}
+
+
+
+.expense-breakdown-bar{
+
+    height:8px;
+
+    background:#e5e7eb;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+}
+
+
+
+.expense-breakdown-fill{
+
+    height:100%;
+
+    background:#2563eb;
+
+    border-radius:20px;
+
+    transition:width .6s ease;
+
+}
+
+
+
+.expense-breakdown-amount{
+
+    text-align:right;
+
+    font-weight:600;
+
+    color:#374151;
+
+    font-size:14px;
+
+}
+
+
+
+/* ==========================================
+   Animations
+========================================== */
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(15px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+
+
+/* ==========================================
+   Responsive - Tablet
+========================================== */
+
+@media(max-width:992px){
+
+    .settings-form-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+
+    .settings-form-group.full-width{
+
+        grid-column:auto;
+
+    }
+
+
+
+    .system-info-grid{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+
+
+    .data-management{
+
+        flex-direction:column;
+
+        align-items:stretch;
+
+    }
+
+
+
+    .danger-btn{
+
+        width:100%;
+
+    }
+
+}
+
+
+
+/* ==========================================
+   Responsive - Mobile
+========================================== */
+
+@media(max-width:768px){
+
+    .settings-card{
+
+        padding:20px;
+
+    }
+
+
+
+    .settings-card-header{
+
+        align-items:flex-start;
+
+    }
+
+
+
+    .settings-title{
+
+        align-items:flex-start;
+
+    }
+
+
+
+    .settings-title h2{
+
+        font-size:18px;
+
+    }
+
+
+
+    .settings-icon{
+
+        width:44px;
+
+        height:44px;
+
+        font-size:18px;
+
+        flex-shrink:0;
+
+    }
+
+
+
+    .settings-actions{
+
+        justify-content:stretch;
+
+    }
+
+
+
+    .settings-save-btn{
+
+        width:100%;
+
+    }
+
+
+
+    .preference-item{
+
+        align-items:flex-start;
+
+    }
+
+
+
+    .preference-info{
+
+        align-items:flex-start;
+
+    }
+
+
+
+    .preference-item select{
+
+        min-width:150px;
+
+    }
+
+
+
+    .system-info-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+
+    .expense-breakdown-row{
+
+        grid-template-columns:1fr;
+
+        gap:8px;
+
+    }
+
+
+
+    .expense-breakdown-amount{
+
+        text-align:left;
+
+    }
+
+}
+
+
+
+@media(max-width:500px){
+
+    .settings-form-grid{
+
+        gap:16px;
+
+    }
+
+
+
+    .preference-item{
+
+        flex-direction:column;
+
+        align-items:stretch;
+
+    }
+
+
+
+    .preference-item .toggle{
+
+        align-self:flex-end;
+
+    }
+
+
+
+    .preference-item select{
+
+        width:100%;
+
+    }
+
+
+
+    .fuel-price-header{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:6px;
+
+    }
+
+
+
+    .settings-title{
+
+        gap:10px;
+
+    }
+
+}
+
+
+
+/* ==========================================
+   Settings Page Complete
+========================================== */
