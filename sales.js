@@ -46,6 +46,11 @@ document.getElementById("receiptContent");
 
 const searchInput =
 document.getElementById("searchSales");
+const searchInvoiceBtn =
+document.getElementById("searchInvoiceBtn");
+
+const invoiceRecord =
+document.getElementById("invoiceRecord");
 
 
 

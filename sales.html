@@ -151,11 +151,7 @@
 
         </header>
 
-        <!-- =========================
-                Sales Content
-        ========================== -->
-
-        <section class="sales-content">
+       
 
 
 <!-- ==========================
@@ -354,25 +350,45 @@ Fuel Sold
 
 
 </div>
-<!-- Search Bar -->
-
-<div class="sales-search">
-
-    <input
-        type="text"
-        id="searchSales"
-        placeholder="Search by Invoice, Customer or Vehicle">
-
-</div>
+</section>
 <!-- ==========================
      Recent Sales
 ========================== -->
 
 <section class="recent-sales">
 
-    <h2>
-        Recent Sales
-    </h2>
+    <div class="recent-sales-header">
+
+        <div>
+            <h2>Recent Sales</h2>
+            <p>Search an invoice number to view its full record.</p>
+        </div>
+
+        <div class="invoice-search-controls">
+
+            <input
+                type="search"
+                id="searchSales"
+                placeholder="Search invoice, for example INV-1006"
+            >
+
+            <button
+                type="button"
+                id="searchInvoiceBtn"
+            >
+                <i class="fa-solid fa-magnifying-glass"></i>
+                Search
+            </button>
+
+        </div>
+
+    </div>
+
+    <div
+        class="invoice-record"
+        id="invoiceRecord"
+        hidden
+    ></div>
 
 
     <table>
