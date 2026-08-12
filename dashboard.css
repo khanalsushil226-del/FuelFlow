@@ -103,7 +103,7 @@ ul{
 
 .logo h2{
 
-    font-size:18px;
+    font-size:24px;
     font-weight:600;
     letter-spacing:.5px;
 
@@ -959,4 +959,142 @@ ul{
 
     height:100% !important;
 
+}
+/* ==========================================
+   DASHBOARD TOP SUMMARY — FINAL DESIGN
+========================================== */
+
+/* Three cards now fill the row equally */
+.cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+    margin-bottom: 32px;
+}
+
+/* Cleaner card layout */
+.card {
+    position: relative;
+    display: block;
+
+    min-height: 170px;
+    padding: 26px;
+    overflow: hidden;
+    border: 1px solid #e8edf5;
+    border-radius: 18px;
+
+    background: #ffffff;
+    box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06);
+    cursor: default;
+}
+
+.card:hover {
+    border-color: #bfdbfe;
+    box-shadow: 0 16px 32px rgba(37, 99, 235, 0.12);
+    transform: translateY(-4px);
+}
+
+/* Icon moves to the top-right */
+.card-icon {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 54px;
+    height: 54px;
+    border-radius: 15px;
+
+    background: #eff6ff;
+    color: #2563eb;
+    font-size: 22px;
+}
+
+/* Different soft icon color for each card */
+.card:nth-child(2) .card-icon {
+    background: #f5f3ff;
+    color: #7c3aed;
+}
+
+.card:nth-child(3) .card-icon {
+    background: #ecfdf5;
+    color: #16a34a;
+}
+
+.card-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    height: 118px;
+    padding-right: 60px;
+}
+
+.card-info h4 {
+    margin: 0 0 9px;
+    color: #64748b;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.card-info h2 {
+    margin: 0;
+    color: #0f172a;
+    font-size: clamp(27px, 2vw, 34px);
+    font-weight: 700;
+    line-height: 1.15;
+    white-space: nowrap;
+}
+
+/* Tablet */
+@media (max-width: 1100px) {
+    .cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* Phone */
+@media (max-width: 650px) {
+    .cards {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .card {
+        min-height: 150px;
+        padding: 22px;
+    }
+
+    .card-icon {
+        top: 20px;
+        right: 20px;
+    }
+}
+/* Remove the icon boxes from dashboard summary cards */
+.card-icon,
+.card:nth-child(2) .card-icon,
+.card:nth-child(3) .card-icon {
+    width: auto;
+    height: auto;
+    padding: 0;
+    border-radius: 0;
+
+    background: transparent;
+    box-shadow: none;
+    font-size: 32px;
+}
+
+/* Keep each icon a clean color */
+.card:nth-child(1) .card-icon {
+    color: #2563eb;
+}
+
+.card:nth-child(2) .card-icon {
+    color: #7c3aed;
+}
+
+.card:nth-child(3) .card-icon {
+    color: #16a34a;
 }
