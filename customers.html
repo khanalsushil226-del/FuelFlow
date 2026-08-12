@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- ==========================================
+         Meta
+    ========================================== -->
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+
+    <title>FuelFlow | Customers</title>
+
+
+    <!-- ==========================================
+         Google Font
+    ========================================== -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- ==========================================
+         Font Awesome
+    ========================================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+
+    <!-- ==========================================
+         Main CSS
+    ========================================== -->
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+
+    <!-- ==========================================
+         Customers CSS
+    ========================================== -->
+
+    <link
+        rel="stylesheet"
+        href="customers.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- ==========================================
+         Dashboard
+    ========================================== -->
+
+    <div class="dashboard">
+
+
+        <!-- ==========================================
+             SIDEBAR
+        ========================================== -->
+
+        <aside class="sidebar">
+
+
+            <!-- Logo -->
+
+            <div class="logo">
+
+                <i class="fa-solid fa-gas-pump"></i>
+
+                <h2>FuelFlow</h2>
+
+            </div>
+
+
+
+            <!-- Navigation -->
+
+            <nav>
+
+                <ul>
+
+
+                    <!-- Dashboard -->
+
+                    <li>
+
+                        <a href="dashboard.html">
+
+                            <i class="fa-solid fa-chart-line"></i>
+
+                            <span>Dashboard</span>
+
+                        </a>
+
+                    </li>
+
+
+
+                    <!-- Sales -->
+
+                    <li>
+
+                        <a href="sales.html">
+
+                            <i class="fa-solid fa-cash-register"></i>
+
+                            <span>Sales</span>
+
+                        </a>
+
+                    </li>
+
+
+
+                    <!-- Inventory -->
+
+                    <li>
+
+                        <a href="inventory.html">
+
+                            <i class="fa-solid fa-box"></i>
+
+                            <span>Inventory</span>
+
+                        </a>
+
+                    </li>
+
+
+
+                    <!-- Employees -->
+
+                    <li>
+
+                        <a href="employees.html">
+
+                            <i class="fa-solid fa-users"></i>
+
+                            <span>Employees</span>
+
+                        </a>
+
+                    </li>
+
+
+
+                    <!-- Customers -->
+
+                    <li class="active">
+
+                        <a href="customers.html">
+
+                            <i class="fa-solid fa-user-group"></i>
+
+                            <span>Customers</span>
+
+                        </a>
+
+                    </li>
+
+
+
+                    <!-- Expenses -->
+
+                    <li>
+
+                        <a href="expenses.html">
+
+                            <i class="fa-solid fa-wallet"></i>
+
+                            <span>Expenses</span>
+
+                        </a>
+
+                    </li>
+
+
+
+                    <!-- Reports -->
+
+                    <li>
+
+                        <a href="reports.html">
+
+                            <i class="fa-solid fa-file-lines"></i>
+
+                            <span>Reports</span>
+
+                        </a>
+
+                    </li>
+
+
+
+                    <!-- Settings -->
+
+                    <li>
+
+                        <a href="settings.html">
+
+                            <i class="fa-solid fa-gear"></i>
+
+                            <span>Settings</span>
+
+                        </a>
+
+                    </li>
+
+
+                </ul>
+
+            </nav>
+
+
+        </aside>
+
+
+
+        <!-- ==========================================
+             MAIN CONTENT
+        ========================================== -->
+
+        <main class="main-content">
+
+
+            <!-- ==========================================
+                 TOPBAR
+            ========================================== -->
+
+            <header class="topbar">
+
+
+                <div>
+
+                    <h1>Customers</h1>
+
+                    <p>
+                        Manage your petrol pump customers.
+                    </p>
+
+                </div>
+
+
+
+                <div class="topbar-right">
+
+
+                    <!-- Notification -->
+
+                    <button>
+
+                        <i class="fa-solid fa-bell"></i>
+
+                    </button>
+
+
+
+                    <!-- Profile -->
+
+                    <div class="profile">
+
+                        <i class="fa-solid fa-circle-user"></i>
+
+                        <span>Admin</span>
+
+                    </div>
+
+
+                </div>
+
+
+            </header>
+
+
+
+            <!-- ==========================================
+                 PAGE CONTENT
+            ========================================== -->
+
+            <section class="content">
+
+
+                <!-- ==========================================
+                     PAGE INTRO
+                ========================================== -->
+
+                <div class="page-intro">
+
+
+                    <div>
+
+                        <h2>
+                            Customer Management
+                        </h2>
+
+                        <p>
+                            Add and manage your petrol pump customers.
+                        </p>
+
+                    </div>
+
+
+
+                    <button
+                        class="add-customer-btn"
+                        id="openCustomerForm"
+                    >
+
+                        <i class="fa-solid fa-plus"></i>
+
+                        Add Customer
+
+                    </button>
+
+
+                </div>
+
+
+
+                <!-- ==========================================
+                     SUMMARY CARDS
+                ========================================== -->
+
+                <div class="customer-summary">
+
+
+                    <!-- Total Customers -->
+
+                    <div class="customer-card">
+
+
+                        <div class="customer-card-icon">
+
+                            <i class="fa-solid fa-users"></i>
+
+                        </div>
+
+
+                        <div>
+
+                            <p>
+                                Total Customers
+                            </p>
+
+                            <h2 id="totalCustomers">
+                                0
+                            </h2>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- Regular Customers -->
+
+                    <div class="customer-card">
+
+
+                        <div class="customer-card-icon">
+
+                            <i class="fa-solid fa-user-check"></i>
+
+                        </div>
+
+
+                        <div>
+
+                            <p>
+                                Regular Customers
+                            </p>
+
+                            <h2 id="regularCustomers">
+                                0
+                            </h2>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- Total Fuel Purchased -->
+
+                    <div class="customer-card">
+
+
+                        <div class="customer-card-icon">
+
+                            <i class="fa-solid fa-gas-pump"></i>
+
+                        </div>
+
+
+                        <div>
+
+                            <p>
+                                Total Fuel Purchased
+                            </p>
+
+                            <h2 id="totalCustomerFuel">
+                                0 L
+                            </h2>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- ==========================================
+                     ADD CUSTOMER FORM
+                ========================================== -->
+
+                <div
+                    class="customer-form-card"
+                    id="customerFormCard"
+                >
+
+
+                    <!-- Form Header -->
+
+                    <div class="section-header">
+
+
+                        <div>
+
+                            <h2>
+                                Add Customer
+                            </h2>
+
+                            <p>
+                                Enter customer information below.
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- Form -->
+
+                    <form id="customerForm">
+
+
+                        <div class="customer-form-grid">
+
+
+                            <!-- Customer Name -->
+
+                            <div class="form-group">
+
+                                <label for="customerName">
+
+                                    Customer Name
+
+                                </label>
+
+
+                                <input
+                                    type="text"
+                                    id="customerName"
+                                    placeholder="Enter customer name"
+                                    required
+                                >
+
+                            </div>
+
+
+
+                            <!-- Phone -->
+
+                            <div class="form-group">
+
+                                <label for="customerPhone">
+
+                                    Phone Number
+
+                                </label>
+
+
+                                <input
+                                    type="tel"
+                                    id="customerPhone"
+                                    placeholder="Enter phone number"
+                                    required
+                                >
+
+                            </div>
+
+
+
+                            <!-- Vehicle Number -->
+
+                            <div class="form-group">
+
+                                <label for="customerVehicle">
+
+                                    Vehicle Number
+
+                                </label>
+
+
+                                <input
+                                    type="text"
+                                    id="customerVehicle"
+                                    placeholder="e.g. KO 01 PA 1234"
+                                    required
+                                >
+
+                            </div>
+
+
+
+                            <!-- Vehicle Type -->
+
+                            <div class="form-group">
+
+                                <label for="vehicleType">
+
+                                    Vehicle Type
+
+                                </label>
+
+
+                                <select
+                                    id="vehicleType"
+                                    required
+                                >
+
+                                    <option value="">
+
+                                        Select Vehicle Type
+
+                                    </option>
+
+
+                                    <option value="Motorcycle">
+
+                                        Motorcycle
+
+                                    </option>
+
+
+                                    <option value="Car">
+
+                                        Car
+
+                                    </option>
+
+
+                                    <option value="Jeep">
+
+                                        Jeep
+
+                                    </option>
+
+
+                                    <option value="Van">
+
+                                        Van
+
+                                    </option>
+
+
+                                    <option value="Bus">
+
+                                        Bus
+
+                                    </option>
+
+
+                                    <option value="Truck">
+
+                                        Truck
+
+                                    </option>
+
+
+                                    <option value="Other">
+
+                                        Other
+
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+
+                            <!-- Address -->
+
+                            <div class="form-group">
+
+                                <label for="customerAddress">
+
+                                    Address
+
+                                </label>
+
+
+                                <input
+                                    type="text"
+                                    id="customerAddress"
+                                    placeholder="Enter customer address"
+                                >
+
+                            </div>
+
+
+
+                            <!-- Customer Type -->
+
+                            <div class="form-group">
+
+                                <label for="customerType">
+
+                                    Customer Type
+
+                                </label>
+
+
+                                <select
+                                    id="customerType"
+                                    required
+                                >
+
+                                    <option value="Regular">
+
+                                        Regular
+
+                                    </option>
+
+
+                                    <option value="Walk-in">
+
+                                        Walk-in
+
+                                    </option>
+
+
+                                    <option value="Business">
+
+                                        Business
+
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                        </div>
+
+
+
+                        <!-- Form Buttons -->
+
+                        <div class="customer-form-buttons">
+
+
+                            <button
+                                type="button"
+                                class="customer-cancel-btn"
+                                id="cancelCustomer"
+                            >
+
+                                Cancel
+
+                            </button>
+
+
+
+                            <button
+                                type="submit"
+                                class="customer-save-btn"
+                            >
+
+                                <i class="fa-solid fa-user-plus"></i>
+
+                                Save Customer
+
+                            </button>
+
+
+                        </div>
+
+
+                    </form>
+
+
+                </div>
+
+
+
+                <!-- ==========================================
+                     CUSTOMER LIST
+                ========================================== -->
+
+                <div class="customer-list-card">
+
+
+                    <!-- Section Header -->
+
+                    <div class="section-header">
+
+
+                        <div>
+
+                            <h2>
+                                Customer List
+                            </h2>
+
+                            <p>
+                                View and manage all customers.
+                            </p>
+
+                        </div>
+
+
+
+                        <!-- Search -->
+
+                        <div class="customer-search">
+
+                            <i class="fa-solid fa-search"></i>
+
+
+                            <input
+                                type="text"
+                                id="customerSearch"
+                                placeholder="Search customers..."
+                            >
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- ==========================================
+                         CUSTOMER TABLE
+                    ========================================== -->
+
+                    <div class="customer-table-container">
+
+
+                        <table>
+
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+                                        Customer ID
+                                    </th>
+
+                                    <th>
+                                        Name
+                                    </th>
+
+                                    <th>
+                                        Phone
+                                    </th>
+
+                                    <th>
+                                        Vehicle
+                                    </th>
+
+                                    <th>
+                                        Vehicle Type
+                                    </th>
+
+                                    <th>
+                                        Customer Type
+                                    </th>
+
+                                    <th>
+                                        Fuel Purchased
+                                    </th>
+
+                                    <th>
+                                        Total Spent
+                                    </th>
+
+                                    <th>
+                                        Actions
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+
+                            <tbody id="customerTableBody">
+
+
+                                <tr>
+
+                                    <td
+                                        colspan="9"
+                                        class="empty-customers"
+                                    >
+
+                                        No customers found.
+
+                                    </td>
+
+                                </tr>
+
+
+                            </tbody>
+
+
+                        </table>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- ==========================================
+                     CUSTOMER INFORMATION PANEL
+                ========================================== -->
+
+                <div class="customer-info-panel">
+
+
+                    <div class="info-icon">
+
+                        <i class="fa-solid fa-circle-info"></i>
+
+                    </div>
+
+
+
+                    <div>
+
+                        <h3>
+                            Customer Management
+                        </h3>
+
+
+                        <p>
+
+                            Customer information is stored locally
+                            and can later be connected with the
+                            Sales module to automatically track
+                            fuel purchases and spending.
+
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+        </main>
+
+
+    </div>
+
+
+
+    <!-- ==========================================
+         JavaScript
+    ========================================== -->
+
+    <script src="customers.js"></script>
+
+
+</body>
+
+</html>
