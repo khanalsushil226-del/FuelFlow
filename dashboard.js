@@ -29,6 +29,14 @@ document.getElementById("dashboardTransactions");
 
 const dashboardFuel =
 document.getElementById("dashboardFuel");
+const dashboardPetrolStock =
+document.getElementById("dashboardPetrolStock");
+
+const dashboardDieselStock =
+document.getElementById("dashboardDieselStock");
+
+const dashboardTotalStock =
+document.getElementById("dashboardTotalStock");
 
 const dashboardCustomers =
 document.getElementById("dashboardCustomers");
@@ -108,6 +116,54 @@ function updateDashboardCards(){
         dashboardCustomers.textContent =
         uniqueCustomers.length;
 
+    }
+
+}
+// ==============================
+// Dashboard Inventory
+// ==============================
+
+function updateDashboardInventory() {
+
+    const savedStock =
+        localStorage.getItem("fuelStock");
+
+    let fuelStock = {
+        petrol: 0,
+        diesel: 0
+    };
+
+    if (savedStock) {
+
+        try {
+            fuelStock = JSON.parse(savedStock);
+        }
+
+        catch (error) {
+            console.error("Unable to load fuel stock.", error);
+        }
+
+    }
+
+    const petrol =
+        Number(fuelStock.petrol || 0);
+
+    const diesel =
+        Number(fuelStock.diesel || 0);
+
+    if (dashboardPetrolStock) {
+        dashboardPetrolStock.textContent =
+            petrol.toLocaleString() + " L";
+    }
+
+    if (dashboardDieselStock) {
+        dashboardDieselStock.textContent =
+            diesel.toLocaleString() + " L";
+    }
+
+    if (dashboardTotalStock) {
+        dashboardTotalStock.textContent =
+            (petrol + diesel).toLocaleString() + " L";
     }
 
 }
@@ -422,3 +478,4 @@ setInterval(()=>{
 // ==============================
 
 initializeDashboard();
+updateDashboardInventory();

@@ -1098,3 +1098,34 @@ ul{
 .card:nth-child(3) .card-icon {
     color: #16a34a;
 }
+/* ==========================================
+   FIX DASHBOARD HORIZONTAL OVERFLOW
+========================================== */
+
+.dashboard {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.main-content {
+    min-width: 0;
+    overflow-x: hidden;
+}
+
+.table-panel {
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.table-scroll {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.table-scroll table {
+    width: 100%;
+    min-width: 720px;
+    border-collapse: collapse;
+}
