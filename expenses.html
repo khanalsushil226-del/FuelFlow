@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- ==========================================
+         META
+    ========================================== -->
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>FuelFlow | Expenses</title>
+
+
+    <!-- ==========================================
+         GOOGLE FONT
+    ========================================== -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- ==========================================
+         FONT AWESOME
+    ========================================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+
+    <!-- ==========================================
+         MAIN CSS
+    ========================================== -->
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+
+    <!-- ==========================================
+         EXPENSES CSS
+    ========================================== -->
+
+    <link
+        rel="stylesheet"
+        href="expenses.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- ==========================================
+         DASHBOARD
+    ========================================== -->
+
+    <div class="dashboard">
+
+
+        <!-- ==========================================
+             SIDEBAR
+        ========================================== -->
+
+        <aside class="sidebar">
+
+
+            <!-- Logo -->
+
+            <div class="logo">
+
+                <i class="fa-solid fa-gas-pump"></i>
+
+                <h2>FuelFlow</h2>
+
+            </div>
+
+
+            <!-- Navigation -->
+
+            <nav>
+
+                <ul>
+
+
+                    <!-- Dashboard -->
+
+                    <li>
+
+                        <a href="dashboard.html">
+
+                            <i class="fa-solid fa-chart-line"></i>
+
+                            <span>Dashboard</span>
+
+                        </a>
+
+                    </li>
+
+
+                    <!-- Sales -->
+
+                    <li>
+
+                        <a href="sales.html">
+
+                            <i class="fa-solid fa-cash-register"></i>
+
+                            <span>Sales</span>
+
+                        </a>
+
+                    </li>
+
+
+                    <!-- Inventory -->
+
+                    <li>
+
+                        <a href="inventory.html">
+
+                            <i class="fa-solid fa-box"></i>
+
+                            <span>Inventory</span>
+
+                        </a>
+
+                    </li>
+
+
+                    <!-- Employees -->
+
+                    <li>
+
+                        <a href="employees.html">
+
+                            <i class="fa-solid fa-users"></i>
+
+                            <span>Employees</span>
+
+                        </a>
+
+                    </li>
+
+
+                    <!-- Customers -->
+
+                    <li>
+
+                        <a href="customers.html">
+
+                            <i class="fa-solid fa-user-group"></i>
+
+                            <span>Customers</span>
+
+                        </a>
+
+                    </li>
+
+
+                    <!-- Expenses -->
+
+                    <li class="active">
+
+                        <a href="expenses.html">
+
+                            <i class="fa-solid fa-wallet"></i>
+
+                            <span>Expenses</span>
+
+                        </a>
+
+                    </li>
+
+
+                    <!-- Reports -->
+
+                    <li>
+
+                        <a href="reports.html">
+
+                            <i class="fa-solid fa-file-lines"></i>
+
+                            <span>Reports</span>
+
+                        </a>
+
+                    </li>
+
+
+                    <!-- Settings -->
+
+                    <li>
+
+                        <a href="settings.html">
+
+                            <i class="fa-solid fa-gear"></i>
+
+                            <span>Settings</span>
+
+                        </a>
+
+                    </li>
+
+
+                </ul>
+
+            </nav>
+
+
+        </aside>
+
+
+
+        <!-- ==========================================
+             MAIN CONTENT
+        ========================================== -->
+
+        <main class="main-content">
+
+
+            <!-- ==========================================
+                 TOPBAR
+            ========================================== -->
+
+            <header class="topbar">
+
+
+                <div>
+
+                    <h1>Expenses</h1>
+
+                    <p>
+                        Track and manage your petrol pump expenses.
+                    </p>
+
+                </div>
+
+
+                <div class="topbar-right">
+
+
+                    <button>
+
+                        <i class="fa-solid fa-bell"></i>
+
+                    </button>
+
+
+                    <div class="profile">
+
+                        <i class="fa-solid fa-circle-user"></i>
+
+                        <span>Admin</span>
+
+                    </div>
+
+
+                </div>
+
+
+            </header>
+
+
+
+            <!-- ==========================================
+                 CONTENT
+            ========================================== -->
+
+            <section class="content">
+
+
+                <!-- ==========================================
+                     PAGE INTRO
+                ========================================== -->
+
+                <div class="page-intro">
+
+
+                    <div>
+
+                        <h2>
+                            Expense Management
+                        </h2>
+
+                        <p>
+                            Record and monitor all business expenses.
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        class="add-expense-btn"
+                        id="openExpenseForm"
+                    >
+
+                        <i class="fa-solid fa-plus"></i>
+
+                        Add Expense
+
+                    </button>
+
+
+                </div>
+
+
+
+                <!-- ==========================================
+                     SUMMARY CARDS
+                ========================================== -->
+
+                <div class="expense-summary">
+
+
+                    <!-- Total Expenses -->
+
+                    <div class="expense-card">
+
+
+                        <div class="expense-card-icon">
+
+                            <i class="fa-solid fa-money-bill-trend-up"></i>
+
+                        </div>
+
+
+                        <div>
+
+                            <p>
+                                Total Expenses
+                            </p>
+
+                            <h2 id="totalExpenses">
+                                Rs. 0
+                            </h2>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- Today's Expenses -->
+
+                    <div class="expense-card">
+
+
+                        <div class="expense-card-icon today">
+
+                            <i class="fa-solid fa-calendar-day"></i>
+
+                        </div>
+
+
+                        <div>
+
+                            <p>
+                                Today's Expenses
+                            </p>
+
+                            <h2 id="todayExpenses">
+                                Rs. 0
+                            </h2>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- Monthly Expenses -->
+
+                    <div class="expense-card">
+
+
+                        <div class="expense-card-icon monthly">
+
+                            <i class="fa-solid fa-calendar-days"></i>
+
+                        </div>
+
+
+                        <div>
+
+                            <p>
+                                This Month
+                            </p>
+
+                            <h2 id="monthlyExpenses">
+                                Rs. 0
+                            </h2>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- ==========================================
+                     ADD EXPENSE FORM
+                ========================================== -->
+
+                <div
+                    class="expense-form-card"
+                    id="expenseFormCard"
+                >
+
+
+                    <div class="section-header">
+
+
+                        <div>
+
+                            <h2>
+                                Add Expense
+                            </h2>
+
+                            <p>
+                                Enter the details of your business expense.
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <form id="expenseForm">
+
+
+                        <div class="expense-form-grid">
+
+
+                            <!-- Expense Title -->
+
+                            <div class="form-group">
+
+                                <label for="expenseTitle">
+
+                                    Expense Title
+
+                                </label>
+
+
+                                <input
+                                    type="text"
+                                    id="expenseTitle"
+                                    placeholder="e.g. Electricity Bill"
+                                    required
+                                >
+
+                            </div>
+
+
+
+                            <!-- Category -->
+
+                            <div class="form-group">
+
+                                <label for="expenseCategory">
+
+                                    Category
+
+                                </label>
+
+
+                                <select
+                                    id="expenseCategory"
+                                    required
+                                >
+
+                                    <option value="">
+
+                                        Select Category
+
+                                    </option>
+
+
+                                    <option value="Electricity">
+
+                                        Electricity
+
+                                    </option>
+
+
+                                    <option value="Water">
+
+                                        Water
+
+                                    </option>
+
+
+                                    <option value="Salary">
+
+                                        Salary
+
+                                    </option>
+
+
+                                    <option value="Maintenance">
+
+                                        Maintenance
+
+                                    </option>
+
+
+                                    <option value="Rent">
+
+                                        Rent
+
+                                    </option>
+
+
+                                    <option value="Fuel Purchase">
+
+                                        Fuel Purchase
+
+                                    </option>
+
+
+                                    <option value="Supplies">
+
+                                        Supplies
+
+                                    </option>
+
+
+                                    <option value="Transportation">
+
+                                        Transportation
+
+                                    </option>
+
+
+                                    <option value="Other">
+
+                                        Other
+
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+
+                            <!-- Amount -->
+
+                            <div class="form-group">
+
+                                <label for="expenseAmount">
+
+                                    Amount (Rs.)
+
+                                </label>
+
+
+                                <input
+                                    type="number"
+                                    id="expenseAmount"
+                                    placeholder="Enter amount"
+                                    min="0"
+                                    step="0.01"
+                                    required
+                                >
+
+                            </div>
+
+
+
+                            <!-- Date -->
+
+                            <div class="form-group">
+
+                                <label for="expenseDate">
+
+                                    Date
+
+                                </label>
+
+
+                                <input
+                                    type="date"
+                                    id="expenseDate"
+                                    required
+                                >
+
+                            </div>
+
+
+
+                            <!-- Payment Method -->
+
+                            <div class="form-group">
+
+                                <label for="expensePayment">
+
+                                    Payment Method
+
+                                </label>
+
+
+                                <select
+                                    id="expensePayment"
+                                    required
+                                >
+
+                                    <option value="Cash">
+
+                                        Cash
+
+                                    </option>
+
+
+                                    <option value="Bank">
+
+                                        Bank
+
+                                    </option>
+
+
+                                    <option value="Card">
+
+                                        Card
+
+                                    </option>
+
+
+                                    <option value="Online">
+
+                                        Online
+
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+
+                            <!-- Description -->
+
+                            <div class="form-group full-width">
+
+                                <label for="expenseDescription">
+
+                                    Description
+
+                                </label>
+
+
+                                <textarea
+                                    id="expenseDescription"
+                                    rows="3"
+                                    placeholder="Add any additional details..."
+                                ></textarea>
+
+                            </div>
+
+
+                        </div>
+
+
+
+                        <!-- Form Buttons -->
+
+                        <div class="expense-form-buttons">
+
+
+                            <button
+                                type="button"
+                                class="expense-cancel-btn"
+                                id="cancelExpense"
+                            >
+
+                                Cancel
+
+                            </button>
+
+
+                            <button
+                                type="submit"
+                                class="expense-save-btn"
+                            >
+
+                                <i class="fa-solid fa-plus"></i>
+
+                                Save Expense
+
+                            </button>
+
+
+                        </div>
+
+
+                    </form>
+
+
+                </div>
+
+
+
+                <!-- ==========================================
+                     EXPENSE HISTORY
+                ========================================== -->
+
+                <div class="expense-list-card">
+
+
+                    <!-- Header -->
+
+                    <div class="section-header">
+
+
+                        <div>
+
+                            <h2>
+                                Expense History
+                            </h2>
+
+                            <p>
+                                View and manage recorded expenses.
+                            </p>
+
+                        </div>
+
+
+
+                        <!-- Search -->
+
+                        <div class="expense-search">
+
+                            <i class="fa-solid fa-search"></i>
+
+
+                            <input
+                                type="text"
+                                id="expenseSearch"
+                                placeholder="Search expenses..."
+                            >
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- ==========================================
+                         TABLE
+                    ========================================== -->
+
+                    <div class="expense-table-container">
+
+
+                        <table>
+
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+                                        Expense ID
+                                    </th>
+
+                                    <th>
+                                        Date
+                                    </th>
+
+                                    <th>
+                                        Title
+                                    </th>
+
+                                    <th>
+                                        Category
+                                    </th>
+
+                                    <th>
+                                        Amount
+                                    </th>
+
+                                    <th>
+                                        Payment
+                                    </th>
+
+                                    <th>
+                                        Description
+                                    </th>
+
+                                    <th>
+                                        Actions
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody id="expenseTableBody">
+
+
+                                <tr>
+
+                                    <td
+                                        colspan="8"
+                                        class="empty-expenses"
+                                    >
+
+                                        No expenses recorded yet.
+
+                                    </td>
+
+                                </tr>
+
+
+                            </tbody>
+
+
+                        </table>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- ==========================================
+                     INFORMATION PANEL
+                ========================================== -->
+
+                <div class="expense-info-panel">
+
+
+                    <div class="info-icon">
+
+                        <i class="fa-solid fa-circle-info"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+                            Expense Tracking
+                        </h3>
+
+
+                        <p>
+
+                            Keep your business expenses organized.
+                            Recorded expenses are stored locally and
+                            can be used later for financial reports
+                            and profit calculations.
+
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+        </main>
+
+
+    </div>
+
+
+
+    <!-- ==========================================
+         JAVASCRIPT
+    ========================================== -->
+
+    <script src="expenses.js"></script>
+
+
+</body>
+
+</html>
