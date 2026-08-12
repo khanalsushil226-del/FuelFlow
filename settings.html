@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>FuelFlow - Settings</title>
+
+
+    <!-- Font Awesome -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+
+    <!-- Main CSS -->
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+
+    <!-- Settings CSS -->
+
+    <link
+        rel="stylesheet"
+        href="settings.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- ==========================================
+     SIDEBAR
+========================================== -->
+
+<aside class="sidebar">
+
+
+    <!-- Logo -->
+
+    <div class="sidebar-logo">
+
+        <div class="sidebar-logo-icon">
+
+            <i class="fa-solid fa-gas-pump"></i>
+
+        </div>
+
+        <div>
+
+            <h2>FuelFlow</h2>
+
+            <span>Management System</span>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Navigation -->
+
+    <nav class="sidebar-nav">
+
+
+        <a
+            href="dashboard.html"
+            class="sidebar-link"
+        >
+
+            <i class="fa-solid fa-house"></i>
+
+            <span>Dashboard</span>
+
+        </a>
+
+
+
+        <a
+            href="sales.html"
+            class="sidebar-link"
+        >
+
+            <i class="fa-solid fa-cart-shopping"></i>
+
+            <span>Sales</span>
+
+        </a>
+
+
+
+        <a
+            href="inventory.html"
+            class="sidebar-link"
+        >
+
+            <i class="fa-solid fa-boxes-stacked"></i>
+
+            <span>Inventory</span>
+
+        </a>
+
+
+
+        <a
+            href="employees.html"
+            class="sidebar-link"
+        >
+
+            <i class="fa-solid fa-users"></i>
+
+            <span>Employees</span>
+
+        </a>
+
+
+
+        <a
+            href="customers.html"
+            class="sidebar-link"
+        >
+
+            <i class="fa-solid fa-user-group"></i>
+
+            <span>Customers</span>
+
+        </a>
+
+
+
+        <a
+            href="expenses.html"
+            class="sidebar-link"
+        >
+
+            <i class="fa-solid fa-money-bill-wave"></i>
+
+            <span>Expenses</span>
+
+        </a>
+
+
+
+        <a
+            href="reports.html"
+            class="sidebar-link"
+        >
+
+            <i class="fa-solid fa-chart-line"></i>
+
+            <span>Reports</span>
+
+        </a>
+
+
+
+        <a
+            href="settings.html"
+            class="sidebar-link active"
+        >
+
+            <i class="fa-solid fa-gear"></i>
+
+            <span>Settings</span>
+
+        </a>
+
+
+    </nav>
+
+
+
+    <!-- Sidebar Bottom -->
+
+    <div class="sidebar-bottom">
+
+
+        <a
+            href="#"
+            class="sidebar-link"
+            id="logoutBtn"
+        >
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+
+            <span>Logout</span>
+
+        </a>
+
+
+    </div>
+
+
+</aside>
+
+
+
+<!-- ==========================================
+     MAIN CONTENT
+========================================== -->
+
+<main class="main-content">
+
+
+    <!-- ======================================
+         TOP HEADER
+    ======================================= -->
+
+    <header class="top-header">
+
+
+        <div>
+
+            <h1>Settings</h1>
+
+            <p>
+                Manage your FuelFlow system preferences
+            </p>
+
+        </div>
+
+
+
+        <div class="header-right">
+
+
+            <div class="notification">
+
+                <i class="fa-solid fa-bell"></i>
+
+                <span class="notification-dot"></span>
+
+            </div>
+
+
+
+            <div class="user-profile">
+
+
+                <div class="user-avatar">
+
+                    <i class="fa-solid fa-user"></i>
+
+                </div>
+
+
+                <div class="user-info">
+
+                    <strong id="headerUserName">
+                        Admin
+                    </strong>
+
+                    <span>
+                        Administrator
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </header>
+
+
+
+    <!-- ==========================================
+         SETTINGS CONTENT
+    =========================================== -->
+
+    <section class="settings-content">
+
+
+
+        <!-- ======================================
+             PROFILE SETTINGS
+        ======================================= -->
+
+        <div class="settings-card">
+
+
+            <div class="settings-card-header">
+
+                <div class="settings-title">
+
+
+                    <div class="settings-icon blue">
+
+                        <i class="fa-solid fa-user"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h2>Profile Settings</h2>
+
+                        <p>
+                            Manage your administrator profile
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="settings-form-grid">
+
+
+                <div class="settings-form-group">
+
+                    <label for="adminName">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="adminName"
+                        placeholder="Enter your name"
+                    >
+
+                </div>
+
+
+
+                <div class="settings-form-group">
+
+                    <label for="adminEmail">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="adminEmail"
+                        placeholder="admin@example.com"
+                    >
+
+                </div>
+
+
+
+                <div class="settings-form-group">
+
+                    <label for="adminPhone">
+                        Phone Number
+                    </label>
+
+                    <input
+                        type="text"
+                        id="adminPhone"
+                        placeholder="Enter phone number"
+                    >
+
+                </div>
+
+
+
+                <div class="settings-form-group">
+
+                    <label for="adminRole">
+                        Role
+                    </label>
+
+                    <input
+                        type="text"
+                        id="adminRole"
+                        value="Administrator"
+                        readonly
+                    >
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="settings-actions">
+
+                <button
+                    class="settings-save-btn"
+                    id="saveProfileBtn"
+                >
+
+                    <i class="fa-solid fa-check"></i>
+
+                    Save Profile
+
+                </button>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- ======================================
+             PETROL PUMP SETTINGS
+        ======================================= -->
+
+        <div class="settings-card">
+
+
+            <div class="settings-card-header">
+
+                <div class="settings-title">
+
+
+                    <div class="settings-icon green">
+
+                        <i class="fa-solid fa-gas-pump"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h2>Petrol Pump Information</h2>
+
+                        <p>
+                            Manage your petrol pump details
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="settings-form-grid">
+
+
+                <div class="settings-form-group">
+
+                    <label for="pumpName">
+                        Petrol Pump Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="pumpName"
+                        placeholder="Enter pump name"
+                    >
+
+                </div>
+
+
+
+                <div class="settings-form-group">
+
+                    <label for="pumpLocation">
+                        Location
+                    </label>
+
+                    <input
+                        type="text"
+                        id="pumpLocation"
+                        placeholder="Enter location"
+                    >
+
+                </div>
+
+
+
+                <div class="settings-form-group">
+
+                    <label for="pumpPhone">
+                        Contact Number
+                    </label>
+
+                    <input
+                        type="text"
+                        id="pumpPhone"
+                        placeholder="Enter contact number"
+                    >
+
+                </div>
+
+
+
+                <div class="settings-form-group">
+
+                    <label for="pumpEmail">
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="pumpEmail"
+                        placeholder="Enter email"
+                    >
+
+                </div>
+
+
+
+                <div class="settings-form-group full-width">
+
+                    <label for="pumpAddress">
+                        Address
+                    </label>
+
+                    <textarea
+                        id="pumpAddress"
+                        rows="3"
+                        placeholder="Enter complete address"
+                    ></textarea>
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="settings-actions">
+
+                <button
+                    class="settings-save-btn green-btn"
+                    id="savePumpBtn"
+                >
+
+                    <i class="fa-solid fa-floppy-disk"></i>
+
+                    Save Pump Information
+
+                </button>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- ======================================
+             FUEL PRICE SETTINGS
+        ======================================= -->
+
+        <div class="settings-card">
+
+
+            <div class="settings-card-header">
+
+                <div class="settings-title">
+
+
+                    <div class="settings-icon orange">
+
+                        <i class="fa-solid fa-droplet"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h2>Fuel Price Settings</h2>
+
+                        <p>
+                            Set current fuel prices
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="settings-form-grid">
+
+
+                <div class="fuel-price-box petrol-price">
+
+
+                    <div class="fuel-price-header">
+
+                        <div>
+
+                            <i class="fa-solid fa-droplet"></i>
+
+                            <strong>Petrol</strong>
+
+                        </div>
+
+                        <span>
+                            Price / Litre
+                        </span>
+
+                    </div>
+
+
+                    <div class="price-input">
+
+                        <span>Rs.</span>
+
+                        <input
+                            type="number"
+                            id="petrolPrice"
+                            placeholder="180"
+                            min="0"
+                        >
+
+                        <span>/ L</span>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="fuel-price-box diesel-price">
+
+
+                    <div class="fuel-price-header">
+
+                        <div>
+
+                            <i class="fa-solid fa-droplet"></i>
+
+                            <strong>Diesel</strong>
+
+                        </div>
+
+                        <span>
+                            Price / Litre
+                        </span>
+
+                    </div>
+
+
+                    <div class="price-input">
+
+                        <span>Rs.</span>
+
+                        <input
+                            type="number"
+                            id="dieselPrice"
+                            placeholder="165"
+                            min="0"
+                        >
+
+                        <span>/ L</span>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="settings-actions">
+
+                <button
+                    class="settings-save-btn orange-btn"
+                    id="saveFuelPriceBtn"
+                >
+
+                    <i class="fa-solid fa-floppy-disk"></i>
+
+                    Save Fuel Prices
+
+                </button>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- ======================================
+             SYSTEM PREFERENCES
+        ======================================= -->
+
+        <div class="settings-card">
+
+
+            <div class="settings-card-header">
+
+                <div class="settings-title">
+
+
+                    <div class="settings-icon purple">
+
+                        <i class="fa-solid fa-sliders"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h2>System Preferences</h2>
+
+                        <p>
+                            Customize how FuelFlow works
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="preference-list">
+
+
+                <!-- Currency -->
+
+                <div class="preference-item">
+
+
+                    <div class="preference-info">
+
+                        <div class="preference-icon">
+
+                            <i class="fa-solid fa-money-bill"></i>
+
+                        </div>
+
+
+                        <div>
+
+                            <strong>Currency</strong>
+
+                            <p>
+                                Currency used throughout the system
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <select id="currency">
+
+                        <option value="NPR">
+                            NPR - Nepalese Rupee
+                        </option>
+
+                        <option value="INR">
+                            INR - Indian Rupee
+                        </option>
+
+                        <option value="USD">
+                            USD - US Dollar
+                        </option>
+
+                    </select>
+
+
+                </div>
+
+
+
+                <!-- Low Stock -->
+
+                <div class="preference-item">
+
+
+                    <div class="preference-info">
+
+                        <div class="preference-icon">
+
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+                                Low Stock Warning
+                            </strong>
+
+                            <p>
+                                Show warning when fuel stock is low
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <label class="toggle">
+
+                        <input
+                            type="checkbox"
+                            id="lowStockWarning"
+                            checked
+                        >
+
+                        <span class="toggle-slider"></span>
+
+                    </label>
+
+
+                </div>
+
+
+
+                <!-- Notifications -->
+
+                <div class="preference-item">
+
+
+                    <div class="preference-info">
+
+                        <div class="preference-icon">
+
+                            <i class="fa-solid fa-bell"></i>
+
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+                                Notifications
+                            </strong>
+
+                            <p>
+                                Receive system notifications
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <label class="toggle">
+
+                        <input
+                            type="checkbox"
+                            id="notifications"
+                            checked
+                        >
+
+                        <span class="toggle-slider"></span>
+
+                    </label>
+
+
+                </div>
+
+
+
+                <!-- Auto Refresh -->
+
+                <div class="preference-item">
+
+
+                    <div class="preference-info">
+
+                        <div class="preference-icon">
+
+                            <i class="fa-solid fa-rotate"></i>
+
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+                                Auto Refresh
+                            </strong>
+
+                            <p>
+                                Automatically update dashboard data
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <label class="toggle">
+
+                        <input
+                            type="checkbox"
+                            id="autoRefresh"
+                            checked
+                        >
+
+                        <span class="toggle-slider"></span>
+
+                    </label>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="settings-actions">
+
+                <button
+                    class="settings-save-btn purple-btn"
+                    id="savePreferencesBtn"
+                >
+
+                    <i class="fa-solid fa-check"></i>
+
+                    Save Preferences
+
+                </button>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- ======================================
+             SECURITY SETTINGS
+        ======================================= -->
+
+        <div class="settings-card">
+
+
+            <div class="settings-card-header">
+
+                <div class="settings-title">
+
+
+                    <div class="settings-icon red">
+
+                        <i class="fa-solid fa-lock"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h2>Security</h2>
+
+                        <p>
+                            Manage your account security
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="settings-form-grid">
+
+
+                <div class="settings-form-group">
+
+                    <label for="currentPassword">
+                        Current Password
+                    </label>
+
+                    <div class="password-input">
+
+                        <input
+                            type="password"
+                            id="currentPassword"
+                            placeholder="Current password"
+                        >
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            data-target="currentPassword"
+                        >
+
+                            <i class="fa-solid fa-eye"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <div></div>
+
+
+
+                <div class="settings-form-group">
+
+                    <label for="newPassword">
+                        New Password
+                    </label>
+
+                    <div class="password-input">
+
+                        <input
+                            type="password"
+                            id="newPassword"
+                            placeholder="New password"
+                        >
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            data-target="newPassword"
+                        >
+
+                            <i class="fa-solid fa-eye"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="settings-form-group">
+
+                    <label for="confirmPassword">
+                        Confirm New Password
+                    </label>
+
+                    <div class="password-input">
+
+                        <input
+                            type="password"
+                            id="confirmPassword"
+                            placeholder="Confirm new password"
+                        >
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            data-target="confirmPassword"
+                        >
+
+                            <i class="fa-solid fa-eye"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="settings-actions">
+
+                <button
+                    class="settings-save-btn red-btn"
+                    id="changePasswordBtn"
+                >
+
+                    <i class="fa-solid fa-key"></i>
+
+                    Change Password
+
+                </button>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- ======================================
+             DATA MANAGEMENT
+        ======================================= -->
+
+        <div class="settings-card danger-card">
+
+
+            <div class="settings-card-header">
+
+                <div class="settings-title">
+
+
+                    <div class="settings-icon red">
+
+                        <i class="fa-solid fa-database"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h2>Data Management</h2>
+
+                        <p>
+                            Manage your FuelFlow application data
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="data-management">
+
+
+                <div class="data-info">
+
+                    <i class="fa-solid fa-circle-info"></i>
+
+                    <p>
+
+                        Your FuelFlow data is stored locally
+                        in your browser. Clearing application
+                        data will permanently remove your
+                        sales, inventory, customers, employees
+                        and expenses.
+
+                    </p>
+
+                </div>
+
+
+
+                <button
+                    class="danger-btn"
+                    id="clearDataBtn"
+                >
+
+                    <i class="fa-solid fa-trash"></i>
+
+                    Clear All Application Data
+
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- ======================================
+             SYSTEM INFORMATION
+        ======================================= -->
+
+        <div class="settings-card system-info-card">
+
+
+            <div class="settings-card-header">
+
+                <div class="settings-title">
+
+
+                    <div class="settings-icon dark">
+
+                        <i class="fa-solid fa-circle-info"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h2>System Information</h2>
+
+                        <p>
+                            FuelFlow application information
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="system-info-grid">
+
+
+                <div>
+
+                    <span>
+                        Application
+                    </span>
+
+                    <strong>
+                        FuelFlow
+                    </strong>
+
+                </div>
+
+
+
+                <div>
+
+                    <span>
+                        Version
+                    </span>
+
+                    <strong>
+                        1.0.0
+                    </strong>
+
+                </div>
+
+
+
+                <div>
+
+                    <span>
+                        Storage
+                    </span>
+
+                    <strong>
+                        Local Browser Storage
+                    </strong>
+
+                </div>
+
+
+
+                <div>
+
+                    <span>
+                        Status
+                    </span>
+
+                    <strong class="status-online">
+
+                        <i class="fa-solid fa-circle"></i>
+
+                        System Online
+
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ==========================================
+         FOOTER
+    =========================================== -->
+
+    <footer class="main-footer">
+
+        <p>
+
+            © 2026 FuelFlow.
+            All rights reserved.
+
+        </p>
+
+        <span>
+            Petrol Pump Management System
+        </span>
+
+    </footer>
+
+
+</main>
+
+
+
+<!-- ==========================================
+     SETTINGS JS
+========================================== -->
+
+<script src="settings.js"></script>
+
+
+</body>
+
+</html>
