@@ -1613,3 +1613,57 @@
 /* ==========================================
    Reports Page Complete
 ========================================== */
+/* ==========================================
+   REPORT CALENDAR FILTER
+========================================== */
+
+.filter-group input[type="date"] {
+    width: 100%;
+    padding: 11px 13px;
+    border: 1px solid #d1d5db;
+    border-radius: 9px;
+    outline: none;
+
+    background: #ffffff;
+    color: #111827;
+    font-family: inherit;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.filter-group input[type="date"]:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.clear-date-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+
+    min-height: 42px;
+    padding: 10px 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 9px;
+
+    background: #ffffff;
+    color: #475569;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    transition: 0.25s;
+}
+
+.clear-date-btn:hover {
+    border-color: #ef4444;
+    background: #fef2f2;
+    color: #dc2626;
+}
+
+@media (max-width: 768px) {
+    .clear-date-btn {
+        width: 100%;
+    }
+}

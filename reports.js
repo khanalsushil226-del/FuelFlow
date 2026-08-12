@@ -116,6 +116,11 @@ const reportSalesTableBody =
 
 const reportGeneratedText =
     document.getElementById("reportGeneratedText");
+    const reportDate =
+    document.getElementById("reportDate");
+
+const clearReportDate =
+    document.getElementById("clearReportDate");
 
 
 
@@ -403,6 +408,28 @@ function isSaleInPeriod(
     return true;
 
 }
+const selectedDate =
+    reportDate && reportDate.value
+        ? parseDate(reportDate.value)
+        : null;
+
+if (selectedDate) {
+
+    return (
+
+        saleDate.getFullYear() === selectedDate.getFullYear()
+
+        &&
+
+        saleDate.getMonth() === selectedDate.getMonth()
+
+        &&
+
+        saleDate.getDate() === selectedDate.getDate()
+
+    );
+
+}
 
 
 
@@ -430,6 +457,28 @@ function isExpenseInPeriod(
         return true;
 
     }
+    const selectedDate =
+    reportDate && reportDate.value
+        ? parseDate(reportDate.value)
+        : null;
+
+if (selectedDate) {
+
+    return (
+
+        expenseDate.getFullYear() === selectedDate.getFullYear()
+
+        &&
+
+        expenseDate.getMonth() === selectedDate.getMonth()
+
+        &&
+
+        expenseDate.getDate() === selectedDate.getDate()
+
+    );
+
+}
 
 
     const now =
@@ -597,6 +646,27 @@ function updateReportDateText() {
 
     const now =
         new Date();
+        const selectedDate =
+    reportDate && reportDate.value
+        ? parseDate(reportDate.value)
+        : null;
+
+if (selectedDate) {
+
+    reportDateText.textContent =
+        selectedDate.toLocaleDateString(
+            "en-US",
+            {
+                weekday: "long",
+                year: "numeric",
+                month: "long",
+                day: "numeric"
+            }
+        );
+
+    return;
+
+}
 
 
     if (period === "today") {
@@ -1472,6 +1542,39 @@ if (reportPeriod) {
         "change",
         () => {
 
+            if (reportDate) {
+                reportDate.value = "";
+            }
+
+            refreshReportData();
+
+        }
+    );
+
+}
+
+
+if (reportDate) {
+
+    reportDate.addEventListener(
+        "change",
+        () => {
+
+            refreshReportData();
+
+        }
+    );
+
+}
+
+
+if (clearReportDate) {
+
+    clearReportDate.addEventListener(
+        "click",
+        () => {
+
+            reportDate.value = "";
             refreshReportData();
 
         }

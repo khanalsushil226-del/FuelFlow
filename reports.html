@@ -352,76 +352,57 @@
 
                 <div class="report-filter-card">
 
+    <div class="filter-group">
 
-                    <div class="filter-group">
+        <label for="reportPeriod">
+            Report Period
+        </label>
 
+        <select id="reportPeriod">
 
-                        <label for="reportPeriod">
+            <option value="today">Today</option>
+            <option value="week">This Week</option>
+            <option value="month" selected>This Month</option>
+            <option value="year">This Year</option>
+            <option value="all">All Time</option>
 
-                            Report Period
+        </select>
 
-                        </label>
+    </div>
 
+    <div class="filter-group date-filter-group">
 
-                        <select id="reportPeriod">
+        <label for="reportDate">
+            Select Any Date
+        </label>
 
-                            <option value="today">
+        <input
+            type="date"
+            id="reportDate"
+        >
 
-                                Today
+    </div>
 
-                            </option>
+    <button
+        type="button"
+        class="clear-date-btn"
+        id="clearReportDate"
+    >
+        <i class="fa-solid fa-xmark"></i>
+        Clear Date
+    </button>
 
+    <div class="report-date-display">
 
-                            <option value="week">
+        <i class="fa-solid fa-calendar"></i>
 
-                                This Week
+        <span id="reportDateText">
+            Current Month
+        </span>
 
-                            </option>
+    </div>
 
-
-                            <option
-                                value="month"
-                                selected
-                            >
-
-                                This Month
-
-                            </option>
-
-
-                            <option value="year">
-
-                                This Year
-
-                            </option>
-
-
-                            <option value="all">
-
-                                All Time
-
-                            </option>
-
-                        </select>
-
-
-                    </div>
-
-
-                    <div class="report-date-display">
-
-                        <i class="fa-solid fa-calendar"></i>
-
-                        <span id="reportDateText">
-
-                            Current Month
-
-                        </span>
-
-                    </div>
-
-
-                </div>
+</div>
 
 
 
