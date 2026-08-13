@@ -1,146 +1,212 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 
-    <!-- Meta Tags -->
+    <!-- ==========================
+            META TAGS
+    =========================== -->
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>FuelFlow | Dashboard</title>
 
-    <!-- Google Font -->
+
+    <!-- ==========================
+            GOOGLE FONT
+    =========================== -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
-    <!-- CSS -->
+    <!-- ==========================
+            FONT AWESOME
+    =========================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+
+    <!-- ==========================
+            CSS
+    =========================== -->
+
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="dashboard.css">
     <link rel="stylesheet" href="sidebar-logo.css">
 
 </head>
 
+
 <body>
 
+
     <!-- ==========================
-            MAIN CONTAINER
+            DASHBOARD
     =========================== -->
 
     <div class="dashboard">
+
 
         <!-- ==========================
                 SIDEBAR
         =========================== -->
 
-       <aside class="sidebar">
-
-    <!-- ==============================
-         LOGO
-    =============================== -->
-    <div class="logo">
-    <i class="fa-solid fa-gas-pump"></i>
-    <h2>FuelFlow</h2>
-</div>
-
-    
+        <aside class="sidebar">
 
 
-    <!-- ==============================
-         NAVIGATION
-    =============================== -->
-    <nav class="sidebar-nav">
+            <!-- LOGO -->
 
-        <ul>
+            <div class="logo">
 
-         <li class="active">
-    <a href="dashboard.html">
-                    <i class="fa-solid fa-chart-line"></i>
-                    <span>Dashboard</span>
+                <i class="fa-solid fa-gas-pump"></i>
+
+                <h2>FuelFlow</h2>
+
+            </div>
+
+
+            <!-- NAVIGATION -->
+
+            <nav class="sidebar-nav">
+
+                <ul>
+
+                    <li class="active">
+
+                        <a href="dashboard.html">
+
+                            <i class="fa-solid fa-chart-line"></i>
+
+                            <span>Dashboard</span>
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a href="sales.html">
+
+                            <i class="fa-solid fa-cash-register"></i>
+
+                            <span>Sales</span>
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a href="inventory.html">
+
+                            <i class="fa-solid fa-box"></i>
+
+                            <span>Inventory</span>
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a href="employees.html">
+
+                            <i class="fa-solid fa-users"></i>
+
+                            <span>Employees</span>
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a href="customers.html">
+
+                            <i class="fa-solid fa-user-group"></i>
+
+                            <span>Customers</span>
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a href="expenses.html">
+
+                            <i class="fa-solid fa-wallet"></i>
+
+                            <span>Expenses</span>
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a href="reports.html">
+
+                            <i class="fa-solid fa-file-lines"></i>
+
+                            <span>Reports</span>
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a href="settings.html">
+
+                            <i class="fa-solid fa-gear"></i>
+
+                            <span>Settings</span>
+
+                        </a>
+
+                    </li>
+
+                </ul>
+
+            </nav>
+
+
+            <!-- LOGOUT -->
+
+            <div class="sidebar-bottom">
+
+                <a href="#" class="logout-link">
+
+                    <i class="fa-solid fa-right-from-bracket"></i>
+
+                    <span>Logout</span>
+
                 </a>
-            </li>
+
+            </div>
 
 
-            <li>
-                <a href="sales.html">
-                    <i class="fa-solid fa-cash-register"></i>
-                    <span>Sales</span>
-                </a>
-            </li>
+        </aside>
 
-
-            <li>
-                <a href="inventory.html">
-                    <i class="fa-solid fa-box"></i>
-                    <span>Inventory</span>
-                </a>
-            </li>
-
-
-            <li>
-                <a href="employees.html">
-                    <i class="fa-solid fa-users"></i>
-                    <span>Employees</span>
-                </a>
-            </li>
-
-
-            <li>
-                <a href="customers.html">
-                    <i class="fa-solid fa-user-group"></i>
-                    <span>Customers</span>
-                </a>
-            </li>
-
-
-            <li>
-                <a href="expenses.html">
-                    <i class="fa-solid fa-wallet"></i>
-                    <span>Expenses</span>
-                </a>
-            </li>
-
-
-            <li>
-                <a href="reports.html">
-                    <i class="fa-solid fa-file-lines"></i>
-                    <span>Reports</span>
-                </a>
-            </li>
-
-
-            <!-- ACTIVE SETTINGS -->
-        <li>
-                <a href="settings.html">
-                    <i class="fa-solid fa-gear"></i>
-                    <span>Settings</span>
-                </a>
-            </li>
-
-        </ul>
-
-    </nav>
-
-
-    <!-- ==============================
-         LOGOUT
-    =============================== -->
-    <div class="sidebar-bottom">
-
-        <a href="#" class="logout-link">
-            <i class="fa-solid fa-right-from-bracket"></i>
-            <span>Logout</span>
-        </a>
-
-    </div>
-
-</aside>
 
         <!-- ==========================
                 MAIN CONTENT
@@ -148,11 +214,15 @@
 
         <main class="main-content">
 
-            <!-- Top Navbar -->
+
+            <!-- ==========================
+                    TOPBAR
+            =========================== -->
 
             <header class="topbar">
 
-                <div>
+
+                <div class="topbar-left">
 
                     <h1>Dashboard</h1>
 
@@ -160,13 +230,20 @@
 
                 </div>
 
+
                 <div class="topbar-right">
 
-                    <button>
+
+                    <button
+                        type="button"
+                        class="notification"
+                        aria-label="Notifications"
+                    >
 
                         <i class="fa-solid fa-bell"></i>
 
                     </button>
+
 
                     <div class="profile">
 
@@ -176,26 +253,41 @@
 
                     </div>
 
+
                 </div>
+
 
             </header>
 
-            <!-- Dashboard Content -->
+
+            <!-- ==========================
+                    CONTENT
+            =========================== -->
 
             <section class="content">
 
-                <!-- Welcome Section -->
+
+                <!-- WELCOME -->
 
                 <div class="welcome">
 
                     <h2>Welcome Back, Admin</h2>
 
-                    
+                    <p>
+                        Here's what's happening at your fuel station today.
+                    </p>
+
                 </div>
 
-                <!-- Statistics Cards -->
+
+                <!-- ==========================
+                        SUMMARY CARDS
+                =========================== -->
 
                 <div class="cards">
+
+
+                    <!-- TODAY'S SALES -->
 
                     <div class="card">
 
@@ -215,6 +307,9 @@
 
                     </div>
 
+
+                    <!-- TRANSACTIONS -->
+
                     <div class="card">
 
                         <div class="card-icon">
@@ -227,11 +322,14 @@
 
                             <h4>Transactions</h4>
 
-                           <h2 id="dashboardTransactions">0</h2>
+                            <h2 id="dashboardTransactions">0</h2>
 
                         </div>
 
                     </div>
+
+
+                    <!-- FUEL STOCK -->
 
                     <div class="card">
 
@@ -245,113 +343,425 @@
 
                             <h4>Fuel Stock</h4>
 
-                            <h2>0 L</h2>
+                            <h2 id="dashboardFuelStock">0 L</h2>
 
                         </div>
 
                     </div>
 
-                   
 
                 </div>
 
-                <!-- Dashboard Grid -->
+
+                <!-- ==========================
+                        MAIN DASHBOARD GRID
+                =========================== -->
 
                 <div class="dashboard-grid">
 
-                    <!-- Sales Overview -->
 
-                    <div class="panel">
+                    <!-- ==========================
+                            SALES OVERVIEW
+                    =========================== -->
+
+                    <div class="panel sales-overview-panel">
+
 
                         <div class="panel-header">
 
-                            <h3>Sales Overview</h3>
-                            <div class="table-scroll"></div>
+                            <div>
+
+                                <h3>Sales Overview</h3>
+
+                                <p class="panel-subtitle">
+                                    Sales performance for the last 7 days
+                                </p>
+
+                            </div>
+
 
                             <button
-    type="button"
-    onclick="window.location.href='reports.html'"
->
-    View Report
-</button>
+                                type="button"
+                                onclick="window.location.href='reports.html'"
+                            >
+                                View Report
+                            </button>
 
                         </div>
+
 
                         <div class="chart-container">
 
-    <canvas id="salesChart"></canvas>
+                            <canvas id="salesChart"></canvas>
 
-</div>
+                        </div>
+
 
                     </div>
 
-                    <!-- Fuel Inventory -->
 
-                    <div class="panel">
+                    <!-- ==========================
+                            FUEL INVENTORY
+                    =========================== -->
+
+                    <div class="panel fuel-inventory-panel">
+
 
                         <div class="panel-header">
 
-                            <h3>Fuel Inventory</h3>
+                            <div>
+
+                                <h3>Fuel Inventory</h3>
+
+                                <p class="panel-subtitle">
+                                    Current fuel levels
+                                </p>
+
+                            </div>
+
+
+                            <button
+                                type="button"
+                                onclick="window.location.href='inventory.html'"
+                            >
+                                Manage
+                            </button>
 
                         </div>
 
-                       
+
+                        <div class="fuel-inventory">
+
+
+                            <!-- PETROL -->
+
+                            <div
+                                class="fuel-item"
+                                id="petrolFuelItem"
+                            >
+
+                                <div class="fuel-item-top">
+
+
+                                    <div class="fuel-name">
+
+                                        <div class="fuel-icon petrol-icon">
+
+                                            <i class="fa-solid fa-gas-pump"></i>
+
+                                        </div>
+
+
+                                        <div>
+
+                                            <h4>Petrol</h4>
+
+                                            <span id="petrolStatus">
+                                                Available
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <strong id="petrolStock">
+                                        0 L
+                                    </strong>
+
+
+                                </div>
+
+
+                                <div class="fuel-progress">
+
+                                    <div
+                                        class="fuel-progress-bar petrol-bar"
+                                        id="petrolProgress"
+                                    ></div>
+
+                                </div>
+
+
+                                <div class="fuel-item-bottom">
+
+                                    <span>Stock Level</span>
+
+                                    <span id="petrolPercentage">
+                                        0%
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- DIESEL -->
+
+                            <div
+                                class="fuel-item"
+                                id="dieselFuelItem"
+                            >
+
+                                <div class="fuel-item-top">
+
+
+                                    <div class="fuel-name">
+
+                                        <div class="fuel-icon diesel-icon">
+
+                                            <i class="fa-solid fa-gas-pump"></i>
+
+                                        </div>
+
+
+                                        <div>
+
+                                            <h4>Diesel</h4>
+
+                                            <span id="dieselStatus">
+                                                Available
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <strong id="dieselStock">
+                                        0 L
+                                    </strong>
+
+
+                                </div>
+
+
+                                <div class="fuel-progress">
+
+                                    <div
+                                        class="fuel-progress-bar diesel-bar"
+                                        id="dieselProgress"
+                                    ></div>
+
+                                </div>
+
+
+                                <div class="fuel-item-bottom">
+
+                                    <span>Stock Level</span>
+
+                                    <span id="dieselPercentage">
+                                        0%
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- PREMIUM -->
+
+                            <div
+                                class="fuel-item"
+                                id="premiumFuelItem"
+                            >
+
+                                <div class="fuel-item-top">
+
+
+                                    <div class="fuel-name">
+
+                                        <div class="fuel-icon premium-icon">
+
+                                            <i class="fa-solid fa-gas-pump"></i>
+
+                                        </div>
+
+
+                                        <div>
+
+                                            <h4>Premium</h4>
+
+                                            <span id="premiumStatus">
+                                                Available
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <strong id="premiumStock">
+                                        0 L
+                                    </strong>
+
+
+                                </div>
+
+
+                                <div class="fuel-progress">
+
+                                    <div
+                                        class="fuel-progress-bar premium-bar"
+                                        id="premiumProgress"
+                                    ></div>
+
+                                </div>
+
+
+                                <div class="fuel-item-bottom">
+
+                                    <span>Stock Level</span>
+
+                                    <span id="premiumPercentage">
+                                        0%
+                                    </span>
+
+                                </div>
+
+                            </div>
+
 
                         </div>
+
 
                     </div>
 
+
                 </div>
 
-                <!-- Recent Transactions -->
 
-                <div class="panel table-panel">
+                <!-- ==========================
+                        RECENT TRANSACTIONS
+                        FULL WIDTH
+                =========================== -->
+
+                <div class="panel table-panel recent-transactions-panel">
+
 
                     <div class="panel-header">
 
-                        <h3>Recent Transactions</h3>
 
-                        <button>View All</button>
+                        <div>
+
+                            <h3>Recent Transactions</h3>
+
+                            <p class="panel-subtitle">
+                                Latest fuel sales and transactions
+                            </p>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            class="view-all-btn"
+                            onclick="window.location.href='sales.html'"
+                        >
+                            View All
+                        </button>
+
 
                     </div>
-                    <div class="table-scroll"></div>
 
-                    <table>
 
-                        <thead>
+                    <!-- TABLE -->
 
-                            <tr>
+                    <div class="table-scroll">
 
-                                <th>Invoice</th>
-                                <th>Customer</th>
-                                <th>Fuel</th>
-                                <th>Amount</th>
-                                <th>Status</th>
 
-                            </tr>
+                        <table class="transactions-table">
 
-                        </thead>
 
-                       <tbody id="recentTransactions">
+                            <thead>
 
-</tbody>
+                                <tr>
 
-                    </table>
+                                    <th>Invoice</th>
+
+                                    <th>Customer</th>
+
+                                    <th>Vehicle</th>
+
+                                    <th>Fuel</th>
+
+                                    <th>Quantity</th>
+
+                                    <th>Amount</th>
+
+                                    <th>Payment</th>
+
+                                    <th>Status</th>
+
+                                    <th>Date & Time</th>
+
+                                    <th>Action</th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody id="recentTransactions">
+
+                                <!-- JavaScript inserts transactions -->
+
+                            </tbody>
+
+
+                        </table>
+
+
+                        <!-- EMPTY STATE -->
+
+                        <div
+                            class="empty-transactions"
+                            id="emptyTransactions"
+                        >
+
+                            <i class="fa-solid fa-receipt"></i>
+
+                            <h4>No transactions yet</h4>
+
+                            <p>
+                                Your recent fuel sales will appear here.
+                            </p>
+
+                            <button
+                                type="button"
+                                onclick="window.location.href='sales.html'"
+                            >
+                                Create New Sale
+                            </button>
+
+                        </div>
+
+
+                    </div>
+
 
                 </div>
-                
+
 
             </section>
 
+
         </main>
+
 
     </div>
 
-    <!-- JavaScript -->
-     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- ==========================
+            JAVASCRIPT
+    =========================== -->
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script src="dashboard.js"></script>
+
 
 </body>
 
 </html>
+```
