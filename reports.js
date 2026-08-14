@@ -1,16 +1,22 @@
-// ==========================================
+// ======================================================
 // FuelFlow Reports Module
-// Complete reports.js
-// ==========================================
+// Complete Reports JavaScript
+// ======================================================
 
 
-
-// ==========================================
+// ======================================================
 // DOM ELEMENTS
-// ==========================================
+// ======================================================
 
+// Report controls
 const reportPeriod =
     document.getElementById("reportPeriod");
+
+const reportDate =
+    document.getElementById("reportDate");
+
+const clearReportDate =
+    document.getElementById("clearReportDate");
 
 const reportDateText =
     document.getElementById("reportDateText");
@@ -22,7 +28,9 @@ const printReport =
     document.getElementById("printReport");
 
 
-// Summary
+// ======================================================
+// SUMMARY
+// ======================================================
 
 const reportTotalSales =
     document.getElementById("reportTotalSales");
@@ -37,7 +45,9 @@ const reportTransactions =
     document.getElementById("reportTransactions");
 
 
-// Fuel
+// ======================================================
+// FUEL
+// ======================================================
 
 const reportPetrolLitres =
     document.getElementById("reportPetrolLitres");
@@ -58,7 +68,9 @@ const dieselReportBar =
     document.getElementById("dieselReportBar");
 
 
-// Sales Overview
+// ======================================================
+// SALES OVERVIEW
+// ======================================================
 
 const overviewTransactions =
     document.getElementById("overviewTransactions");
@@ -76,13 +88,17 @@ const overviewDieselSales =
     document.getElementById("overviewDieselSales");
 
 
-// Expense
+// ======================================================
+// EXPENSES
+// ======================================================
 
 const expenseBreakdown =
     document.getElementById("expenseBreakdown");
 
 
-// Inventory
+// ======================================================
+// INVENTORY
+// ======================================================
 
 const reportPetrolStock =
     document.getElementById("reportPetrolStock");
@@ -94,7 +110,9 @@ const reportTotalStock =
     document.getElementById("reportTotalStock");
 
 
-// Customers
+// ======================================================
+// CUSTOMERS
+// ======================================================
 
 const reportTotalCustomers =
     document.getElementById("reportTotalCustomers");
@@ -106,27 +124,25 @@ const reportRegisteredVehicles =
     document.getElementById("reportRegisteredVehicles");
 
 
-// Recent Sales
+// ======================================================
+// RECENT SALES
+// ======================================================
 
 const reportSalesTableBody =
     document.getElementById("reportSalesTableBody");
 
 
-// Footer
+// ======================================================
+// FOOTER
+// ======================================================
 
 const reportGeneratedText =
     document.getElementById("reportGeneratedText");
-    const reportDate =
-    document.getElementById("reportDate");
-
-const clearReportDate =
-    document.getElementById("clearReportDate");
 
 
-
-// ==========================================
-// LOAD DATA FROM LOCAL STORAGE
-// ==========================================
+// ======================================================
+// LOCAL STORAGE HELPER
+// ======================================================
 
 function getStorageData(key, defaultValue = []) {
 
@@ -152,7 +168,7 @@ function getStorageData(key, defaultValue = []) {
     catch (error) {
 
         console.error(
-            `Error loading ${key}:`,
+            `FuelFlow: Error loading ${key}`,
             error
         );
 
@@ -163,98 +179,127 @@ function getStorageData(key, defaultValue = []) {
 }
 
 
-
-// ==========================================
+// ======================================================
 // LOAD SALES
-// ==========================================
+// ======================================================
 
 function getSalesData() {
 
-    return getStorageData(
-        "sales",
-        []
-    );
+    const sales =
+        getStorageData("sales", []);
+
+    return Array.isArray(sales)
+        ? sales
+        : [];
 
 }
 
 
-
-// ==========================================
+// ======================================================
 // LOAD EXPENSES
-// ==========================================
+// ======================================================
 
 function getExpensesData() {
 
-    return getStorageData(
-        "expenses",
-        []
-    );
+    const expenses =
+        getStorageData("expenses", []);
+
+    return Array.isArray(expenses)
+        ? expenses
+        : [];
 
 }
 
 
-
-// ==========================================
+// ======================================================
 // LOAD CUSTOMERS
-// ==========================================
+// ======================================================
 
 function getCustomersData() {
 
-    return getStorageData(
-        "customers",
-        []
-    );
+    const customers =
+        getStorageData("customers", []);
+
+    return Array.isArray(customers)
+        ? customers
+        : [];
 
 }
 
 
-
-// ==========================================
+// ======================================================
 // LOAD FUEL STOCK
-// ==========================================
+// ======================================================
 
 function getFuelStockData() {
 
-    return getStorageData(
-        "fuelStock",
-        {
+    const stock =
+        getStorageData(
+            "fuelStock",
+            {
+                petrol: 0,
+                diesel: 0
+            }
+        );
+
+    if (
+        !stock ||
+        typeof stock !== "object" ||
+        Array.isArray(stock)
+    ) {
+
+        return {
             petrol: 0,
             diesel: 0
-        }
+        };
+
+    }
+
+    return stock;
+
+}
+
+
+// ======================================================
+// NUMBER FORMAT
+// ======================================================
+
+function formatNumber(number) {
+
+    const value =
+        Number(number) || 0;
+
+    return value.toLocaleString("en-IN");
+
+}
+
+
+// ======================================================
+// CURRENCY FORMAT
+// ======================================================
+
+function formatCurrency(number) {
+
+    const value =
+        Number(number) || 0;
+
+    return (
+        "Rs. " +
+        value.toLocaleString(
+            "en-IN",
+            {
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 2
+            }
+        )
     );
 
 }
 
 
-
-// ==========================================
-// NUMBER FORMAT
-// ==========================================
-
-function formatNumber(number) {
-
-    return Number(number || 0)
-        .toLocaleString("en-IN");
-
-}
-
-
-
-// ==========================================
-// CURRENCY FORMAT
-// ==========================================
-
-function formatCurrency(number) {
-
-    return "Rs. " + formatNumber(number);
-
-}
-
-
-
-// ==========================================
+// ======================================================
 // DATE PARSER
-// ==========================================
+// ======================================================
 
 function parseDate(value) {
 
@@ -264,27 +309,112 @@ function parseDate(value) {
 
     }
 
-
     const date =
         new Date(value);
 
-
-    if (!isNaN(date.getTime())) {
+    if (
+        !isNaN(date.getTime())
+    ) {
 
         return date;
 
     }
-
 
     return null;
 
 }
 
 
+// ======================================================
+// GET DATE FROM SALE
+// ======================================================
 
-// ==========================================
-// CHECK SALES DATE
-// ==========================================
+function getSaleDateValue(sale) {
+
+    return (
+        sale.date ||
+        sale.createdAt ||
+        sale.saleDate ||
+        sale.transactionDate ||
+        null
+    );
+
+}
+
+
+// ======================================================
+// GET DATE FROM EXPENSE
+// ======================================================
+
+function getExpenseDateValue(expense) {
+
+    return (
+        expense.date ||
+        expense.createdAt ||
+        expense.expenseDate ||
+        expense.transactionDate ||
+        null
+    );
+
+}
+
+
+// ======================================================
+// CHECK SAME DAY
+// ======================================================
+
+function isSameDay(date1, date2) {
+
+    if (
+        !date1 ||
+        !date2
+    ) {
+
+        return false;
+
+    }
+
+    return (
+
+        date1.getFullYear() ===
+        date2.getFullYear()
+
+        &&
+
+        date1.getMonth() ===
+        date2.getMonth()
+
+        &&
+
+        date1.getDate() ===
+        date2.getDate()
+
+    );
+
+}
+
+
+// ======================================================
+// GET START OF TODAY
+// ======================================================
+
+function getToday() {
+
+    const now =
+        new Date();
+
+    return new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        now.getDate()
+    );
+
+}
+
+
+// ======================================================
+// CHECK SALE PERIOD
+// ======================================================
 
 function isSaleInPeriod(
     sale,
@@ -292,8 +422,42 @@ function isSaleInPeriod(
 ) {
 
     const saleDate =
-        parseDate(sale.date);
+        parseDate(
+            getSaleDateValue(sale)
+        );
 
+
+    // --------------------------------------------------
+    // If user selected an exact date
+    // exact date overrides period
+    // --------------------------------------------------
+
+    const selectedDate =
+        reportDate &&
+        reportDate.value
+            ? parseDate(reportDate.value)
+            : null;
+
+
+    if (selectedDate) {
+
+        if (!saleDate) {
+
+            return false;
+
+        }
+
+        return isSameDay(
+            saleDate,
+            selectedDate
+        );
+
+    }
+
+
+    // --------------------------------------------------
+    // If sale has no valid date
+    // --------------------------------------------------
 
     if (!saleDate) {
 
@@ -302,47 +466,28 @@ function isSaleInPeriod(
     }
 
 
-    const now =
-        new Date();
-
-
     const today =
-        new Date(
-            now.getFullYear(),
-            now.getMonth(),
-            now.getDate()
-        );
+        getToday();
 
 
-    // ------------------------------
-    // Today
-    // ------------------------------
+    // --------------------------------------------------
+    // TODAY
+    // --------------------------------------------------
 
     if (period === "today") {
 
-        return (
-
-            saleDate.getFullYear()
-                === today.getFullYear()
-
-            &&
-
-            saleDate.getMonth()
-                === today.getMonth()
-
-            &&
-
-            saleDate.getDate()
-                === today.getDate()
-
+        return isSameDay(
+            saleDate,
+            today
         );
 
     }
 
 
-    // ------------------------------
-    // This Week
-    // ------------------------------
+    // --------------------------------------------------
+    // THIS WEEK
+    // Monday -> Sunday
+    // --------------------------------------------------
 
     if (period === "week") {
 
@@ -350,7 +495,9 @@ function isSaleInPeriod(
             today.getDay();
 
         const difference =
-            day === 0 ? 6 : day - 1;
+            day === 0
+                ? 6
+                : day - 1;
 
         const weekStart =
             new Date(today);
@@ -359,165 +506,150 @@ function isSaleInPeriod(
             today.getDate() - difference
         );
 
-        return saleDate >= weekStart;
+        weekStart.setHours(
+            0,
+            0,
+            0,
+            0
+        );
+
+
+        const weekEnd =
+            new Date(weekStart);
+
+        weekEnd.setDate(
+            weekStart.getDate() + 7
+        );
+
+
+        return (
+            saleDate >= weekStart &&
+            saleDate < weekEnd
+        );
 
     }
 
 
-    // ------------------------------
-    // This Month
-    // ------------------------------
+    // --------------------------------------------------
+    // THIS MONTH
+    // --------------------------------------------------
 
     if (period === "month") {
 
         return (
 
-            saleDate.getFullYear()
-                === today.getFullYear()
+            saleDate.getFullYear() ===
+            today.getFullYear()
 
             &&
 
-            saleDate.getMonth()
-                === today.getMonth()
+            saleDate.getMonth() ===
+            today.getMonth()
 
         );
 
     }
 
 
-    // ------------------------------
-    // This Year
-    // ------------------------------
+    // --------------------------------------------------
+    // THIS YEAR
+    // --------------------------------------------------
 
     if (period === "year") {
 
         return (
 
-            saleDate.getFullYear()
-                === today.getFullYear()
+            saleDate.getFullYear() ===
+            today.getFullYear()
 
         );
 
     }
 
 
-    // ------------------------------
-    // All Time
-    // ------------------------------
+    // --------------------------------------------------
+    // ALL TIME
+    // --------------------------------------------------
 
     return true;
 
 }
-const selectedDate =
-    reportDate && reportDate.value
-        ? parseDate(reportDate.value)
-        : null;
-
-if (selectedDate) {
-
-    return (
-
-        saleDate.getFullYear() === selectedDate.getFullYear()
-
-        &&
-
-        saleDate.getMonth() === selectedDate.getMonth()
-
-        &&
-
-        saleDate.getDate() === selectedDate.getDate()
-
-    );
-
-}
 
 
-
-// ==========================================
-// CHECK EXPENSE DATE
-// ==========================================
+// ======================================================
+// CHECK EXPENSE PERIOD
+// ======================================================
 
 function isExpenseInPeriod(
     expense,
     period
 ) {
 
-    const dateValue =
-        expense.date ||
-        expense.createdAt ||
-        expense.expenseDate;
-
-
     const expenseDate =
-        parseDate(dateValue);
+        parseDate(
+            getExpenseDateValue(expense)
+        );
 
+
+    // --------------------------------------------------
+    // Exact date selected
+    // --------------------------------------------------
+
+    const selectedDate =
+        reportDate &&
+        reportDate.value
+            ? parseDate(reportDate.value)
+            : null;
+
+
+    if (selectedDate) {
+
+        if (!expenseDate) {
+
+            return false;
+
+        }
+
+        return isSameDay(
+            expenseDate,
+            selectedDate
+        );
+
+    }
+
+
+    // --------------------------------------------------
+    // No valid date
+    // --------------------------------------------------
 
     if (!expenseDate) {
 
         return true;
 
     }
-    const selectedDate =
-    reportDate && reportDate.value
-        ? parseDate(reportDate.value)
-        : null;
-
-if (selectedDate) {
-
-    return (
-
-        expenseDate.getFullYear() === selectedDate.getFullYear()
-
-        &&
-
-        expenseDate.getMonth() === selectedDate.getMonth()
-
-        &&
-
-        expenseDate.getDate() === selectedDate.getDate()
-
-    );
-
-}
-
-
-    const now =
-        new Date();
 
 
     const today =
-        new Date(
-            now.getFullYear(),
-            now.getMonth(),
-            now.getDate()
-        );
+        getToday();
 
 
-    // Today
+    // --------------------------------------------------
+    // TODAY
+    // --------------------------------------------------
 
     if (period === "today") {
 
-        return (
-
-            expenseDate.getFullYear()
-                === today.getFullYear()
-
-            &&
-
-            expenseDate.getMonth()
-                === today.getMonth()
-
-            &&
-
-            expenseDate.getDate()
-                === today.getDate()
-
+        return isSameDay(
+            expenseDate,
+            today
         );
 
     }
 
 
-    // Week
+    // --------------------------------------------------
+    // THIS WEEK
+    // --------------------------------------------------
 
     if (period === "week") {
 
@@ -525,7 +657,9 @@ if (selectedDate) {
             today.getDay();
 
         const difference =
-            day === 0 ? 6 : day - 1;
+            day === 0
+                ? 6
+                : day - 1;
 
         const weekStart =
             new Date(today);
@@ -534,53 +668,79 @@ if (selectedDate) {
             today.getDate() - difference
         );
 
-        return expenseDate >= weekStart;
+        weekStart.setHours(
+            0,
+            0,
+            0,
+            0
+        );
+
+
+        const weekEnd =
+            new Date(weekStart);
+
+        weekEnd.setDate(
+            weekStart.getDate() + 7
+        );
+
+
+        return (
+            expenseDate >= weekStart &&
+            expenseDate < weekEnd
+        );
 
     }
 
 
-    // Month
+    // --------------------------------------------------
+    // THIS MONTH
+    // --------------------------------------------------
 
     if (period === "month") {
 
         return (
 
-            expenseDate.getFullYear()
-                === today.getFullYear()
+            expenseDate.getFullYear() ===
+            today.getFullYear()
 
             &&
 
-            expenseDate.getMonth()
-                === today.getMonth()
+            expenseDate.getMonth() ===
+            today.getMonth()
 
         );
 
     }
 
 
-    // Year
+    // --------------------------------------------------
+    // THIS YEAR
+    // --------------------------------------------------
 
     if (period === "year") {
 
         return (
 
-            expenseDate.getFullYear()
-                === today.getFullYear()
+            expenseDate.getFullYear() ===
+            today.getFullYear()
 
         );
 
     }
 
+
+    // --------------------------------------------------
+    // ALL TIME
+    // --------------------------------------------------
 
     return true;
 
 }
 
 
-
-// ==========================================
+// ======================================================
 // GET EXPENSE AMOUNT
-// ==========================================
+// ======================================================
 
 function getExpenseAmount(expense) {
 
@@ -591,15 +751,14 @@ function getExpenseAmount(expense) {
         expense.cost ??
         0
 
-    );
+    ) || 0;
 
 }
 
 
-
-// ==========================================
+// ======================================================
 // GET SALE AMOUNT
-// ==========================================
+// ======================================================
 
 function getSaleAmount(sale) {
 
@@ -607,17 +766,17 @@ function getSaleAmount(sale) {
 
         sale.amount ??
         sale.total ??
+        sale.totalAmount ??
         0
 
-    );
+    ) || 0;
 
 }
 
 
-
-// ==========================================
+// ======================================================
 // GET SALE QUANTITY
-// ==========================================
+// ======================================================
 
 function getSaleQuantity(sale) {
 
@@ -626,48 +785,95 @@ function getSaleQuantity(sale) {
         sale.quantity ??
         sale.litres ??
         sale.qty ??
+        sale.volume ??
         0
 
-    );
+    ) || 0;
 
 }
 
 
+// ======================================================
+// GET FUEL TYPE
+// ======================================================
 
-// ==========================================
-// UPDATE DATE TEXT
-// ==========================================
+function getFuelType(sale) {
+
+    return String(
+
+        sale.fuel ??
+        sale.fuelType ??
+        sale.product ??
+        ""
+
+    )
+        .trim()
+        .toLowerCase();
+
+}
+
+
+// ======================================================
+// UPDATE REPORT DATE TEXT
+// ======================================================
 
 function updateReportDateText() {
 
+    if (!reportDateText) {
+
+        return;
+
+    }
+
+
     const period =
-        reportPeriod.value;
+        reportPeriod
+            ? reportPeriod.value
+            : "month";
+
+
+    // --------------------------------------------------
+    // Exact date
+    // --------------------------------------------------
+
+    if (
+        reportDate &&
+        reportDate.value
+    ) {
+
+        const selectedDate =
+            parseDate(
+                reportDate.value
+            );
+
+
+        if (selectedDate) {
+
+            reportDateText.textContent =
+                selectedDate.toLocaleDateString(
+                    "en-US",
+                    {
+                        weekday: "long",
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric"
+                    }
+                );
+
+            return;
+
+        }
+
+    }
 
 
     const now =
         new Date();
-        const selectedDate =
-    reportDate && reportDate.value
-        ? parseDate(reportDate.value)
-        : null;
 
-if (selectedDate) {
 
-    reportDateText.textContent =
-        selectedDate.toLocaleDateString(
-            "en-US",
-            {
-                weekday: "long",
-                year: "numeric",
-                month: "long",
-                day: "numeric"
-            }
-        );
-
-    return;
-
-}
-
+    // --------------------------------------------------
+    // TODAY
+    // --------------------------------------------------
 
     if (period === "today") {
 
@@ -687,6 +893,10 @@ if (selectedDate) {
     }
 
 
+    // --------------------------------------------------
+    // WEEK
+    // --------------------------------------------------
+
     if (period === "week") {
 
         reportDateText.textContent =
@@ -696,6 +906,10 @@ if (selectedDate) {
 
     }
 
+
+    // --------------------------------------------------
+    // MONTH
+    // --------------------------------------------------
 
     if (period === "month") {
 
@@ -713,6 +927,10 @@ if (selectedDate) {
     }
 
 
+    // --------------------------------------------------
+    // YEAR
+    // --------------------------------------------------
+
     if (period === "year") {
 
         reportDateText.textContent =
@@ -725,44 +943,48 @@ if (selectedDate) {
     }
 
 
+    // --------------------------------------------------
+    // ALL TIME
+    // --------------------------------------------------
+
     reportDateText.textContent =
         "All Recorded Data";
 
 }
 
 
-
-// ==========================================
-// CALCULATE REPORT
-// ==========================================
+// ======================================================
+// GENERATE REPORT
+// ======================================================
 
 function generateReport() {
 
-
     const period =
-        reportPeriod.value;
+        reportPeriod
+            ? reportPeriod.value
+            : "month";
 
+
+    // --------------------------------------------------
+    // LOAD DATA
+    // --------------------------------------------------
 
     const allSales =
         getSalesData();
 
-
     const allExpenses =
         getExpensesData();
 
-
     const customers =
         getCustomersData();
-
 
     const fuelStock =
         getFuelStockData();
 
 
-
-    // ======================================
+    // --------------------------------------------------
     // FILTER SALES
-    // ======================================
+    // --------------------------------------------------
 
     const filteredSales =
         allSales.filter(
@@ -774,10 +996,9 @@ function generateReport() {
         );
 
 
-
-    // ======================================
+    // --------------------------------------------------
     // FILTER EXPENSES
-    // ======================================
+    // --------------------------------------------------
 
     const filteredExpenses =
         allExpenses.filter(
@@ -789,10 +1010,9 @@ function generateReport() {
         );
 
 
-
-    // ======================================
+    // ==================================================
     // SALES CALCULATION
-    // ======================================
+    // ==================================================
 
     let totalSales = 0;
 
@@ -807,7 +1027,6 @@ function generateReport() {
     let dieselSales = 0;
 
 
-
     filteredSales.forEach(
         sale => {
 
@@ -817,16 +1036,13 @@ function generateReport() {
             const litres =
                 getSaleQuantity(sale);
 
+            const fuel =
+                getFuelType(sale);
+
 
             totalSales += amount;
 
             totalFuel += litres;
-
-
-            const fuel =
-                String(
-                    sale.fuel || ""
-                ).toLowerCase();
 
 
             if (fuel === "petrol") {
@@ -836,7 +1052,6 @@ function generateReport() {
                 petrolSales += amount;
 
             }
-
 
             else if (fuel === "diesel") {
 
@@ -850,10 +1065,9 @@ function generateReport() {
     );
 
 
-
-    // ======================================
+    // ==================================================
     // EXPENSE CALCULATION
-    // ======================================
+    // ==================================================
 
     let totalExpenses = 0;
 
@@ -870,107 +1084,120 @@ function generateReport() {
     );
 
 
-
-    // ======================================
+    // ==================================================
     // PROFIT
-    // ======================================
+    // ==================================================
 
     const netProfit =
         totalSales -
         totalExpenses;
 
 
-
-    // ======================================
+    // ==================================================
     // TRANSACTIONS
-    // ======================================
+    // ==================================================
 
     const transactions =
         filteredSales.length;
 
 
+    // ==================================================
+    // SUMMARY
+    // ==================================================
 
-    // ======================================
-    // UPDATE SUMMARY
-    // ======================================
+    if (reportTotalSales) {
 
-    reportTotalSales.textContent =
-        formatCurrency(
-            totalSales
-        );
-
-
-    reportTotalExpenses.textContent =
-        formatCurrency(
-            totalExpenses
-        );
-
-
-    reportNetProfit.textContent =
-        formatCurrency(
-            netProfit
-        );
-
-
-    reportTransactions.textContent =
-        formatNumber(
-            transactions
-        );
-
-
-
-    // ======================================
-    // PROFIT COLOR
-    // ======================================
-
-    if (netProfit < 0) {
-
-        reportNetProfit.style.color =
-            "#dc2626";
-
-    }
-
-    else {
-
-        reportNetProfit.style.color =
-            "#16a34a";
+        reportTotalSales.textContent =
+            formatCurrency(
+                totalSales
+            );
 
     }
 
 
+    if (reportTotalExpenses) {
 
-    // ======================================
-    // FUEL REPORT
-    // ======================================
+        reportTotalExpenses.textContent =
+            formatCurrency(
+                totalExpenses
+            );
 
-    reportPetrolLitres.textContent =
-        formatNumber(
-            petrolLitres
-        ) + " L";
-
-
-    reportDieselLitres.textContent =
-        formatNumber(
-            dieselLitres
-        ) + " L";
+    }
 
 
-    reportPetrolSales.textContent =
-        formatCurrency(
-            petrolSales
-        );
+    if (reportNetProfit) {
+
+        reportNetProfit.textContent =
+            formatCurrency(
+                netProfit
+            );
 
 
-    reportDieselSales.textContent =
-        formatCurrency(
-            dieselSales
-        );
+        reportNetProfit.style.color =
+            netProfit < 0
+                ? "#dc2626"
+                : "#16a34a";
+
+    }
 
 
+    if (reportTransactions) {
 
-    // ======================================
+        reportTransactions.textContent =
+            formatNumber(
+                transactions
+            );
+
+    }
+
+
+    // ==================================================
+    // FUEL PERFORMANCE
+    // ==================================================
+
+    if (reportPetrolLitres) {
+
+        reportPetrolLitres.textContent =
+            formatNumber(
+                petrolLitres
+            ) + " L";
+
+    }
+
+
+    if (reportDieselLitres) {
+
+        reportDieselLitres.textContent =
+            formatNumber(
+                dieselLitres
+            ) + " L";
+
+    }
+
+
+    if (reportPetrolSales) {
+
+        reportPetrolSales.textContent =
+            formatCurrency(
+                petrolSales
+            );
+
+    }
+
+
+    if (reportDieselSales) {
+
+        reportDieselSales.textContent =
+            formatCurrency(
+                dieselSales
+            );
+
+    }
+
+
+    // ==================================================
     // FUEL PROGRESS
-    // ======================================
+    // ==================================================
 
     const totalFuelSales =
         petrolLitres +
@@ -1000,29 +1227,44 @@ function generateReport() {
     }
 
 
-    petrolReportBar.style.width =
-        petrolPercentage + "%";
+    if (petrolReportBar) {
+
+        petrolReportBar.style.width =
+            petrolPercentage + "%";
+
+    }
 
 
-    dieselReportBar.style.width =
-        dieselPercentage + "%";
+    if (dieselReportBar) {
+
+        dieselReportBar.style.width =
+            dieselPercentage + "%";
+
+    }
 
 
-
-    // ======================================
+    // ==================================================
     // SALES OVERVIEW
-    // ======================================
+    // ==================================================
 
-    overviewTransactions.textContent =
-        formatNumber(
-            transactions
-        );
+    if (overviewTransactions) {
+
+        overviewTransactions.textContent =
+            formatNumber(
+                transactions
+            );
+
+    }
 
 
-    overviewFuelSold.textContent =
-        formatNumber(
-            totalFuel
-        ) + " L";
+    if (overviewFuelSold) {
+
+        overviewFuelSold.textContent =
+            formatNumber(
+                totalFuel
+            ) + " L";
+
+    }
 
 
     const average =
@@ -1031,75 +1273,95 @@ function generateReport() {
             : 0;
 
 
-    averageTransaction.textContent =
-        formatCurrency(
-            average.toFixed(2)
-        );
+    if (averageTransaction) {
+
+        averageTransaction.textContent =
+            formatCurrency(
+                average
+            );
+
+    }
 
 
-    overviewPetrolSales.textContent =
-        formatCurrency(
-            petrolSales
-        );
+    if (overviewPetrolSales) {
+
+        overviewPetrolSales.textContent =
+            formatCurrency(
+                petrolSales
+            );
+
+    }
 
 
-    overviewDieselSales.textContent =
-        formatCurrency(
-            dieselSales
-        );
+    if (overviewDieselSales) {
+
+        overviewDieselSales.textContent =
+            formatCurrency(
+                dieselSales
+            );
+
+    }
 
 
-
-    // ======================================
+    // ==================================================
     // INVENTORY
-    // ======================================
+    // ==================================================
 
     const petrolStock =
         Number(
-            fuelStock.petrol || 0
-        );
+            fuelStock.petrol
+        ) || 0;
 
 
     const dieselStock =
         Number(
-            fuelStock.diesel || 0
-        );
+            fuelStock.diesel
+        ) || 0;
 
 
-    reportPetrolStock.textContent =
-        formatNumber(
-            petrolStock
-        ) + " L";
+    if (reportPetrolStock) {
+
+        reportPetrolStock.textContent =
+            formatNumber(
+                petrolStock
+            ) + " L";
+
+    }
 
 
-    reportDieselStock.textContent =
-        formatNumber(
-            dieselStock
-        ) + " L";
+    if (reportDieselStock) {
+
+        reportDieselStock.textContent =
+            formatNumber(
+                dieselStock
+            ) + " L";
+
+    }
 
 
-    reportTotalStock.textContent =
-        formatNumber(
-            petrolStock +
-            dieselStock
-        ) + " L";
+    if (reportTotalStock) {
+
+        reportTotalStock.textContent =
+            formatNumber(
+                petrolStock +
+                dieselStock
+            ) + " L";
+
+    }
 
 
-
-    // ======================================
+    // ==================================================
     // CUSTOMERS
-    // ======================================
+    // ==================================================
 
-    const customerList =
-        Array.isArray(customers)
-            ? customers
-            : [];
+    if (reportTotalCustomers) {
 
+        reportTotalCustomers.textContent =
+            formatNumber(
+                customers.length
+            );
 
-    reportTotalCustomers.textContent =
-        formatNumber(
-            customerList.length
-        );
+    }
 
 
     let regularCustomers = 0;
@@ -1107,7 +1369,7 @@ function generateReport() {
     let vehicles = 0;
 
 
-    customerList.forEach(
+    customers.forEach(
         customer => {
 
             const visits =
@@ -1118,7 +1380,7 @@ function generateReport() {
                     customer.transactions ??
                     0
 
-                );
+                ) || 0;
 
 
             if (visits > 1) {
@@ -1144,22 +1406,29 @@ function generateReport() {
     );
 
 
-    reportRegularCustomers.textContent =
-        formatNumber(
-            regularCustomers
-        );
+    if (reportRegularCustomers) {
+
+        reportRegularCustomers.textContent =
+            formatNumber(
+                regularCustomers
+            );
+
+    }
 
 
-    reportRegisteredVehicles.textContent =
-        formatNumber(
-            vehicles
-        );
+    if (reportRegisteredVehicles) {
+
+        reportRegisteredVehicles.textContent =
+            formatNumber(
+                vehicles
+            );
+
+    }
 
 
-
-    // ======================================
+    // ==================================================
     // EXPENSE BREAKDOWN
-    // ======================================
+    // ==================================================
 
     generateExpenseBreakdown(
         filteredExpenses,
@@ -1167,41 +1436,41 @@ function generateReport() {
     );
 
 
-
-    // ======================================
+    // ==================================================
     // RECENT SALES
-    // ======================================
+    // ==================================================
 
     displayRecentSales(
         filteredSales
     );
 
 
-
-    // ======================================
+    // ==================================================
     // GENERATED TIME
-    // ======================================
+    // ==================================================
 
-    const currentTime =
-        new Date().toLocaleString();
+    if (reportGeneratedText) {
 
+        const currentTime =
+            new Date()
+                .toLocaleString();
 
-    reportGeneratedText.textContent =
-        `Report generated on ${currentTime}`;
+        reportGeneratedText.textContent =
+            `Report generated on ${currentTime}`;
+
+    }
 
 }
 
 
-
-// ==========================================
+// ======================================================
 // EXPENSE BREAKDOWN
-// ==========================================
+// ======================================================
 
 function generateExpenseBreakdown(
     expenses,
     totalExpenses
 ) {
-
 
     if (!expenseBreakdown) {
 
@@ -1213,7 +1482,6 @@ function generateExpenseBreakdown(
     expenseBreakdown.innerHTML = "";
 
 
-
     if (
         !expenses ||
         expenses.length === 0
@@ -1222,9 +1490,7 @@ function generateExpenseBreakdown(
         expenseBreakdown.innerHTML = `
 
             <div class="empty-report-message">
-
                 No expense data available.
-
             </div>
 
         `;
@@ -1234,9 +1500,7 @@ function generateExpenseBreakdown(
     }
 
 
-
     const categories = {};
-
 
 
     expenses.forEach(
@@ -1259,7 +1523,9 @@ function generateExpenseBreakdown(
                 );
 
 
-            if (!categories[category]) {
+            if (
+                !categories[category]
+            ) {
 
                 categories[category] = 0;
 
@@ -1273,21 +1539,18 @@ function generateExpenseBreakdown(
     );
 
 
-
     const sortedCategories =
         Object.entries(
             categories
         )
         .sort(
-            (a,b) =>
+            (a, b) =>
                 b[1] - a[1]
         );
 
 
-
     sortedCategories.forEach(
         ([category, amount]) => {
-
 
             const percentage =
                 totalExpenses > 0
@@ -1300,11 +1563,9 @@ function generateExpenseBreakdown(
                     : 0;
 
 
-
             expenseBreakdown.innerHTML += `
 
                 <div class="expense-breakdown-row">
-
 
                     <div class="expense-breakdown-info">
 
@@ -1318,7 +1579,6 @@ function generateExpenseBreakdown(
 
                     </div>
 
-
                     <div class="expense-breakdown-bar">
 
                         <div
@@ -1328,13 +1588,11 @@ function generateExpenseBreakdown(
 
                     </div>
 
-
                     <span class="expense-breakdown-amount">
 
                         ${formatCurrency(amount)}
 
                     </span>
-
 
                 </div>
 
@@ -1346,15 +1604,13 @@ function generateExpenseBreakdown(
 }
 
 
-
-// ==========================================
+// ======================================================
 // DISPLAY RECENT SALES
-// ==========================================
+// ======================================================
 
 function displayRecentSales(
     sales
 ) {
-
 
     if (!reportSalesTableBody) {
 
@@ -1364,7 +1620,6 @@ function displayRecentSales(
 
 
     reportSalesTableBody.innerHTML = "";
-
 
 
     if (
@@ -1394,29 +1649,73 @@ function displayRecentSales(
     }
 
 
-
+    // --------------------------------------------------
     // Latest sales first
+    // --------------------------------------------------
 
     const recentSales =
         sales
-        .slice()
-        .reverse()
-        .slice(0,10);
+            .slice()
+            .sort(
+                (a, b) => {
 
+                    const dateA =
+                        parseDate(
+                            getSaleDateValue(a)
+                        );
+
+                    const dateB =
+                        parseDate(
+                            getSaleDateValue(b)
+                        );
+
+
+                    if (
+                        !dateA &&
+                        !dateB
+                    ) {
+
+                        return 0;
+
+                    }
+
+
+                    if (!dateA) {
+
+                        return 1;
+
+                    }
+
+
+                    if (!dateB) {
+
+                        return -1;
+
+                    }
+
+
+                    return dateB - dateA;
+
+                }
+            )
+            .slice(0, 10);
 
 
     recentSales.forEach(
         sale => {
 
-
             const fuel =
                 String(
-                    sale.fuel || "-"
+                    sale.fuel ??
+                    sale.fuelType ??
+                    sale.product ??
+                    "-"
                 );
 
 
             const fuelClass =
                 fuel.toLowerCase()
+                    .trim()
                     === "petrol"
 
                     ? "report-fuel-petrol"
@@ -1424,33 +1723,47 @@ function displayRecentSales(
                     : "report-fuel-diesel";
 
 
-
             const payment =
                 sale.payment ||
+                sale.paymentMethod ||
                 "-";
 
+
+            const customer =
+                sale.customer ||
+                sale.customerName ||
+                "-";
+
+
+            const invoice =
+                sale.invoice ||
+                sale.invoiceNumber ||
+                sale.billNumber ||
+                "-";
+
+
+            const date =
+                getSaleDateValue(sale) ||
+                "-";
 
 
             reportSalesTableBody.innerHTML += `
 
                 <tr>
 
-
                     <td>
 
                         <strong>
-                            ${sale.invoice || "-"}
+                            ${invoice}
                         </strong>
 
                     </td>
 
-
                     <td>
 
-                        ${sale.customer || "-"}
+                        ${customer}
 
                     </td>
-
 
                     <td>
 
@@ -1464,7 +1777,6 @@ function displayRecentSales(
 
                     </td>
 
-
                     <td>
 
                         ${formatNumber(
@@ -1472,7 +1784,6 @@ function displayRecentSales(
                         )} L
 
                     </td>
-
 
                     <td>
 
@@ -1486,7 +1797,6 @@ function displayRecentSales(
 
                     </td>
 
-
                     <td>
 
                         <span
@@ -1499,13 +1809,11 @@ function displayRecentSales(
 
                     </td>
 
-
                     <td>
 
-                        ${sale.date || "-"}
+                        ${date}
 
                     </td>
-
 
                 </tr>
 
@@ -1517,10 +1825,9 @@ function displayRecentSales(
 }
 
 
-
-// ==========================================
+// ======================================================
 // REFRESH REPORT
-// ==========================================
+// ======================================================
 
 function refreshReportData() {
 
@@ -1531,10 +1838,9 @@ function refreshReportData() {
 }
 
 
-
-// ==========================================
+// ======================================================
 // PERIOD CHANGE
-// ==========================================
+// ======================================================
 
 if (reportPeriod) {
 
@@ -1542,8 +1848,11 @@ if (reportPeriod) {
         "change",
         () => {
 
+            // Selecting a period clears exact date
             if (reportDate) {
+
                 reportDate.value = "";
+
             }
 
             refreshReportData();
@@ -1553,6 +1862,10 @@ if (reportPeriod) {
 
 }
 
+
+// ======================================================
+// EXACT DATE CHANGE
+// ======================================================
 
 if (reportDate) {
 
@@ -1568,13 +1881,22 @@ if (reportDate) {
 }
 
 
+// ======================================================
+// CLEAR DATE
+// ======================================================
+
 if (clearReportDate) {
 
     clearReportDate.addEventListener(
         "click",
         () => {
 
-            reportDate.value = "";
+            if (reportDate) {
+
+                reportDate.value = "";
+
+            }
+
             refreshReportData();
 
         }
@@ -1583,10 +1905,9 @@ if (clearReportDate) {
 }
 
 
-
-// ==========================================
+// ======================================================
 // REFRESH BUTTON
-// ==========================================
+// ======================================================
 
 if (refreshReports) {
 
@@ -1602,10 +1923,9 @@ if (refreshReports) {
 }
 
 
-
-// ==========================================
+// ======================================================
 // PRINT REPORT
-// ==========================================
+// ======================================================
 
 if (printReport) {
 
@@ -1621,10 +1941,9 @@ if (printReport) {
 }
 
 
-
-// ==========================================
+// ======================================================
 // AUTO REFRESH
-// ==========================================
+// ======================================================
 
 setInterval(
     () => {
@@ -1636,10 +1955,9 @@ setInterval(
 );
 
 
-
-// ==========================================
+// ======================================================
 // INITIALIZE
-// ==========================================
+// ======================================================
 
 document.addEventListener(
     "DOMContentLoaded",
