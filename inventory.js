@@ -40,7 +40,7 @@ document.getElementById("dieselStock");
 
 
 const inventoryTable =
-document.getElementById("inventoryTable");
+document.getElementById("inventoryTableBody");
 
 
 
