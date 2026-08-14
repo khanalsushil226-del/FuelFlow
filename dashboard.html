@@ -1,12 +1,11 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 
-    <!-- ==========================
-            META TAGS
-    =========================== -->
+    <!-- =====================================================
+         META
+    ====================================================== -->
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,9 +13,9 @@
     <title>FuelFlow | Dashboard</title>
 
 
-    <!-- ==========================
-            GOOGLE FONT
-    =========================== -->
+    <!-- =====================================================
+         GOOGLE FONT
+    ====================================================== -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,9 +26,9 @@
     >
 
 
-    <!-- ==========================
-            FONT AWESOME
-    =========================== -->
+    <!-- =====================================================
+         FONT AWESOME
+    ====================================================== -->
 
     <link
         rel="stylesheet"
@@ -37,13 +36,15 @@
     >
 
 
-    <!-- ==========================
-            CSS
-    =========================== -->
+    <!-- =====================================================
+         CSS
+    ====================================================== -->
 
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="notification.css">
     <link rel="stylesheet" href="dashboard.css">
     <link rel="stylesheet" href="sidebar-logo.css">
+<link rel="stylesheet" href="notification.css">
 
 </head>
 
@@ -51,16 +52,16 @@
 <body>
 
 
-    <!-- ==========================
-            DASHBOARD
-    =========================== -->
+    <!-- =====================================================
+         DASHBOARD WRAPPER
+    ====================================================== -->
 
     <div class="dashboard">
 
 
-        <!-- ==========================
-                SIDEBAR
-        =========================== -->
+        <!-- =================================================
+             SIDEBAR
+        ================================================== -->
 
         <aside class="sidebar">
 
@@ -194,7 +195,11 @@
 
             <div class="sidebar-bottom">
 
-                <a href="#" class="logout-link">
+                <a
+                    href="#"
+                    class="logout-link"
+                    id="logoutLink"
+                >
 
                     <i class="fa-solid fa-right-from-bracket"></i>
 
@@ -208,19 +213,22 @@
         </aside>
 
 
-        <!-- ==========================
-                MAIN CONTENT
-        =========================== -->
+
+        <!-- =================================================
+             MAIN CONTENT
+        ================================================== -->
 
         <main class="main-content">
 
 
-            <!-- ==========================
-                    TOPBAR
-            =========================== -->
+            <!-- =================================================
+                 TOPBAR
+            ================================================== -->
 
             <header class="topbar">
 
+
+                <!-- TOPBAR LEFT -->
 
                 <div class="topbar-left">
 
@@ -231,25 +239,47 @@
                 </div>
 
 
+
+                <!-- =================================================
+                     TOPBAR RIGHT
+                ================================================== -->
+
                 <div class="topbar-right">
 
 
-                    <button
-                        type="button"
-                        class="notification"
-                        aria-label="Notifications"
-                    >
+                    <!-- =================================================
+                         NOTIFICATION
+                    ================================================== -->
 
-                        <i class="fa-solid fa-bell"></i>
+                    <div class="notification-wrapper">
 
-                    </button>
+    <button
+        type="button"
+        class="notification"
+        id="notificationBell"
+        aria-label="Notifications"
+    >
 
+        <i class="fa-solid fa-bell"></i>
+
+    </button>
+
+</div>
+                    
+
+
+
+                    <!-- =================================================
+                         PROFILE
+                    ================================================== -->
 
                     <div class="profile">
 
                         <i class="fa-solid fa-circle-user"></i>
 
-                        <span>Admin</span>
+                        <span>
+                            Admin
+                        </span>
 
                     </div>
 
@@ -260,18 +290,23 @@
             </header>
 
 
-            <!-- ==========================
-                    CONTENT
-            =========================== -->
+
+            <!-- =================================================
+                 DASHBOARD CONTENT
+            ================================================== -->
 
             <section class="content">
 
 
-                <!-- WELCOME -->
+                <!-- =================================================
+                     WELCOME
+                ================================================== -->
 
                 <div class="welcome">
 
-                    <h2>Welcome Back, Admin</h2>
+                    <h2>
+                        Welcome Back, Admin
+                    </h2>
 
                     <p>
                         Here's what's happening at your fuel station today.
@@ -280,9 +315,10 @@
                 </div>
 
 
-                <!-- ==========================
-                        SUMMARY CARDS
-                =========================== -->
+
+                <!-- =================================================
+                     SUMMARY CARDS
+                ================================================== -->
 
                 <div class="cards">
 
@@ -299,13 +335,18 @@
 
                         <div class="card-info">
 
-                            <h4>Today's Sales</h4>
+                            <h4>
+                                Today's Sales
+                            </h4>
 
-                            <h2 id="dashboardSales">Rs. 0</h2>
+                            <h2 id="dashboardSales">
+                                Rs. 0
+                            </h2>
 
                         </div>
 
                     </div>
+
 
 
                     <!-- TRANSACTIONS -->
@@ -320,13 +361,18 @@
 
                         <div class="card-info">
 
-                            <h4>Transactions</h4>
+                            <h4>
+                                Transactions
+                            </h4>
 
-                            <h2 id="dashboardTransactions">0</h2>
+                            <h2 id="dashboardTransactions">
+                                0
+                            </h2>
 
                         </div>
 
                     </div>
+
 
 
                     <!-- FUEL STOCK -->
@@ -341,9 +387,13 @@
 
                         <div class="card-info">
 
-                            <h4>Fuel Stock</h4>
+                            <h4>
+                                Fuel Stock
+                            </h4>
 
-                            <h2 id="dashboardFuelStock">0 L</h2>
+                            <h2 id="dashboardFuelStock">
+                                0 L
+                            </h2>
 
                         </div>
 
@@ -353,25 +403,29 @@
                 </div>
 
 
-                <!-- ==========================
-                        MAIN DASHBOARD GRID
-                =========================== -->
+
+                <!-- =================================================
+                     MAIN DASHBOARD GRID
+                ================================================== -->
 
                 <div class="dashboard-grid">
 
 
-                    <!-- ==========================
-                            SALES OVERVIEW
-                    =========================== -->
+                    <!-- =================================================
+                         SALES OVERVIEW
+                    ================================================== -->
 
                     <div class="panel sales-overview-panel">
 
 
                         <div class="panel-header">
 
+
                             <div>
 
-                                <h3>Sales Overview</h3>
+                                <h3>
+                                    Sales Overview
+                                </h3>
 
                                 <p class="panel-subtitle">
                                     Sales performance for the last 7 days
@@ -387,7 +441,9 @@
                                 View Report
                             </button>
 
+
                         </div>
+
 
 
                         <div class="chart-container">
@@ -400,18 +456,22 @@
                     </div>
 
 
-                    <!-- ==========================
-                            FUEL INVENTORY
-                    =========================== -->
+
+                    <!-- =================================================
+                         FUEL INVENTORY
+                    ================================================== -->
 
                     <div class="panel fuel-inventory-panel">
 
 
                         <div class="panel-header">
 
+
                             <div>
 
-                                <h3>Fuel Inventory</h3>
+                                <h3>
+                                    Fuel Inventory
+                                </h3>
 
                                 <p class="panel-subtitle">
                                     Current fuel levels
@@ -427,13 +487,17 @@
                                 Manage
                             </button>
 
+
                         </div>
+
 
 
                         <div class="fuel-inventory">
 
 
-                            <!-- PETROL -->
+                            <!-- =================================================
+                                 PETROL
+                            ================================================== -->
 
                             <div
                                 class="fuel-item"
@@ -445,6 +509,7 @@
 
                                     <div class="fuel-name">
 
+
                                         <div class="fuel-icon petrol-icon">
 
                                             <i class="fa-solid fa-gas-pump"></i>
@@ -454,13 +519,16 @@
 
                                         <div>
 
-                                            <h4>Petrol</h4>
+                                            <h4>
+                                                Petrol
+                                            </h4>
 
                                             <span id="petrolStatus">
                                                 Available
                                             </span>
 
                                         </div>
+
 
                                     </div>
 
@@ -473,6 +541,7 @@
                                 </div>
 
 
+
                                 <div class="fuel-progress">
 
                                     <div
@@ -483,9 +552,12 @@
                                 </div>
 
 
+
                                 <div class="fuel-item-bottom">
 
-                                    <span>Stock</span>
+                                    <span>
+                                        Stock
+                                    </span>
 
                                     <span id="petrolPercentage">
                                         0%
@@ -493,10 +565,14 @@
 
                                 </div>
 
+
                             </div>
 
 
-                            <!-- DIESEL -->
+
+                            <!-- =================================================
+                                 DIESEL
+                            ================================================== -->
 
                             <div
                                 class="fuel-item"
@@ -508,6 +584,7 @@
 
                                     <div class="fuel-name">
 
+
                                         <div class="fuel-icon diesel-icon">
 
                                             <i class="fa-solid fa-gas-pump"></i>
@@ -517,13 +594,16 @@
 
                                         <div>
 
-                                            <h4>Diesel</h4>
+                                            <h4>
+                                                Diesel
+                                            </h4>
 
                                             <span id="dieselStatus">
                                                 Available
                                             </span>
 
                                         </div>
+
 
                                     </div>
 
@@ -536,6 +616,7 @@
                                 </div>
 
 
+
                                 <div class="fuel-progress">
 
                                     <div
@@ -546,9 +627,12 @@
                                 </div>
 
 
+
                                 <div class="fuel-item-bottom">
 
-                                    <span>Stock</span>
+                                    <span>
+                                        Stock
+                                    </span>
 
                                     <span id="dieselPercentage">
                                         0%
@@ -556,10 +640,14 @@
 
                                 </div>
 
+
                             </div>
 
 
-                            <!-- PREMIUM -->
+
+                            <!-- =================================================
+                                 PREMIUM
+                            ================================================== -->
 
                             <div
                                 class="fuel-item"
@@ -571,6 +659,7 @@
 
                                     <div class="fuel-name">
 
+
                                         <div class="fuel-icon premium-icon">
 
                                             <i class="fa-solid fa-gas-pump"></i>
@@ -580,13 +669,16 @@
 
                                         <div>
 
-                                            <h4>Premium</h4>
+                                            <h4>
+                                                Premium
+                                            </h4>
 
                                             <span id="premiumStatus">
                                                 Available
                                             </span>
 
                                         </div>
+
 
                                     </div>
 
@@ -599,6 +691,7 @@
                                 </div>
 
 
+
                                 <div class="fuel-progress">
 
                                     <div
@@ -609,15 +702,19 @@
                                 </div>
 
 
+
                                 <div class="fuel-item-bottom">
 
-                                    <span>Stock Level</span>
+                                    <span>
+                                        Stock Level
+                                    </span>
 
                                     <span id="premiumPercentage">
                                         0%
                                     </span>
 
                                 </div>
+
 
                             </div>
 
@@ -631,10 +728,10 @@
                 </div>
 
 
-                <!-- ==========================
-                        RECENT TRANSACTIONS
-                        FULL WIDTH
-                =========================== -->
+
+                <!-- =================================================
+                     RECENT TRANSACTIONS
+                ================================================== -->
 
                 <div class="panel table-panel recent-transactions-panel">
 
@@ -644,7 +741,9 @@
 
                         <div>
 
-                            <h3>Recent Transactions</h3>
+                            <h3>
+                                Recent Transactions
+                            </h3>
 
                             <p class="panel-subtitle">
                                 Latest fuel sales and transactions
@@ -665,6 +764,7 @@
                     </div>
 
 
+
                     <!-- TABLE -->
 
                     <div class="table-scroll">
@@ -677,25 +777,45 @@
 
                                 <tr>
 
-                                    <th>Invoice</th>
+                                    <th>
+                                        Invoice
+                                    </th>
 
-                                    <th>Customer</th>
+                                    <th>
+                                        Customer
+                                    </th>
 
-                                    <th>Vehicle</th>
+                                    <th>
+                                        Vehicle
+                                    </th>
 
-                                    <th>Fuel</th>
+                                    <th>
+                                        Fuel
+                                    </th>
 
-                                    <th>Quantity</th>
+                                    <th>
+                                        Quantity
+                                    </th>
 
-                                    <th>Amount</th>
+                                    <th>
+                                        Amount
+                                    </th>
 
-                                    <th>Payment</th>
+                                    <th>
+                                        Payment
+                                    </th>
 
-                                    <th>Status</th>
+                                    <th>
+                                        Status
+                                    </th>
 
-                                    <th>Date & Time</th>
+                                    <th>
+                                        Date & Time
+                                    </th>
 
-                                    <th>Action</th>
+                                    <th>
+                                        Action
+                                    </th>
 
                                 </tr>
 
@@ -712,6 +832,7 @@
                         </table>
 
 
+
                         <!-- EMPTY STATE -->
 
                         <div
@@ -721,7 +842,9 @@
 
                             <i class="fa-solid fa-receipt"></i>
 
-                            <h4>No transactions yet</h4>
+                            <h4>
+                                No transactions yet
+                            </h4>
 
                             <p>
                                 Your recent fuel sales will appear here.
@@ -752,16 +875,20 @@
     </div>
 
 
-    <!-- ==========================
-            JAVASCRIPT
-    =========================== -->
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+    <!-- Notification system MUST load before dashboard -->
+    <script src="notifications.js"></script>
+
+    <!-- Dashboard -->
     <script src="dashboard.js"></script>
 
 
 </body>
 
 </html>
-```
