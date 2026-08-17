@@ -1,1669 +1,1598 @@
-/* ==========================================
-   FuelFlow Reports
-========================================== */
+/* ==========================================================
+   FuelFlow REPORTS
+   Complete Reports Page Styling
+========================================================== */
 
 
-/* ==========================================
-   Reports Header
-========================================== */
+/* ==========================================================
+   REPORTS HEADER
+========================================================== */
 
-.reports-header{
+.reports-header {
 
-    display:flex;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-    justify-content:space-between;
+    gap: 25px;
 
-    align-items:center;
-
-    gap:20px;
-
-    margin-bottom:25px;
-
+    margin-bottom: 25px;
 }
 
 
-.reports-header h2{
+.reports-header h2 {
 
-    font-size:26px;
+    margin: 0 0 5px;
 
-    color:#111827;
+    color: #111827;
 
-    margin-bottom:5px;
+    font-size: 27px;
+    font-weight: 700;
 
+    letter-spacing: -0.4px;
 }
 
 
-.reports-header p{
+.reports-header p {
 
-    color:#6b7280;
+    margin: 0;
 
-    font-size:14px;
+    color: #64748b;
 
+    font-size: 14px;
+    font-weight: 400;
 }
 
 
+/* ==========================================================
+   REPORT ACTION BUTTONS
+========================================================== */
 
-/* ==========================================
-   Report Actions
-========================================== */
+.report-actions {
 
-.report-actions{
+    display: flex;
+    align-items: center;
 
-    display:flex;
-
-    align-items:center;
-
-    gap:10px;
-
+    gap: 10px;
 }
 
 
 .refresh-report-btn,
-.print-report-btn{
+.print-report-btn {
 
-    display:flex;
+    height: 46px;
 
-    align-items:center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    justify-content:center;
+    gap: 9px;
 
-    gap:8px;
+    padding: 0 17px;
 
-    padding:11px 17px;
+    border: none;
+    border-radius: 10px;
 
-    border:none;
+    font-family: inherit;
 
-    border-radius:10px;
+    font-size: 13px;
+    font-weight: 600;
 
-    font-family:inherit;
+    cursor: pointer;
 
-    font-size:13px;
-
-    font-weight:600;
-
-    cursor:pointer;
-
-    transition:all .3s ease;
-
+    transition:
+        background .25s ease,
+        color .25s ease,
+        transform .25s ease,
+        box-shadow .25s ease;
 }
 
 
-.refresh-report-btn{
+.refresh-report-btn {
 
-    background:#eff6ff;
-
-    color:#2563eb;
-
+    background: #eff6ff;
+    color: #2563eb;
 }
 
 
-.refresh-report-btn:hover{
+.refresh-report-btn:hover {
 
-    background:#2563eb;
+    background: #dbeafe;
 
-    color:#ffffff;
-
-    transform:translateY(-2px);
-
+    transform: translateY(-1px);
 }
 
 
-.print-report-btn{
+.refresh-report-btn i {
 
-    background:#2563eb;
-
-    color:#ffffff;
-
+    font-size: 13px;
 }
 
 
-.print-report-btn:hover{
+.print-report-btn {
 
-    background:#1d4ed8;
+    background: #2563eb;
+    color: #ffffff;
+}
 
-    transform:translateY(-2px);
+
+.print-report-btn:hover {
+
+    background: #1d4ed8;
+
+    transform: translateY(-1px);
 
     box-shadow:
-    0 7px 18px rgba(37,99,235,.22);
-
+        0 7px 18px rgba(37, 99, 235, .20);
 }
 
 
+/* ==========================================================
+   REPORT FILTER CARD
+========================================================== */
 
-/* ==========================================
-   Report Filter
-========================================== */
+.report-filter-card {
 
-.report-filter-card{
+    width: 100%;
 
-    background:#ffffff;
+    display: flex;
+    align-items: flex-end;
 
-    border-radius:15px;
+    gap: 20px;
 
-    padding:20px 25px;
+    padding: 25px 28px;
 
-    display:flex;
+    margin-bottom: 25px;
 
-    align-items:flex-end;
+    background: #ffffff;
 
-    justify-content:space-between;
-
-    gap:20px;
-
-    margin-bottom:25px;
+    border-radius: 16px;
 
     box-shadow:
-    0 8px 20px rgba(0,0,0,.07);
-
+        0 8px 25px rgba(15, 23, 42, .06);
 }
 
 
-.filter-group{
+/* ==========================================================
+   FILTER GROUP
+========================================================== */
 
-    display:flex;
+.filter-group {
 
-    flex-direction:column;
+    display: flex;
+    flex-direction: column;
 
-    gap:7px;
+    gap: 8px;
 
-    width:250px;
+    flex: 1;
 
+    min-width: 200px;
 }
 
 
-.filter-group label{
+.filter-group label {
 
-    font-size:13px;
+    color: #334155;
 
-    font-weight:600;
-
-    color:#374151;
-
+    font-size: 13px;
+    font-weight: 600;
 }
 
 
-.filter-group select{
+/* ==========================================================
+   SELECT
+========================================================== */
 
-    width:100%;
+.filter-group select {
 
-    padding:11px 13px;
+    width: 100%;
 
-    border:1px solid #d1d5db;
+    height: 54px;
 
-    border-radius:9px;
+    padding: 0 15px;
 
-    background:#ffffff;
+    border: 1px solid #d6dbe3;
+    border-radius: 10px;
 
-    color:#111827;
+    background: #ffffff;
 
-    font-family:inherit;
+    color: #111827;
 
-    font-size:14px;
+    font-family: inherit;
 
-    outline:none;
+    font-size: 14px;
 
-    cursor:pointer;
+    outline: none;
 
-    transition:.3s;
+    cursor: pointer;
 
+    transition:
+        border-color .25s ease,
+        box-shadow .25s ease;
 }
 
 
-.filter-group select:focus{
+.filter-group select:hover {
 
-    border-color:#2563eb;
+    border-color: #b9c2d0;
+}
+
+
+.filter-group select:focus {
+
+    border-color: #2563eb;
 
     box-shadow:
-    0 0 0 3px rgba(37,99,235,.12);
-
+        0 0 0 3px rgba(37, 99, 235, .10);
 }
 
 
-.report-date-display{
+/* ==========================================================
+   DATE INPUTS
+========================================================== */
 
-    display:flex;
+.filter-group input[type="date"] {
 
-    align-items:center;
+    width: 100%;
 
-    gap:9px;
+    height: 54px;
 
-    padding:11px 15px;
+    padding: 0 14px;
 
-    background:#f8fafc;
+    border: 1px solid #d6dbe3;
 
-    border:1px solid #e5e7eb;
+    border-radius: 10px;
 
-    border-radius:9px;
+    background: #ffffff;
 
-    color:#475569;
+    color: #111827;
 
-    font-size:13px;
+    font-family: inherit;
 
+    font-size: 14px;
+
+    outline: none;
+
+    cursor: pointer;
+
+    transition:
+        border-color .25s ease,
+        box-shadow .25s ease;
 }
 
 
-.report-date-display i{
+.filter-group input[type="date"]:hover {
 
-    color:#2563eb;
-
+    border-color: #b9c2d0;
 }
 
 
+.filter-group input[type="date"]:focus {
 
-/* ==========================================
-   Main Summary
-========================================== */
+    border-color: #2563eb;
 
-.report-summary{
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, .10);
+}
 
-    display:grid;
+
+/* Browser calendar icon */
+
+.filter-group input[type="date"]::-webkit-calendar-picker-indicator {
+
+    cursor: pointer;
+
+    width: 18px;
+    height: 18px;
+
+    opacity: .75;
+
+    transition: opacity .2s ease;
+}
+
+
+.filter-group input[type="date"]::-webkit-calendar-picker-indicator:hover {
+
+    opacity: 1;
+}
+
+
+/* ==========================================================
+   DATE RANGE ARROW / SEPARATOR
+========================================================== */
+
+.date-range-separator {
+
+    height: 54px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #94a3b8;
+
+    font-size: 15px;
+
+    padding-bottom: 0;
+}
+
+
+/* ==========================================================
+   OLD DATE DISPLAY
+   Hidden because we are moving to From Date → To Date
+========================================================== */
+
+.report-date-display {
+
+    display: none !important;
+}
+
+
+/* ==========================================================
+   OLD CLEAR DATE BUTTON
+   Hidden because date range will replace it
+========================================================== */
+
+.clear-date-btn {
+
+    display: none !important;
+}
+
+
+/* ==========================================================
+   MAIN SUMMARY CARDS
+========================================================== */
+
+.report-summary {
+
+    display: grid;
 
     grid-template-columns:
-    repeat(4,1fr);
+        repeat(4, 1fr);
 
-    gap:20px;
+    gap: 20px;
 
-    margin-bottom:25px;
-
+    margin-bottom: 25px;
 }
 
 
-.report-card{
+.report-card {
 
-    background:#ffffff;
+    min-height: 118px;
 
-    border-radius:15px;
+    display: flex;
+    align-items: center;
 
-    padding:22px;
+    gap: 17px;
 
-    display:flex;
+    padding: 22px;
 
-    align-items:center;
+    background: #ffffff;
 
-    gap:17px;
-
-    box-shadow:
-    0 8px 20px rgba(0,0,0,.07);
-
-    transition:all .3s ease;
-
-}
-
-
-.report-card:hover{
-
-    transform:translateY(-4px);
+    border-radius: 15px;
 
     box-shadow:
-    0 12px 25px rgba(0,0,0,.10);
+        0 8px 25px rgba(15, 23, 42, .06);
 
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
 }
 
 
-.report-card-icon{
+.report-card:hover {
 
-    width:52px;
-
-    height:52px;
-
-    min-width:52px;
-
-    border-radius:12px;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    background:#eff6ff;
-
-    color:#2563eb;
-
-    font-size:21px;
-
-}
-
-
-.sales-report-card
-.report-card-icon{
-
-    background:#ecfdf5;
-
-    color:#16a34a;
-
-}
-
-
-.expense-report-card
-.report-card-icon{
-
-    background:#fef2f2;
-
-    color:#dc2626;
-
-}
-
-
-.profit-report-card
-.report-card-icon{
-
-    background:#eff6ff;
-
-    color:#2563eb;
-
-}
-
-
-.transaction-report-card
-.report-card-icon{
-
-    background:#fff7ed;
-
-    color:#f97316;
-
-}
-
-
-.report-card p{
-
-    color:#6b7280;
-
-    font-size:13px;
-
-    margin-bottom:4px;
-
-}
-
-
-.report-card h2{
-
-    color:#111827;
-
-    font-size:22px;
-
-    font-weight:700;
-
-}
-
-
-
-/* ==========================================
-   Generic Report Section
-========================================== */
-
-.report-section-card{
-
-    background:#ffffff;
-
-    border-radius:15px;
-
-    padding:25px;
-
-    margin-bottom:25px;
+    transform: translateY(-3px);
 
     box-shadow:
-    0 8px 20px rgba(0,0,0,.07);
-
-    animation:fadeIn .4s ease;
-
+        0 12px 28px rgba(15, 23, 42, .09);
 }
 
 
-.report-section-header{
+/* ==========================================================
+   SUMMARY CARD ICON
+========================================================== */
 
-    display:flex;
+.report-card-icon {
 
-    justify-content:space-between;
+    width: 54px;
+    height: 54px;
 
-    align-items:center;
+    min-width: 54px;
 
-    margin-bottom:22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
+    border-radius: 13px;
+
+    font-size: 21px;
 }
 
 
-.report-section-header h2{
+/* Sales */
 
-    color:#111827;
+.sales-report-card .report-card-icon {
 
-    font-size:21px;
+    background: #ecfdf5;
 
-    margin-bottom:4px;
-
+    color: #16a34a;
 }
 
 
-.report-section-header p{
+/* Expenses */
 
-    color:#6b7280;
+.expense-report-card .report-card-icon {
 
-    font-size:13px;
+    background: #fef2f2;
 
+    color: #dc2626;
 }
 
 
+/* Profit */
 
-/* ==========================================
-   Fuel Performance
-========================================== */
+.profit-report-card .report-card-icon {
 
-.fuel-report-grid{
+    background: #eff6ff;
 
-    display:grid;
+    color: #2563eb;
+}
+
+
+/* Transactions */
+
+.transaction-report-card .report-card-icon {
+
+    background: #fff7ed;
+
+    color: #f97316;
+}
+
+
+/* ==========================================================
+   SUMMARY TEXT
+========================================================== */
+
+.report-card p {
+
+    margin: 0 0 4px;
+
+    color: #64748b;
+
+    font-size: 13px;
+}
+
+
+.report-card h2 {
+
+    margin: 0;
+
+    color: #111827;
+
+    font-size: 22px;
+    font-weight: 700;
+
+    letter-spacing: -.3px;
+}
+
+
+.profit-report-card h2 {
+
+    color: #16a34a;
+}
+
+
+/* ==========================================================
+   GENERIC REPORT SECTION
+========================================================== */
+
+.report-section-card {
+
+    width: 100%;
+
+    padding: 26px;
+
+    margin-bottom: 25px;
+
+    background: #ffffff;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 8px 25px rgba(15, 23, 42, .06);
+
+    animation: reportFadeIn .35s ease;
+}
+
+
+/* ==========================================================
+   SECTION HEADER
+========================================================== */
+
+.report-section-header {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 23px;
+}
+
+
+.report-section-header h2 {
+
+    margin: 0 0 5px;
+
+    color: #111827;
+
+    font-size: 21px;
+    font-weight: 700;
+
+    letter-spacing: -.2px;
+}
+
+
+.report-section-header p {
+
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 13px;
+}
+
+
+/* ==========================================================
+   FUEL PERFORMANCE
+========================================================== */
+
+.fuel-report-grid {
+
+    display: grid;
 
     grid-template-columns:
-    repeat(2,1fr);
+        repeat(2, 1fr);
 
-    gap:25px;
-
+    gap: 25px;
 }
 
 
-.fuel-report-item{
+.fuel-report-item {
 
-    display:flex;
+    display: flex;
+    align-items: center;
 
-    align-items:center;
+    gap: 18px;
 
-    gap:18px;
+    padding: 18px 20px;
 
-    padding:18px;
+    background: #f8fafc;
 
-    background:#f8fafc;
+    border: 1px solid #e5e7eb;
 
-    border-radius:12px;
+    border-radius: 13px;
 
-    border:1px solid #e5e7eb;
-
+    transition:
+        border-color .25s ease,
+        background .25s ease;
 }
 
 
-.fuel-report-icon{
+.fuel-report-item:hover {
 
-    width:52px;
+    border-color: #d7dee8;
 
-    height:52px;
-
-    min-width:52px;
-
-    border-radius:12px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    font-size:22px;
-
+    background: #f9fbfd;
 }
 
 
-.petrol-icon{
+/* ==========================================================
+   FUEL ICON
+========================================================== */
 
-    background:#ecfdf5;
+.fuel-report-icon {
 
-    color:#16a34a;
+    width: 54px;
+    height: 54px;
 
+    min-width: 54px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    font-size: 21px;
 }
 
 
-.diesel-icon{
+.petrol-icon {
 
-    background:#eff6ff;
+    background: #ecfdf5;
 
-    color:#2563eb;
-
+    color: #16a34a;
 }
 
 
-.fuel-report-details{
+.diesel-icon {
 
-    width:100%;
+    background: #eff6ff;
 
+    color: #2563eb;
 }
 
 
-.fuel-report-title{
+/* ==========================================================
+   FUEL DETAILS
+========================================================== */
 
-    display:flex;
+.fuel-report-details {
 
-    justify-content:space-between;
-
-    align-items:center;
-
-    margin-bottom:10px;
-
+    width: 100%;
 }
 
 
-.fuel-report-title span{
+.fuel-report-title {
 
-    font-size:15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-    font-weight:600;
-
-    color:#374151;
-
+    margin-bottom: 10px;
 }
 
 
-.fuel-report-title strong{
+.fuel-report-title span {
 
-    font-size:16px;
+    color: #334155;
 
-    color:#111827;
-
+    font-size: 15px;
+    font-weight: 600;
 }
 
 
-.report-progress{
+.fuel-report-title strong {
 
-    width:100%;
+    color: #111827;
 
-    height:10px;
-
-    background:#e5e7eb;
-
-    border-radius:20px;
-
-    overflow:hidden;
-
-    margin-bottom:9px;
-
+    font-size: 16px;
+    font-weight: 700;
 }
 
 
-.report-progress-fill{
+/* ==========================================================
+   PROGRESS BAR
+========================================================== */
 
-    width:0%;
+.report-progress {
 
-    height:100%;
+    width: 100%;
 
-    border-radius:20px;
+    height: 10px;
 
-    transition:width .7s ease;
+    margin-bottom: 9px;
 
+    background: #e5e7eb;
+
+    border-radius: 20px;
+
+    overflow: hidden;
 }
 
 
-.petrol-fill{
+.report-progress-fill {
 
-    background:linear-gradient(
-        90deg,
-        #16a34a,
-        #22c55e
-    );
+    width: 0%;
 
+    height: 100%;
+
+    border-radius: 20px;
+
+    transition: width .7s ease;
 }
 
 
-.diesel-fill{
+.petrol-fill {
 
-    background:linear-gradient(
-        90deg,
-        #2563eb,
-        #60a5fa
-    );
-
+    background:
+        linear-gradient(
+            90deg,
+            #16a34a,
+            #22c55e
+        );
 }
 
 
-.fuel-report-details p{
+.diesel-fill {
 
-    color:#6b7280;
-
-    font-size:12px;
-
+    background:
+        linear-gradient(
+            90deg,
+            #2563eb,
+            #60a5fa
+        );
 }
 
 
-.fuel-report-details p strong{
+.fuel-report-details p {
 
-    color:#374151;
+    margin: 0;
 
+    color: #64748b;
+
+    font-size: 12px;
 }
 
 
+.fuel-report-details p strong {
 
-/* ==========================================
-   Two Column Reports
-========================================== */
+    color: #334155;
+}
 
-.report-two-column{
 
-    display:grid;
+/* ==========================================================
+   TWO COLUMN REPORTS
+========================================================== */
+
+.report-two-column {
+
+    display: grid;
 
     grid-template-columns:
-    repeat(2,1fr);
+        repeat(2, 1fr);
 
-    gap:25px;
-
+    gap: 25px;
 }
 
 
+/* ==========================================================
+   OVERVIEW LIST
+========================================================== */
 
-/* ==========================================
-   Overview List
-========================================== */
+.overview-list {
 
-.overview-list{
-
-    display:flex;
-
-    flex-direction:column;
-
+    display: flex;
+    flex-direction: column;
 }
 
 
-.overview-row{
+.overview-row {
 
-    display:flex;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-    justify-content:space-between;
+    padding: 14px 0;
 
-    align-items:center;
-
-    padding:14px 0;
-
-    border-bottom:
-    1px solid #e5e7eb;
-
+    border-bottom: 1px solid #e5e7eb;
 }
 
 
-.overview-row:last-child{
+.overview-row:last-child {
 
-    border-bottom:none;
-
+    border-bottom: none;
 }
 
 
-.overview-row span{
+.overview-row span {
 
-    color:#6b7280;
+    color: #64748b;
 
-    font-size:13px;
-
+    font-size: 13px;
 }
 
 
-.overview-row strong{
+.overview-row strong {
 
-    color:#111827;
+    color: #111827;
 
-    font-size:14px;
-
+    font-size: 14px;
+    font-weight: 600;
 }
 
 
+/* ==========================================================
+   EXPENSE BREAKDOWN
+========================================================== */
 
-/* ==========================================
-   Expense Breakdown
-========================================== */
+.expense-breakdown {
 
-.expense-breakdown{
+    display: flex;
+    flex-direction: column;
 
-    display:flex;
-
-    flex-direction:column;
-
-    gap:12px;
-
+    gap: 14px;
 }
 
 
-.expense-breakdown-row{
+.expense-breakdown-row {
 
-    display:flex;
+    display: flex;
+    align-items: center;
 
-    align-items:center;
-
-    justify-content:space-between;
-
-    gap:15px;
-
+    gap: 14px;
 }
 
 
-.expense-breakdown-info{
+.expense-breakdown-info {
 
-    display:flex;
+    min-width: 130px;
 
-    align-items:center;
+    display: flex;
+    align-items: center;
 
-    gap:10px;
-
-    min-width:130px;
-
+    gap: 9px;
 }
 
 
-.expense-breakdown-dot{
+.expense-breakdown-dot {
 
-    width:10px;
+    width: 9px;
+    height: 9px;
 
-    height:10px;
+    min-width: 9px;
 
-    border-radius:50%;
+    border-radius: 50%;
 
-    background:#2563eb;
-
+    background: #2563eb;
 }
 
 
-.expense-breakdown-info span{
+.expense-breakdown-info span {
 
-    color:#475569;
+    color: #475569;
 
-    font-size:13px;
-
+    font-size: 13px;
 }
 
 
-.expense-breakdown-amount{
+.expense-breakdown-amount {
 
-    font-size:13px;
+    min-width: 80px;
 
-    font-weight:600;
+    color: #111827;
 
-    color:#111827;
+    font-size: 13px;
+    font-weight: 600;
 
+    text-align: right;
 }
 
 
-.expense-breakdown-bar{
+.expense-breakdown-bar {
 
-    flex:1;
+    flex: 1;
 
-    height:7px;
+    height: 7px;
 
-    background:#e5e7eb;
+    background: #e5e7eb;
 
-    border-radius:20px;
+    border-radius: 20px;
 
-    overflow:hidden;
-
+    overflow: hidden;
 }
 
 
-.expense-breakdown-fill{
+.expense-breakdown-fill {
 
-    height:100%;
+    width: 0%;
 
-    width:0%;
+    height: 100%;
 
-    background:#2563eb;
+    background: #2563eb;
 
-    border-radius:20px;
+    border-radius: 20px;
 
-    transition:width .7s ease;
-
+    transition: width .7s ease;
 }
 
 
+/* ==========================================================
+   INVENTORY REPORT
+========================================================== */
 
-/* ==========================================
-   Inventory Report
-========================================== */
+.inventory-report-grid {
 
-.inventory-report-grid{
-
-    display:grid;
+    display: grid;
 
     grid-template-columns:
-    repeat(3,1fr);
+        repeat(3, 1fr);
 
-    gap:20px;
-
+    gap: 20px;
 }
 
 
-.inventory-report-item{
+.inventory-report-item {
 
-    display:flex;
+    display: flex;
+    align-items: center;
 
-    align-items:center;
+    gap: 15px;
 
-    gap:15px;
+    padding: 20px;
 
-    padding:20px;
+    background: #f8fafc;
 
-    border-radius:12px;
+    border: 1px solid #e5e7eb;
 
-    background:#f8fafc;
-
-    border:1px solid #e5e7eb;
-
+    border-radius: 13px;
 }
 
 
-.inventory-report-icon{
+.inventory-report-icon {
 
-    width:50px;
+    width: 50px;
+    height: 50px;
 
-    height:50px;
+    min-width: 50px;
 
-    min-width:50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    display:flex;
+    border-radius: 12px;
 
-    justify-content:center;
-
-    align-items:center;
-
-    border-radius:12px;
-
-    font-size:20px;
-
+    font-size: 20px;
 }
 
 
-.petrol-stock-icon{
+.petrol-stock-icon {
 
-    background:#ecfdf5;
+    background: #ecfdf5;
 
-    color:#16a34a;
-
+    color: #16a34a;
 }
 
 
-.diesel-stock-icon{
+.diesel-stock-icon {
 
-    background:#eff6ff;
+    background: #eff6ff;
 
-    color:#2563eb;
-
+    color: #2563eb;
 }
 
 
-.total-stock-icon{
+.total-stock-icon {
 
-    background:#fff7ed;
+    background: #fff7ed;
 
-    color:#f97316;
-
+    color: #f97316;
 }
 
 
-.inventory-report-item div:last-child{
+.inventory-report-item div:last-child {
 
-    display:flex;
+    display: flex;
+    flex-direction: column;
 
-    flex-direction:column;
-
-    gap:4px;
-
+    gap: 4px;
 }
 
 
-.inventory-report-item span{
+.inventory-report-item span {
 
-    color:#6b7280;
+    color: #64748b;
 
-    font-size:12px;
-
+    font-size: 12px;
 }
 
 
-.inventory-report-item strong{
+.inventory-report-item strong {
 
-    color:#111827;
+    color: #111827;
 
-    font-size:19px;
-
+    font-size: 19px;
+    font-weight: 700;
 }
 
 
+/* ==========================================================
+   CUSTOMER INSIGHTS
+========================================================== */
 
-/* ==========================================
-   Customer Insights
-========================================== */
+.customer-report-grid {
 
-.customer-report-grid{
-
-    display:grid;
+    display: grid;
 
     grid-template-columns:
-    repeat(3,1fr);
+        repeat(3, 1fr);
 
-    gap:20px;
-
+    gap: 20px;
 }
 
 
-.customer-report-item{
+.customer-report-item {
 
-    display:flex;
+    display: flex;
+    align-items: center;
 
-    align-items:center;
+    gap: 15px;
 
-    gap:15px;
+    padding: 20px;
 
-    padding:20px;
+    background: #f8fafc;
 
-    background:#f8fafc;
+    border: 1px solid #e5e7eb;
 
-    border:1px solid #e5e7eb;
-
-    border-radius:12px;
-
+    border-radius: 13px;
 }
 
 
-.customer-report-item > i{
+.customer-report-item > i {
 
-    width:48px;
+    width: 48px;
+    height: 48px;
 
-    height:48px;
+    min-width: 48px;
 
-    min-width:48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    display:flex;
+    border-radius: 11px;
 
-    align-items:center;
+    background: #eff6ff;
 
-    justify-content:center;
+    color: #2563eb;
 
-    border-radius:11px;
-
-    background:#eff6ff;
-
-    color:#2563eb;
-
-    font-size:20px;
-
+    font-size: 19px;
 }
 
 
-.customer-report-item div{
+.customer-report-item div {
 
-    display:flex;
+    display: flex;
+    flex-direction: column;
 
-    flex-direction:column;
-
-    gap:4px;
-
+    gap: 4px;
 }
 
 
-.customer-report-item span{
+.customer-report-item span {
 
-    color:#6b7280;
+    color: #64748b;
 
-    font-size:12px;
-
+    font-size: 12px;
 }
 
 
-.customer-report-item strong{
+.customer-report-item strong {
 
-    color:#111827;
+    color: #111827;
 
-    font-size:20px;
-
+    font-size: 20px;
+    font-weight: 700;
 }
 
 
+/* ==========================================================
+   RECENT SALES TABLE
+========================================================== */
 
-/* ==========================================
-   Recent Sales Table
-========================================== */
+.report-table-container {
 
-.report-table-container{
+    width: 100%;
 
-    width:100%;
-
-    overflow-x:auto;
-
+    overflow-x: auto;
 }
 
 
-.report-table-container table{
+.report-table-container table {
 
-    width:100%;
+    width: 100%;
 
-    min-width:850px;
+    min-width: 850px;
 
-    border-collapse:collapse;
-
+    border-collapse: collapse;
 }
 
 
-.report-table-container thead{
+.report-table-container thead {
 
-    background:#2563eb;
-
+    background: #2563eb;
 }
 
 
-.report-table-container th{
+.report-table-container th {
 
-    color:#ffffff;
+    padding: 14px 15px;
 
-    padding:14px 15px;
+    color: #ffffff;
 
-    text-align:left;
+    text-align: left;
 
-    font-size:13px;
+    font-size: 12px;
+    font-weight: 600;
 
-    font-weight:600;
-
-    white-space:nowrap;
-
+    white-space: nowrap;
 }
 
 
-.report-table-container td{
+.report-table-container td {
 
-    padding:14px 15px;
+    padding: 14px 15px;
 
-    border-bottom:
-    1px solid #e5e7eb;
+    border-bottom: 1px solid #e5e7eb;
 
-    color:#374151;
+    color: #475569;
 
-    font-size:13px;
+    font-size: 13px;
 
-    white-space:nowrap;
-
+    white-space: nowrap;
 }
 
 
-.report-table-container tbody tr{
+.report-table-container tbody tr {
 
-    transition:.25s;
-
+    transition: background .2s ease;
 }
 
 
-.report-table-container tbody tr:hover{
+.report-table-container tbody tr:hover {
 
-    background:#f8fafc;
-
+    background: #f8fafc;
 }
 
 
-.report-table-container tbody tr{
+/* ==========================================================
+   TABLE BADGES
+========================================================== */
 
-    animation:slideUp .3s ease;
+.report-fuel-badge,
+.report-payment-badge {
 
+    display: inline-flex;
+    align-items: center;
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+    font-weight: 600;
 }
 
 
+.report-fuel-petrol {
 
-/* ==========================================
-   Report Table Badges
-========================================== */
+    background: #ecfdf5;
 
-.report-fuel-badge{
-
-    display:inline-flex;
-
-    padding:5px 10px;
-
-    border-radius:20px;
-
-    font-size:11px;
-
-    font-weight:600;
-
+    color: #15803d;
 }
 
 
-.report-fuel-petrol{
+.report-fuel-diesel {
 
-    background:#ecfdf5;
+    background: #eff6ff;
 
-    color:#15803d;
-
+    color: #1d4ed8;
 }
 
 
-.report-fuel-diesel{
+.report-payment-badge {
 
-    background:#eff6ff;
+    background: #f1f5f9;
 
-    color:#1d4ed8;
-
+    color: #475569;
 }
 
 
-.report-payment-badge{
+/* ==========================================================
+   EMPTY REPORT
+========================================================== */
 
-    display:inline-flex;
+.empty-report-message {
 
-    padding:5px 10px;
+    padding: 35px !important;
 
-    border-radius:20px;
+    color: #94a3b8 !important;
 
-    background:#f3f4f6;
+    text-align: center !important;
 
-    color:#475569;
+    font-size: 13px;
 
-    font-size:11px;
-
-    font-weight:600;
-
+    font-style: italic;
 }
 
 
+/* ==========================================================
+   REPORT FOOTER
+========================================================== */
 
-/* ==========================================
-   Empty Report
-========================================== */
+.report-footer {
 
-.empty-report-message{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-    text-align:center !important;
+    padding: 18px 5px;
 
-    color:#9ca3af !important;
+    color: #94a3b8;
 
-    padding:35px !important;
-
-    font-style:italic;
-
+    font-size: 12px;
 }
 
 
+.report-footer div {
 
-/* ==========================================
-   Report Footer
-========================================== */
+    display: flex;
+    align-items: center;
 
-.report-footer{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    padding:18px 5px;
-
-    color:#94a3b8;
-
-    font-size:12px;
-
+    gap: 8px;
 }
 
 
-.report-footer div{
+.report-footer i {
 
-    display:flex;
-
-    align-items:center;
-
-    gap:8px;
-
+    color: #2563eb;
 }
 
 
-.report-footer i{
+.report-footer strong {
 
-    color:#2563eb;
+    color: #2563eb;
 
+    font-size: 14px;
 }
 
 
-.report-footer strong{
+/* ==========================================================
+   TABLE SCROLLBAR
+========================================================== */
 
-    color:#2563eb;
+.report-table-container::-webkit-scrollbar {
 
-    font-size:14px;
-
+    height: 7px;
 }
 
 
+.report-table-container::-webkit-scrollbar-track {
 
-/* ==========================================
-   Scrollbar
-========================================== */
+    background: #e5e7eb;
 
-.report-table-container::-webkit-scrollbar{
-
-    height:8px;
-
+    border-radius: 20px;
 }
 
 
-.report-table-container::-webkit-scrollbar-track{
+.report-table-container::-webkit-scrollbar-thumb {
 
-    background:#e5e7eb;
+    background: #2563eb;
 
-    border-radius:20px;
-
+    border-radius: 20px;
 }
 
 
-.report-table-container::-webkit-scrollbar-thumb{
+.report-table-container::-webkit-scrollbar-thumb:hover {
 
-    background:#2563eb;
-
-    border-radius:20px;
-
+    background: #1d4ed8;
 }
 
 
-.report-table-container::-webkit-scrollbar-thumb:hover{
+/* ==========================================================
+   ANIMATIONS
+========================================================== */
 
-    background:#1d4ed8;
+@keyframes reportFadeIn {
 
-}
+    from {
 
+        opacity: 0;
 
-
-/* ==========================================
-   Animations
-========================================== */
-
-@keyframes fadeIn{
-
-    from{
-
-        opacity:0;
-
-        transform:translateY(15px);
-
+        transform: translateY(10px);
     }
 
-    to{
+    to {
 
-        opacity:1;
+        opacity: 1;
 
-        transform:translateY(0);
-
+        transform: translateY(0);
     }
-
 }
 
 
-@keyframes slideUp{
+/* ==========================================================
+   RESPONSIVE — 1200px
+========================================================== */
 
-    from{
+@media (max-width: 1200px) {
 
-        opacity:0;
-
-        transform:translateY(10px);
-
-    }
-
-    to{
-
-        opacity:1;
-
-        transform:translateY(0);
-
-    }
-
-}
-
-
-
-/* ==========================================
-   Responsive - 1200px
-========================================== */
-
-@media(max-width:1200px){
-
-    .report-summary{
+    .report-summary {
 
         grid-template-columns:
-        repeat(2,1fr);
-
+            repeat(2, 1fr);
     }
 
 
-    .inventory-report-grid{
+    .inventory-report-grid {
 
         grid-template-columns:
-        repeat(2,1fr);
-
+            repeat(2, 1fr);
     }
 
 }
 
 
+/* ==========================================================
+   RESPONSIVE — 1000px
+========================================================== */
 
-/* ==========================================
-   Responsive - 900px
-========================================== */
+@media (max-width: 1000px) {
 
-@media(max-width:900px){
+    .report-filter-card {
 
-    .report-two-column{
-
-        grid-template-columns:1fr;
-
+        flex-wrap: wrap;
     }
 
 
-    .fuel-report-grid{
+    .filter-group {
 
-        grid-template-columns:1fr;
-
+        min-width: calc(50% - 10px);
     }
 
 
-    .customer-report-grid{
+    .date-range-separator {
 
-        grid-template-columns:
-        repeat(2,1fr);
-
+        display: none;
     }
 
 }
 
 
+/* ==========================================================
+   RESPONSIVE — 900px
+========================================================== */
 
-/* ==========================================
-   Responsive - 768px
-========================================== */
+@media (max-width: 900px) {
 
-@media(max-width:768px){
+    .report-two-column {
 
-    .reports-header{
-
-        flex-direction:column;
-
-        align-items:flex-start;
-
+        grid-template-columns: 1fr;
     }
 
 
-    .report-actions{
+    .fuel-report-grid {
 
-        width:100%;
+        grid-template-columns: 1fr;
+    }
 
+
+    .customer-report-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+
+/* ==========================================================
+   RESPONSIVE — 768px
+========================================================== */
+
+@media (max-width: 768px) {
+
+    .reports-header {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+
+    .report-actions {
+
+        width: 100%;
     }
 
 
     .refresh-report-btn,
-    .print-report-btn{
+    .print-report-btn {
 
-        flex:1;
-
+        flex: 1;
     }
 
 
-    .report-filter-card{
+    .report-filter-card {
 
-        flex-direction:column;
+        flex-direction: column;
 
-        align-items:stretch;
+        align-items: stretch;
 
+        padding: 20px;
     }
 
 
-    .filter-group{
+    .filter-group {
 
-        width:100%;
+        width: 100%;
 
+        min-width: 100%;
     }
 
 
-    .report-date-display{
+    .date-range-separator {
 
-        justify-content:center;
-
+        display: none;
     }
 
 
-    .report-summary{
+    .report-summary {
 
-        grid-template-columns:1fr;
-
+        grid-template-columns: 1fr;
     }
 
 
-    .inventory-report-grid{
+    .inventory-report-grid {
 
-        grid-template-columns:1fr;
-
+        grid-template-columns: 1fr;
     }
 
 
-    .customer-report-grid{
+    .customer-report-grid {
 
-        grid-template-columns:1fr;
-
+        grid-template-columns: 1fr;
     }
 
 
-    .report-section-card{
+    .report-section-card {
 
-        padding:20px;
-
+        padding: 20px;
     }
 
 
-    .report-footer{
+    .report-footer {
 
-        flex-direction:column;
+        flex-direction: column;
 
-        align-items:flex-start;
+        align-items: flex-start;
 
-        gap:10px;
-
+        gap: 10px;
     }
 
 }
 
 
+/* ==========================================================
+   RESPONSIVE — 480px
+========================================================== */
 
-/* ==========================================
-   Responsive - 480px
-========================================== */
+@media (max-width: 480px) {
 
-@media(max-width:480px){
+    .reports-header h2 {
 
-    .reports-header h2{
-
-        font-size:22px;
-
+        font-size: 22px;
     }
 
 
-    .report-actions{
+    .reports-header p {
 
-        flex-direction:column;
+        font-size: 13px;
+    }
 
+
+    .report-actions {
+
+        flex-direction: column;
     }
 
 
     .refresh-report-btn,
-    .print-report-btn{
+    .print-report-btn {
 
-        width:100%;
+        width: 100%;
 
+        flex: none;
     }
 
 
-    .report-card{
+    .report-card {
 
-        padding:18px;
-
+        padding: 18px;
     }
 
 
-    .report-card h2{
+    .report-card h2 {
 
-        font-size:20px;
-
+        font-size: 20px;
     }
 
 
-    .report-card-icon{
+    .report-card-icon {
 
-        width:48px;
+        width: 48px;
+        height: 48px;
 
-        height:48px;
-
-        min-width:48px;
-
+        min-width: 48px;
     }
 
 
-    .fuel-report-item{
+    .fuel-report-item {
 
-        padding:15px;
-
+        padding: 15px;
     }
 
 
-    .fuel-report-icon{
+    .fuel-report-icon {
 
-        width:45px;
+        width: 45px;
+        height: 45px;
 
-        height:45px;
-
-        min-width:45px;
-
+        min-width: 45px;
     }
 
 
-    .report-section-header h2{
+    .report-section-header h2 {
 
-        font-size:19px;
-
+        font-size: 19px;
     }
 
 }
 
 
+/* ==========================================================
+   PRINT
+========================================================== */
 
-/* ==========================================
-   Print
-========================================== */
+@media print {
 
-@media print{
+    body {
 
-    body{
-
-        background:#ffffff;
-
+        background: #ffffff;
     }
 
 
     .sidebar,
     .topbar,
     .report-actions,
-    .report-filter-card{
+    .report-filter-card {
 
-        display:none !important;
-
+        display: none !important;
     }
 
 
-    .main-content{
+    .main-content {
 
-        margin:0;
+        width: 100%;
 
-        width:100%;
-
+        margin: 0;
     }
 
 
-    .content{
+    .content {
 
-        padding:0;
-
+        padding: 0;
     }
 
 
     .report-section-card,
-    .report-card{
+    .report-card {
 
-        box-shadow:none;
+        border: 1px solid #e5e7eb;
 
-        border:1px solid #e5e7eb;
+        box-shadow: none;
 
-        break-inside:avoid;
-
+        break-inside: avoid;
     }
 
 
-    .report-summary{
+    .report-summary {
 
         grid-template-columns:
-        repeat(4,1fr);
-
+            repeat(4, 1fr);
     }
 
 
-    .report-two-column{
+    .report-two-column {
 
         grid-template-columns:
-        repeat(2,1fr);
-
+            repeat(2, 1fr);
     }
 
 
-    .report-footer{
+    .report-footer {
 
-        border-top:
-        1px solid #e5e7eb;
-
+        border-top: 1px solid #e5e7eb;
     }
 
-}
-
-
-/* ==========================================
-   Reports Page Complete
-========================================== */
-/* ==========================================
-   REPORT CALENDAR FILTER
-========================================== */
-
-.filter-group input[type="date"] {
-    width: 100%;
-    padding: 11px 13px;
-    border: 1px solid #d1d5db;
-    border-radius: 9px;
-    outline: none;
-
-    background: #ffffff;
-    color: #111827;
-    font-family: inherit;
-    font-size: 14px;
-    transition: 0.3s;
-}
-
-.filter-group input[type="date"]:focus {
-    border-color: #2563eb;
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
-}
-
-.clear-date-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 7px;
-
-    min-height: 42px;
-    padding: 10px 14px;
-    border: 1px solid #d1d5db;
-    border-radius: 9px;
-
-    background: #ffffff;
-    color: #475569;
-    cursor: pointer;
-    font-family: inherit;
-    font-size: 13px;
-    font-weight: 600;
-    transition: 0.25s;
-}
-
-.clear-date-btn:hover {
-    border-color: #ef4444;
-    background: #fef2f2;
-    color: #dc2626;
-}
-
-@media (max-width: 768px) {
-    .clear-date-btn {
-        width: 100%;
-    }
 }
