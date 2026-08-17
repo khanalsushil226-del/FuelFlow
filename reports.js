@@ -1,6 +1,6 @@
 // ======================================================
 // FuelFlow Reports Module
-// Complete Reports JavaScript
+// FROM DATE → TO DATE REPORT FILTER
 // ======================================================
 
 
@@ -9,17 +9,12 @@
 // ======================================================
 
 // Report controls
-const reportPeriod =
-    document.getElementById("reportPeriod");
 
-const reportDate =
-    document.getElementById("reportDate");
+const fromDate =
+    document.getElementById("fromDate");
 
-const clearReportDate =
-    document.getElementById("clearReportDate");
-
-const reportDateText =
-    document.getElementById("reportDateText");
+const toDate =
+    document.getElementById("toDate");
 
 const refreshReports =
     document.getElementById("refreshReports");
@@ -144,12 +139,16 @@ const reportGeneratedText =
 // LOCAL STORAGE HELPER
 // ======================================================
 
-function getStorageData(key, defaultValue = []) {
+function getStorageData(
+    key,
+    defaultValue = []
+) {
 
     try {
 
         const data =
             localStorage.getItem(key);
+
 
         if (
             !data ||
@@ -160,6 +159,7 @@ function getStorageData(key, defaultValue = []) {
             return defaultValue;
 
         }
+
 
         return JSON.parse(data);
 
@@ -186,7 +186,11 @@ function getStorageData(key, defaultValue = []) {
 function getSalesData() {
 
     const sales =
-        getStorageData("sales", []);
+        getStorageData(
+            "sales",
+            []
+        );
+
 
     return Array.isArray(sales)
         ? sales
@@ -202,7 +206,11 @@ function getSalesData() {
 function getExpensesData() {
 
     const expenses =
-        getStorageData("expenses", []);
+        getStorageData(
+            "expenses",
+            []
+        );
+
 
     return Array.isArray(expenses)
         ? expenses
@@ -218,7 +226,11 @@ function getExpensesData() {
 function getCustomersData() {
 
     const customers =
-        getStorageData("customers", []);
+        getStorageData(
+            "customers",
+            []
+        );
+
 
     return Array.isArray(customers)
         ? customers
@@ -242,6 +254,7 @@ function getFuelStockData() {
             }
         );
 
+
     if (
         !stock ||
         typeof stock !== "object" ||
@@ -254,6 +267,7 @@ function getFuelStockData() {
         };
 
     }
+
 
     return stock;
 
@@ -269,7 +283,10 @@ function formatNumber(number) {
     const value =
         Number(number) || 0;
 
-    return value.toLocaleString("en-IN");
+
+    return value.toLocaleString(
+        "en-IN"
+    );
 
 }
 
@@ -282,6 +299,7 @@ function formatCurrency(number) {
 
     const value =
         Number(number) || 0;
+
 
     return (
         "Rs. " +
@@ -309,16 +327,21 @@ function parseDate(value) {
 
     }
 
+
     const date =
         new Date(value);
 
+
     if (
-        !isNaN(date.getTime())
+        !isNaN(
+            date.getTime()
+        )
     ) {
 
         return date;
 
     }
+
 
     return null;
 
@@ -326,7 +349,113 @@ function parseDate(value) {
 
 
 // ======================================================
-// GET DATE FROM SALE
+// INPUT DATE PARSER
+// ======================================================
+// Converts YYYY-MM-DD into a LOCAL date.
+// This avoids timezone problems with <input type="date">.
+// ======================================================
+
+function parseInputDate(value) {
+
+    if (!value) {
+
+        return null;
+
+    }
+
+
+    const parts =
+        value.split("-");
+
+
+    if (
+        parts.length !== 3
+    ) {
+
+        return null;
+
+    }
+
+
+    const year =
+        Number(parts[0]);
+
+    const month =
+        Number(parts[1]) - 1;
+
+    const day =
+        Number(parts[2]);
+
+
+    const date =
+        new Date(
+            year,
+            month,
+            day
+        );
+
+
+    date.setHours(
+        0,
+        0,
+        0,
+        0
+    );
+
+
+    return date;
+
+}
+
+
+// ======================================================
+// START OF DAY
+// ======================================================
+
+function startOfDay(date) {
+
+    const result =
+        new Date(date);
+
+
+    result.setHours(
+        0,
+        0,
+        0,
+        0
+    );
+
+
+    return result;
+
+}
+
+
+// ======================================================
+// END OF DAY
+// ======================================================
+
+function endOfDay(date) {
+
+    const result =
+        new Date(date);
+
+
+    result.setHours(
+        23,
+        59,
+        59,
+        999
+    );
+
+
+    return result;
+
+}
+
+
+// ======================================================
+// GET SALE DATE
 // ======================================================
 
 function getSaleDateValue(sale) {
@@ -336,6 +465,7 @@ function getSaleDateValue(sale) {
         sale.createdAt ||
         sale.saleDate ||
         sale.transactionDate ||
+        sale.timestamp ||
         null
     );
 
@@ -343,7 +473,7 @@ function getSaleDateValue(sale) {
 
 
 // ======================================================
-// GET DATE FROM EXPENSE
+// GET EXPENSE DATE
 // ======================================================
 
 function getExpenseDateValue(expense) {
@@ -353,6 +483,7 @@ function getExpenseDateValue(expense) {
         expense.createdAt ||
         expense.expenseDate ||
         expense.transactionDate ||
+        expense.timestamp ||
         null
     );
 
@@ -360,216 +491,57 @@ function getExpenseDateValue(expense) {
 
 
 // ======================================================
-// CHECK SAME DAY
+// CHECK DATE RANGE
 // ======================================================
 
-function isSameDay(date1, date2) {
+function isDateInRange(
+    itemDate,
+    from,
+    to
+) {
+
+    const date =
+        parseDate(itemDate);
+
+
+    if (!date) {
+
+        return false;
+
+    }
+
+
+    const dateOnly =
+        startOfDay(date);
+
+
+    // ----------------------------------------------
+    // FROM DATE
+    // ----------------------------------------------
 
     if (
-        !date1 ||
-        !date2
+        from &&
+        dateOnly < from
     ) {
 
         return false;
 
     }
 
-    return (
 
-        date1.getFullYear() ===
-        date2.getFullYear()
+    // ----------------------------------------------
+    // TO DATE
+    // ----------------------------------------------
 
-        &&
+    if (
+        to &&
+        dateOnly > to
+    ) {
 
-        date1.getMonth() ===
-        date2.getMonth()
-
-        &&
-
-        date1.getDate() ===
-        date2.getDate()
-
-    );
-
-}
-
-
-// ======================================================
-// GET START OF TODAY
-// ======================================================
-
-function getToday() {
-
-    const now =
-        new Date();
-
-    return new Date(
-        now.getFullYear(),
-        now.getMonth(),
-        now.getDate()
-    );
-
-}
-
-
-// ======================================================
-// CHECK SALE PERIOD
-// ======================================================
-
-function isSaleInPeriod(
-    sale,
-    period
-) {
-
-    const saleDate =
-        parseDate(
-            getSaleDateValue(sale)
-        );
-
-
-    // --------------------------------------------------
-    // If user selected an exact date
-    // exact date overrides period
-    // --------------------------------------------------
-
-    const selectedDate =
-        reportDate &&
-        reportDate.value
-            ? parseDate(reportDate.value)
-            : null;
-
-
-    if (selectedDate) {
-
-        if (!saleDate) {
-
-            return false;
-
-        }
-
-        return isSameDay(
-            saleDate,
-            selectedDate
-        );
+        return false;
 
     }
 
-
-    // --------------------------------------------------
-    // If sale has no valid date
-    // --------------------------------------------------
-
-    if (!saleDate) {
-
-        return true;
-
-    }
-
-
-    const today =
-        getToday();
-
-
-    // --------------------------------------------------
-    // TODAY
-    // --------------------------------------------------
-
-    if (period === "today") {
-
-        return isSameDay(
-            saleDate,
-            today
-        );
-
-    }
-
-
-    // --------------------------------------------------
-    // THIS WEEK
-    // Monday -> Sunday
-    // --------------------------------------------------
-
-    if (period === "week") {
-
-        const day =
-            today.getDay();
-
-        const difference =
-            day === 0
-                ? 6
-                : day - 1;
-
-        const weekStart =
-            new Date(today);
-
-        weekStart.setDate(
-            today.getDate() - difference
-        );
-
-        weekStart.setHours(
-            0,
-            0,
-            0,
-            0
-        );
-
-
-        const weekEnd =
-            new Date(weekStart);
-
-        weekEnd.setDate(
-            weekStart.getDate() + 7
-        );
-
-
-        return (
-            saleDate >= weekStart &&
-            saleDate < weekEnd
-        );
-
-    }
-
-
-    // --------------------------------------------------
-    // THIS MONTH
-    // --------------------------------------------------
-
-    if (period === "month") {
-
-        return (
-
-            saleDate.getFullYear() ===
-            today.getFullYear()
-
-            &&
-
-            saleDate.getMonth() ===
-            today.getMonth()
-
-        );
-
-    }
-
-
-    // --------------------------------------------------
-    // THIS YEAR
-    // --------------------------------------------------
-
-    if (period === "year") {
-
-        return (
-
-            saleDate.getFullYear() ===
-            today.getFullYear()
-
-        );
-
-    }
-
-
-    // --------------------------------------------------
-    // ALL TIME
-    // --------------------------------------------------
 
     return true;
 
@@ -577,163 +549,33 @@ function isSaleInPeriod(
 
 
 // ======================================================
-// CHECK EXPENSE PERIOD
+// GET SELECTED DATE RANGE
 // ======================================================
 
-function isExpenseInPeriod(
-    expense,
-    period
-) {
+function getSelectedDateRange() {
 
-    const expenseDate =
-        parseDate(
-            getExpenseDateValue(expense)
-        );
-
-
-    // --------------------------------------------------
-    // Exact date selected
-    // --------------------------------------------------
-
-    const selectedDate =
-        reportDate &&
-        reportDate.value
-            ? parseDate(reportDate.value)
+    const from =
+        fromDate &&
+        fromDate.value
+            ? parseInputDate(
+                fromDate.value
+            )
             : null;
 
 
-    if (selectedDate) {
-
-        if (!expenseDate) {
-
-            return false;
-
-        }
-
-        return isSameDay(
-            expenseDate,
-            selectedDate
-        );
-
-    }
+    const to =
+        toDate &&
+        toDate.value
+            ? parseInputDate(
+                toDate.value
+            )
+            : null;
 
 
-    // --------------------------------------------------
-    // No valid date
-    // --------------------------------------------------
-
-    if (!expenseDate) {
-
-        return true;
-
-    }
-
-
-    const today =
-        getToday();
-
-
-    // --------------------------------------------------
-    // TODAY
-    // --------------------------------------------------
-
-    if (period === "today") {
-
-        return isSameDay(
-            expenseDate,
-            today
-        );
-
-    }
-
-
-    // --------------------------------------------------
-    // THIS WEEK
-    // --------------------------------------------------
-
-    if (period === "week") {
-
-        const day =
-            today.getDay();
-
-        const difference =
-            day === 0
-                ? 6
-                : day - 1;
-
-        const weekStart =
-            new Date(today);
-
-        weekStart.setDate(
-            today.getDate() - difference
-        );
-
-        weekStart.setHours(
-            0,
-            0,
-            0,
-            0
-        );
-
-
-        const weekEnd =
-            new Date(weekStart);
-
-        weekEnd.setDate(
-            weekStart.getDate() + 7
-        );
-
-
-        return (
-            expenseDate >= weekStart &&
-            expenseDate < weekEnd
-        );
-
-    }
-
-
-    // --------------------------------------------------
-    // THIS MONTH
-    // --------------------------------------------------
-
-    if (period === "month") {
-
-        return (
-
-            expenseDate.getFullYear() ===
-            today.getFullYear()
-
-            &&
-
-            expenseDate.getMonth() ===
-            today.getMonth()
-
-        );
-
-    }
-
-
-    // --------------------------------------------------
-    // THIS YEAR
-    // --------------------------------------------------
-
-    if (period === "year") {
-
-        return (
-
-            expenseDate.getFullYear() ===
-            today.getFullYear()
-
-        );
-
-    }
-
-
-    // --------------------------------------------------
-    // ALL TIME
-    // --------------------------------------------------
-
-    return true;
+    return {
+        from,
+        to
+    };
 
 }
 
@@ -814,160 +656,29 @@ function getFuelType(sale) {
 
 
 // ======================================================
-// UPDATE REPORT DATE TEXT
-// ======================================================
-
-function updateReportDateText() {
-
-    if (!reportDateText) {
-
-        return;
-
-    }
-
-
-    const period =
-        reportPeriod
-            ? reportPeriod.value
-            : "month";
-
-
-    // --------------------------------------------------
-    // Exact date
-    // --------------------------------------------------
-
-    if (
-        reportDate &&
-        reportDate.value
-    ) {
-
-        const selectedDate =
-            parseDate(
-                reportDate.value
-            );
-
-
-        if (selectedDate) {
-
-            reportDateText.textContent =
-                selectedDate.toLocaleDateString(
-                    "en-US",
-                    {
-                        weekday: "long",
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric"
-                    }
-                );
-
-            return;
-
-        }
-
-    }
-
-
-    const now =
-        new Date();
-
-
-    // --------------------------------------------------
-    // TODAY
-    // --------------------------------------------------
-
-    if (period === "today") {
-
-        reportDateText.textContent =
-            now.toLocaleDateString(
-                "en-US",
-                {
-                    weekday: "long",
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric"
-                }
-            );
-
-        return;
-
-    }
-
-
-    // --------------------------------------------------
-    // WEEK
-    // --------------------------------------------------
-
-    if (period === "week") {
-
-        reportDateText.textContent =
-            "Current Week";
-
-        return;
-
-    }
-
-
-    // --------------------------------------------------
-    // MONTH
-    // --------------------------------------------------
-
-    if (period === "month") {
-
-        reportDateText.textContent =
-            now.toLocaleDateString(
-                "en-US",
-                {
-                    month: "long",
-                    year: "numeric"
-                }
-            );
-
-        return;
-
-    }
-
-
-    // --------------------------------------------------
-    // YEAR
-    // --------------------------------------------------
-
-    if (period === "year") {
-
-        reportDateText.textContent =
-            String(
-                now.getFullYear()
-            );
-
-        return;
-
-    }
-
-
-    // --------------------------------------------------
-    // ALL TIME
-    // --------------------------------------------------
-
-    reportDateText.textContent =
-        "All Recorded Data";
-
-}
-
-
-// ======================================================
 // GENERATE REPORT
 // ======================================================
 
 function generateReport() {
 
-    const period =
-        reportPeriod
-            ? reportPeriod.value
-            : "month";
+    // ----------------------------------------------
+    // GET DATE RANGE
+    // ----------------------------------------------
+
+    const range =
+        getSelectedDateRange();
 
 
-    // --------------------------------------------------
+    const from =
+        range.from;
+
+    const to =
+        range.to;
+
+
+    // ----------------------------------------------
     // LOAD DATA
-    // --------------------------------------------------
+    // ----------------------------------------------
 
     const allSales =
         getSalesData();
@@ -982,31 +693,39 @@ function generateReport() {
         getFuelStockData();
 
 
-    // --------------------------------------------------
+    // ==================================================
     // FILTER SALES
-    // --------------------------------------------------
+    // ==================================================
 
     const filteredSales =
         allSales.filter(
-            sale =>
-                isSaleInPeriod(
-                    sale,
-                    period
-                )
+            sale => {
+
+                return isDateInRange(
+                    getSaleDateValue(sale),
+                    from,
+                    to
+                );
+
+            }
         );
 
 
-    // --------------------------------------------------
+    // ==================================================
     // FILTER EXPENSES
-    // --------------------------------------------------
+    // ==================================================
 
     const filteredExpenses =
         allExpenses.filter(
-            expense =>
-                isExpenseInPeriod(
-                    expense,
-                    period
-                )
+            expense => {
+
+                return isDateInRange(
+                    getExpenseDateValue(expense),
+                    from,
+                    to
+                );
+
+            }
         );
 
 
@@ -1033,31 +752,45 @@ function generateReport() {
             const amount =
                 getSaleAmount(sale);
 
+
             const litres =
                 getSaleQuantity(sale);
+
 
             const fuel =
                 getFuelType(sale);
 
 
-            totalSales += amount;
+            totalSales +=
+                amount;
 
-            totalFuel += litres;
+
+            totalFuel +=
+                litres;
 
 
-            if (fuel === "petrol") {
+            if (
+                fuel === "petrol"
+            ) {
 
-                petrolLitres += litres;
+                petrolLitres +=
+                    litres;
 
-                petrolSales += amount;
+                petrolSales +=
+                    amount;
 
             }
 
-            else if (fuel === "diesel") {
 
-                dieselLitres += litres;
+            else if (
+                fuel === "diesel"
+            ) {
 
-                dieselSales += amount;
+                dieselLitres +=
+                    litres;
+
+                dieselSales +=
+                    amount;
 
             }
 
@@ -1085,7 +818,7 @@ function generateReport() {
 
 
     // ==================================================
-    // PROFIT
+    // NET PROFIT
     // ==================================================
 
     const netProfit =
@@ -1102,7 +835,7 @@ function generateReport() {
 
 
     // ==================================================
-    // SUMMARY
+    // SUMMARY CARDS
     // ==================================================
 
     if (reportTotalSales) {
@@ -1209,7 +942,9 @@ function generateReport() {
     let dieselPercentage = 0;
 
 
-    if (totalFuelSales > 0) {
+    if (
+        totalFuelSales > 0
+    ) {
 
         petrolPercentage =
             (
@@ -1267,7 +1002,7 @@ function generateReport() {
     }
 
 
-    const average =
+    const averageTransactionValue =
         transactions > 0
             ? totalSales / transactions
             : 0;
@@ -1277,7 +1012,7 @@ function generateReport() {
 
         averageTransaction.textContent =
             formatCurrency(
-                average
+                averageTransactionValue
             );
 
     }
@@ -1304,7 +1039,7 @@ function generateReport() {
 
 
     // ==================================================
-    // INVENTORY
+    // CURRENT INVENTORY
     // ==================================================
 
     const petrolStock =
@@ -1351,7 +1086,7 @@ function generateReport() {
 
 
     // ==================================================
-    // CUSTOMERS
+    // CUSTOMER INFORMATION
     // ==================================================
 
     if (reportTotalCustomers) {
@@ -1383,7 +1118,9 @@ function generateReport() {
                 ) || 0;
 
 
-            if (visits > 1) {
+            if (
+                visits > 1
+            ) {
 
                 regularCustomers++;
 
@@ -1446,17 +1183,17 @@ function generateReport() {
 
 
     // ==================================================
-    // GENERATED TIME
+    // UPDATE REPORT FOOTER
     // ==================================================
 
     if (reportGeneratedText) {
 
-        const currentTime =
-            new Date()
-                .toLocaleString();
+        const now =
+            new Date();
+
 
         reportGeneratedText.textContent =
-            `Report generated on ${currentTime}`;
+            `Report generated on ${now.toLocaleString()}`;
 
     }
 
@@ -1490,7 +1227,9 @@ function generateExpenseBreakdown(
         expenseBreakdown.innerHTML = `
 
             <div class="empty-report-message">
+
                 No expense data available.
+
             </div>
 
         `;
@@ -1527,7 +1266,8 @@ function generateExpenseBreakdown(
                 !categories[category]
             ) {
 
-                categories[category] = 0;
+                categories[category] =
+                    0;
 
             }
 
@@ -1554,12 +1294,10 @@ function generateExpenseBreakdown(
 
             const percentage =
                 totalExpenses > 0
-
                     ? (
                         amount /
                         totalExpenses
                     ) * 100
-
                     : 0;
 
 
@@ -1579,6 +1317,7 @@ function generateExpenseBreakdown(
 
                     </div>
 
+
                     <div class="expense-breakdown-bar">
 
                         <div
@@ -1588,7 +1327,10 @@ function generateExpenseBreakdown(
 
                     </div>
 
-                    <span class="expense-breakdown-amount">
+
+                    <span
+                        class="expense-breakdown-amount"
+                    >
 
                         ${formatCurrency(amount)}
 
@@ -1649,9 +1391,9 @@ function displayRecentSales(
     }
 
 
-    // --------------------------------------------------
-    // Latest sales first
-    // --------------------------------------------------
+    // ----------------------------------------------
+    // Sort newest first
+    // ----------------------------------------------
 
     const recentSales =
         sales
@@ -1663,6 +1405,7 @@ function displayRecentSales(
                         parseDate(
                             getSaleDateValue(a)
                         );
+
 
                     const dateB =
                         parseDate(
@@ -1698,7 +1441,10 @@ function displayRecentSales(
 
                 }
             )
-            .slice(0, 10);
+            .slice(
+                0,
+                10
+            );
 
 
     recentSales.forEach(
@@ -1706,15 +1452,18 @@ function displayRecentSales(
 
             const fuel =
                 String(
+
                     sale.fuel ??
                     sale.fuelType ??
                     sale.product ??
                     "-"
+
                 );
 
 
             const fuelClass =
-                fuel.toLowerCase()
+                fuel
+                    .toLowerCase()
                     .trim()
                     === "petrol"
 
@@ -1742,9 +1491,39 @@ function displayRecentSales(
                 "-";
 
 
-            const date =
-                getSaleDateValue(sale) ||
-                "-";
+            const saleDate =
+                getSaleDateValue(
+                    sale
+                );
+
+
+            let formattedDate = "-";
+
+
+            if (saleDate) {
+
+                const date =
+                    parseDate(
+                        saleDate
+                    );
+
+
+                if (date) {
+
+                    formattedDate =
+                        date.toLocaleString(
+                            "en-NP",
+                            {
+                                dateStyle:
+                                    "short",
+                                timeStyle:
+                                    "short"
+                            }
+                        );
+
+                }
+
+            }
 
 
             reportSalesTableBody.innerHTML += `
@@ -1759,11 +1538,13 @@ function displayRecentSales(
 
                     </td>
 
+
                     <td>
 
                         ${customer}
 
                     </td>
+
 
                     <td>
 
@@ -1777,6 +1558,7 @@ function displayRecentSales(
 
                     </td>
 
+
                     <td>
 
                         ${formatNumber(
@@ -1784,6 +1566,7 @@ function displayRecentSales(
                         )} L
 
                     </td>
+
 
                     <td>
 
@@ -1797,6 +1580,7 @@ function displayRecentSales(
 
                     </td>
 
+
                     <td>
 
                         <span
@@ -1809,9 +1593,10 @@ function displayRecentSales(
 
                     </td>
 
+
                     <td>
 
-                        ${date}
+                        ${formattedDate}
 
                     </td>
 
@@ -1826,81 +1611,125 @@ function displayRecentSales(
 
 
 // ======================================================
+// VALIDATE DATE RANGE
+// ======================================================
+
+function validateDateRange() {
+
+    const from =
+        fromDate &&
+        fromDate.value
+            ? parseInputDate(
+                fromDate.value
+            )
+            : null;
+
+
+    const to =
+        toDate &&
+        toDate.value
+            ? parseInputDate(
+                toDate.value
+            )
+            : null;
+
+
+    // ----------------------------------------------
+    // Nothing selected
+    // ----------------------------------------------
+
+    if (
+        !from &&
+        !to
+    ) {
+
+        return true;
+
+    }
+
+
+    // ----------------------------------------------
+    // Only FROM selected
+    // ----------------------------------------------
+
+    if (
+        from &&
+        !to
+    ) {
+
+        alert(
+            "Please select a To Date."
+        );
+
+        return false;
+
+    }
+
+
+    // ----------------------------------------------
+    // Only TO selected
+    // ----------------------------------------------
+
+    if (
+        !from &&
+        to
+    ) {
+
+        alert(
+            "Please select a From Date."
+        );
+
+        return false;
+
+    }
+
+
+    // ----------------------------------------------
+    // FROM > TO
+    // ----------------------------------------------
+
+    if (
+        from > to
+    ) {
+
+        alert(
+            "From Date cannot be later than To Date."
+        );
+
+        return false;
+
+    }
+
+
+    return true;
+
+}
+
+
+// ======================================================
 // REFRESH REPORT
 // ======================================================
 
 function refreshReportData() {
 
-    updateReportDateText();
+    // ----------------------------------------------
+    // Validate first
+    // ----------------------------------------------
+
+    if (
+        !validateDateRange()
+    ) {
+
+        return;
+
+    }
+
+
+    // ----------------------------------------------
+    // Generate report
+    // ----------------------------------------------
 
     generateReport();
-
-}
-
-
-// ======================================================
-// PERIOD CHANGE
-// ======================================================
-
-if (reportPeriod) {
-
-    reportPeriod.addEventListener(
-        "change",
-        () => {
-
-            // Selecting a period clears exact date
-            if (reportDate) {
-
-                reportDate.value = "";
-
-            }
-
-            refreshReportData();
-
-        }
-    );
-
-}
-
-
-// ======================================================
-// EXACT DATE CHANGE
-// ======================================================
-
-if (reportDate) {
-
-    reportDate.addEventListener(
-        "change",
-        () => {
-
-            refreshReportData();
-
-        }
-    );
-
-}
-
-
-// ======================================================
-// CLEAR DATE
-// ======================================================
-
-if (clearReportDate) {
-
-    clearReportDate.addEventListener(
-        "click",
-        () => {
-
-            if (reportDate) {
-
-                reportDate.value = "";
-
-            }
-
-            refreshReportData();
-
-        }
-    );
 
 }
 
@@ -1942,28 +1771,12 @@ if (printReport) {
 
 
 // ======================================================
-// AUTO REFRESH
-// ======================================================
-
-setInterval(
-    () => {
-
-        generateReport();
-
-    },
-    5000
-);
-
-
-// ======================================================
 // INITIALIZE
 // ======================================================
 
 document.addEventListener(
     "DOMContentLoaded",
     () => {
-
-        updateReportDateText();
 
         generateReport();
 
