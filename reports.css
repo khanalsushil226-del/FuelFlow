@@ -1,35 +1,56 @@
-/* ==========================================================
-   FuelFlow REPORTS
-   Complete Reports Page Styling
-========================================================== */
+/* =========================================================
+   FuelFlow Reports
+   Screenshot-Matched Design
+========================================================= */
 
 
-/* ==========================================================
-   REPORTS HEADER
-========================================================== */
+/* =========================================================
+   GLOBAL REPORT PAGE
+========================================================= */
+
+.main-content {
+    background: #f4f7fb;
+}
+
+
+/* =========================================================
+   REPORT CONTENT
+========================================================= */
+
+.content {
+    padding: 30px 35px 40px;
+}
+
+
+/* =========================================================
+   REPORT HEADER
+========================================================= */
 
 .reports-header {
 
     display: flex;
+
     justify-content: space-between;
-    align-items: center;
+
+    align-items: flex-start;
 
     gap: 25px;
 
-    margin-bottom: 25px;
+    margin-bottom: 28px;
 }
 
 
 .reports-header h2 {
 
-    margin: 0 0 5px;
+    margin: 0 0 6px;
 
     color: #111827;
 
-    font-size: 27px;
+    font-size: 28px;
+
     font-weight: 700;
 
-    letter-spacing: -0.4px;
+    letter-spacing: -0.5px;
 }
 
 
@@ -40,17 +61,19 @@
     color: #64748b;
 
     font-size: 14px;
+
     font-weight: 400;
 }
 
 
-/* ==========================================================
-   REPORT ACTION BUTTONS
-========================================================== */
+/* =========================================================
+   REPORT ACTIONS
+========================================================= */
 
 .report-actions {
 
     display: flex;
+
     align-items: center;
 
     gap: 10px;
@@ -60,58 +83,58 @@
 .refresh-report-btn,
 .print-report-btn {
 
-    height: 46px;
+    height: 50px;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     gap: 9px;
 
-    padding: 0 17px;
+    padding: 0 19px;
 
     border: none;
-    border-radius: 10px;
+
+    border-radius: 12px;
 
     font-family: inherit;
 
-    font-size: 13px;
+    font-size: 14px;
+
     font-weight: 600;
 
     cursor: pointer;
 
-    transition:
-        background .25s ease,
-        color .25s ease,
-        transform .25s ease,
-        box-shadow .25s ease;
+    transition: all 0.25s ease;
 }
 
 
+/* Refresh */
+
 .refresh-report-btn {
 
-    background: #eff6ff;
+    background: #f1f6ff;
+
     color: #2563eb;
 }
 
 
 .refresh-report-btn:hover {
 
-    background: #dbeafe;
+    background: #e6efff;
 
     transform: translateY(-1px);
 }
 
 
-.refresh-report-btn i {
-
-    font-size: 13px;
-}
-
+/* Print */
 
 .print-report-btn {
 
     background: #2563eb;
+
     color: #ffffff;
 }
 
@@ -120,53 +143,60 @@
 
     background: #1d4ed8;
 
-    transform: translateY(-1px);
+    transform: translateY(-2px);
 
     box-shadow:
-        0 7px 18px rgba(37, 99, 235, .20);
+        0 8px 20px rgba(37, 99, 235, 0.20);
 }
 
 
-/* ==========================================================
-   REPORT FILTER CARD
-========================================================== */
+/* =========================================================
+   DATE RANGE FILTER
+========================================================= */
 
 .report-filter-card {
 
     width: 100%;
 
-    display: flex;
-    align-items: flex-end;
-
-    gap: 20px;
-
-    padding: 25px 28px;
-
-    margin-bottom: 25px;
+    min-height: 132px;
 
     background: #ffffff;
 
-    border-radius: 16px;
+    border-radius: 17px;
+
+    padding: 27px 32px;
+
+    display: grid;
+
+    grid-template-columns:
+        1fr
+        1fr
+        auto;
+
+    align-items: end;
+
+    gap: 24px;
+
+    margin-bottom: 28px;
 
     box-shadow:
-        0 8px 25px rgba(15, 23, 42, .06);
+        0 8px 25px rgba(15, 23, 42, 0.06);
 }
 
 
-/* ==========================================================
+/* =========================================================
    FILTER GROUP
-========================================================== */
+========================================================= */
 
 .filter-group {
 
     display: flex;
+
     flex-direction: column;
 
-    gap: 8px;
+    gap: 9px;
 
-    flex: 1;
-
-    min-width: 200px;
+    min-width: 0;
 }
 
 
@@ -174,72 +204,33 @@
 
     color: #334155;
 
-    font-size: 13px;
+    font-size: 14px;
+
     font-weight: 600;
 }
 
 
-/* ==========================================================
-   SELECT
-========================================================== */
+/* =========================================================
+   DATE INPUT
+========================================================= */
 
-.filter-group select {
+.date-input-wrapper {
+
+    position: relative;
 
     width: 100%;
-
-    height: 54px;
-
-    padding: 0 15px;
-
-    border: 1px solid #d6dbe3;
-    border-radius: 10px;
-
-    background: #ffffff;
-
-    color: #111827;
-
-    font-family: inherit;
-
-    font-size: 14px;
-
-    outline: none;
-
-    cursor: pointer;
-
-    transition:
-        border-color .25s ease,
-        box-shadow .25s ease;
 }
 
-
-.filter-group select:hover {
-
-    border-color: #b9c2d0;
-}
-
-
-.filter-group select:focus {
-
-    border-color: #2563eb;
-
-    box-shadow:
-        0 0 0 3px rgba(37, 99, 235, .10);
-}
-
-
-/* ==========================================================
-   DATE INPUTS
-========================================================== */
 
 .filter-group input[type="date"] {
 
     width: 100%;
 
-    height: 54px;
+    height: 46px;
 
-    padding: 0 14px;
+    padding: 0 15px;
 
-    border: 1px solid #d6dbe3;
+    border: 1px solid #d1d9e5;
 
     border-radius: 10px;
 
@@ -249,21 +240,21 @@
 
     font-family: inherit;
 
-    font-size: 14px;
+    font-size: 15px;
 
     outline: none;
 
     cursor: pointer;
 
     transition:
-        border-color .25s ease,
-        box-shadow .25s ease;
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
 }
 
 
 .filter-group input[type="date"]:hover {
 
-    border-color: #b9c2d0;
+    border-color: #aeb9c9;
 }
 
 
@@ -272,76 +263,101 @@
     border-color: #2563eb;
 
     box-shadow:
-        0 0 0 3px rgba(37, 99, 235, .10);
+        0 0 0 3px rgba(37, 99, 235, 0.10);
 }
 
 
-/* Browser calendar icon */
+/* Native date placeholder */
+
+.filter-group input[type="date"]::-webkit-datetime-edit {
+
+    color: #111827;
+}
+
+
+.filter-group input[type="date"]::-webkit-datetime-edit-text {
+
+    color: #64748b;
+}
+
+
+.filter-group input[type="date"]::-webkit-datetime-edit-month-field,
+.filter-group input[type="date"]::-webkit-datetime-edit-day-field,
+.filter-group input[type="date"]::-webkit-datetime-edit-year-field {
+
+    color: #111827;
+}
+
+
+/* Calendar icon */
 
 .filter-group input[type="date"]::-webkit-calendar-picker-indicator {
+
+    opacity: 0.75;
 
     cursor: pointer;
 
     width: 18px;
+
     height: 18px;
 
-    opacity: .75;
-
-    transition: opacity .2s ease;
+    margin-right: 1px;
 }
 
 
-.filter-group input[type="date"]::-webkit-calendar-picker-indicator:hover {
+/* =========================================================
+   REPORT RANGE
+========================================================= */
 
-    opacity: 1;
-}
+.report-range-display {
 
-
-/* ==========================================================
-   DATE RANGE ARROW / SEPARATOR
-========================================================== */
-
-.date-range-separator {
-
-    height: 54px;
+    height: 46px;
 
     display: flex;
+
     align-items: center;
-    justify-content: center;
 
-    color: #94a3b8;
+    justify-content: flex-end;
 
-    font-size: 15px;
+    gap: 7px;
 
-    padding-bottom: 0;
+    white-space: nowrap;
+
+    color: #334155;
+
+    font-size: 14px;
 }
 
 
-/* ==========================================================
-   OLD DATE DISPLAY
-   Hidden because we are moving to From Date → To Date
-========================================================== */
+.report-range-display i {
 
-.report-date-display {
+    margin-right: 2px;
 
-    display: none !important;
+    color: #0f172a;
+
+    font-size: 17px;
 }
 
 
-/* ==========================================================
-   OLD CLEAR DATE BUTTON
-   Hidden because date range will replace it
-========================================================== */
+.report-range-display span {
 
-.clear-date-btn {
+    color: #334155;
 
-    display: none !important;
+    font-weight: 400;
 }
 
 
-/* ==========================================================
-   MAIN SUMMARY CARDS
-========================================================== */
+.report-range-display strong {
+
+    color: #1e293b;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   SUMMARY CARDS
+========================================================= */
 
 .report-summary {
 
@@ -350,33 +366,34 @@
     grid-template-columns:
         repeat(4, 1fr);
 
-    gap: 20px;
+    gap: 22px;
 
-    margin-bottom: 25px;
+    margin-bottom: 28px;
 }
 
 
 .report-card {
 
-    min-height: 118px;
+    min-height: 138px;
+
+    background: #ffffff;
+
+    border-radius: 17px;
+
+    padding: 24px;
 
     display: flex;
+
     align-items: center;
 
     gap: 17px;
 
-    padding: 22px;
-
-    background: #ffffff;
-
-    border-radius: 15px;
-
     box-shadow:
-        0 8px 25px rgba(15, 23, 42, .06);
+        0 8px 25px rgba(15, 23, 42, 0.06);
 
     transition:
-        transform .25s ease,
-        box-shadow .25s ease;
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
 }
 
 
@@ -385,28 +402,31 @@
     transform: translateY(-3px);
 
     box-shadow:
-        0 12px 28px rgba(15, 23, 42, .09);
+        0 12px 28px rgba(15, 23, 42, 0.09);
 }
 
 
-/* ==========================================================
-   SUMMARY CARD ICON
-========================================================== */
+/* =========================================================
+   SUMMARY ICONS
+========================================================= */
 
 .report-card-icon {
 
-    width: 54px;
-    height: 54px;
+    width: 60px;
 
-    min-width: 54px;
+    height: 60px;
+
+    min-width: 60px;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     border-radius: 13px;
 
-    font-size: 21px;
+    font-size: 23px;
 }
 
 
@@ -450,17 +470,19 @@
 }
 
 
-/* ==========================================================
+/* =========================================================
    SUMMARY TEXT
-========================================================== */
+========================================================= */
 
 .report-card p {
 
-    margin: 0 0 4px;
+    margin: 0 0 5px;
 
     color: #64748b;
 
     font-size: 13px;
+
+    font-weight: 400;
 }
 
 
@@ -470,12 +492,15 @@
 
     color: #111827;
 
-    font-size: 22px;
-    font-weight: 700;
+    font-size: 24px;
 
-    letter-spacing: -.3px;
+    line-height: 1.2;
+
+    font-weight: 700;
 }
 
+
+/* Net profit */
 
 .profit-report-card h2 {
 
@@ -483,40 +508,40 @@
 }
 
 
-/* ==========================================================
+/* =========================================================
    GENERIC REPORT SECTION
-========================================================== */
+========================================================= */
 
 .report-section-card {
 
-    width: 100%;
-
-    padding: 26px;
-
-    margin-bottom: 25px;
-
     background: #ffffff;
 
-    border-radius: 16px;
+    border-radius: 17px;
+
+    padding: 27px 30px;
+
+    margin-bottom: 28px;
 
     box-shadow:
-        0 8px 25px rgba(15, 23, 42, .06);
+        0 8px 25px rgba(15, 23, 42, 0.06);
 
-    animation: reportFadeIn .35s ease;
+    animation: fadeIn 0.35s ease;
 }
 
 
-/* ==========================================================
+/* =========================================================
    SECTION HEADER
-========================================================== */
+========================================================= */
 
 .report-section-header {
 
     display: flex;
-    justify-content: space-between;
-    align-items: center;
 
-    margin-bottom: 23px;
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    margin-bottom: 25px;
 }
 
 
@@ -526,10 +551,9 @@
 
     color: #111827;
 
-    font-size: 21px;
-    font-weight: 700;
+    font-size: 22px;
 
-    letter-spacing: -.2px;
+    font-weight: 700;
 }
 
 
@@ -543,9 +567,9 @@
 }
 
 
-/* ==========================================================
+/* =========================================================
    FUEL PERFORMANCE
-========================================================== */
+========================================================= */
 
 .fuel-report-grid {
 
@@ -554,57 +578,51 @@
     grid-template-columns:
         repeat(2, 1fr);
 
-    gap: 25px;
+    gap: 28px;
 }
 
 
 .fuel-report-item {
 
+    min-height: 128px;
+
     display: flex;
+
     align-items: center;
 
     gap: 18px;
 
-    padding: 18px 20px;
+    padding: 20px 22px;
 
     background: #f8fafc;
 
-    border: 1px solid #e5e7eb;
+    border: 1px solid #e2e8f0;
 
-    border-radius: 13px;
-
-    transition:
-        border-color .25s ease,
-        background .25s ease;
+    border-radius: 14px;
 }
 
 
-.fuel-report-item:hover {
-
-    border-color: #d7dee8;
-
-    background: #f9fbfd;
-}
-
-
-/* ==========================================================
+/* =========================================================
    FUEL ICON
-========================================================== */
+========================================================= */
 
 .fuel-report-icon {
 
-    width: 54px;
-    height: 54px;
+    width: 58px;
 
-    min-width: 54px;
+    height: 58px;
+
+    min-width: 58px;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     border-radius: 13px;
 
-    font-size: 21px;
+    font-size: 23px;
 }
 
 
@@ -624,21 +642,27 @@
 }
 
 
-/* ==========================================================
+/* =========================================================
    FUEL DETAILS
-========================================================== */
+========================================================= */
 
 .fuel-report-details {
 
     width: 100%;
+
+    min-width: 0;
 }
 
 
 .fuel-report-title {
 
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
+
+    gap: 15px;
 
     margin-bottom: 10px;
 }
@@ -648,7 +672,8 @@
 
     color: #334155;
 
-    font-size: 15px;
+    font-size: 16px;
+
     font-weight: 600;
 }
 
@@ -658,13 +683,14 @@
     color: #111827;
 
     font-size: 16px;
+
     font-weight: 700;
 }
 
 
-/* ==========================================================
+/* =========================================================
    PROGRESS BAR
-========================================================== */
+========================================================= */
 
 .report-progress {
 
@@ -672,13 +698,13 @@
 
     height: 10px;
 
-    margin-bottom: 9px;
-
     background: #e5e7eb;
 
     border-radius: 20px;
 
     overflow: hidden;
+
+    margin-bottom: 10px;
 }
 
 
@@ -690,31 +716,25 @@
 
     border-radius: 20px;
 
-    transition: width .7s ease;
+    transition: width 0.6s ease;
 }
 
 
 .petrol-fill {
 
-    background:
-        linear-gradient(
-            90deg,
-            #16a34a,
-            #22c55e
-        );
+    background: #22c55e;
 }
 
 
 .diesel-fill {
 
-    background:
-        linear-gradient(
-            90deg,
-            #2563eb,
-            #60a5fa
-        );
+    background: #2563eb;
 }
 
+
+/* =========================================================
+   FUEL SALES TEXT
+========================================================= */
 
 .fuel-report-details p {
 
@@ -729,12 +749,14 @@
 .fuel-report-details p strong {
 
     color: #334155;
+
+    font-weight: 600;
 }
 
 
-/* ==========================================================
+/* =========================================================
    TWO COLUMN REPORTS
-========================================================== */
+========================================================= */
 
 .report-two-column {
 
@@ -743,28 +765,33 @@
     grid-template-columns:
         repeat(2, 1fr);
 
-    gap: 25px;
+    gap: 28px;
 }
 
 
-/* ==========================================================
+/* =========================================================
    OVERVIEW LIST
-========================================================== */
+========================================================= */
 
 .overview-list {
 
     display: flex;
+
     flex-direction: column;
 }
 
 
 .overview-row {
 
+    min-height: 50px;
+
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
 
-    padding: 14px 0;
+    gap: 20px;
 
     border-bottom: 1px solid #e5e7eb;
 }
@@ -789,37 +816,41 @@
     color: #111827;
 
     font-size: 14px;
+
     font-weight: 600;
 }
 
 
-/* ==========================================================
+/* =========================================================
    EXPENSE BREAKDOWN
-========================================================== */
+========================================================= */
 
 .expense-breakdown {
 
     display: flex;
+
     flex-direction: column;
 
-    gap: 14px;
+    gap: 15px;
 }
 
 
 .expense-breakdown-row {
 
     display: flex;
+
     align-items: center;
 
-    gap: 14px;
+    gap: 15px;
 }
 
 
 .expense-breakdown-info {
 
-    min-width: 130px;
+    min-width: 135px;
 
     display: flex;
+
     align-items: center;
 
     gap: 9px;
@@ -829,6 +860,7 @@
 .expense-breakdown-dot {
 
     width: 9px;
+
     height: 9px;
 
     min-width: 9px;
@@ -844,19 +876,6 @@
     color: #475569;
 
     font-size: 13px;
-}
-
-
-.expense-breakdown-amount {
-
-    min-width: 80px;
-
-    color: #111827;
-
-    font-size: 13px;
-    font-weight: 600;
-
-    text-align: right;
 }
 
 
@@ -884,13 +903,27 @@
 
     border-radius: 20px;
 
-    transition: width .7s ease;
+    transition: width 0.6s ease;
 }
 
 
-/* ==========================================================
-   INVENTORY REPORT
-========================================================== */
+.expense-breakdown-amount {
+
+    min-width: 75px;
+
+    text-align: right;
+
+    color: #111827;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   INVENTORY
+========================================================= */
 
 .inventory-report-grid {
 
@@ -906,6 +939,7 @@
 .inventory-report-item {
 
     display: flex;
+
     align-items: center;
 
     gap: 15px;
@@ -914,7 +948,7 @@
 
     background: #f8fafc;
 
-    border: 1px solid #e5e7eb;
+    border: 1px solid #e2e8f0;
 
     border-radius: 13px;
 }
@@ -922,13 +956,16 @@
 
 .inventory-report-icon {
 
-    width: 50px;
-    height: 50px;
+    width: 52px;
 
-    min-width: 50px;
+    height: 52px;
+
+    min-width: 52px;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     border-radius: 12px;
@@ -964,6 +1001,7 @@
 .inventory-report-item div:last-child {
 
     display: flex;
+
     flex-direction: column;
 
     gap: 4px;
@@ -983,13 +1021,14 @@
     color: #111827;
 
     font-size: 19px;
+
     font-weight: 700;
 }
 
 
-/* ==========================================================
+/* =========================================================
    CUSTOMER INSIGHTS
-========================================================== */
+========================================================= */
 
 .customer-report-grid {
 
@@ -1005,6 +1044,7 @@
 .customer-report-item {
 
     display: flex;
+
     align-items: center;
 
     gap: 15px;
@@ -1013,7 +1053,7 @@
 
     background: #f8fafc;
 
-    border: 1px solid #e5e7eb;
+    border: 1px solid #e2e8f0;
 
     border-radius: 13px;
 }
@@ -1021,28 +1061,32 @@
 
 .customer-report-item > i {
 
-    width: 48px;
-    height: 48px;
+    width: 50px;
 
-    min-width: 48px;
+    height: 50px;
+
+    min-width: 50px;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
-    border-radius: 11px;
+    border-radius: 12px;
 
     background: #eff6ff;
 
     color: #2563eb;
 
-    font-size: 19px;
+    font-size: 20px;
 }
 
 
 .customer-report-item div {
 
     display: flex;
+
     flex-direction: column;
 
     gap: 4px;
@@ -1062,13 +1106,14 @@
     color: #111827;
 
     font-size: 20px;
+
     font-weight: 700;
 }
 
 
-/* ==========================================================
+/* =========================================================
    RECENT SALES TABLE
-========================================================== */
+========================================================= */
 
 .report-table-container {
 
@@ -1103,6 +1148,7 @@
     text-align: left;
 
     font-size: 12px;
+
     font-weight: 600;
 
     white-space: nowrap;
@@ -1125,7 +1171,7 @@
 
 .report-table-container tbody tr {
 
-    transition: background .2s ease;
+    transition: background 0.2s ease;
 }
 
 
@@ -1135,14 +1181,14 @@
 }
 
 
-/* ==========================================================
+/* =========================================================
    TABLE BADGES
-========================================================== */
+========================================================= */
 
-.report-fuel-badge,
-.report-payment-badge {
+.report-fuel-badge {
 
     display: inline-flex;
+
     align-items: center;
 
     padding: 5px 10px;
@@ -1150,6 +1196,7 @@
     border-radius: 20px;
 
     font-size: 11px;
+
     font-weight: 600;
 }
 
@@ -1172,15 +1219,27 @@
 
 .report-payment-badge {
 
+    display: inline-flex;
+
+    align-items: center;
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
     background: #f1f5f9;
 
     color: #475569;
+
+    font-size: 11px;
+
+    font-weight: 600;
 }
 
 
-/* ==========================================================
+/* =========================================================
    EMPTY REPORT
-========================================================== */
+========================================================= */
 
 .empty-report-message {
 
@@ -1190,20 +1249,20 @@
 
     text-align: center !important;
 
-    font-size: 13px;
-
     font-style: italic;
 }
 
 
-/* ==========================================================
+/* =========================================================
    REPORT FOOTER
-========================================================== */
+========================================================= */
 
 .report-footer {
 
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
 
     padding: 18px 5px;
@@ -1217,6 +1276,7 @@
 .report-footer div {
 
     display: flex;
+
     align-items: center;
 
     gap: 8px;
@@ -1237,9 +1297,9 @@
 }
 
 
-/* ==========================================================
-   TABLE SCROLLBAR
-========================================================== */
+/* =========================================================
+   SCROLLBAR
+========================================================= */
 
 .report-table-container::-webkit-scrollbar {
 
@@ -1269,17 +1329,18 @@
 }
 
 
-/* ==========================================================
+/* =========================================================
    ANIMATIONS
-========================================================== */
+========================================================= */
 
-@keyframes reportFadeIn {
+@keyframes fadeIn {
 
     from {
 
         opacity: 0;
 
         transform: translateY(10px);
+
     }
 
     to {
@@ -1287,13 +1348,15 @@
         opacity: 1;
 
         transform: translateY(0);
+
     }
+
 }
 
 
-/* ==========================================================
-   RESPONSIVE — 1200px
-========================================================== */
+/* =========================================================
+   RESPONSIVE - 1200px
+========================================================= */
 
 @media (max-width: 1200px) {
 
@@ -1301,6 +1364,23 @@
 
         grid-template-columns:
             repeat(2, 1fr);
+
+    }
+
+
+    .report-filter-card {
+
+        grid-template-columns:
+            1fr
+            1fr;
+
+    }
+
+
+    .report-range-display {
+
+        justify-content: flex-start;
+
     }
 
 
@@ -1308,52 +1388,29 @@
 
         grid-template-columns:
             repeat(2, 1fr);
+
     }
 
 }
 
 
-/* ==========================================================
-   RESPONSIVE — 1000px
-========================================================== */
-
-@media (max-width: 1000px) {
-
-    .report-filter-card {
-
-        flex-wrap: wrap;
-    }
-
-
-    .filter-group {
-
-        min-width: calc(50% - 10px);
-    }
-
-
-    .date-range-separator {
-
-        display: none;
-    }
-
-}
-
-
-/* ==========================================================
-   RESPONSIVE — 900px
-========================================================== */
+/* =========================================================
+   RESPONSIVE - 900px
+========================================================= */
 
 @media (max-width: 900px) {
-
-    .report-two-column {
-
-        grid-template-columns: 1fr;
-    }
-
 
     .fuel-report-grid {
 
         grid-template-columns: 1fr;
+
+    }
+
+
+    .report-two-column {
+
+        grid-template-columns: 1fr;
+
     }
 
 
@@ -1361,28 +1418,38 @@
 
         grid-template-columns:
             repeat(2, 1fr);
+
     }
 
 }
 
 
-/* ==========================================================
-   RESPONSIVE — 768px
-========================================================== */
+/* =========================================================
+   RESPONSIVE - 768px
+========================================================= */
 
 @media (max-width: 768px) {
+
+    .content {
+
+        padding: 25px 20px 35px;
+
+    }
+
 
     .reports-header {
 
         flex-direction: column;
 
         align-items: flex-start;
+
     }
 
 
     .report-actions {
 
         width: 100%;
+
     }
 
 
@@ -1390,90 +1457,82 @@
     .print-report-btn {
 
         flex: 1;
+
     }
 
 
     .report-filter-card {
 
-        flex-direction: column;
+        grid-template-columns: 1fr;
 
-        align-items: stretch;
+        padding: 22px;
 
-        padding: 20px;
     }
 
 
-    .filter-group {
+    .report-range-display {
 
-        width: 100%;
+        height: auto;
 
-        min-width: 100%;
-    }
+        justify-content: flex-start;
 
-
-    .date-range-separator {
-
-        display: none;
     }
 
 
     .report-summary {
 
         grid-template-columns: 1fr;
+
     }
 
 
     .inventory-report-grid {
 
         grid-template-columns: 1fr;
+
     }
 
 
     .customer-report-grid {
 
         grid-template-columns: 1fr;
+
     }
 
 
     .report-section-card {
 
-        padding: 20px;
-    }
+        padding: 22px;
 
-
-    .report-footer {
-
-        flex-direction: column;
-
-        align-items: flex-start;
-
-        gap: 10px;
     }
 
 }
 
 
-/* ==========================================================
-   RESPONSIVE — 480px
-========================================================== */
+/* =========================================================
+   RESPONSIVE - 480px
+========================================================= */
 
 @media (max-width: 480px) {
 
-    .reports-header h2 {
+    .content {
 
-        font-size: 22px;
+        padding: 20px 15px 30px;
+
     }
 
 
-    .reports-header p {
+    .reports-header h2 {
 
-        font-size: 13px;
+        font-size: 23px;
+
     }
 
 
     .report-actions {
 
         flex-direction: column;
+
     }
 
 
@@ -1482,63 +1541,73 @@
 
         width: 100%;
 
-        flex: none;
     }
 
 
     .report-card {
 
-        padding: 18px;
+        min-height: 120px;
+
+        padding: 19px;
+
     }
 
 
     .report-card h2 {
 
         font-size: 20px;
+
     }
 
 
     .report-card-icon {
 
-        width: 48px;
-        height: 48px;
+        width: 52px;
 
-        min-width: 48px;
+        height: 52px;
+
+        min-width: 52px;
+
     }
 
 
     .fuel-report-item {
 
-        padding: 15px;
+        padding: 16px;
+
     }
 
 
     .fuel-report-icon {
 
-        width: 45px;
-        height: 45px;
+        width: 48px;
 
-        min-width: 45px;
+        height: 48px;
+
+        min-width: 48px;
+
     }
 
 
     .report-section-header h2 {
 
         font-size: 19px;
+
     }
 
 }
 
 
-/* ==========================================================
+/* =========================================================
    PRINT
-========================================================== */
+========================================================= */
 
 @media print {
 
     body {
 
         background: #ffffff;
+
     }
 
 
@@ -1548,6 +1617,7 @@
     .report-filter-card {
 
         display: none !important;
+
     }
 
 
@@ -1556,23 +1626,28 @@
         width: 100%;
 
         margin: 0;
+
+        padding: 0;
+
     }
 
 
     .content {
 
         padding: 0;
+
     }
 
 
-    .report-section-card,
-    .report-card {
-
-        border: 1px solid #e5e7eb;
+    .report-card,
+    .report-section-card {
 
         box-shadow: none;
 
+        border: 1px solid #e5e7eb;
+
         break-inside: avoid;
+
     }
 
 
@@ -1580,6 +1655,7 @@
 
         grid-template-columns:
             repeat(4, 1fr);
+
     }
 
 
@@ -1587,12 +1663,14 @@
 
         grid-template-columns:
             repeat(2, 1fr);
+
     }
 
 
     .report-footer {
 
         border-top: 1px solid #e5e7eb;
+
     }
 
 }
