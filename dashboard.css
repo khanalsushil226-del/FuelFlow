@@ -1,4 +1,3 @@
-
 /* ==========================================================
    FUELFLOW DASHBOARD
    COMPLETE DASHBOARD CSS
@@ -67,8 +66,9 @@ ul {
 }
 
 
+
 /* ==========================================================
-   DASHBOARD LAYOUT
+   MAIN DASHBOARD WRAPPER
 ========================================================== */
 
 .dashboard {
@@ -82,6 +82,7 @@ ul {
     overflow-x: hidden;
 
 }
+
 
 
 /* ==========================================================
@@ -113,6 +114,7 @@ ul {
 }
 
 
+
 /* ==========================================================
    LOGO
 ========================================================== */
@@ -120,6 +122,8 @@ ul {
 .logo {
 
     height: 80px;
+
+    flex-shrink: 0;
 
     display: flex;
 
@@ -129,9 +133,7 @@ ul {
 
     gap: 12px;
 
-    border-bottom:
-        1px solid
-        rgba(255, 255, 255, .08);
+    border-bottom: 1px solid rgba(255, 255, 255, .08);
 
 }
 
@@ -158,6 +160,7 @@ ul {
 }
 
 
+
 /* ==========================================================
    SIDEBAR NAVIGATION
 ========================================================== */
@@ -165,6 +168,8 @@ ul {
 .sidebar-nav {
 
     flex: 1;
+
+    min-height: 0;
 
     padding: 25px 18px;
 
@@ -236,17 +241,18 @@ ul {
 }
 
 
+
 /* ==========================================================
    SIDEBAR BOTTOM
 ========================================================== */
 
 .sidebar-bottom {
 
+    flex-shrink: 0;
+
     padding: 20px;
 
-    border-top:
-        1px solid
-        rgba(255, 255, 255, .08);
+    border-top: 1px solid rgba(255, 255, 255, .08);
 
 }
 
@@ -277,17 +283,16 @@ ul {
 }
 
 
+
 /* ==========================================================
    MAIN CONTENT
 ========================================================== */
 
 .main-content {
 
-    flex: 1;
+    width: calc(100% - 270px);
 
     min-width: 0;
-
-    width: calc(100% - 270px);
 
     margin-left: 270px;
 
@@ -296,6 +301,7 @@ ul {
     overflow-x: hidden;
 
 }
+
 
 
 /* ==========================================================
@@ -322,9 +328,14 @@ ul {
 
     border-radius: 18px;
 
-    box-shadow:
-        0 8px 20px
-        rgba(15, 23, 42, .06);
+    box-shadow: 0 8px 20px rgba(15, 23, 42, .06);
+
+}
+
+
+.topbar-left {
+
+    min-width: 0;
 
 }
 
@@ -364,9 +375,17 @@ ul {
 }
 
 
+
 /* ==========================================================
    NOTIFICATION
 ========================================================== */
+
+.notification-wrapper {
+
+    position: relative;
+
+}
+
 
 .notification {
 
@@ -406,6 +425,7 @@ ul {
 }
 
 
+
 /* ==========================================================
    PROFILE
 ========================================================== */
@@ -439,6 +459,7 @@ ul {
 }
 
 
+
 /* ==========================================================
    CONTENT
 ========================================================== */
@@ -447,11 +468,12 @@ ul {
 
     width: 100%;
 
-    margin-top: 30px;
-
     min-width: 0;
 
+    margin-top: 30px;
+
 }
+
 
 
 /* ==========================================================
@@ -460,7 +482,7 @@ ul {
 
 .welcome {
 
-    margin-bottom: 30px;
+    margin-bottom: 25px;
 
 }
 
@@ -489,229 +511,315 @@ ul {
 }
 
 
+
 /* ==========================================================
-   SUMMARY CARDS
+   SALES SUMMARY CARDS
 ========================================================== */
 
-/* =========================================================
-   SALES SUMMARY CARDS
-========================================================= */
-
 .cards {
+
+    width: 100%;
+
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
     gap: 16px;
+
     margin-bottom: 18px;
+
 }
 
 
-/* Individual card */
-
 .cards .card {
+
+    min-width: 0;
+
     min-height: 105px;
+
     padding: 18px 20px;
 
     display: flex;
+
     align-items: center;
+
     gap: 15px;
 
     background: #ffffff;
 
     border: 1px solid #e5e7eb;
+
     border-radius: 12px;
 
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .04);
 
     transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
+        transform .2s ease,
+        box-shadow .2s ease;
+
 }
 
 
 .cards .card:hover {
+
     transform: translateY(-2px);
 
-    box-shadow:
-        0 6px 16px rgba(0, 0, 0, 0.07);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, .07);
+
 }
 
 
-/* =========================================================
+
+/* ==========================================================
    CARD ICON
-========================================================= */
+========================================================== */
 
 .cards .card-icon {
+
     width: 42px;
+
     height: 42px;
 
     min-width: 42px;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     border-radius: 10px;
 
     background: #eff6ff;
+
     color: #2563eb;
+
 }
 
 
 .cards .card-icon i {
+
     font-size: 17px;
-}
 
-
-/* =========================================================
-   CARD INFORMATION
-========================================================= */
-
-.cards .card-info {
-    min-width: 0;
-}
-
-
-.cards .card-info h4 {
-    margin: 0 0 5px;
-
-    font-size: 12px;
-    font-weight: 500;
-
-    color: #64748b;
-}
-
-
-.cards .card-info h2 {
-    margin: 0;
-
-    font-size: 20px;
-    font-weight: 600;
-
-    color: #111827;
-
-    white-space: nowrap;
-}
-
-
-/* =========================================================
-   DIFFERENT PAYMENT CARD ICONS
-========================================================= */
-
-.cards .card:nth-child(1) .card-icon {
-    background: #ecfdf5;
-    color: #059669;
-}
-
-
-.cards .card:nth-child(2) .card-icon {
-    background: #fef3c7;
-    color: #d97706;
-}
-
-
-.cards .card:nth-child(3) .card-icon {
-    background: #eff6ff;
-    color: #2563eb;
-}
-
-
-.cards .card:nth-child(4) .card-icon {
-    background: #f5f3ff;
-    color: #7c3aed;
-}
-
-
-.cards .card:nth-child(5) .card-icon {
-    background: #fff7ed;
-    color: #ea580c;
-}
-
-
-.cards .card:nth-child(6) .card-icon {
-    background: #f1f5f9;
-    color: #475569;
-}
-
-
-/* =========================================================
-   TOTAL FUEL STOCK
-========================================================= */
-
-.fuel-stock-summary {
-    margin-bottom: 20px;
-}
-
-
-.fuel-stock-summary .card {
-    min-height: 90px;
-    padding: 16px 20px;
-
-    display: flex;
-    align-items: center;
-    gap: 15px;
-
-    background: #ffffff;
-
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-}
-
-
-.fuel-stock-summary .card-icon {
-    width: 42px;
-    height: 42px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 10px;
-
-    background: #f0fdf4;
-    color: #16a34a;
-}
-
-
-.fuel-stock-summary .card-info h4 {
-    margin: 0 0 5px;
-
-    font-size: 12px;
-    font-weight: 500;
-
-    color: #64748b;
-}
-
-
-.fuel-stock-summary .card-info h2 {
-    margin: 0;
-
-    font-size: 20px;
-    font-weight: 600;
-
-    color: #111827;
 }
 
 
 
 /* ==========================================================
-   DASHBOARD GRID
+   CARD INFORMATION
+========================================================== */
+
+.cards .card-info {
+
+    min-width: 0;
+
+}
+
+
+.cards .card-info h4 {
+
+    margin: 0 0 5px;
+
+    color: #64748b;
+
+    font-size: 12px;
+
+    font-weight: 500;
+
+}
+
+
+.cards .card-info h2 {
+
+    margin: 0;
+
+    color: #111827;
+
+    font-size: 20px;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+}
+
+
+
+/* ==========================================================
+   PAYMENT CARD ICON COLORS
+========================================================== */
+
+.cards .card:nth-child(1) .card-icon {
+
+    background: #ecfdf5;
+
+    color: #059669;
+
+}
+
+
+.cards .card:nth-child(2) .card-icon {
+
+    background: #fef3c7;
+
+    color: #d97706;
+
+}
+
+
+.cards .card:nth-child(3) .card-icon {
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+}
+
+
+.cards .card:nth-child(4) .card-icon {
+
+    background: #f5f3ff;
+
+    color: #7c3aed;
+
+}
+
+
+.cards .card:nth-child(5) .card-icon {
+
+    background: #fff7ed;
+
+    color: #ea580c;
+
+}
+
+
+.cards .card:nth-child(6) .card-icon {
+
+    background: #f1f5f9;
+
+    color: #475569;
+
+}
+
+
+
+/* ==========================================================
+   TOTAL FUEL STOCK
+========================================================== */
+
+.fuel-stock-summary {
+
+    width: 100%;
+
+    margin-bottom: 25px;
+
+}
+
+
+.fuel-stock-summary .card {
+
+    width: 100%;
+
+    min-height: 90px;
+
+    padding: 16px 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 12px;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .04);
+
+}
+
+
+.fuel-stock-summary .card-icon {
+
+    width: 42px;
+
+    height: 42px;
+
+    min-width: 42px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+}
+
+
+.fuel-stock-summary .card-info {
+
+    min-width: 0;
+
+}
+
+
+.fuel-stock-summary .card-info h4 {
+
+    margin: 0 0 5px;
+
+    color: #64748b;
+
+    font-size: 12px;
+
+    font-weight: 500;
+
+}
+
+
+.fuel-stock-summary .card-info h2 {
+
+    margin: 0;
+
+    color: #111827;
+
+    font-size: 20px;
+
+    font-weight: 600;
+
+}
+
+
+
+/* ==========================================================
+   MAIN DASHBOARD GRID
 ========================================================== */
 
 .dashboard-grid {
+
+    width: 100%;
+
+    min-width: 0;
 
     display: grid;
 
     grid-template-columns:
         minmax(0, 2fr)
-        minmax(300px, 1fr);
+        minmax(320px, 1fr);
 
     gap: 25px;
-
-    width: 100%;
-
-    min-width: 0;
 
     margin-bottom: 30px;
 
@@ -720,11 +828,12 @@ ul {
 
 .dashboard-grid > .panel {
 
-    min-width: 0;
-
     width: 100%;
 
+    min-width: 0;
+
 }
+
 
 
 /* ==========================================================
@@ -733,26 +842,24 @@ ul {
 
 .panel {
 
+    width: 100%;
+
     min-width: 0;
 
     background: #ffffff;
 
-    border:
-        1px solid
-        #edf2f7;
+    border: 1px solid #edf2f7;
 
     border-radius: 18px;
 
     padding: 25px;
 
-    box-shadow:
-        0 8px 24px
-        rgba(15, 23, 42, .05);
+    box-shadow: 0 8px 24px rgba(15, 23, 42, .05);
 
-    animation:
-        fadeUp .5s ease;
+    animation: fadeUp .5s ease;
 
 }
+
 
 
 /* ==========================================================
@@ -760,6 +867,8 @@ ul {
 ========================================================== */
 
 .panel-header {
+
+    width: 100%;
 
     display: flex;
 
@@ -770,6 +879,13 @@ ul {
     gap: 20px;
 
     margin-bottom: 25px;
+
+}
+
+
+.panel-header > div {
+
+    min-width: 0;
 
 }
 
@@ -787,18 +903,35 @@ ul {
 }
 
 
-/* =========================================================
+.panel-subtitle {
+
+    margin: 4px 0 0;
+
+    color: #8b929f;
+
+    font-size: 12px;
+
+    font-weight: 400;
+
+}
+
+
+
+/* ==========================================================
    SMALL PANEL BUTTONS
-========================================================= */
+========================================================== */
 
 .panel-header button,
 .view-all-btn {
 
-    padding: 7px 12px;
+    flex-shrink: 0;
 
     min-height: 32px;
 
+    padding: 7px 12px;
+
     border: 1px solid #e2e8f0;
+
     border-radius: 7px;
 
     background: #ffffff;
@@ -808,11 +941,13 @@ ul {
     font-family: "Poppins", sans-serif;
 
     font-size: 11px;
+
     font-weight: 500;
 
     cursor: pointer;
 
-    transition: all 0.2s ease;
+    transition: all .2s ease;
+
 }
 
 
@@ -828,55 +963,53 @@ ul {
 }
 
 
-.panel-header button:hover {
 
-    background: #1d4ed8;
+/* ==========================================================
+   SALES OVERVIEW
+========================================================== */
+
+.sales-overview-panel {
+
+    min-width: 0;
+
+    overflow: hidden;
 
 }
 
 
 /* ==========================================================
-   PANEL SUBTITLE
+   CHART CONTAINER
 ========================================================== */
-
-.panel-subtitle {
-
-    margin: 4px 0 0;
-
-    color: #8b929f;
-
-    font-size: 12px;
-
-    font-weight: 400;
-
-}
-
-
-/* ==========================================================
-   SALES CHART
-========================================================== */
-
-/* =========================================================
-   SALES CHART CONTAINER
-========================================================= */
 
 .chart-container {
-    width: 100%;
-    height: 280px;
+
     position: relative;
+
+    width: 100%;
+
+    height: 300px;
+
+    min-height: 300px;
+
     overflow: hidden;
+
 }
 
-
-/* Keep Chart.js canvas inside its panel */
 
 .chart-container canvas {
-    width: 100% !important;
-    height: 100% !important;
-    max-width: 100%;
-    max-height: 100%;
+
     display: block;
+
+    width: 100% !important;
+
+    height: 100% !important;
+
+    max-width: 100% !important;
+
+    max-height: 100% !important;
+
 }
+
 
 
 /* ==========================================================
@@ -885,13 +1018,13 @@ ul {
 
 .fuel-inventory {
 
+    width: 100%;
+
     display: flex;
 
     flex-direction: column;
 
-    gap: 20px;
-
-    padding-top: 5px;
+    gap: 18px;
 
 }
 
@@ -902,10 +1035,18 @@ ul {
 
     min-width: 0;
 
+    padding: 18px;
+
+    background: #f8fafc;
+
+    border-radius: 14px;
+
 }
 
 
 .fuel-item-top {
+
+    width: 100%;
 
     display: flex;
 
@@ -924,20 +1065,20 @@ ul {
 
     align-items: center;
 
-    min-width: 0;
-
     gap: 12px;
+
+    min-width: 0;
 
 }
 
 
 .fuel-icon {
 
-    flex-shrink: 0;
+    width: 42px;
 
-    width: 38px;
+    height: 42px;
 
-    height: 38px;
+    min-width: 42px;
 
     display: flex;
 
@@ -945,7 +1086,7 @@ ul {
 
     justify-content: center;
 
-    border-radius: 10px;
+    border-radius: 11px;
 
     font-size: 16px;
 
@@ -1018,6 +1159,7 @@ ul {
 }
 
 
+
 /* ==========================================================
    FUEL PROGRESS
 ========================================================== */
@@ -1028,13 +1170,13 @@ ul {
 
     height: 7px;
 
-    margin-top: 12px;
+    margin-top: 14px;
 
     overflow: hidden;
 
     border-radius: 20px;
 
-    background: #edf0f5;
+    background: #e9edf3;
 
 }
 
@@ -1047,8 +1189,7 @@ ul {
 
     border-radius: 20px;
 
-    transition:
-        width .4s ease;
+    transition: width .4s ease;
 
 }
 
@@ -1074,6 +1215,7 @@ ul {
 }
 
 
+
 /* ==========================================================
    FUEL BOTTOM
 ========================================================== */
@@ -1095,32 +1237,31 @@ ul {
 }
 
 
+
 /* ==========================================================
-   LOW / CRITICAL STOCK
+   LOW STOCK
 ========================================================== */
 
-.fuel-item.low-stock
-.fuel-name span {
+.fuel-item.low-stock .fuel-name span {
 
     color: #e89a24;
 
 }
 
 
-.fuel-item.critical-stock
-.fuel-name span {
+.fuel-item.critical-stock .fuel-name span {
 
     color: #e55353;
 
 }
 
 
-.fuel-item.critical-stock
-.fuel-progress-bar {
+.fuel-item.critical-stock .fuel-progress-bar {
 
     background: #e55353;
 
 }
+
 
 
 /* ==========================================================
@@ -1147,6 +1288,7 @@ ul {
 }
 
 
+
 /* ==========================================================
    TABLE SCROLL
 ========================================================== */
@@ -1166,6 +1308,7 @@ ul {
     scrollbar-width: thin;
 
 }
+
 
 
 /* ==========================================================
@@ -1196,9 +1339,7 @@ ul {
 
     padding: 15px 18px;
 
-    border-bottom:
-        1px solid
-        #edf0f4;
+    border-bottom: 1px solid #edf0f4;
 
     color: #7c8491;
 
@@ -1217,9 +1358,7 @@ ul {
 
     padding: 16px 18px;
 
-    border-bottom:
-        1px solid
-        #edf0f4;
+    border-bottom: 1px solid #edf0f4;
 
     color: #525b69;
 
@@ -1230,8 +1369,7 @@ ul {
 
 .transactions-table tbody tr {
 
-    transition:
-        background .2s ease;
+    transition: background .2s ease;
 
 }
 
@@ -1241,6 +1379,7 @@ ul {
     background: #fafbfe;
 
 }
+
 
 
 /* ==========================================================
@@ -1272,6 +1411,7 @@ ul {
     font-weight: 600;
 
 }
+
 
 
 /* ==========================================================
@@ -1325,6 +1465,7 @@ ul {
 }
 
 
+
 /* ==========================================================
    TRANSACTION VIEW BUTTON
 ========================================================== */
@@ -1361,6 +1502,7 @@ ul {
     background: #dce8ff;
 
 }
+
 
 
 /* ==========================================================
@@ -1443,6 +1585,7 @@ ul {
 }
 
 
+
 /* ==========================================================
    ANIMATION
 ========================================================== */
@@ -1453,8 +1596,7 @@ ul {
 
         opacity: 0;
 
-        transform:
-            translateY(20px);
+        transform: translateY(20px);
 
     }
 
@@ -1462,12 +1604,12 @@ ul {
 
         opacity: 1;
 
-        transform:
-            translateY(0);
+        transform: translateY(0);
 
     }
 
 }
+
 
 
 /* ==========================================================
@@ -1506,6 +1648,7 @@ ul {
 }
 
 
+
 /* ==========================================================
    RESPONSIVE — 1300px
 ========================================================== */
@@ -1519,29 +1662,31 @@ ul {
     }
 
 
-    .cards {
-
-        gap: 18px;
-
-    }
-
-
     .dashboard-grid {
 
         grid-template-columns:
             minmax(0, 1.7fr)
-            minmax(280px, 1fr);
+            minmax(300px, 1fr);
 
     }
 
 }
 
 
+
 /* ==========================================================
-   RESPONSIVE — 1050px
+   RESPONSIVE — 1100px
 ========================================================== */
 
-@media (max-width: 1050px) {
+@media (max-width: 1100px) {
+
+    .cards {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+    }
+
 
     .dashboard-grid {
 
@@ -1557,11 +1702,12 @@ ul {
         grid-template-columns:
             repeat(3, minmax(0, 1fr));
 
-        gap: 20px;
+        gap: 18px;
 
     }
 
 }
+
 
 
 /* ==========================================================
@@ -1569,29 +1715,6 @@ ul {
 ========================================================== */
 
 @media (max-width: 850px) {
-
-    .cards {
-
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-
-    }
-
-
-    .fuel-inventory {
-
-        grid-template-columns: 1fr;
-
-    }
-
-}
-
-
-/* ==========================================================
-   RESPONSIVE — 768px
-========================================================== */
-
-@media (max-width: 768px) {
 
     .sidebar {
 
@@ -1657,34 +1780,14 @@ ul {
     }
 
 
-    .topbar {
+    .fuel-inventory {
 
-        padding: 18px 20px;
-
-    }
-
-
-    .topbar-left h1 {
-
-        font-size: 24px;
-
-    }
-
-
-    .welcome h2 {
-
-        font-size: 25px;
-
-    }
-
-
-    .panel {
-
-        padding: 20px;
+        grid-template-columns: 1fr;
 
     }
 
 }
+
 
 
 /* ==========================================================
@@ -1708,6 +1811,8 @@ ul {
 
         min-height: auto;
 
+        padding: 18px 20px;
+
     }
 
 
@@ -1720,16 +1825,46 @@ ul {
     }
 
 
-    .cards {
+    .topbar-left h1 {
 
-        grid-template-columns: 1fr;
+        font-size: 24px;
 
     }
 
 
-    .card {
+    .welcome h2 {
 
-        min-height: 150px;
+        font-size: 25px;
+
+    }
+
+
+    .cards {
+
+        grid-template-columns: 1fr;
+
+        gap: 12px;
+
+    }
+
+
+    .cards .card {
+
+        min-height: 90px;
+
+    }
+
+
+    .cards .card-info h2 {
+
+        font-size: 18px;
+
+    }
+
+
+    .panel {
+
+        padding: 20px;
 
     }
 
@@ -1748,18 +1883,21 @@ ul {
     }
 
 
-    .panel-header button {
+    .panel-header button,
+    .view-all-btn {
 
-        padding: 8px 12px;
+        padding: 7px 10px;
 
-        font-size: 12px;
+        font-size: 10px;
 
     }
 
 
     .chart-container {
 
-        height: 280px;
+        height: 260px;
+
+        min-height: 260px;
 
     }
 
@@ -1770,48 +1908,4 @@ ul {
 
     }
 
-}
-/* =========================================================
-   RESPONSIVE SUMMARY CARDS
-========================================================= */
-
-@media (max-width: 1100px) {
-
-    .cards {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-}
-
-
-@media (max-width: 650px) {
-
-    .cards {
-        grid-template-columns: 1fr;
-        gap: 12px;
-    }
-
-
-    .cards .card {
-        min-height: 90px;
-    }
-
-
-    .cards .card-info h2 {
-        font-size: 18px;
-    }
-
-}
-/* =========================================================
-   SALES OVERVIEW PANEL
-========================================================= */
-
-.sales-overview-panel {
-    min-width: 0;
-    overflow: hidden;
-}
-
-.sales-overview-panel .panel-header {
-    position: relative;
-    z-index: 2;
 }
