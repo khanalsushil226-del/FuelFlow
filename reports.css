@@ -1674,3 +1674,21 @@
     }
 
 }
+/* ==========================================
+   FIX EXTRA DATE CALENDAR ICON
+========================================== */
+
+.filter-group input[type="date"] {
+    position: relative;
+    -webkit-appearance: auto;
+    appearance: auto;
+}
+
+/* Keep only the native calendar icon inside the input */
+.filter-group input[type="date"]::-webkit-calendar-picker-indicator {
+    position: static;
+    display: block;
+    opacity: 1;
+    cursor: pointer;
+    margin: 0;
+}
