@@ -8,7 +8,11 @@
     ====================================================== -->
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>FuelFlow | Dashboard</title>
 
@@ -18,7 +22,12 @@
     ====================================================== -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
 
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
@@ -41,10 +50,13 @@
     ====================================================== -->
 
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="notification.css">
+
     <link rel="stylesheet" href="dashboard.css">
+
     <link rel="stylesheet" href="sidebar-logo.css">
-<link rel="stylesheet" href="notification.css">
+
+    <link rel="stylesheet" href="notification.css">
+
 
 </head>
 
@@ -53,7 +65,7 @@
 
 
     <!-- =====================================================
-         DASHBOARD WRAPPER
+         DASHBOARD
     ====================================================== -->
 
     <div class="dashboard">
@@ -66,22 +78,36 @@
         <aside class="sidebar">
 
 
-            <!-- LOGO -->
+            <!-- =================================================
+                 LOGO
+            ================================================== -->
 
-            <a href="dashboard.html" class="logo">
-    <i class="fa-solid fa-gas-pump"></i>
+            <a
+                href="dashboard.html"
+                class="logo"
+            >
 
-    <div>
-        <h2>FuelFlow</h2>
-    </div>
-</a>
+                <i class="fa-solid fa-gas-pump"></i>
+
+                <div>
+
+                    <h2>FuelFlow</h2>
+
+                </div>
+
+            </a>
 
 
-            <!-- NAVIGATION -->
+            <!-- =================================================
+                 NAVIGATION
+            ================================================== -->
 
             <nav class="sidebar-nav">
 
                 <ul>
+
+
+                    <!-- DASHBOARD -->
 
                     <li class="active">
 
@@ -89,12 +115,16 @@
 
                             <i class="fa-solid fa-chart-line"></i>
 
-                            <span>Dashboard</span>
+                            <span>
+                                Dashboard
+                            </span>
 
                         </a>
 
                     </li>
 
+
+                    <!-- SALES -->
 
                     <li>
 
@@ -102,12 +132,16 @@
 
                             <i class="fa-solid fa-cash-register"></i>
 
-                            <span>Sales</span>
+                            <span>
+                                Sales
+                            </span>
 
                         </a>
 
                     </li>
 
+
+                    <!-- INVENTORY -->
 
                     <li>
 
@@ -115,12 +149,16 @@
 
                             <i class="fa-solid fa-box"></i>
 
-                            <span>Inventory</span>
+                            <span>
+                                Inventory
+                            </span>
 
                         </a>
 
                     </li>
 
+
+                    <!-- EMPLOYEES -->
 
                     <li>
 
@@ -128,12 +166,16 @@
 
                             <i class="fa-solid fa-users"></i>
 
-                            <span>Employees</span>
+                            <span>
+                                Employees
+                            </span>
 
                         </a>
 
                     </li>
 
+
+                    <!-- CUSTOMERS -->
 
                     <li>
 
@@ -141,12 +183,16 @@
 
                             <i class="fa-solid fa-user-group"></i>
 
-                            <span>Customers</span>
+                            <span>
+                                Customers
+                            </span>
 
                         </a>
 
                     </li>
 
+
+                    <!-- EXPENSES -->
 
                     <li>
 
@@ -154,12 +200,16 @@
 
                             <i class="fa-solid fa-wallet"></i>
 
-                            <span>Expenses</span>
+                            <span>
+                                Expenses
+                            </span>
 
                         </a>
 
                     </li>
 
+
+                    <!-- REPORTS -->
 
                     <li>
 
@@ -167,12 +217,16 @@
 
                             <i class="fa-solid fa-file-lines"></i>
 
-                            <span>Reports</span>
+                            <span>
+                                Reports
+                            </span>
 
                         </a>
 
                     </li>
 
+
+                    <!-- SETTINGS -->
 
                     <li>
 
@@ -180,18 +234,23 @@
 
                             <i class="fa-solid fa-gear"></i>
 
-                            <span>Settings</span>
+                            <span>
+                                Settings
+                            </span>
 
                         </a>
 
                     </li>
+
 
                 </ul>
 
             </nav>
 
 
-            <!-- LOGOUT -->
+            <!-- =================================================
+                 LOGOUT
+            ================================================== -->
 
             <div class="sidebar-bottom">
 
@@ -203,7 +262,9 @@
 
                     <i class="fa-solid fa-right-from-bracket"></i>
 
-                    <span>Logout</span>
+                    <span>
+                        Logout
+                    </span>
 
                 </a>
 
@@ -232,17 +293,18 @@
 
                 <div class="topbar-left">
 
-                    <h1>Dashboard</h1>
+                    <h1>
+                        Dashboard
+                    </h1>
 
-                    <p>Welcome back, Admin.</p>
+                    <p>
+                        Welcome back, Admin.
+                    </p>
 
                 </div>
 
 
-
-                <!-- =================================================
-                     TOPBAR RIGHT
-                ================================================== -->
+                <!-- TOPBAR RIGHT -->
 
                 <div class="topbar-right">
 
@@ -253,20 +315,18 @@
 
                     <div class="notification-wrapper">
 
-    <button
-        type="button"
-        class="notification"
-        id="notificationBell"
-        aria-label="Notifications"
-    >
+                        <button
+                            type="button"
+                            class="notification"
+                            id="notificationBell"
+                            aria-label="Notifications"
+                        >
 
-        <i class="fa-solid fa-bell"></i>
+                            <i class="fa-solid fa-bell"></i>
 
-    </button>
+                        </button>
 
-</div>
-                    
-
+                    </div>
 
 
                     <!-- =================================================
@@ -317,173 +377,192 @@
 
 
                 <!-- =================================================
-                     SUMMARY CARDS
+                     SALES SUMMARY
                 ================================================== -->
 
-               <!-- ==========================
-        SALES SUMMARY CARDS
-========================== -->
+                <div class="cards">
 
-<div class="cards">
 
-    <!-- TOTAL SALES -->
-
-    <div class="card">
-
-        <div class="card-icon">
-            <i class="fa-solid fa-sack-dollar"></i>
-        </div>
-
-        <div class="card-info">
-
-            <h4>Total Sales</h4>
-
-            <h2 id="dashboardSales">
-                Rs. 0
-            </h2>
-
-        </div>
-
-    </div>
-
-
-    <!-- CASH SALES -->
-
-    <div class="card">
-
-        <div class="card-icon">
-            <i class="fa-solid fa-money-bill-wave"></i>
-        </div>
-
-        <div class="card-info">
-
-            <h4>Cash Sales</h4>
-
-            <h2 id="dashboardCashSales">
-                Rs. 0
-            </h2>
-
-        </div>
-
-    </div>
-
-
-    <!-- CARD SALES -->
-
-    <div class="card">
-
-        <div class="card-icon">
-            <i class="fa-solid fa-credit-card"></i>
-        </div>
-
-        <div class="card-info">
-
-            <h4>Card Sales</h4>
-
-            <h2 id="dashboardCardSales">
-                Rs. 0
-            </h2>
-
-        </div>
-
-    </div>
-
-
-    <!-- ONLINE SALES -->
-
-    <div class="card">
-
-        <div class="card-icon">
-            <i class="fa-solid fa-globe"></i>
-        </div>
-
-        <div class="card-info">
-
-            <h4>Online Sales</h4>
-
-            <h2 id="dashboardOnlineSales">
-                Rs. 0
-            </h2>
-
-        </div>
-
-    </div>
-
-
-    <!-- OTHER SALES -->
-
-    <div class="card">
-
-        <div class="card-icon">
-            <i class="fa-solid fa-wallet"></i>
-        </div>
-
-        <div class="card-info">
-
-            <h4>Other Sales</h4>
-
-            <h2 id="dashboardOtherSales">
-                Rs. 0
-            </h2>
-
-        </div>
-
-    </div>
-
-
-    <!-- TRANSACTIONS -->
-
-    <div class="card">
-
-        <div class="card-icon">
-            <i class="fa-solid fa-receipt"></i>
-        </div>
-
-        <div class="card-info">
-
-            <h4>Transactions</h4>
-
-            <h2 id="dashboardTransactions">
-                0
-            </h2>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- ==========================
-        FUEL STOCK CARD
-========================== -->
-
-<div class="fuel-stock-summary">
-
-    <div class="card">
-
-        <div class="card-icon">
-            <i class="fa-solid fa-gas-pump"></i>
-        </div>
-
-        <div class="card-info">
-
-            <h4>Total Fuel Stock</h4>
-
-            <h2 id="dashboardFuelStock">
-                0 L
-            </h2>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-                    <!-- FUEL STOCK -->
+                    <!-- =================================================
+                         TOTAL SALES
+                    ================================================== -->
 
                     <div class="card">
+
+                        <div class="card-icon">
+
+                            <i class="fa-solid fa-sack-dollar"></i>
+
+                        </div>
+
+                        <div class="card-info">
+
+                            <h4>
+                                Total Sales
+                            </h4>
+
+                            <h2 id="dashboardSales">
+                                Rs. 0
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         CASH SALES
+                    ================================================== -->
+
+                    <div class="card">
+
+                        <div class="card-icon">
+
+                            <i class="fa-solid fa-money-bill-wave"></i>
+
+                        </div>
+
+                        <div class="card-info">
+
+                            <h4>
+                                Cash Sales
+                            </h4>
+
+                            <h2 id="dashboardCashSales">
+                                Rs. 0
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         CARD SALES
+                    ================================================== -->
+
+                    <div class="card">
+
+                        <div class="card-icon">
+
+                            <i class="fa-solid fa-credit-card"></i>
+
+                        </div>
+
+                        <div class="card-info">
+
+                            <h4>
+                                Card Sales
+                            </h4>
+
+                            <h2 id="dashboardCardSales">
+                                Rs. 0
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         ONLINE SALES
+                    ================================================== -->
+
+                    <div class="card">
+
+                        <div class="card-icon">
+
+                            <i class="fa-solid fa-globe"></i>
+
+                        </div>
+
+                        <div class="card-info">
+
+                            <h4>
+                                Online Sales
+                            </h4>
+
+                            <h2 id="dashboardOnlineSales">
+                                Rs. 0
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         OTHER SALES
+                    ================================================== -->
+
+                    <div class="card">
+
+                        <div class="card-icon">
+
+                            <i class="fa-solid fa-wallet"></i>
+
+                        </div>
+
+                        <div class="card-info">
+
+                            <h4>
+                                Other Sales
+                            </h4>
+
+                            <h2 id="dashboardOtherSales">
+                                Rs. 0
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         TRANSACTIONS
+                    ================================================== -->
+
+                    <div class="card">
+
+                        <div class="card-icon">
+
+                            <i class="fa-solid fa-receipt"></i>
+
+                        </div>
+
+                        <div class="card-info">
+
+                            <h4>
+                                Transactions
+                            </h4>
+
+                            <h2 id="dashboardTransactions">
+                                0
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- =================================================
+                     TOTAL FUEL STOCK
+                ================================================== -->
+
+                <div class="fuel-stock-summary">
+
+
+                    <div class="card">
+
 
                         <div class="card-icon">
 
@@ -491,10 +570,11 @@
 
                         </div>
 
+
                         <div class="card-info">
 
                             <h4>
-                                Fuel Stock
+                                Total Fuel Stock
                             </h4>
 
                             <h2 id="dashboardFuelStock">
@@ -502,6 +582,7 @@
                             </h2>
 
                         </div>
+
 
                     </div>
 
@@ -523,6 +604,8 @@
 
                     <div class="panel sales-overview-panel">
 
+
+                        <!-- PANEL HEADER -->
 
                         <div class="panel-header">
 
@@ -551,6 +634,7 @@
                         </div>
 
 
+                        <!-- CHART -->
 
                         <div class="chart-container">
 
@@ -569,6 +653,8 @@
 
                     <div class="panel fuel-inventory-panel">
 
+
+                        <!-- PANEL HEADER -->
 
                         <div class="panel-header">
 
@@ -598,6 +684,8 @@
 
 
 
+                        <!-- FUEL INVENTORY -->
+
                         <div class="fuel-inventory">
 
 
@@ -609,6 +697,7 @@
                                 class="fuel-item"
                                 id="petrolFuelItem"
                             >
+
 
                                 <div class="fuel-item-top">
 
@@ -685,6 +774,7 @@
                                 id="dieselFuelItem"
                             >
 
+
                                 <div class="fuel-item-top">
 
 
@@ -759,6 +849,7 @@
                                 class="fuel-item"
                                 id="premiumFuelItem"
                             >
+
 
                                 <div class="fuel-item-top">
 
@@ -842,6 +933,8 @@
                 <div class="panel table-panel recent-transactions-panel">
 
 
+                    <!-- PANEL HEADER -->
+
                     <div class="panel-header">
 
 
@@ -871,7 +964,9 @@
 
 
 
-                    <!-- TABLE -->
+                    <!-- =================================================
+                         TABLE
+                    ================================================== -->
 
                     <div class="table-scroll">
 
@@ -916,7 +1011,7 @@
                                     </th>
 
                                     <th>
-                                        Date & Time
+                                        Date &amp; Time
                                     </th>
 
                                     <th>
@@ -939,22 +1034,28 @@
 
 
 
-                        <!-- EMPTY STATE -->
+                        <!-- =================================================
+                             EMPTY STATE
+                        ================================================== -->
 
                         <div
                             class="empty-transactions"
                             id="emptyTransactions"
                         >
 
+
                             <i class="fa-solid fa-receipt"></i>
+
 
                             <h4>
                                 No transactions yet
                             </h4>
 
+
                             <p>
                                 Your recent fuel sales will appear here.
                             </p>
+
 
                             <button
                                 type="button"
@@ -962,6 +1063,7 @@
                             >
                                 Create New Sale
                             </button>
+
 
                         </div>
 
@@ -988,10 +1090,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <!-- Notification system MUST load before dashboard -->
     <script src="notifications.js"></script>
 
-    <!-- Dashboard -->
     <script src="dashboard.js"></script>
 
 
