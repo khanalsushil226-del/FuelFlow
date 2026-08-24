@@ -630,56 +630,40 @@ generateBtn.addEventListener("click",(e)=>{
     // ==============================
 
 
-    const sale = {
+    const now = new Date();
 
+const sale = {
+    invoice: generateInvoice(),
 
-        invoice:
-        generateInvoice(),
+    customer:
+    customerName.value.trim(),
 
+    vehicle:
+    vehicleNumber.value.trim(),
 
+    fuel:
+    fuelType.value,
 
-        customer:
-        customerName.value.trim(),
+    quantity:
+    litres,
 
+    rate:
+    price,
 
+    amount:
+    litres * price,
 
-        vehicle:
-        vehicleNumber.value.trim(),
+    payment:
+    payment.value,
 
+    // Human-readable date for receipt
+    date:
+    now.toLocaleString(),
 
-
-        fuel:
-        fuelType.value,
-
-
-
-        quantity:
-        litres,
-
-
-
-        rate:
-        price,
-
-
-
-        amount:
-        litres * price,
-
-
-
-        payment:
-        payment.value,
-
-
-
-        date:
-        new Date().toLocaleString()
-
-
-
-    };
-
+    // Machine-readable date for calculations
+    timestamp:
+    now.toISOString()
+};
 
 
 

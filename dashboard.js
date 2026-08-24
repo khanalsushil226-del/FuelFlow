@@ -137,6 +137,47 @@ function getPaymentMethod(sale) {
         .toLowerCase();
 
 }
+// ==========================================================
+// GET TODAY'S SALES
+// ==========================================================
+
+function getTodaysSales() {
+
+    const today = new Date();
+
+    today.setHours(
+        0,
+        0,
+        0,
+        0
+    );
+
+    const tomorrow = new Date(today);
+
+    tomorrow.setDate(
+        tomorrow.getDate() + 1
+    );
+
+    return salesData.filter((sale) => {
+
+        const saleDate =
+            new Date(
+                sale.timestamp ||
+                sale.date
+            );
+
+        if (isNaN(saleDate)) {
+            return false;
+        }
+
+        return (
+            saleDate >= today &&
+            saleDate < tomorrow
+        );
+
+    });
+
+}
 
 
 // ==========================================================
@@ -156,7 +197,9 @@ function calculatePaymentTotals() {
     let otherSales = 0;
 
 
-    salesData.forEach((sale) => {
+    const todaysSales = getTodaysSales();
+
+todaysSales.forEach((sale) => {
 
         const amount =
             Number(sale.amount) || 0;
