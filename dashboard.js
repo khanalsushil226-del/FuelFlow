@@ -1029,12 +1029,17 @@ function loadRecentTransactions() {
     }
 
 
-    // LATEST 10 SALES
+    // TODAY'S SALES
 
-    const latestSales =
-        [...salesData]
-            .reverse()
-            .slice(0, 10);
+const todaysSales =
+    getTodaysSales();
+
+// LATEST 10 TODAY
+
+const latestSales =
+    [...todaysSales]
+        .reverse()
+        .slice(0, 10);
 
 
     latestSales.forEach(
