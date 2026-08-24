@@ -1,7 +1,6 @@
-
 // ==========================================================
 // FuelFlow Dashboard JavaScript
-// Complete Dashboard Logic
+// COMPLETE DASHBOARD LOGIC
 // ==========================================================
 
 
@@ -23,6 +22,18 @@ if (sessionStorage.getItem("loggedIn") !== "true") {
 const dashboardSales =
     document.getElementById("dashboardSales");
 
+const dashboardCashSales =
+    document.getElementById("dashboardCashSales");
+
+const dashboardCardSales =
+    document.getElementById("dashboardCardSales");
+
+const dashboardOnlineSales =
+    document.getElementById("dashboardOnlineSales");
+
+const dashboardOtherSales =
+    document.getElementById("dashboardOtherSales");
+
 const dashboardTransactions =
     document.getElementById("dashboardTransactions");
 
@@ -39,7 +50,9 @@ const salesChartCanvas =
     document.getElementById("salesChart");
 
 
-// Fuel inventory elements
+// ==========================================================
+// FUEL INVENTORY ELEMENTS
+// ==========================================================
 
 const petrolStock =
     document.getElementById("petrolStock");
@@ -98,45 +111,204 @@ let salesChart = null;
 
 
 // ==========================================================
+// HELPER — FORMAT CURRENCY
+// ==========================================================
+
+function formatCurrency(amount) {
+
+    return "Rs. " +
+        Number(amount || 0).toLocaleString();
+
+}
+
+
+// ==========================================================
+// HELPER — GET PAYMENT METHOD
+// ==========================================================
+
+function getPaymentMethod(sale) {
+
+    return String(
+        sale.payment ||
+        sale.paymentMethod ||
+        "Other"
+    )
+        .trim()
+        .toLowerCase();
+
+}
+
+
+// ==========================================================
+// CALCULATE PAYMENT TOTALS
+// ==========================================================
+
+function calculatePaymentTotals() {
+
+    let totalSales = 0;
+
+    let cashSales = 0;
+
+    let cardSales = 0;
+
+    let onlineSales = 0;
+
+    let otherSales = 0;
+
+
+    salesData.forEach((sale) => {
+
+        const amount =
+            Number(sale.amount) || 0;
+
+        const payment =
+            getPaymentMethod(sale);
+
+
+        totalSales += amount;
+
+
+        // CASH
+
+        if (
+            payment === "cash"
+        ) {
+
+            cashSales += amount;
+
+        }
+
+
+        // CARD
+
+        else if (
+            payment === "card" ||
+            payment === "credit card" ||
+            payment === "debit card"
+        ) {
+
+            cardSales += amount;
+
+        }
+
+
+        // ONLINE
+
+        else if (
+            payment === "online" ||
+            payment === "esewa" ||
+            payment === "e-sewa" ||
+            payment === "khalti" ||
+            payment === "fonepay" ||
+            payment === "bank" ||
+            payment === "online payment"
+        ) {
+
+            onlineSales += amount;
+
+        }
+
+
+        // OTHER
+
+        else {
+
+            otherSales += amount;
+
+        }
+
+    });
+
+
+    return {
+
+        totalSales,
+        cashSales,
+        cardSales,
+        onlineSales,
+        otherSales
+
+    };
+
+}
+
+
+// ==========================================================
 // UPDATE DASHBOARD CARDS
 // ==========================================================
 
 function updateDashboardCards() {
 
-    let totalSales = 0;
-
-    let totalFuel = 0;
-
-
-    salesData.forEach((sale) => {
-
-        totalSales +=
-            Number(sale.amount) || 0;
-
-        totalFuel +=
-            Number(sale.quantity) || 0;
-
-    });
+    const totals =
+        calculatePaymentTotals();
 
 
-    // Today's sales
+    // TOTAL SALES
 
-    dashboardSales.textContent =
-        "Rs. " + totalSales.toLocaleString();
+    if (dashboardSales) {
+
+        dashboardSales.textContent =
+            formatCurrency(
+                totals.totalSales
+            );
+
+    }
 
 
-    // Transactions
+    // CASH SALES
 
-    dashboardTransactions.textContent =
-        salesData.length;
+    if (dashboardCashSales) {
+
+        dashboardCashSales.textContent =
+            formatCurrency(
+                totals.cashSales
+            );
+
+    }
 
 
-    // Total fuel sold
+    // CARD SALES
 
-    if (dashboardFuelStock) {
+    if (dashboardCardSales) {
 
-        dashboardFuelStock.textContent =
-            totalFuel.toLocaleString() + " L";
+        dashboardCardSales.textContent =
+            formatCurrency(
+                totals.cardSales
+            );
+
+    }
+
+
+    // ONLINE SALES
+
+    if (dashboardOnlineSales) {
+
+        dashboardOnlineSales.textContent =
+            formatCurrency(
+                totals.onlineSales
+            );
+
+    }
+
+
+    // OTHER SALES
+
+    if (dashboardOtherSales) {
+
+        dashboardOtherSales.textContent =
+            formatCurrency(
+                totals.otherSales
+            );
+
+    }
+
+
+    // TRANSACTIONS
+
+    if (dashboardTransactions) {
+
+        dashboardTransactions.textContent =
+            salesData.length;
 
     }
 
@@ -195,7 +367,7 @@ function updateDashboardInventory() {
         Number(fuelStock.premium) || 0;
 
 
-    // Update inventory UI
+    // UPDATE PETROL
 
     updateFuelItem(
         "petrol",
@@ -204,12 +376,16 @@ function updateDashboardInventory() {
     );
 
 
+    // UPDATE DIESEL
+
     updateFuelItem(
         "diesel",
         diesel,
         5000
     );
 
+
+    // UPDATE PREMIUM
 
     updateFuelItem(
         "premium",
@@ -218,7 +394,7 @@ function updateDashboardInventory() {
     );
 
 
-    // Total dashboard stock
+    // TOTAL CURRENT STOCK
 
     const totalStock =
         petrol +
@@ -229,7 +405,8 @@ function updateDashboardInventory() {
     if (dashboardFuelStock) {
 
         dashboardFuelStock.textContent =
-            totalStock.toLocaleString() + " L";
+            totalStock.toLocaleString() +
+            " L";
 
     }
 
@@ -246,7 +423,6 @@ function updateFuelItem(
     capacity
 ) {
 
-
     let stockElement;
 
     let progressElement;
@@ -258,47 +434,68 @@ function updateFuelItem(
     let itemElement;
 
 
+    // PETROL
+
     if (fuel === "petrol") {
 
-        stockElement = petrolStock;
+        stockElement =
+            petrolStock;
 
-        progressElement = petrolProgress;
+        progressElement =
+            petrolProgress;
 
-        percentageElement = petrolPercentage;
+        percentageElement =
+            petrolPercentage;
 
-        statusElement = petrolStatus;
+        statusElement =
+            petrolStatus;
 
-        itemElement = petrolFuelItem;
+        itemElement =
+            petrolFuelItem;
 
     }
 
+
+    // DIESEL
 
     else if (fuel === "diesel") {
 
-        stockElement = dieselStock;
+        stockElement =
+            dieselStock;
 
-        progressElement = dieselProgress;
+        progressElement =
+            dieselProgress;
 
-        percentageElement = dieselPercentage;
+        percentageElement =
+            dieselPercentage;
 
-        statusElement = dieselStatus;
+        statusElement =
+            dieselStatus;
 
-        itemElement = dieselFuelItem;
+        itemElement =
+            dieselFuelItem;
 
     }
 
 
+    // PREMIUM
+
     else if (fuel === "premium") {
 
-        stockElement = premiumStock;
+        stockElement =
+            premiumStock;
 
-        progressElement = premiumProgress;
+        progressElement =
+            premiumProgress;
 
-        percentageElement = premiumPercentage;
+        percentageElement =
+            premiumPercentage;
 
-        statusElement = premiumStatus;
+        statusElement =
+            premiumStatus;
 
-        itemElement = premiumFuelItem;
+        itemElement =
+            premiumFuelItem;
 
     }
 
@@ -310,7 +507,7 @@ function updateFuelItem(
     }
 
 
-    // Calculate percentage
+    // CALCULATE PERCENTAGE
 
     let percentage =
         (stock / capacity) * 100;
@@ -326,13 +523,14 @@ function updateFuelItem(
         );
 
 
-    // Stock
+    // STOCK TEXT
 
     stockElement.textContent =
-        stock.toLocaleString() + " L";
+        stock.toLocaleString() +
+        " L";
 
 
-    // Progress
+    // PROGRESS BAR
 
     if (progressElement) {
 
@@ -342,17 +540,18 @@ function updateFuelItem(
     }
 
 
-    // Percentage
+    // PERCENTAGE
 
     if (percentageElement) {
 
         percentageElement.textContent =
-            Math.round(percentage) + "%";
+            Math.round(percentage) +
+            "%";
 
     }
 
 
-    // Remove old states
+    // RESET STATES
 
     if (itemElement) {
 
@@ -364,7 +563,7 @@ function updateFuelItem(
     }
 
 
-    // Status
+    // STATUS
 
     if (percentage <= 10) {
 
@@ -374,6 +573,7 @@ function updateFuelItem(
                 "Critical Stock";
 
         }
+
 
         if (itemElement) {
 
@@ -394,6 +594,7 @@ function updateFuelItem(
                 "Low Stock";
 
         }
+
 
         if (itemElement) {
 
@@ -450,13 +651,25 @@ function loadSalesChart() {
     const totals = [];
 
 
-    // Last 7 days
+    // LAST 7 DAYS
 
-    for (let i = 6; i >= 0; i--) {
+    for (
+        let i = 6;
+        i >= 0;
+        i--
+    ) {
 
-        const date = new Date();
+        const date =
+            new Date();
 
-        date.setHours(0, 0, 0, 0);
+
+        date.setHours(
+            0,
+            0,
+            0,
+            0
+        );
+
 
         date.setDate(
             date.getDate() - i
@@ -480,12 +693,15 @@ function loadSalesChart() {
     }
 
 
-    // Calculate sales
+    // CALCULATE DAILY SALES
 
     salesData.forEach((sale) => {
 
         const saleDate =
-            new Date(sale.date);
+            new Date(
+                sale.date ||
+                sale.timestamp
+            );
 
 
         if (isNaN(saleDate)) {
@@ -505,6 +721,7 @@ function loadSalesChart() {
 
         const today =
             new Date();
+
 
         today.setHours(
             0,
@@ -539,14 +756,16 @@ function loadSalesChart() {
             totals[
                 6 - difference
             ] +=
-                Number(sale.amount) || 0;
+                Number(
+                    sale.amount
+                ) || 0;
 
         }
 
     });
 
 
-    // Destroy previous chart
+    // DESTROY OLD CHART
 
     if (salesChart) {
 
@@ -555,7 +774,7 @@ function loadSalesChart() {
     }
 
 
-    // Create chart
+    // CREATE CHART
 
     salesChart =
         new Chart(
@@ -573,20 +792,23 @@ function loadSalesChart() {
 
                         {
 
-                            label: "Daily Sales",
+                            label:
+                                "Daily Sales",
 
-                            data: totals,
+                            data:
+                                totals,
 
-                            borderColor: "#2563eb",
+                            borderColor:
+                                "#2563eb",
 
                             backgroundColor:
-                                "rgba(37, 99, 235, .12)",
+                                "rgba(37, 99, 235, 0.10)",
 
                             borderWidth: 3,
 
                             fill: true,
 
-                            tension: .4,
+                            tension: 0.4,
 
                             pointRadius: 4,
 
@@ -603,14 +825,16 @@ function loadSalesChart() {
 
                     responsive: true,
 
-                    maintainAspectRatio: false,
+                    maintainAspectRatio:
+                        false,
 
 
                     plugins: {
 
                         legend: {
 
-                            display: false
+                            display:
+                                false
 
                         }
 
@@ -619,18 +843,43 @@ function loadSalesChart() {
 
                     scales: {
 
+                        x: {
+
+                            grid: {
+
+                                display:
+                                    false
+
+                            }
+
+                        },
+
+
                         y: {
 
-                            beginAtZero: true,
+                            beginAtZero:
+                                true,
+
+                            grid: {
+
+                                color:
+                                    "#eef2f7"
+
+                            },
+
 
                             ticks: {
 
                                 callback:
-                                    function (value) {
+                                    function (
+                                        value
+                                    ) {
 
                                         return (
                                             "Rs. " +
-                                            value.toLocaleString()
+                                            Number(
+                                                value
+                                            ).toLocaleString()
                                         );
 
                                     }
@@ -681,8 +930,13 @@ function formatTransactionDate(sale) {
     return date.toLocaleString(
         "en-NP",
         {
-            dateStyle: "short",
-            timeStyle: "short"
+
+            dateStyle:
+                "short",
+
+            timeStyle:
+                "short"
+
         }
     );
 
@@ -702,12 +956,15 @@ function loadRecentTransactions() {
     }
 
 
-    recentTransactions.innerHTML = "";
+    recentTransactions.innerHTML =
+        "";
 
 
-    // Empty state
+    // EMPTY STATE
 
-    if (salesData.length === 0) {
+    if (
+        salesData.length === 0
+    ) {
 
         if (emptyTransactions) {
 
@@ -729,7 +986,7 @@ function loadRecentTransactions() {
     }
 
 
-    // Latest 10 sales
+    // LATEST 10 SALES
 
     const latestSales =
         [...salesData]
@@ -737,183 +994,187 @@ function loadRecentTransactions() {
             .slice(0, 10);
 
 
-    latestSales.forEach((sale, index) => {
+    latestSales.forEach(
+        (sale, index) => {
 
 
-        const invoice =
-            sale.invoice ||
-            sale.invoiceNumber ||
-            `INV-${1001 + index}`;
+            const invoice =
+                sale.invoice ||
+                sale.invoiceNumber ||
+                `INV-${1001 + index}`;
 
 
-        const customer =
-            sale.customer ||
-            sale.customerName ||
-            "Walk-in Customer";
+            const customer =
+                sale.customer ||
+                sale.customerName ||
+                "Walk-in Customer";
 
 
-        const vehicle =
-            sale.vehicle ||
-            sale.vehicleNumber ||
-            "-";
+            const vehicle =
+                sale.vehicle ||
+                sale.vehicleNumber ||
+                "-";
 
 
-        const fuel =
-            sale.fuel ||
-            sale.fuelType ||
-            "-";
+            const fuel =
+                sale.fuel ||
+                sale.fuelType ||
+                "-";
 
 
-        const quantity =
-            Number(
-                sale.quantity
-            ) || 0;
+            const quantity =
+                Number(
+                    sale.quantity
+                ) || 0;
 
 
-        const amount =
-            Number(
-                sale.amount
-            ) || 0;
+            const amount =
+                Number(
+                    sale.amount
+                ) || 0;
 
 
-        const payment =
-            sale.payment ||
-            sale.paymentMethod ||
-            "-";
+            const payment =
+                sale.payment ||
+                sale.paymentMethod ||
+                "-";
 
 
-        const status =
-            sale.status ||
-            "Completed";
+            const status =
+                sale.status ||
+                "Completed";
 
 
-        const statusClass =
-            status
-                .toLowerCase()
-                .replace(
-                    /\s+/g,
-                    "-"
+            const statusClass =
+                String(status)
+                    .toLowerCase()
+                    .replace(
+                        /\s+/g,
+                        "-"
+                    );
+
+
+            const dateText =
+                formatTransactionDate(
+                    sale
                 );
 
 
-        const dateText =
-            formatTransactionDate(
-                sale
+            // CREATE ROW
+
+            const row =
+                document.createElement(
+                    "tr"
+                );
+
+
+            row.innerHTML = `
+
+                <td>
+
+                    <span class="invoice-number">
+
+                        ${invoice}
+
+                    </span>
+
+                </td>
+
+
+                <td>
+
+                    <span class="customer-name">
+
+                        ${customer}
+
+                    </span>
+
+                </td>
+
+
+                <td>
+
+                    ${vehicle}
+
+                </td>
+
+
+                <td>
+
+                    ${fuel}
+
+                </td>
+
+
+                <td>
+
+                    ${quantity.toLocaleString()} L
+
+                </td>
+
+
+                <td>
+
+                    <span class="transaction-amount">
+
+                        Rs. ${amount.toLocaleString()}
+
+                    </span>
+
+                </td>
+
+
+                <td>
+
+                    ${payment}
+
+                </td>
+
+
+                <td>
+
+                    <span
+                        class="transaction-status ${statusClass}"
+                    >
+
+                        ${status}
+
+                    </span>
+
+                </td>
+
+
+                <td>
+
+                    ${dateText}
+
+                </td>
+
+
+                <td>
+
+                    <button
+                        type="button"
+                        class="transaction-view-btn"
+                        title="View Transaction"
+                        onclick="viewTransaction('${invoice}')"
+                    >
+
+                        <i class="fa-solid fa-eye"></i>
+
+                    </button>
+
+                </td>
+
+            `;
+
+
+            recentTransactions.appendChild(
+                row
             );
 
-
-        // Create row
-
-        const row =
-            document.createElement("tr");
-
-
-        row.innerHTML = `
-
-            <td>
-
-                <span class="invoice-number">
-
-                    ${invoice}
-
-                </span>
-
-            </td>
-
-
-            <td>
-
-                <span class="customer-name">
-
-                    ${customer}
-
-                </span>
-
-            </td>
-
-
-            <td>
-
-                ${vehicle}
-
-            </td>
-
-
-            <td>
-
-                ${fuel}
-
-            </td>
-
-
-            <td>
-
-                ${quantity.toLocaleString()} L
-
-            </td>
-
-
-            <td>
-
-                <span class="transaction-amount">
-
-                    Rs. ${amount.toLocaleString()}
-
-                </span>
-
-            </td>
-
-
-            <td>
-
-                ${payment}
-
-            </td>
-
-
-            <td>
-
-                <span
-                    class="transaction-status ${statusClass}"
-                >
-
-                    ${status}
-
-                </span>
-
-            </td>
-
-
-            <td>
-
-                ${dateText}
-
-            </td>
-
-
-            <td>
-
-                <button
-                    type="button"
-                    class="transaction-view-btn"
-                    title="View Transaction"
-                    onclick="viewTransaction('${invoice}')"
-                >
-
-                    <i class="fa-solid fa-eye"></i>
-
-                </button>
-
-            </td>
-
-        `;
-
-
-        recentTransactions.appendChild(
-            row
-        );
-
-    });
+        }
+    );
 
 }
 
@@ -938,9 +1199,12 @@ function viewTransaction(invoice) {
                     sale.invoice ||
                     sale.invoiceNumber;
 
+
                 return String(
                     saleInvoice
-                ) === String(invoice);
+                ) === String(
+                    invoice
+                );
 
             }
         );
@@ -957,15 +1221,13 @@ function viewTransaction(invoice) {
     }
 
 
-    // Save selected transaction
-
     localStorage.setItem(
         "selectedTransaction",
-        JSON.stringify(transaction)
+        JSON.stringify(
+            transaction
+        )
     );
 
-
-    // Open sales page
 
     window.location.href =
         "sales.html";
@@ -979,8 +1241,7 @@ function viewTransaction(invoice) {
 
 function initializeDashboard() {
 
-
-    // Reload sales data
+    // Reload latest sales
 
     salesData =
         JSON.parse(
@@ -988,22 +1249,22 @@ function initializeDashboard() {
         ) || [];
 
 
-    // Cards
+    // Update payment cards
 
     updateDashboardCards();
 
 
-    // Inventory
+    // Update inventory
 
     updateDashboardInventory();
 
 
-    // Chart
+    // Update chart
 
     loadSalesChart();
 
 
-    // Transactions
+    // Update recent transactions
 
     loadRecentTransactions();
 
