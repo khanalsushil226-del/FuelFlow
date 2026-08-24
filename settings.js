@@ -7,45 +7,45 @@
 // Load Settings From LocalStorage
 // ==========================================
 
-let fuelFlowSettings = JSON.parse(
-    localStorage.getItem("fuelFlowSettings")
-) || {
+let fuelFlowSettings =
+    JSON.parse(
+        localStorage.getItem("fuelFlowSettings")
+    ) || {
 
-    profile: {
-        name: "Admin",
-        email: "",
-        phone: "",
-        role: "Administrator"
-    },
+        profile: {
+            name: "Admin",
+            email: "",
+            phone: "",
+            role: "Administrator"
+        },
 
-    pump: {
-        name: "",
-        location: "",
-        phone: "",
-        email: "",
-        address: ""
-    },
+        pump: {
+            name: "",
+            location: "",
+            phone: "",
+            email: "",
+            address: ""
+        },
 
-    fuelPrices: {
-        petrol: 180,
-        diesel: 165
-    },
+        fuelPrices: {
+            petrol: 180,
+            diesel: 165
+        },
 
-    preferences: {
-        currency: "NPR",
-        lowStockWarning: true,
-        notifications: true,
-        autoRefresh: true
-    }
-
-};
+        preferences: {
+            currency: "NPR",
+            lowStockWarning: true,
+            notifications: true,
+            autoRefresh: true
+        }
+    };
 
 
 // ==========================================
 // Save Settings
 // ==========================================
 
-function saveSettings(){
+function saveSettings() {
 
     localStorage.setItem(
         "fuelFlowSettings",
@@ -55,13 +55,14 @@ function saveSettings(){
 }
 
 
-
 // ==========================================
 // Get Elements
 // ==========================================
 
 
+// ------------------------------------------
 // Profile
+// ------------------------------------------
 
 const adminName =
     document.getElementById("adminName");
@@ -76,7 +77,9 @@ const adminRole =
     document.getElementById("adminRole");
 
 
+// ------------------------------------------
 // Pump
+// ------------------------------------------
 
 const pumpName =
     document.getElementById("pumpName");
@@ -94,7 +97,9 @@ const pumpAddress =
     document.getElementById("pumpAddress");
 
 
+// ------------------------------------------
 // Fuel Prices
+// ------------------------------------------
 
 const petrolPrice =
     document.getElementById("petrolPrice");
@@ -103,7 +108,9 @@ const dieselPrice =
     document.getElementById("dieselPrice");
 
 
+// ------------------------------------------
 // Preferences
+// ------------------------------------------
 
 const currency =
     document.getElementById("currency");
@@ -118,13 +125,17 @@ const autoRefresh =
     document.getElementById("autoRefresh");
 
 
+// ------------------------------------------
 // Header
+// ------------------------------------------
 
 const headerUserName =
     document.getElementById("headerUserName");
 
 
+// ------------------------------------------
 // Buttons
+// ------------------------------------------
 
 const saveProfileBtn =
     document.getElementById("saveProfileBtn");
@@ -148,18 +159,565 @@ const logoutBtn =
     document.getElementById("logoutBtn");
 
 
+// ==========================================
+// ADMIN DATA PROTECTION PIN
+// ==========================================
+//
+// This PIN protects the "Clear All Application Data"
+// action.
+//
+// Storage key:
+// adminDataPin
+//
+// The PIN must always contain exactly 4 digits.
+// ==========================================
+
+
+const ADMIN_PIN_KEY =
+    "adminDataPin";
+
+
+// ==========================================
+// Get Stored Admin PIN
+// ==========================================
+
+function getAdminPin() {
+
+    return localStorage.getItem(
+        ADMIN_PIN_KEY
+    );
+
+}
+
+
+// ==========================================
+// Validate PIN Format
+// ==========================================
+
+function isValidAdminPin(pin) {
+
+    return /^\d{4}$/.test(pin);
+
+}
+
+
+// ==========================================
+// Create Admin PIN
+// ==========================================
+//
+// Used when the system does not have a PIN yet.
+// ==========================================
+
+function setupAdminPin() {
+
+    let firstPin;
+
+    let secondPin;
+
+
+    while (true) {
+
+        firstPin = prompt(
+            "ADMIN DATA PROTECTION\n\n" +
+            "No Admin PIN has been created yet.\n\n" +
+            "Create a unique 4-digit PIN to protect " +
+            "the Clear All Application Data feature."
+        );
+
+
+        // User cancelled
+        if (firstPin === null) {
+
+            return false;
+
+        }
+
+
+        firstPin =
+            firstPin.trim();
+
+
+        if (!isValidAdminPin(firstPin)) {
+
+            alert(
+                "Invalid PIN.\n\n" +
+                "Your Admin PIN must contain exactly 4 digits."
+            );
+
+            continue;
+
+        }
+
+
+        secondPin = prompt(
+            "Confirm your new 4-digit Admin PIN:"
+        );
+
+
+        // User cancelled
+        if (secondPin === null) {
+
+            return false;
+
+        }
+
+
+        secondPin =
+            secondPin.trim();
+
+
+        if (firstPin !== secondPin) {
+
+            alert(
+                "PINs do not match.\n\n" +
+                "Please try again."
+            );
+
+            continue;
+
+        }
+
+
+        localStorage.setItem(
+            ADMIN_PIN_KEY,
+            firstPin
+        );
+
+
+        alert(
+            "Admin PIN created successfully.\n\n" +
+            "This PIN will be required before " +
+            "all application data can be deleted."
+        );
+
+
+        return true;
+
+    }
+
+}
+
+
+// ==========================================
+// Verify Admin PIN
+// ==========================================
+
+function verifyAdminPin() {
+
+    let storedPin =
+        getAdminPin();
+
+
+    // --------------------------------------
+    // First-time setup
+    // --------------------------------------
+
+    if (!storedPin) {
+
+        const created =
+            setupAdminPin();
+
+
+        if (!created) {
+
+            return false;
+
+        }
+
+
+        storedPin =
+            getAdminPin();
+
+    }
+
+
+    // --------------------------------------
+    // Ask for PIN
+    // --------------------------------------
+
+    const enteredPin =
+        prompt(
+            "ADMIN VERIFICATION\n\n" +
+            "Enter your 4-digit Admin PIN to continue:"
+        );
+
+
+    // User cancelled
+    if (enteredPin === null) {
+
+        return false;
+
+    }
+
+
+    const cleanPin =
+        enteredPin.trim();
+
+
+    // --------------------------------------
+    // Validate format
+    // --------------------------------------
+
+    if (!isValidAdminPin(cleanPin)) {
+
+        alert(
+            "Invalid PIN.\n\n" +
+            "Please enter exactly 4 digits."
+        );
+
+        return false;
+
+    }
+
+
+    // --------------------------------------
+    // Verify
+    // --------------------------------------
+
+    if (cleanPin !== storedPin) {
+
+        alert(
+            "Access denied.\n\n" +
+            "The Admin PIN is incorrect.\n\n" +
+            "No data has been deleted."
+        );
+
+        return false;
+
+    }
+
+
+    return true;
+
+}
+
+
+// ==========================================
+// Add Admin PIN Management To Security
+// ==========================================
+
+function addAdminPinSecurity() {
+
+    const securityCard =
+        changePasswordBtn
+            ? changePasswordBtn.closest(".settings-card")
+            : null;
+
+
+    if (!securityCard) {
+
+        return;
+
+    }
+
+
+    // Prevent duplicate creation
+    if (
+        document.getElementById(
+            "adminPinManagement"
+        )
+    ) {
+
+        return;
+
+    }
+
+
+    const securityActions =
+        changePasswordBtn.closest(
+            ".settings-actions"
+        );
+
+
+    if (!securityActions) {
+
+        return;
+
+    }
+
+
+    const pinContainer =
+        document.createElement("div");
+
+
+    pinContainer.id =
+        "adminPinManagement";
+
+    pinContainer.style.marginTop =
+        "20px";
+
+    pinContainer.style.paddingTop =
+        "20px";
+
+    pinContainer.style.borderTop =
+        "1px solid #e5e7eb";
+
+
+    pinContainer.innerHTML = `
+
+        <div style="
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            gap:20px;
+            flex-wrap:wrap;
+        ">
+
+            <div>
+
+                <strong style="
+                    display:block;
+                    margin-bottom:5px;
+                ">
+                    Admin Data Protection PIN
+                </strong>
+
+                <p style="
+                    margin:0;
+                    color:#6b7280;
+                    font-size:14px;
+                ">
+                    A unique 4-digit PIN is required
+                    before permanently deleting
+                    FuelFlow application data.
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                id="changeAdminPinBtn"
+                class="settings-save-btn"
+            >
+
+                <i class="fa-solid fa-shield-halved"></i>
+
+                Change Admin PIN
+
+            </button>
+
+        </div>
+
+    `;
+
+
+    securityActions.appendChild(
+        pinContainer
+    );
+
+
+    // --------------------------------------
+    // Change PIN button
+    // --------------------------------------
+
+    const changeAdminPinBtn =
+        document.getElementById(
+            "changeAdminPinBtn"
+        );
+
+
+    if (changeAdminPinBtn) {
+
+        changeAdminPinBtn.addEventListener(
+            "click",
+            changeAdminPin
+        );
+
+    }
+
+}
+
+
+// ==========================================
+// Change Admin PIN
+// ==========================================
+
+function changeAdminPin() {
+
+    const existingPin =
+        getAdminPin();
+
+
+    // --------------------------------------
+    // If no PIN exists
+    // --------------------------------------
+
+    if (!existingPin) {
+
+        setupAdminPin();
+
+        return;
+
+    }
+
+
+    // --------------------------------------
+    // Verify current PIN first
+    // --------------------------------------
+
+    const currentPin =
+        prompt(
+            "CHANGE ADMIN PIN\n\n" +
+            "Enter your current 4-digit Admin PIN:"
+        );
+
+
+    if (currentPin === null) {
+
+        return;
+
+    }
+
+
+    if (
+        !isValidAdminPin(
+            currentPin.trim()
+        )
+    ) {
+
+        alert(
+            "Invalid PIN.\n\n" +
+            "The PIN must contain exactly 4 digits."
+        );
+
+        return;
+
+    }
+
+
+    if (
+        currentPin.trim() !==
+        existingPin
+    ) {
+
+        alert(
+            "Current Admin PIN is incorrect.\n\n" +
+            "PIN was not changed."
+        );
+
+        return;
+
+    }
+
+
+    // --------------------------------------
+    // New PIN
+    // --------------------------------------
+
+    const newPin =
+        prompt(
+            "Enter your new unique 4-digit Admin PIN:"
+        );
+
+
+    if (newPin === null) {
+
+        return;
+
+    }
+
+
+    const cleanNewPin =
+        newPin.trim();
+
+
+    if (!isValidAdminPin(cleanNewPin)) {
+
+        alert(
+            "Invalid PIN.\n\n" +
+            "The new PIN must contain exactly 4 digits."
+        );
+
+        return;
+
+    }
+
+
+    // --------------------------------------
+    // Confirm new PIN
+    // --------------------------------------
+
+    const confirmPin =
+        prompt(
+            "Confirm your new 4-digit Admin PIN:"
+        );
+
+
+    if (confirmPin === null) {
+
+        return;
+
+    }
+
+
+    const cleanConfirmPin =
+        confirmPin.trim();
+
+
+    if (
+        cleanNewPin !==
+        cleanConfirmPin
+    ) {
+
+        alert(
+            "PINs do not match.\n\n" +
+            "Your Admin PIN was not changed."
+        );
+
+        return;
+
+    }
+
+
+    // --------------------------------------
+    // Prevent same PIN
+    // --------------------------------------
+
+    if (
+        cleanNewPin ===
+        existingPin
+    ) {
+
+        alert(
+            "Your new PIN must be different " +
+            "from your current PIN."
+        );
+
+        return;
+
+    }
+
+
+    // --------------------------------------
+    // Save new PIN
+    // --------------------------------------
+
+    localStorage.setItem(
+        ADMIN_PIN_KEY,
+        cleanNewPin
+    );
+
+
+    alert(
+        "Admin PIN changed successfully."
+    );
+
+}
+
 
 // ==========================================
 // Load Settings Into Form
 // ==========================================
 
-function loadSettings(){
+function loadSettings() {
 
-    // ==============================
+
+    // ======================================
     // Profile
-    // ==============================
+    // ======================================
 
-    if(adminName){
+    if (adminName) {
 
         adminName.value =
             fuelFlowSettings.profile.name || "";
@@ -167,7 +725,7 @@ function loadSettings(){
     }
 
 
-    if(adminEmail){
+    if (adminEmail) {
 
         adminEmail.value =
             fuelFlowSettings.profile.email || "";
@@ -175,7 +733,7 @@ function loadSettings(){
     }
 
 
-    if(adminPhone){
+    if (adminPhone) {
 
         adminPhone.value =
             fuelFlowSettings.profile.phone || "";
@@ -183,7 +741,7 @@ function loadSettings(){
     }
 
 
-    if(adminRole){
+    if (adminRole) {
 
         adminRole.value =
             fuelFlowSettings.profile.role ||
@@ -192,11 +750,11 @@ function loadSettings(){
     }
 
 
-    // ==============================
+    // ======================================
     // Pump Information
-    // ==============================
+    // ======================================
 
-    if(pumpName){
+    if (pumpName) {
 
         pumpName.value =
             fuelFlowSettings.pump.name || "";
@@ -204,7 +762,7 @@ function loadSettings(){
     }
 
 
-    if(pumpLocation){
+    if (pumpLocation) {
 
         pumpLocation.value =
             fuelFlowSettings.pump.location || "";
@@ -212,7 +770,7 @@ function loadSettings(){
     }
 
 
-    if(pumpPhone){
+    if (pumpPhone) {
 
         pumpPhone.value =
             fuelFlowSettings.pump.phone || "";
@@ -220,7 +778,7 @@ function loadSettings(){
     }
 
 
-    if(pumpEmail){
+    if (pumpEmail) {
 
         pumpEmail.value =
             fuelFlowSettings.pump.email || "";
@@ -228,7 +786,7 @@ function loadSettings(){
     }
 
 
-    if(pumpAddress){
+    if (pumpAddress) {
 
         pumpAddress.value =
             fuelFlowSettings.pump.address || "";
@@ -236,11 +794,11 @@ function loadSettings(){
     }
 
 
-    // ==============================
+    // ======================================
     // Fuel Prices
-    // ==============================
+    // ======================================
 
-    if(petrolPrice){
+    if (petrolPrice) {
 
         petrolPrice.value =
             fuelFlowSettings.fuelPrices.petrol;
@@ -248,7 +806,7 @@ function loadSettings(){
     }
 
 
-    if(dieselPrice){
+    if (dieselPrice) {
 
         dieselPrice.value =
             fuelFlowSettings.fuelPrices.diesel;
@@ -256,11 +814,11 @@ function loadSettings(){
     }
 
 
-    // ==============================
+    // ======================================
     // Preferences
-    // ==============================
+    // ======================================
 
-    if(currency){
+    if (currency) {
 
         currency.value =
             fuelFlowSettings.preferences.currency;
@@ -268,7 +826,7 @@ function loadSettings(){
     }
 
 
-    if(lowStockWarning){
+    if (lowStockWarning) {
 
         lowStockWarning.checked =
             fuelFlowSettings.preferences.lowStockWarning;
@@ -276,7 +834,7 @@ function loadSettings(){
     }
 
 
-    if(notifications){
+    if (notifications) {
 
         notifications.checked =
             fuelFlowSettings.preferences.notifications;
@@ -284,7 +842,7 @@ function loadSettings(){
     }
 
 
-    if(autoRefresh){
+    if (autoRefresh) {
 
         autoRefresh.checked =
             fuelFlowSettings.preferences.autoRefresh;
@@ -292,23 +850,22 @@ function loadSettings(){
     }
 
 
-    // ==============================
+    // ======================================
     // Header Name
-    // ==============================
+    // ======================================
 
     updateHeaderName();
 
 }
 
 
-
 // ==========================================
 // Update Header Name
 // ==========================================
 
-function updateHeaderName(){
+function updateHeaderName() {
 
-    if(!headerUserName){
+    if (!headerUserName) {
 
         return;
 
@@ -325,22 +882,21 @@ function updateHeaderName(){
 }
 
 
-
 // ==========================================
 // Save Profile
 // ==========================================
 
-if(saveProfileBtn){
+if (saveProfileBtn) {
 
     saveProfileBtn.addEventListener(
         "click",
-        function(){
+        function () {
 
             const name =
                 adminName.value.trim();
 
 
-            if(name === ""){
+            if (name === "") {
 
                 alert(
                     "Please enter your full name."
@@ -381,22 +937,21 @@ if(saveProfileBtn){
 }
 
 
-
 // ==========================================
 // Save Pump Information
 // ==========================================
 
-if(savePumpBtn){
+if (savePumpBtn) {
 
     savePumpBtn.addEventListener(
         "click",
-        function(){
+        function () {
 
             const name =
                 pumpName.value.trim();
 
 
-            if(name === ""){
+            if (name === "") {
 
                 alert(
                     "Please enter the petrol pump name."
@@ -442,29 +997,32 @@ if(savePumpBtn){
 }
 
 
-
 // ==========================================
 // Save Fuel Prices
 // ==========================================
 
-if(saveFuelPriceBtn){
+if (saveFuelPriceBtn) {
 
     saveFuelPriceBtn.addEventListener(
         "click",
-        function(){
+        function () {
 
             const petrol =
-                Number(petrolPrice.value);
+                Number(
+                    petrolPrice.value
+                );
 
 
             const diesel =
-                Number(dieselPrice.value);
+                Number(
+                    dieselPrice.value
+                );
 
 
-            if(
+            if (
                 petrol <= 0 ||
                 diesel <= 0
-            ){
+            ) {
 
                 alert(
                     "Please enter valid fuel prices."
@@ -486,8 +1044,9 @@ if(saveFuelPriceBtn){
             saveSettings();
 
 
-            // Also save separately
-            // for other FuelFlow modules
+            // ----------------------------------
+            // Save separately for other modules
+            // ----------------------------------
 
             localStorage.setItem(
                 "petrolPrice",
@@ -511,16 +1070,15 @@ if(saveFuelPriceBtn){
 }
 
 
-
 // ==========================================
 // Save System Preferences
 // ==========================================
 
-if(savePreferencesBtn){
+if (savePreferencesBtn) {
 
     savePreferencesBtn.addEventListener(
         "click",
-        function(){
+        function () {
 
             fuelFlowSettings.preferences.currency =
                 currency.value;
@@ -551,7 +1109,6 @@ if(savePreferencesBtn){
 }
 
 
-
 // ==========================================
 // Password Toggle
 // ==========================================
@@ -563,11 +1120,11 @@ const passwordToggles =
 
 
 passwordToggles.forEach(
-    function(button){
+    function (button) {
 
         button.addEventListener(
             "click",
-            function(){
+            function () {
 
                 const targetId =
                     button.dataset.target;
@@ -579,16 +1136,20 @@ passwordToggles.forEach(
                     );
 
 
-                if(!input){
+                if (!input) {
 
                     return;
 
                 }
 
 
-                if(input.type === "password"){
+                if (
+                    input.type ===
+                    "password"
+                ) {
 
-                    input.type = "text";
+                    input.type =
+                        "text";
 
 
                     button.innerHTML =
@@ -596,9 +1157,10 @@ passwordToggles.forEach(
 
                 }
 
-                else{
+                else {
 
-                    input.type = "password";
+                    input.type =
+                        "password";
 
 
                     button.innerHTML =
@@ -613,16 +1175,15 @@ passwordToggles.forEach(
 );
 
 
-
 // ==========================================
 // Change Password
 // ==========================================
 
-if(changePasswordBtn){
+if (changePasswordBtn) {
 
     changePasswordBtn.addEventListener(
         "click",
-        function(){
+        function () {
 
             const currentPassword =
                 document.getElementById(
@@ -642,9 +1203,9 @@ if(changePasswordBtn){
                 ).value;
 
 
-            // ==================================
+            // ----------------------------------
             // Default Login Password
-            // ==================================
+            // ----------------------------------
 
             const storedPassword =
                 localStorage.getItem(
@@ -652,11 +1213,13 @@ if(changePasswordBtn){
                 ) || "admin@123";
 
 
-            // ==================================
+            // ----------------------------------
             // Validation
-            // ==================================
+            // ----------------------------------
 
-            if(currentPassword === ""){
+            if (
+                currentPassword === ""
+            ) {
 
                 alert(
                     "Please enter your current password."
@@ -667,7 +1230,10 @@ if(changePasswordBtn){
             }
 
 
-            if(currentPassword !== storedPassword){
+            if (
+                currentPassword !==
+                storedPassword
+            ) {
 
                 alert(
                     "Current password is incorrect."
@@ -678,7 +1244,9 @@ if(changePasswordBtn){
             }
 
 
-            if(newPassword.length < 6){
+            if (
+                newPassword.length < 6
+            ) {
 
                 alert(
                     "New password must contain at least 6 characters."
@@ -689,7 +1257,10 @@ if(changePasswordBtn){
             }
 
 
-            if(newPassword !== confirmPassword){
+            if (
+                newPassword !==
+                confirmPassword
+            ) {
 
                 alert(
                     "New passwords do not match."
@@ -700,9 +1271,9 @@ if(changePasswordBtn){
             }
 
 
-            // ==================================
+            // ----------------------------------
             // Save New Password
-            // ==================================
+            // ----------------------------------
 
             localStorage.setItem(
                 "adminPassword",
@@ -735,59 +1306,76 @@ if(changePasswordBtn){
 }
 
 
-
 // ==========================================
-// Clear All Application Data
+// CLEAR ALL APPLICATION DATA
+// ==========================================
+//
+// IMPORTANT:
+// This action is protected by:
+// 1. First confirmation
+// 2. Second confirmation
+// 3. Unique 4-digit Admin PIN
+//
 // ==========================================
 
-if(clearDataBtn){
+if (clearDataBtn) {
 
     clearDataBtn.addEventListener(
         "click",
-        function(){
+        function () {
+
+
+            // ==================================
+            // FIRST CONFIRMATION
+            // ==================================
 
             const confirmation =
                 confirm(
 
-                    "WARNING!\n\n" +
+                    "⚠️ WARNING!\n\n" +
 
                     "This will permanently delete:\n\n" +
 
                     "• Sales records\n" +
-
                     "• Inventory records\n" +
-
                     "• Customers\n" +
-
                     "• Employees\n" +
-
                     "• Expenses\n" +
-
                     "• Reports data\n\n" +
+
+                    "Your FuelFlow settings will NOT be deleted.\n\n" +
 
                     "Are you sure you want to continue?"
 
                 );
 
 
-            if(!confirmation){
+            if (!confirmation) {
 
                 return;
 
             }
 
+
+            // ==================================
+            // SECOND CONFIRMATION
+            // ==================================
 
             const secondConfirmation =
                 confirm(
 
+                    "⚠️ FINAL WARNING!\n\n" +
+
                     "This action cannot be undone.\n\n" +
 
-                    "Do you REALLY want to clear all FuelFlow data?"
+                    "All business data will be permanently removed.\n\n" +
+
+                    "Do you REALLY want to continue?"
 
                 );
 
 
-            if(!secondConfirmation){
+            if (!secondConfirmation) {
 
                 return;
 
@@ -795,40 +1383,119 @@ if(clearDataBtn){
 
 
             // ==================================
-            // Remove Application Data
+            // ADMIN PIN VERIFICATION
             // ==================================
 
-            localStorage.removeItem("sales");
+            const verified =
+                verifyAdminPin();
 
-            localStorage.removeItem("fuelStock");
+
+            if (!verified) {
+
+                return;
+
+            }
+
+
+            // ==================================
+            // FINAL CONFIRMATION
+            // ==================================
+
+            const finalConfirmation =
+                confirm(
+
+                    "🔐 ADMIN VERIFIED\n\n" +
+
+                    "You are about to permanently delete " +
+                    "all FuelFlow application data.\n\n" +
+
+                    "Click OK to permanently delete the data."
+
+                );
+
+
+            if (!finalConfirmation) {
+
+                return;
+
+            }
+
+
+            // ==================================
+            // REMOVE APPLICATION DATA
+            // ==================================
+
+            localStorage.removeItem(
+                "sales"
+            );
+
+
+            localStorage.removeItem(
+                "fuelStock"
+            );
+
 
             localStorage.removeItem(
                 "inventoryHistory"
             );
 
+
             localStorage.removeItem(
                 "customers"
             );
+
 
             localStorage.removeItem(
                 "employees"
             );
 
+
             localStorage.removeItem(
                 "expenses"
             );
+
 
             localStorage.removeItem(
                 "lastInvoice"
             );
 
 
-            // Keep settings
+            // ----------------------------------
+            // Remove other possible report data
+            // ----------------------------------
 
-            alert(
-                "Application data cleared successfully."
+            localStorage.removeItem(
+                "reports"
             );
 
+
+            localStorage.removeItem(
+                "salesHistory"
+            );
+
+
+            // ----------------------------------
+            // IMPORTANT:
+            // Keep settings and Admin PIN.
+            // ----------------------------------
+
+
+            alert(
+
+                "Application data cleared successfully.\n\n" +
+
+                "All sales, inventory, customers, " +
+                "employees and expenses data has been removed.\n\n" +
+
+                "Your FuelFlow settings and Admin PIN " +
+                "have been preserved."
+
+            );
+
+
+            // ----------------------------------
+            // Reload application
+            // ----------------------------------
 
             location.reload();
 
@@ -838,16 +1505,15 @@ if(clearDataBtn){
 }
 
 
-
 // ==========================================
 // Logout
 // ==========================================
 
-if(logoutBtn){
+if (logoutBtn) {
 
     logoutBtn.addEventListener(
         "click",
-        function(e){
+        function (e) {
 
             e.preventDefault();
 
@@ -858,7 +1524,7 @@ if(logoutBtn){
                 );
 
 
-            if(!confirmation){
+            if (!confirmation) {
 
                 return;
 
@@ -874,30 +1540,34 @@ if(logoutBtn){
 }
 
 
-
 // ==========================================
 // Update Fuel Price Everywhere
 // ==========================================
 
-function getFuelPrice(fuelType){
+function getFuelPrice(fuelType) {
 
-    if(
+
+    if (
         fuelType === "Petrol"
-    ){
+    ) {
 
         return Number(
-            fuelFlowSettings.fuelPrices.petrol
+            fuelFlowSettings
+                .fuelPrices
+                .petrol
         );
 
     }
 
 
-    if(
+    if (
         fuelType === "Diesel"
-    ){
+    ) {
 
         return Number(
-            fuelFlowSettings.fuelPrices.diesel
+            fuelFlowSettings
+                .fuelPrices
+                .diesel
         );
 
     }
@@ -908,12 +1578,12 @@ function getFuelPrice(fuelType){
 }
 
 
-
+// ==========================================
 // Make Function Available Globally
+// ==========================================
 
 window.getFuelPrice =
     getFuelPrice;
-
 
 
 // ==========================================
@@ -921,12 +1591,11 @@ window.getFuelPrice =
 // ==========================================
 
 window.getFuelFlowSettings =
-    function(){
+    function () {
 
         return fuelFlowSettings;
 
     };
-
 
 
 // ==========================================
@@ -934,6 +1603,13 @@ window.getFuelFlowSettings =
 // ==========================================
 
 loadSettings();
+
+
+// ==========================================
+// Add Admin PIN Management
+// ==========================================
+
+addAdminPinSecurity();
 
 
 // ==========================================
