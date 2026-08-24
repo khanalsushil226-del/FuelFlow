@@ -789,7 +789,15 @@
 }
 
 .admin-pin-header {
-    margin-bottom: 22px;
+    grid-column: 2;
+    grid-row: 1;
+    text-align: left;
+}
+
+.admin-pin-title {
+    display: flex;
+    align-items: center;
+    gap: 14px;
 }
 
 .admin-pin-title {
@@ -1106,9 +1114,15 @@
         grid-column: auto;
     }
 
-    .settings-actions {
-        padding: 0 20px 22px;
-    }
+   .settings-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 32px;
+    padding-top: 0;
+    position: relative;
+    z-index: 2;
+}
 
     .settings-save-btn {
         width: 100%;
@@ -1136,9 +1150,16 @@
         padding: 20px;
     }
 
-    .admin-pin-security {
-        padding: 18px;
-    }
+   .admin-pin-security {
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid #e5e7eb;
+
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    align-items: center;
+    gap: 24px;
+}
 
     .admin-pin-form {
         grid-template-columns: 1fr;
@@ -1210,4 +1231,205 @@
         max-width: 125px;
         font-size: 11px;
     }
+}
+/* =====================================================
+   SECURITY SECTION
+===================================================== */
+
+.security-card {
+    overflow: hidden;
+}
+
+
+/* Password fields */
+
+.security-form-grid {
+    margin-bottom: 32px;
+}
+
+.current-password-group {
+    grid-column: 1 / -1;
+    max-width: 50%;
+}
+
+
+/* =====================================================
+   SECURITY ACTION ROW
+===================================================== */
+
+.security-action-row {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    align-items: center;
+    gap: 24px;
+
+    padding: 24px 0;
+
+    border-top: 1px solid #e5e7eb;
+}
+
+
+/* LEFT */
+
+.security-action-left {
+    display: flex;
+    justify-content: flex-start;
+}
+
+
+/* CENTER */
+
+.admin-pin-header {
+    display: flex;
+    justify-content: center;
+}
+
+.admin-pin-title {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.admin-pin-icon {
+    width: 44px;
+    height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #eff6ff;
+    color: #2563eb;
+
+    border-radius: 10px;
+
+    flex-shrink: 0;
+}
+
+.admin-pin-icon i {
+    font-size: 18px;
+}
+
+.admin-pin-title strong {
+    display: block;
+
+    font-size: 18px;
+    font-weight: 700;
+
+    color: #0f172a;
+
+    margin-bottom: 4px;
+}
+
+.admin-pin-title p {
+    margin: 0;
+
+    font-size: 14px;
+    line-height: 1.5;
+
+    color: #64748b;
+}
+
+
+/* RIGHT */
+
+.security-action-right {
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+.security-action-row .settings-save-btn {
+    white-space: nowrap;
+}
+
+
+/* Blue Admin PIN button */
+
+.blue-btn {
+    background: #2563eb;
+    color: #ffffff;
+}
+
+.blue-btn:hover {
+    background: #1d4ed8;
+    transform: translateY(1px);
+}
+
+
+/* =====================================================
+   ADMIN PIN FORM
+===================================================== */
+
+.admin-pin-security {
+    display: none;
+
+    padding-top: 28px;
+
+    border-top: 1px solid #e5e7eb;
+}
+
+.admin-pin-form {
+    display: flex;
+    align-items: flex-end;
+    gap: 24px;
+}
+
+.admin-pin-form .settings-form-group {
+    flex: 1;
+    max-width: 420px;
+}
+
+.admin-pin-form small {
+    display: block;
+
+    margin-top: 6px;
+
+    font-size: 13px;
+    color: #64748b;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 1000px) {
+
+    .security-action-row {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .security-action-left,
+    .security-action-right {
+        justify-content: flex-start;
+    }
+
+    .admin-pin-header {
+        justify-content: flex-start;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .current-password-group {
+        max-width: 100%;
+    }
+
+    .admin-pin-form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .admin-pin-form .settings-form-group {
+        max-width: none;
+    }
+
 }

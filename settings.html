@@ -938,159 +938,267 @@
 
 
         <!-- ======================================
-             SECURITY SETTINGS
-        ======================================= -->
+     SECURITY SETTINGS
+======================================= -->
 
-        <div class="settings-card">
+<div class="settings-card security-card">
 
+    <div class="settings-card-header">
 
-            <div class="settings-card-header">
+        <div class="settings-title">
 
-                <div class="settings-title">
-
-
-                    <div class="settings-icon red">
-
-                        <i class="fa-solid fa-lock"></i>
-
-                    </div>
-
-
-                    <div>
-
-                        <h2>Security</h2>
-
-                        <p>
-                            Manage your account security
-                        </p>
-
-                    </div>
-
-
-                </div>
-
-
+            <div class="settings-icon red">
+                <i class="fa-solid fa-lock"></i>
             </div>
 
+            <div>
+                <h2>Security</h2>
 
-
-            <div class="settings-form-grid">
-
-
-                <div class="settings-form-group">
-
-                    <label for="currentPassword">
-                        Current Password
-                    </label>
-
-                    <div class="password-input">
-
-                        <input
-                            type="password"
-                            id="currentPassword"
-                            placeholder="Current password"
-                        >
-
-                        <button
-                            type="button"
-                            class="password-toggle"
-                            data-target="currentPassword"
-                        >
-
-                            <i class="fa-solid fa-eye"></i>
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-
-
-                <div></div>
-
-
-
-                <div class="settings-form-group">
-
-                    <label for="newPassword">
-                        New Password
-                    </label>
-
-                    <div class="password-input">
-
-                        <input
-                            type="password"
-                            id="newPassword"
-                            placeholder="New password"
-                        >
-
-                        <button
-                            type="button"
-                            class="password-toggle"
-                            data-target="newPassword"
-                        >
-
-                            <i class="fa-solid fa-eye"></i>
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-
-
-                <div class="settings-form-group">
-
-                    <label for="confirmPassword">
-                        Confirm New Password
-                    </label>
-
-                    <div class="password-input">
-
-                        <input
-                            type="password"
-                            id="confirmPassword"
-                            placeholder="Confirm new password"
-                        >
-
-                        <button
-                            type="button"
-                            class="password-toggle"
-                            data-target="confirmPassword"
-                        >
-
-                            <i class="fa-solid fa-eye"></i>
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-
+                <p>
+                    Manage your account security
+                </p>
             </div>
 
+        </div>
+
+    </div>
 
 
-            <div class="settings-actions">
+    <!-- PASSWORD FIELDS -->
 
-                <button
-                    class="settings-save-btn red-btn"
-                    id="changePasswordBtn"
+    <div class="settings-form-grid security-form-grid">
+
+        <!-- Current Password -->
+
+        <div class="settings-form-group current-password-group">
+
+            <label for="currentPassword">
+                Current Password
+            </label>
+
+            <div class="password-input">
+
+                <input
+                    type="password"
+                    id="currentPassword"
+                    placeholder="Current password"
                 >
 
-                    <i class="fa-solid fa-key"></i>
-
-                    Change Password
-
+                <button
+                    type="button"
+                    class="password-toggle"
+                    data-target="currentPassword"
+                >
+                    <i class="fa-solid fa-eye"></i>
                 </button>
 
             </div>
 
+        </div>
+
+
+        <!-- Empty space -->
+
+        <div></div>
+
+
+        <!-- New Password -->
+
+        <div class="settings-form-group">
+
+            <label for="newPassword">
+                New Password
+            </label>
+
+            <div class="password-input">
+
+                <input
+                    type="password"
+                    id="newPassword"
+                    placeholder="New password"
+                >
+
+                <button
+                    type="button"
+                    class="password-toggle"
+                    data-target="newPassword"
+                >
+                    <i class="fa-solid fa-eye"></i>
+                </button>
+
+            </div>
 
         </div>
+
+
+        <!-- Confirm Password -->
+
+        <div class="settings-form-group">
+
+            <label for="confirmPassword">
+                Confirm New Password
+            </label>
+
+            <div class="password-input">
+
+                <input
+                    type="password"
+                    id="confirmPassword"
+                    placeholder="Confirm new password"
+                >
+
+                <button
+                    type="button"
+                    class="password-toggle"
+                    data-target="confirmPassword"
+                >
+                    <i class="fa-solid fa-eye"></i>
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- SECURITY ACTION ROW -->
+
+    <div class="security-action-row">
+
+        <!-- LEFT -->
+
+        <div class="security-action-left">
+
+            <button
+                type="button"
+                class="settings-save-btn red-btn"
+                id="changePasswordBtn"
+            >
+
+                <i class="fa-solid fa-key"></i>
+
+                Change Password
+
+            </button>
+
+        </div>
+
+
+        <!-- CENTER -->
+
+        <div class="admin-pin-header">
+
+            <div class="admin-pin-title">
+
+                <div class="admin-pin-icon">
+
+                    <i class="fa-solid fa-shield-halved"></i>
+
+                </div>
+
+                <div>
+
+                    <strong>
+                        Admin Data Protection PIN
+                    </strong>
+
+                    <p>
+                        A unique 4-digit PIN is required before
+                        permanently deleting FuelFlow application data.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT -->
+
+        <div class="security-action-right">
+
+            <button
+                type="button"
+                class="settings-save-btn blue-btn"
+                id="changeAdminPinBtn"
+            >
+
+                <i class="fa-solid fa-shield-halved"></i>
+
+                Change Admin PIN
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ADMIN PIN FORM -->
+
+    <div
+        class="admin-pin-security"
+        id="adminPinSection"
+    >
+
+        <div class="admin-pin-form">
+
+            <div class="settings-form-group">
+
+                <label for="adminDeletePin">
+                    Admin Delete PIN
+                </label>
+
+                <div class="password-input">
+
+                    <input
+                        type="password"
+                        id="adminDeletePin"
+                        placeholder="Enter 4-digit PIN"
+                        maxlength="4"
+                        inputmode="numeric"
+                        autocomplete="off"
+                    >
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        data-target="adminDeletePin"
+                    >
+
+                        <i class="fa-solid fa-eye"></i>
+
+                    </button>
+
+                </div>
+
+                <small>
+                    This PIN is required to permanently
+                    delete FuelFlow data.
+                </small>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="settings-save-btn red-btn"
+                id="saveAdminPinBtn"
+            >
+
+                <i class="fa-solid fa-shield-halved"></i>
+
+                Save Admin PIN
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
 
 
 
