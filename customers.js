@@ -1,12 +1,3 @@
-// ==========================================
-// FuelFlow Customers Module
-// Complete Version
-// ==========================================
-
-
-// ==========================================
-// Select Elements
-// ==========================================
 
 const customerForm =
     document.getElementById("customerForm");
@@ -41,38 +32,28 @@ const totalCustomers =
 const regularCustomers =
     document.getElementById("regularCustomers");
 
-const totalCustomerFuel =
-    document.getElementById("totalCustomerFuel");
+const totalCustomerFuel = document.getElementById("totalCustomerFuel");
 
-const cancelCustomer =
-    document.getElementById("cancelCustomer");
+const cancelCustomer =document.getElementById("cancelCustomer");
 
 const openCustomerForm =
     document.getElementById("openCustomerForm");
 
 
-// ==========================================
-// Local Storage
-// ==========================================
-
 let customers = [];
 
-const savedCustomers =
-    localStorage.getItem("customers");
+const savedCustomers =localStorage.getItem("customers");
 
 if(savedCustomers && savedCustomers !== "undefined"){
 
     try{
 
-        customers =
-            JSON.parse(savedCustomers);
+        customers = JSON.parse(savedCustomers);
 
     }catch(error){
 
         console.error(
-            "Error loading customers:",
-            error
-        );
+            "Error loading customers:", error);
 
         customers = [];
 
@@ -80,10 +61,6 @@ if(savedCustomers && savedCustomers !== "undefined"){
 
 }
 
-
-// ==========================================
-// Save Customers
-// ==========================================
 
 function saveCustomers(){
 
@@ -93,11 +70,6 @@ function saveCustomers(){
     );
 
 }
-
-
-// ==========================================
-// Generate Customer ID
-// ==========================================
 
 function generateCustomerId(){
 
@@ -121,11 +93,6 @@ function generateCustomerId(){
     return "CUS-" + lastId;
 
 }
-
-
-// ==========================================
-// Add Customer
-// ==========================================
 
 if(customerForm){
 
@@ -157,10 +124,7 @@ if(customerForm){
                 customerType.value;
 
 
-            // ==============================
-            // Validation
-            // ==============================
-
+           
             if(
                 name === "" ||
                 phone === "" ||
@@ -175,12 +139,6 @@ if(customerForm){
                 return;
 
             }
-
-
-            // ==============================
-            // Check Duplicate Vehicle
-            // ==============================
-
             const duplicate =
                 customers.find(
                     customer =>
@@ -198,10 +156,6 @@ if(customerForm){
 
             }
 
-
-            // ==============================
-            // Create Customer
-            // ==============================
 
             const customer = {
 
@@ -238,18 +192,9 @@ if(customerForm){
             };
 
 
-            // ==============================
-            // Save
-            // ==============================
-
             customers.push(customer);
 
             saveCustomers();
-
-
-            // ==============================
-            // Refresh UI
-            // ==============================
 
             displayCustomers(
                 customers
@@ -257,10 +202,6 @@ if(customerForm){
 
             updateCustomerSummary();
 
-
-            // ==============================
-            // Clear Form
-            // ==============================
 
             customerForm.reset();
 
@@ -275,10 +216,6 @@ if(customerForm){
 }
 
 
-// ==========================================
-// Display Customers
-// ==========================================
-
 function displayCustomers(data){
 
     if(!customerTableBody){
@@ -291,9 +228,6 @@ function displayCustomers(data){
     customerTableBody.innerHTML = "";
 
 
-    // ==============================
-    // Empty State
-    // ==============================
 
     if(data.length === 0){
 
@@ -319,10 +253,7 @@ function displayCustomers(data){
     }
 
 
-    // ==============================
-    // Customer Rows
-    // ==============================
-
+    
     data.forEach(customer => {
 
         let typeClass =
@@ -440,10 +371,6 @@ function displayCustomers(data){
 }
 
 
-// ==========================================
-// Update Summary
-// ==========================================
-
 function updateCustomerSummary(){
 
     const total =
@@ -493,10 +420,6 @@ function updateCustomerSummary(){
 
 }
 
-
-// ==========================================
-// Search Customers
-// ==========================================
 
 if(customerSearch){
 
@@ -560,10 +483,6 @@ if(customerSearch){
 }
 
 
-// ==========================================
-// Delete Customer
-// ==========================================
-
 function deleteCustomer(id){
 
     const customer =
@@ -618,10 +537,6 @@ function deleteCustomer(id){
 
 }
 
-
-// ==========================================
-// Edit Customer
-// ==========================================
 
 function editCustomer(id){
 
@@ -693,11 +608,6 @@ function editCustomer(id){
     });
 
 }
-
-
-// ==========================================
-// Handle Edit / Update
-// ==========================================
 
 if(customerForm){
 
@@ -776,10 +686,6 @@ if(customerForm){
             }
 
 
-            // ==============================
-            // Check Duplicate Vehicle
-            // ==============================
-
             const duplicate =
                 customers.find(
                     customer =>
@@ -798,10 +704,6 @@ if(customerForm){
 
             }
 
-
-            // ==============================
-            // Update
-            // ==============================
 
             customers[index] = {
 
@@ -841,10 +743,6 @@ if(customerForm){
             updateCustomerSummary();
 
 
-            // ==============================
-            // Reset
-            // ==============================
-
             customerForm.reset();
 
 
@@ -879,11 +777,6 @@ if(customerForm){
     );
 
 }
-
-
-// ==========================================
-// Cancel Button
-// ==========================================
 
 if(cancelCustomer){
 
@@ -920,11 +813,6 @@ if(cancelCustomer){
 
 }
 
-
-// ==========================================
-// Open Customer Form
-// ==========================================
-
 if(openCustomerForm){
 
     openCustomerForm.addEventListener(
@@ -951,10 +839,6 @@ if(openCustomerForm){
 }
 
 
-// ==========================================
-// Initialize Customers
-// ==========================================
-
 function initializeCustomers(){
 
     displayCustomers(
@@ -966,8 +850,5 @@ function initializeCustomers(){
 }
 
 
-// ==========================================
-// Start Module
-// ==========================================
 
 initializeCustomers();
